@@ -3,12 +3,21 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import { store } from '@Redux/store'
 import { Provider } from 'react-redux'
+import { Reset } from 'styled-reset'
+import { ThemeProvider } from 'styled-components'
+import theme from '@Styles/theme'
+import GlobalStyles from '@Styles/GlobalStyles'
 import * as serviceWorker from './serviceWorker'
 
+
 ReactDOM.render(
-	<React.StrictMode>
+	<React.StrictMode><GlobalStyles/>
 		<Provider store={store}>
-			<App />
+			<Reset/>
+			<GlobalStyles/>
+			<ThemeProvider theme={theme}>
+				<App/>
+			</ThemeProvider>
 		</Provider>
 	</React.StrictMode>,
 	document.getElementById('root')
