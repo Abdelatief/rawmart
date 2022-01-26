@@ -22,10 +22,9 @@
     "test": "craco test",
     "eject": "react-scripts eject",
     "prettify": "prettier --write .",
-    "prepare": "husky install"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "prepare": "husky install",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix"
   },
   "browserslist": {
     "production": [
@@ -42,7 +41,8 @@
   "devDependencies": {
     "@craco/craco": "^6.4.3",
     "craco-alias": "^3.0.1",
-    "prettier": "^2.5.1",
-    "husky": "^7.0.0"
+    "eslint": "^8.7.0",
+    "husky": "^7.0.0",
+    "prettier": "^2.5.1"
   }
 }
