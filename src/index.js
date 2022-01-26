@@ -5,18 +5,21 @@ import { store } from '@Redux/store'
 import { Provider } from 'react-redux'
 import { Reset } from 'styled-reset'
 import { ThemeProvider } from 'styled-components'
+import { BrowserRouter } from 'react-router-dom'
 import theme from '@Styles/theme'
 import GlobalStyles from '@Styles/GlobalStyles'
 import * as serviceWorker from './serviceWorker'
 
-
 ReactDOM.render(
-	<React.StrictMode><GlobalStyles/>
+	<React.StrictMode>
+		<GlobalStyles />
 		<Provider store={store}>
-			<Reset/>
-			<GlobalStyles/>
+			<Reset />
+			<GlobalStyles />
 			<ThemeProvider theme={theme}>
-				<App/>
+				<BrowserRouter>
+					<App />
+				</BrowserRouter>
 			</ThemeProvider>
 		</Provider>
 	</React.StrictMode>,

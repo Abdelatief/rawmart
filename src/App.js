@@ -12,9 +12,8 @@ function App() {
 }
 
 const Header = styled.h1`
-	${typography};
-	font-family: KageFreebiesBlack, sans-serif;
-	color: ${props => props.theme.colors.text.black};
+  ${typography};
+  color: ${props => props.theme.colors.text.black};
 `
 
 export default App
