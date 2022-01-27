@@ -4,6 +4,7 @@ import { Text, Flex } from '@Components'
 import { BsPower } from 'react-icons/bs'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { AiOutlineClose } from 'react-icons/ai'
+
 const Navbar = () => {
 	const [extendNavbar, setExtendNavbar] = useState(false)
 	const toggleExtendNavBar = () => {
@@ -41,10 +42,10 @@ const StyledMainContainer = styled.div`
 	padding-left: 35px;
 	background-color: black;
 	height: 85px;
-	position: fixed;
-	top: 0;
 	width: 100%;
 	z-index: 100;
+	position: fixed;
+	top: 0;
 	@media (max-width: 1000px) {
 		height: 65px;
 	}
