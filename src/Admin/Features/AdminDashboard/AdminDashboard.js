@@ -1,7 +1,9 @@
+import Layout from '@Admin/Containers/Layout/Layout'
+
 const AdminDashboard = () => {
 	return (
 		<div>
-			<h1>AdminDashboard</h1>
+			<Layout />
 		</div>
 	)
 }

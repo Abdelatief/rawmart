@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Flex, { FluidContainer } from '@Components'
+import { Flex, FluidContainer } from '@Components'
 
 const Navbar = () => {
 	return (
