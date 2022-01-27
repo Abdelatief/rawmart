@@ -2,13 +2,16 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "@Features/*": ["./Features/*"],
-      "@Components/*": ["./Components/*"],
-      "@Containers/*": ["./Containers/*"],
-      "@Redux/*": ["./Redux/*"],
-      "@Assets/*": ["./Assets/*"],
-      "@Styles/*": ["./Styles/*"],
-      "@Apis/*": ["./Apis/*"]
+      "@Features/*": ["./Shared/Features/*"],
+      "@Components/*": ["./Shared/Components/*"],
+      "@Components": ["./Shared/Components/index"],
+      "@Containers/*": ["./Shared/Containers/*"],
+      "@Redux/*": ["./Shared/Redux/*"],
+      "@Assets/*": ["./Shared/Assets/*"],
+      "@Styles/*": ["./Shared/Styles/*"],
+      "@Apis/*": ["./Shared/Apis/*"],
+      "@Admin/*": ["./Admin/*"],
+      "@Customer/*": ["./Customer/*"]
     }
   }
 }

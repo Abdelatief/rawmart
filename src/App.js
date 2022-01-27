@@ -1,19 +1,8 @@
 import React from 'react'
-import styled from 'styled-components'
-import { typography } from 'styled-system'
-
+import Layout from '@Customer/Containers/Layout'
 
 function App() {
-	return (
-		<div>
-			<Header fontSize={8}>Rawmart app</Header>
-		</div>
-	)
+	return <Layout />
 }
-
-const Header = styled.h1`
-  ${typography};
-  color: ${props => props.theme.colors.text.black};
-`
 
 export default App

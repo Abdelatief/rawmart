@@ -6,8 +6,8 @@ import { Provider } from 'react-redux'
 import { Reset } from 'styled-reset'
 import { ThemeProvider } from 'styled-components'
 import { BrowserRouter } from 'react-router-dom'
-import theme from '@Styles/theme'
-import GlobalStyles from '@Styles/GlobalStyles'
+import theme from './Shared/Styles/theme'
+import GlobalStyles from './Shared/Styles/GlobalStyles'
 import * as serviceWorker from './serviceWorker'
 
 ReactDOM.render(
