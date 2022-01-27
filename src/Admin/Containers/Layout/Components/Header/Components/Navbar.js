@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Flex, FluidContainer, Text } from '@Components'
 import { BsPower } from 'react-icons/bs'
+import { GiHamburgerMenu } from 'react-icons/gi'
 
 const Navbar = () => {
 	return (
@@ -17,9 +18,12 @@ const Navbar = () => {
 						</StyledNavbarLinkContainer>
 					</StyledLeftContainer>
 					<StyledRightContainer>
+						<NavItem>
+							<MenuIcon />
+						</NavItem>
 						<NavItem fontSize={2}>
 							<LogoutIcon />
-							Logout
+							<LogoutLabel>Logout</LogoutLabel>
 						</NavItem>
 					</StyledRightContainer>
 				</StyledNavbarInnerContainer>
@@ -31,7 +35,10 @@ const Navbar = () => {
 const StyledMainContainer = styled.div`
 	padding-left: 35px;
 	background-color: black;
-	min-height: 85px;
+	height: 85px;
+	@media (max-width: 1000px) {
+		height: 65px;
+	}
 `
 const StyledLeftContainer = styled.div`
 	flex: 70%;
@@ -56,7 +63,7 @@ const StyledNavbarLinkContainer = styled.div`
 `
 const NavItem = styled(Text).attrs({
 	color: 'text.white',
-	mr: '40px',
+	mr: '30px',
 })`
 	text-align: ${props => props?.textAlign ?? 'center'};
 	display: flex;
@@ -71,6 +78,22 @@ const LogoutIcon = styled(BsPower)`
 	margin-right: 5px;
 	font-size: 18px;
 	margin-bottom: 5px;
+	@media (max-width: 1000px) {
+		margin-bottom: 0px;
+	}
+`
+const MenuIcon = styled(GiHamburgerMenu)`
+	font-size: 20px;
+	color: white;
+	margin-right: -5px;
+	@media (min-width: 1000px) {
+		display: none;
+	}
+`
+const LogoutLabel = styled.label`
+	@media (max-width: 1000px) {
+		display: none;
+	}
 `
 const StyledNavbarExtendContainer = styled.div``
 
