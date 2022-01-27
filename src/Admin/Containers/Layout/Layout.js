@@ -1,12 +1,23 @@
 import React from 'react'
-import Header from '@Admin/Components/Header/Header'
+import Header from '@Admin/Containers/Layout/Components/Header/Header'
+import styled from 'styled-components'
 
 const Layout = () => {
 	return (
-		<div>
+		<StyledLayout>
 			<Header />
-		</div>
+			<StyledPageBody></StyledPageBody>
+		</StyledLayout>
 	)
 }
+const StyledLayout = styled.div`
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+`
+
+const StyledPageBody = styled.div`
+	flex-grow: 1;
+`
 
 export default Layout
