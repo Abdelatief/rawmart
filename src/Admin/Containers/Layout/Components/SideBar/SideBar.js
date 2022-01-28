@@ -4,84 +4,73 @@ import { Text } from '@Components'
 import { BsChevronDown } from 'react-icons/bs'
 
 const SideBar = () => {
-	const [Values, setValues] = useState([
-		false,
-		false,
-		false,
-		false,
-		false,
-		false,
-		false,
-		false,
-		false,
-		false,
-		false,
-		false,
-		false,
-		false,
-		false,
-	])
-	//   const [Values, setValues] = useState([])
-	// for(let i = 0; i<15; i++){
-	//     const value = [...Values]
-	//     value.push(false)
-	//     setValues(value)
-	// }
+	const [selectedItem, setSelectedItem] = useState()
 
-	function handleUpdate(index) {
-		for (let i = 0; i < 15; i++) {
-			if (Values[i] === true) Values[i] = false
-		}
-		const newValue = [...Values]
-		newValue[index] = true
-		setValues(newValue)
+	function handleUpdate(item) {
+		setSelectedItem(item)
 	}
 
 	return (
 		<StyledContainer>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(0)} selectedValue={Values[0]}>
+			<NavItem fontSize={3} onClick={() => handleUpdate('Dashboard')} selectedValue={selectedItem === 'Dashboard'}>
 				Dashboard
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(1)} selectedValue={Values[1]}>
+			<NavItem fontSize={3} onClick={() => handleUpdate('Roles')} selectedValue={selectedItem === 'Roles'}>
 				Roles
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(2)} selectedValue={Values[2]}>
+			<NavItem fontSize={3} onClick={() => handleUpdate('Users')} selectedValue={selectedItem === 'Users'}>
 				Users
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(3)} selectedValue={Values[3]}>
+			<NavItem fontSize={3} onClick={() => handleUpdate('Vendors')} selectedValue={selectedItem === 'Vendors'}>
 				Vendors
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(4)} selectedValue={Values[4]}>
+			<NavItem fontSize={3} onClick={() => handleUpdate('Categories')} selectedValue={selectedItem === 'Categories'}>
 				Categories
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(5)} selectedValue={Values[5]}>
+			<NavItem fontSize={3} onClick={() => handleUpdate('Products')} selectedValue={selectedItem === 'Products'}>
 				Products
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(6)} selectedValue={Values[6]}>
+			<NavItem fontSize={3} onClick={() => handleUpdate('Offers')} selectedValue={selectedItem === 'Offers'}>
 				Offers
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(7)} selectedValue={Values[7]}>
+			<NavItem fontSize={3} onClick={() => handleUpdate('Orders')} selectedValue={selectedItem === 'Orders'}>
 				Orders
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(8)} selectedValue={Values[8]}>
+			<NavItem
+				fontSize={3}
+				onClick={() => handleUpdate('Payment Methods')}
+				selectedValue={selectedItem === 'Payment Methods'}
+			>
 				Payment Methods
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(9)} selectedValue={Values[9]}>
+			<NavItem
+				fontSize={3}
+				onClick={() => handleUpdate('Shipping Method')}
+				selectedValue={selectedItem === 'Shipping Method'}
+			>
 				Shipping Method
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(10)} selectedValue={Values[10]}>
+			<NavItem
+				fontSize={3}
+				onClick={() => handleUpdate('New Categories')}
+				selectedValue={selectedItem === 'New Categories'}
+			>
 				New Categories
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(11)} selectedValue={Values[11]}>
+			<NavItem fontSize={3} onClick={() => handleUpdate('News')} selectedValue={selectedItem === 'News'}>
 				News
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(12)} selectedValue={Values[12]}>
+			<NavItem
+				fontSize={3}
+				onClick={() => handleUpdate('Special Orders')}
+				selectedValue={selectedItem === 'Special Orders'}
+			>
 				Special Orders
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(13)} selectedValue={Values[13]}>
+			<NavItem fontSize={3} onClick={() => handleUpdate('Settings')} selectedValue={selectedItem === 'Settings'}>
 				Settings
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(14)} selectedValue={Values[14]}>
+			<NavItem fontSize={3} onClick={() => handleUpdate('Pages')} selectedValue={selectedItem === 'Pages'}>
 				Pages
 				<DropDownIcon>
 					<BsChevronDown />

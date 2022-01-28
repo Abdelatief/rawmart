@@ -30,10 +30,7 @@ const Navbar = () => {
 						</NavItem>
 					</StyledRightContainer>
 				</StyledNavbarInnerContainer>
-				{/*TODO::Add slider page here*/}
-				{/*{extendNavbar && (*/}
-				{/*	*/}
-				{/*)}*/}
+				{/*  TODO::Add slider page here  */}
 			</Flex>
 		</StyledMainContainer>
 	)
@@ -95,7 +92,7 @@ const LogoutIcon = styled(BsPower)`
 	font-size: 18px;
 	margin-bottom: 5px;
 	@media (max-width: 1000px) {
-		margin-bottom: 0px;
+		margin-bottom: 0;
 	}
 `
 const MenuIcon = styled(GiHamburgerMenu)`
@@ -120,6 +117,5 @@ const LogoutLabel = styled.label`
 		display: none;
 	}
 `
-const StyledNavbarExtendContainer = styled.div``
 
 export default Navbar
