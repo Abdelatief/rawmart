@@ -102,6 +102,7 @@ const StyledContainer = styled.div`
 		top: 6.5%;
 	}
 `
+
 const DropDownIcon = styled.div`
 	display: flex;
 	justify-content: flex-end;
@@ -112,9 +113,9 @@ const DropDownIcon = styled.div`
 const NavItem = styled(Text).attrs({
 	color: 'text.black',
 	pl: '30px',
-	pt: '10px',
-	mt: '10px',
-	mb: '10px',
+	pt: '12px',
+	mt: '15px',
+	mb: '-5px',
 	width: '100%',
 	height: '44px',
 })`
