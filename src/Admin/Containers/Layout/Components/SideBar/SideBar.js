@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Text } from '@Components'
+import { BsChevronDown } from 'react-icons/bs'
 
 const SideBar = () => {
 	const [Values, setValues] = useState([
@@ -82,6 +83,9 @@ const SideBar = () => {
 			</NavItem>
 			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(14)} selectedValue={Values[14]}>
 				Pages
+				<DropDownIcon>
+					<BsChevronDown />
+				</DropDownIcon>
 			</NavItem>
 		</StyledContainer>
 	)
@@ -98,7 +102,13 @@ const StyledContainer = styled.div`
 		top: 6.5%;
 	}
 `
-
+const DropDownIcon = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	margin-top: -15px;
+	margin-right: 10px;
+	font-size: 18px;
+`
 const NavItem = styled(Text).attrs({
 	color: 'text.black',
 	pl: '30px',
@@ -110,10 +120,12 @@ const NavItem = styled(Text).attrs({
 })`
 	background-color: ${props => (props.selectedValue ? 'black' : 'transparent')};
 	color: ${props => (props.selectedValue ? 'white' : 'black')};
+
 	&:hover {
 		cursor: pointer;
 		background-color: black;
 		color: ${props => props.theme.colors.text.white};
 	}
 `
+
 export default SideBar
