@@ -49,12 +49,18 @@ const StyledMainContainer = styled.div`
 	@media (max-width: 1000px) {
 		height: 65px;
 	}
+	@media (max-width: 450px) {
+		height: 85px;
+	}
 `
 const StyledLeftContainer = styled.div`
 	flex: 70%;
 	display: flex;
 	justify-content: flex-start;
 	margin-left: 0;
+	@media (max-width: 450px) {
+		display: block;
+	}
 `
 const StyledRightContainer = styled.div`
 	flex: 30%;
