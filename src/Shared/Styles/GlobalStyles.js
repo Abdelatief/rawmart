@@ -22,7 +22,7 @@ const GlobalStyles = createGlobalStyle`
   
 	* {
 		box-sizing: border-box;
-		transition: 300ms ease-in-out;
+		//transition: 300ms ease-in-out;
 	}
 `
 
