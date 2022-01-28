@@ -27,7 +27,7 @@ const SideBar = () => {
 	//     setValues(value)
 	// }
 
-	function handelUpdate(index) {
+	function handleUpdate(index) {
 		for (let i = 0; i < 15; i++) {
 			if (Values[i] === true) Values[i] = false
 		}
@@ -41,49 +41,49 @@ const SideBar = () => {
 	// }
 	return (
 		<StyledContainer>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handelUpdate(0)} selectedValue={Values[0]}>
+			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(0)} selectedValue={Values[0]}>
 				Dashboard
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handelUpdate(1)} selectedValue={Values[1]}>
+			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(1)} selectedValue={Values[1]}>
 				Roles
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handelUpdate(2)} selectedValue={Values[2]}>
+			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(2)} selectedValue={Values[2]}>
 				Users
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handelUpdate(3)} selectedValue={Values[3]}>
+			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(3)} selectedValue={Values[3]}>
 				Vendors
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handelUpdate(4)} selectedValue={Values[4]}>
+			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(4)} selectedValue={Values[4]}>
 				Categories
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handelUpdate(5)} selectedValue={Values[5]}>
+			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(5)} selectedValue={Values[5]}>
 				Products
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handelUpdate(6)} selectedValue={Values[6]}>
+			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(6)} selectedValue={Values[6]}>
 				Offers
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handelUpdate(7)} selectedValue={Values[7]}>
+			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(7)} selectedValue={Values[7]}>
 				Orders
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handelUpdate(8)} selectedValue={Values[8]}>
+			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(8)} selectedValue={Values[8]}>
 				Payment Methods
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handelUpdate(9)} selectedValue={Values[9]}>
+			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(9)} selectedValue={Values[9]}>
 				Shipping Method
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handelUpdate(10)} selectedValue={Values[10]}>
+			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(10)} selectedValue={Values[10]}>
 				New Categories
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handelUpdate(11)} selectedValue={Values[11]}>
+			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(11)} selectedValue={Values[11]}>
 				News
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handelUpdate(12)} selectedValue={Values[12]}>
+			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(12)} selectedValue={Values[12]}>
 				Special Orders
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handelUpdate(13)} selectedValue={Values[13]}>
+			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(13)} selectedValue={Values[13]}>
 				Settings
 			</NavItem>
-			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handelUpdate(14)} selectedValue={Values[14]}>
+			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(14)} selectedValue={Values[14]}>
 				Pages
 			</NavItem>
 		</StyledContainer>
