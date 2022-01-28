@@ -35,10 +35,7 @@ const SideBar = () => {
 		newValue[index] = true
 		setValues(newValue)
 	}
-	// for(let i = 0;i<15;i++)
-	// {
-	//     console.log(Values[i])
-	// }
+
 	return (
 		<StyledContainer>
 			<NavItem fontFamily='Jost-Regular' fontSize={3} onClick={() => handleUpdate(0)} selectedValue={Values[0]}>

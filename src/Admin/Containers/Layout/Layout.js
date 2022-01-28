@@ -7,7 +7,10 @@ const Layout = () => {
 	return (
 		<StyledLayout>
 			<Header />
-			<SideBar />
+			<StyledLeftPart>
+				<SideBar />
+			</StyledLeftPart>
+
 			<StyledPageBody></StyledPageBody>
 		</StyledLayout>
 	)
@@ -18,6 +21,11 @@ const StyledLayout = styled.div`
 	height: 100%;
 `
 
+const StyledLeftPart = styled.div`
+	@media (max-width: 1000px) {
+		display: none;
+	}
+`
 const StyledPageBody = styled.div`
 	flex-grow: 1;
 `
