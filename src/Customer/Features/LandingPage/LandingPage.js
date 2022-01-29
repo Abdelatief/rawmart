@@ -2,6 +2,7 @@ import Header from '@Customer/Containers/Layout/Components/Header'
 import Footer from '@Customer/Containers/Layout/Components/Footer'
 import Carousel from '@Customer/Features/LandingPage/Components/Carousel'
 import CategoriesSection from '@Customer/Features/LandingPage/Components/CategoriesSection'
+import FeaturesCardsSection from '@Customer/Features/LandingPage/Components/FeaturesCardsSection'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -12,6 +13,7 @@ const LandingPage = () => {
 			<StyledPageBody>
 				<Carousel />
 				<CategoriesSection />
+				<FeaturesCardsSection />
 			</StyledPageBody>
 			<Footer />
 		</StyledLayout>
