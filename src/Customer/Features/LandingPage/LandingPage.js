@@ -1,6 +1,7 @@
 import Header from '@Customer/Containers/Layout/Components/Header'
 import Footer from '@Customer/Containers/Layout/Components/Footer'
 import Carousel from '@Customer/Features/LandingPage/Components/Carousel'
+import CategoriesSection from '@Customer/Features/LandingPage/Components/CategoriesSection'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -10,6 +11,7 @@ const LandingPage = () => {
 			<Header />
 			<StyledPageBody>
 				<Carousel />
+				<CategoriesSection />
 			</StyledPageBody>
 			<Footer />
 		</StyledLayout>
