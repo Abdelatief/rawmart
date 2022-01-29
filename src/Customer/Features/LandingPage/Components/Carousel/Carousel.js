@@ -1,69 +1,60 @@
-import { useState, createContext } from 'react'
-import styled, { css } from 'styled-components'
-import { AnimatePresence } from 'framer-motion'
-import { wrap } from 'popmotion'
-import ArrowBackImage from './Assets/left-ar-new.png'
-import ArrowForwardImage from './Assets/right-ar-new.png'
+import React from 'react'
+import styled from 'styled-components'
 import CarouselItem from '@Customer/Features/LandingPage/Components/Carousel/CarouselItem'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Autoplay, Navigation, Pagination } from 'swiper'
 
 const testArr = []
 testArr.push(<CarouselItem imageSrc='http://api.dussurapp.com/uploads/pages/home/slider/16305585180.png' />)
 testArr.push(<CarouselItem imageSrc='http://api.dussurapp.com/uploads/pages/home/slider/16305585181.png' />)
 
-export const AnimationContext = createContext({})
-
 const Carousel = () => {
-	const [[page, direction], setPage] = useState([0, 0])
-	const itemIndex = wrap(0, testArr.length, page)
-
-	const paginate = newDirection => {
-		setPage([page + newDirection, newDirection])
-	}
-
 	return (
-		<CarouselContainer>
-			<AnimationContext.Provider value={{ page, direction }}>
-				<AnimatePresence initial={false} custom={direction}>
-					{testArr[itemIndex]}
-				</AnimatePresence>
-				<PreviousButton src={ArrowBackImage} onClick={() => paginate(-1)} />
-				<NextButton src={ArrowForwardImage} onClick={() => paginate(1)} />
-			</AnimationContext.Provider>
-		</CarouselContainer>
+		<LandingSwiper
+			navigation
+			loop
+			grabCursor
+			modules={[Navigation, Pagination, Autoplay]}
+			autoplay={{ delay: 2500, disableOnInteraction: false }}
+		>
+			{testArr.map((item, index) => (
+				<SwiperSlide key={index}>{item}</SwiperSlide>
+			))}
+		</LandingSwiper>
 	)
 }
 
-const CarouselContainer = styled.div`
-	height: 30rem;
-	margin: 0 auto;
-	position: relative;
-	flex-grow: 1;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+const LandingSwiper = styled(Swiper)`
 	background-color: #e7e7e9;
-`
+	height: 30rem;
 
-const NextPreviousCss = css`
-	position: absolute;
-	background-color: transparent;
-	top: calc(50%, -20px);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	user-select: none;
-	cursor: pointer;
-	z-index: 2;
-`
+	.swiper-button-prev,
+	.swiper-button-next {
+		color: black;
+	}
 
-const PreviousButton = styled.img`
-	${NextPreviousCss};
-	left: 100px;
-`
+	.swiper-button-prev {
+		margin-left: 100px;
+	}
 
-const NextButton = styled.img`
-	${NextPreviousCss};
-	right: 100px;
+	.swiper-button-next {
+		margin-right: 100px;
+	}
+
+	.swiper-slide {
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-box-pack: center;
+		-ms-flex-pack: center;
+		-webkit-justify-content: center;
+		justify-content: center;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
+		-webkit-align-items: center;
+		align-items: center;
+	}
 `
 
 export default Carousel

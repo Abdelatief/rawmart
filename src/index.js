@@ -9,6 +9,7 @@ import { BrowserRouter } from 'react-router-dom'
 import theme from './Shared/Styles/theme'
 import GlobalStyles from './Shared/Styles/GlobalStyles'
 import * as serviceWorker from './serviceWorker'
+import 'swiper/css/bundle'
 
 ReactDOM.render(
 	<React.StrictMode>

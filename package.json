@@ -18,7 +18,8 @@
     "react-scripts": "5.0.0",
     "styled-components": "^5.3.3",
     "styled-reset": "^4.3.4",
-    "styled-system": "^5.1.5"
+    "styled-system": "^5.1.5",
+    "swiper": "^7.4.1"
   },
   "scripts": {
     "start": "craco start",
