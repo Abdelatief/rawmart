@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { color, layout, flexbox } from 'styled-system'
+import { color, layout, flexbox, space } from 'styled-system'
 
 export const FluidContainer = ({ children, ...props }) => {
 	return (
@@ -13,6 +13,7 @@ const StyledFluidContainer = styled.div`
 	${color};
 	${layout};
 	${flexbox};
+	${space};
 `
 
 const StyledContent = styled.div`

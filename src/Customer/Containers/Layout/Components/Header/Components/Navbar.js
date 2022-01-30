@@ -1,14 +1,14 @@
 import styled from 'styled-components'
-import FluidContainer from '../../../../../../Shared/Components/FluidContainer'
-import Flex from '../../../../../../Shared/Components/Flex'
-import Text from '../../../../../../Shared/Components/Text'
 import { RiArrowDownSLine } from 'react-icons/ri'
+import { FluidContainer, Text, Flex, Link } from '@Components'
 
 const Navbar = () => {
 	return (
 		<FluidContainer bg='background.black'>
 			<Flex height='55px' alignItems='center'>
-				<NavItem textAlign='left'>Home</NavItem>
+				<Link to='/'>
+					<NavItem textAlign='left'>Home</NavItem>
+				</Link>
 				<NavItem>
 					Category <RiArrowDownSLine fontSize='24px' />
 				</NavItem>
@@ -16,7 +16,9 @@ const Navbar = () => {
 					Brands <RiArrowDownSLine fontSize='24px' />
 				</NavItem>
 				<NavItem>Deals</NavItem>
-				<NavItem>About</NavItem>
+				<Link to='/about-us'>
+					<NavItem>About Us</NavItem>
+				</Link>
 				<NavItem>News/Media</NavItem>
 				<NavItem textAlign='left'>Special Order</NavItem>
 				<NavItem ml='auto'>Login/Register</NavItem>
