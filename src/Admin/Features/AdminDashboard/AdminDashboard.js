@@ -13,7 +13,7 @@ const AdminDashboard = () => {
 	)
 }
 const StyledDiv = styled.div`
-	//display: block;
+	display: block;
 	//position: relative;
 `
 const StyledContainer = styled.div`

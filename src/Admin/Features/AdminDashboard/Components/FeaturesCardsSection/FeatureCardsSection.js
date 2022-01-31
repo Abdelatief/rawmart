@@ -5,9 +5,8 @@ import styled from 'styled-components'
 const FeaturesCardsSection = () => {
 	return (
 		<StyledOuterContianer>
-			<Text fontSize='22px' mb='50px' fontWeight='bold'>
-				Analytics Overview
-			</Text>
+			<StyledHeader>Analytics Overview</StyledHeader>
+
 			<StyledInnerContianer>
 				<Flex gap='22px' mb='20px'>
 					<FeatureCard
@@ -82,6 +81,11 @@ const FeaturesCardsSection = () => {
 const StyledOuterContianer = styled.div`
 	display: flex;
 	flex-wrap: wrap;
+	//@media (max-width: 750px) {
+	//  display: flex;
+	//  justify-content: center;
+	//
+	//}
 `
 const StyledInnerContianer = styled.div`
 	//display: flex;
@@ -92,5 +96,21 @@ const StyledInnerContianer = styled.div`
 	//width: 500px;
 	//padding-right: 15px;
 	//padding-left: 15px;
+`
+const StyledHeader = styled(Text).attrs({
+	fontSize: '22px',
+	mb: '50px',
+	fontWeight: 'bold',
+})`
+	min-height: 50px;
+	position: relative;
+	@media (max-width: 750px) {
+		width: 78%;
+		background: #e0ecde;
+		padding: 10px;
+		text-align: center;
+		margin-left: 10px;
+		margin-right: 10px;
+	}
 `
 export default FeaturesCardsSection

@@ -31,7 +31,7 @@ const Card = styled.div`
 		cursor: pointer;
 	}
 
-	@media (max-width: 986px) //and (min-width: 640px) { { {
+	@media (max-width: 986px) //and (min-width: 640px) { { { {
 		width: 467px;
 		height: 140px;
 	}
@@ -58,7 +58,7 @@ const Image = styled.img`
 		top: ${props => (props.sizeLarge ? '30%' : '0')};
 		left: ${props => (props.sizeLarge ? '85%' : '80%')};
 	}
-	@media (max-width: 700px) {
+	@media (max-width: 750px) {
 		opacity: 0.05;
 		width: 80px;
 		height: 80px;
