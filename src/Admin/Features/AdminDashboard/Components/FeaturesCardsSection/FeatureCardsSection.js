@@ -78,10 +78,8 @@ const FeaturesCardsSection = () => {
 	)
 }
 const StyledContianer = styled.div`
-	@media (max-width: 1000px) {
-		left: -5000px;
-		padding-left: -5000px;
-		margin-left: -200px;
-	}
+	//display: flex;
+	//flex-wrap:wrap;
+	//width:800px;
 `
 export default FeaturesCardsSection
