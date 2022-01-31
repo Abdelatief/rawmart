@@ -5,9 +5,8 @@ const FeatureCard = ({ title, subtitle, imageSrc, bg, sizeLarge }) => {
 	return (
 		<Card bg={bg} sizeLarge={sizeLarge}>
 			<Image src={imageSrc} sizeLarge={sizeLarge} />
-
 			<TextContainer>
-				<Text fontSize='24px' mb='7px' fontWeight='bold'>
+				<Text fontSize='24px' mb='7px' fontWeight='bold' mt={sizeLarge ? '-30px' : '0'}>
 					{title}
 				</Text>
 				<Text fontSize='20px'>{subtitle}</Text>
@@ -32,11 +31,11 @@ const Card = styled.div`
 		cursor: pointer;
 	}
 
-	@media (max-width: 986px) //and (min-width: 640px) { {
+	@media (max-width: 986px) //and (min-width: 640px) { { {
 		width: 467px;
 		height: 140px;
 	}
-	@media (max-width: 700px) {
+	@media (max-width: 750px) {
 		width: 430px;
 		height: 200px;
 	}
