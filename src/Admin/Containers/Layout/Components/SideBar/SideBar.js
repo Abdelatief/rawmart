@@ -86,9 +86,9 @@ const StyledContainer = styled.div`
 	position: fixed;
 	display: inline-block;
 	align-items: center;
-	top: 8.5%;
+	top: 80px;
 	@media (max-width: 1000px) {
-		top: 6.5%;
+		top: 50px;
 	}
 `
 

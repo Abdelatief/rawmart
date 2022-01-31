@@ -1,15 +1,13 @@
 import Layout from '@Admin/Containers/Layout/Layout'
 import styled from 'styled-components'
-import { Text } from '@Components'
+import FeaturesCardsSection from '@Admin/Features/AdminDashboard/Components/FeaturesCardsSection/FeatureCardsSection'
 
 const AdminDashboard = () => {
 	return (
 		<StyledDiv>
 			<Layout />
 			<StyledContainer>
-				<Text fontFamily='Jost-Bold' fontSize={5}>
-					Analytics Overview
-				</Text>
+				<FeaturesCardsSection />
 			</StyledContainer>
 		</StyledDiv>
 	)

@@ -11,6 +11,7 @@ const Navbar = () => {
 		setExtendNavbar(!extendNavbar)
 	}
 	return (
+		// <StyledDiv>
 		<StyledMainContainer>
 			<Flex height='75px' alignItems='center'>
 				<StyledNavbarInnerContainer>
@@ -33,8 +34,15 @@ const Navbar = () => {
 				{/*  TODO::Add slider page here  */}
 			</Flex>
 		</StyledMainContainer>
+		// </StyledDiv>
 	)
 }
+// const StyledDiv = styled.div`
+//   position: fixed;
+//   top: 0;
+//   width: 100vh;
+//
+// `
 const StyledMainContainer = styled.div`
 	padding-left: 35px;
 	background-color: black;
@@ -42,6 +50,7 @@ const StyledMainContainer = styled.div`
 	width: 100%;
 	z-index: 100;
 	position: fixed;
+	//position: absolute;
 	top: 0;
 	@media (max-width: 1000px) {
 		height: 65px;
