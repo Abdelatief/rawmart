@@ -1,116 +1,99 @@
 import FeatureCard from '@Admin/Features/AdminDashboard/Components/FeaturesCardsSection/FeatureCard'
-import { Text, Flex } from '@Components'
+import { Text } from '@Components'
 import styled from 'styled-components'
 
 const FeaturesCardsSection = () => {
 	return (
-		<StyledOuterContianer>
+		<div>
 			<StyledHeader>Analytics Overview</StyledHeader>
+			<StyledCardContainer>
+				<FeatureCard
+					title='7'
+					subtitle='Vendors'
+					bg='#fbf4ee'
+					sizeLarge={true}
+					imageSrc={require('./Assets/visitor-card.png')}
+				/>
 
-			<StyledInnerContianer>
-				<Flex gap='22px' mb='20px'>
-					<FeatureCard
-						title='7'
-						subtitle='Vendors'
-						bg='#fbf4ee'
-						sizeLarge={true}
-						imageSrc={require('./Assets/visitor-card.png')}
-					/>
+				<FeatureCard
+					title='12'
+					subtitle='Orders'
+					bg='#f7f3f4'
+					sizeLarge={true}
+					imageSrc={require('./Assets/shopping-cart.png')}
+				/>
 
-					<FeatureCard
-						title='12'
-						subtitle='Orders'
-						bg='#f7f3f4'
-						sizeLarge={true}
-						imageSrc={require('./Assets/shopping-cart.png')}
-					/>
+				<FeatureCard
+					title='2'
+					subtitle='Customers'
+					bg='#ffecd3'
+					sizeLarge={true}
+					imageSrc={require('./Assets/handshake.png')}
+				/>
 
-					<FeatureCard
-						title='2'
-						subtitle='Customers'
-						bg='#ffecd3'
-						sizeLarge={true}
-						imageSrc={require('./Assets/handshake.png')}
-					/>
+				<FeatureCard
+					title='EGP 0'
+					subtitle='Total Sale'
+					bg='#d9e2eb'
+					sizeLarge={true}
+					imageSrc={require('./Assets/money.png')}
+				/>
+			</StyledCardContainer>
+			<StyledCardContainer>
+				<FeatureCard
+					title='11'
+					subtitle='In Process'
+					bg='#d9e2eb'
+					sizeLarge={false}
+					imageSrc={require('./Assets/shopping-cart.png')}
+				/>
 
-					<FeatureCard
-						title='EGP 0'
-						subtitle='Total Sale'
-						bg='#d9e2eb'
-						sizeLarge={true}
-						imageSrc={require('./Assets/money.png')}
-					/>
-				</Flex>
-				<Flex gap='22px'>
-					<FeatureCard
-						title='11'
-						subtitle='In Process'
-						bg='#d9e2eb'
-						sizeLarge={false}
-						imageSrc={require('./Assets/shopping-cart.png')}
-					/>
+				<FeatureCard
+					title='0'
+					subtitle='Shipped'
+					bg='#d9e2eb'
+					sizeLarge={false}
+					imageSrc={require('./Assets/shopping-cart.png')}
+				/>
 
-					<FeatureCard
-						title='0'
-						subtitle='Shipped'
-						bg='#d9e2eb'
-						sizeLarge={false}
-						imageSrc={require('./Assets/shopping-cart.png')}
-					/>
+				<FeatureCard
+					title='1'
+					subtitle='Delivered'
+					bg='#d9e2eb'
+					sizeLarge={false}
+					imageSrc={require('./Assets/shopping-cart.png')}
+				/>
 
-					<FeatureCard
-						title='1'
-						subtitle='Delivered'
-						bg='#d9e2eb'
-						sizeLarge={false}
-						imageSrc={require('./Assets/shopping-cart.png')}
-					/>
-
-					<FeatureCard
-						title='0'
-						subtitle='Cancelled'
-						bg='#d9e2eb'
-						sizeLarge={false}
-						imageSrc={require('./Assets/shopping-cart.png')}
-					/>
-				</Flex>
-			</StyledInnerContianer>
-		</StyledOuterContianer>
+				<FeatureCard
+					title='0'
+					subtitle='Cancelled'
+					bg='#d9e2eb'
+					sizeLarge={false}
+					imageSrc={require('./Assets/shopping-cart.png')}
+				/>
+			</StyledCardContainer>
+		</div>
 	)
 }
-const StyledOuterContianer = styled.div`
+
+const StyledCardContainer = styled.div`
 	display: flex;
 	flex-wrap: wrap;
-	//@media (max-width: 750px) {
-	//  display: flex;
-	//  justify-content: center;
-	//
-	//}
-`
-const StyledInnerContianer = styled.div`
-	//display: flex;
-	//width:800px;
-	//display: block;
-	//flex-wrap:wrap;
-	//position: relative;
-	//width: 500px;
-	//padding-right: 15px;
-	//padding-left: 15px;
+	gap: 22px;
+	margin-bottom: 20px;
 `
 const StyledHeader = styled(Text).attrs({
 	fontSize: '22px',
-	mb: '50px',
+	mb: '10px',
 	fontWeight: 'bold',
 })`
 	min-height: 50px;
 	position: relative;
 	@media (max-width: 750px) {
-		width: 78%;
 		background: #e0ecde;
 		padding: 10px;
 		text-align: center;
-		margin-left: 10px;
-		margin-right: 10px;
+		margin-bottom: 20px;
 	}
 `
 export default FeaturesCardsSection

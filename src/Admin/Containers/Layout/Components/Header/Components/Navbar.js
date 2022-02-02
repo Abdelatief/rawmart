@@ -11,14 +11,13 @@ const Navbar = () => {
 		setExtendNavbar(!extendNavbar)
 	}
 	return (
-		// <StyledDiv>
 		<StyledMainContainer>
 			<Flex height='75px' alignItems='center'>
 				<StyledNavbarInnerContainer>
 					<StyledLeftContainer>
-						<Text fontFamily='KageFreebiesBlack' fontSize={8} color='text.white'>
+						<StyledHeader fontFamily='KageFreebiesBlack' fontSize={8} color='text.white'>
 							Rawmart
-						</Text>
+						</StyledHeader>
 						<StyledNavbarLinkContainer>
 							<NavItem fontSize={3}>Welcome Admin !</NavItem>
 						</StyledNavbarLinkContainer>
@@ -37,12 +36,11 @@ const Navbar = () => {
 		// </StyledDiv>
 	)
 }
-// const StyledDiv = styled.div`
-//   position: fixed;
-//   top: 0;
-//   width: 100vh;
-//
-// `
+const StyledHeader = styled(Text)`
+	@media (max-width: 750px) {
+		font-size: 35px;
+	}
+`
 const StyledMainContainer = styled.div`
 	padding-left: 35px;
 	background-color: black;

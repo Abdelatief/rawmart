@@ -13,11 +13,10 @@ const AdminDashboard = () => {
 	)
 }
 const StyledDiv = styled.div`
-	display: block;
-	//position: relative;
+	display: flex;
+	flex-wrap: wrap;
 `
 const StyledContainer = styled.div`
-	//display: flex;
 	position: absolute;
 	margin: 20px;
 	left: 200px;

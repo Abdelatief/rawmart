@@ -20,8 +20,6 @@ const Card = styled.div`
 	width: ${props => (props.sizeLarge ? '400px' : '300px')};
 	height: ${props => (props.sizeLarge ? '140px' : '125px')};
 	background-color: ${props => props.bg};
-	//border-radius: 5px;
-	//margin-bottom: 100px;
 	padding: 23px 19px 15px;
 
 	&:hover {
@@ -31,13 +29,13 @@ const Card = styled.div`
 		cursor: pointer;
 	}
 
-	@media (max-width: 986px) //and (min-width: 640px) { { { {
-		width: 467px;
+	@media (max-width: 986px) {
+		width: 450px;
 		height: 140px;
 	}
 	@media (max-width: 750px) {
-		width: 430px;
-		height: 200px;
+		width: 340px;
+		height: 140px;
 	}
 `
 
@@ -59,11 +57,11 @@ const Image = styled.img`
 		left: ${props => (props.sizeLarge ? '85%' : '80%')};
 	}
 	@media (max-width: 750px) {
-		opacity: 0.05;
-		width: 80px;
-		height: 80px;
-		top: ${props => (props.sizeLarge ? '50%' : '0')};
-		left: ${props => (props.sizeLarge ? '80%' : '80%')};
+		width: 50px;
+		height: 50px;
+		top: ${props => (props.sizeLarge ? '50%' : '-10%')};
+		left: ${props => (props.sizeLarge ? '80%' : '85%')};
+		opacity: ${props => (props.sizeLarge ? '0.3' : '0.05')};
 	}
 `
 
