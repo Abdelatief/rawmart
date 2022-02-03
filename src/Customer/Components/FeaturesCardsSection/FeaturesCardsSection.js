@@ -1,5 +1,5 @@
 import { FluidContainer, Flex, Text } from '@Components'
-import FeatureCard from '@Customer/Features/LandingPage/Components/FeaturesCardsSection/FeatureCard'
+import FeatureCard from '@Customer/Components/FeaturesCardsSection/FeatureCard'
 
 const FeaturesCardsSection = () => {
 	return (
