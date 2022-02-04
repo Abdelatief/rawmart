@@ -4,6 +4,7 @@ import LandingPage from '@Customer/Features/LandingPage'
 import AdminDashboard from '@Admin/Features/AdminDashboard'
 import AboutUsPage from '@Customer/Features/AboutUsPage'
 import { default as CustomerLayout } from '@Customer/Containers/Layout'
+import SpecialOrderPage from '@Customer/Features/SpecialOrderPage'
 
 function App() {
 	return (
@@ -12,6 +13,7 @@ function App() {
 			<Route path='/' element={<CustomerLayout />}>
 				<Route index element={<LandingPage />} />
 				<Route path='about-us' element={<AboutUsPage />} />
+				<Route path='special-order' element={<SpecialOrderPage />} />
 			</Route>
 
 			{/*	 Admin Routes  */}

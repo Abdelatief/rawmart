@@ -20,7 +20,9 @@ const Navbar = () => {
 					<NavItem>About Us</NavItem>
 				</Link>
 				<NavItem>News/Media</NavItem>
-				<NavItem textAlign='left'>Special Order</NavItem>
+				<Link to='/special-order'>
+					<NavItem>Special Order</NavItem>
+				</Link>
 				<NavItem ml='auto'>Login/Register</NavItem>
 			</Flex>
 		</FluidContainer>
