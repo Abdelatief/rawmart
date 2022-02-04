@@ -14,19 +14,19 @@ const SpecialOrderPage = () => {
 				to proceed with the order.
 			</Text>
 			<StyledForm style>
-				<FormGroupFlex>
+				<FormGroupFlex flexDirection={['column', null, 'row']}>
 					<FormInput label='First Name' required />
 					<FormInput label='Last Name' required />
 				</FormGroupFlex>
-				<FormGroupFlex gap='16px'>
+				<FormGroupFlex flexDirection={['column', null, 'row']}>
 					<FormInput label='Phone Number' required />
 					<FormInput label='Email' required />
 				</FormGroupFlex>
-				<FormGroupFlex>
+				<FormGroupFlex flexDirection={['column', null, 'row']}>
 					<FormInput label='Category' required />
 					<FormInput label='Brand' required />
 				</FormGroupFlex>
-				<FormGroupFlex>
+				<FormGroupFlex flexDirection={['column', null, 'row']}>
 					<FormInput label='Request' required />
 				</FormGroupFlex>
 				<SubmitButton>Submit</SubmitButton>
@@ -51,7 +51,11 @@ const StyledForm = styled.form`
 const FormGroupFlex = styled(Flex).attrs({
 	gap: '16px',
 	mb: '32px',
-})``
+})`
+	@media (max-width: 832px) {
+		margin-bottom: 16px;
+	}
+`
 
 const SubmitButton = styled.button`
 	border: none;
@@ -61,6 +65,12 @@ const SubmitButton = styled.button`
 	margin-bottom: 32px;
 	min-width: 264px;
 	cursor: pointer;
+
+	@media (max-width: 832px) {
+		width: 80%;
+		display: block;
+		margin: 0 auto 32px auto;
+	}
 `
 
 export default SpecialOrderPage

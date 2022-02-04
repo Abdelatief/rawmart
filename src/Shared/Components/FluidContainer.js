@@ -20,6 +20,10 @@ const StyledContent = styled.div`
 	max-width: 1200px;
 	margin: 0 auto;
 	height: 100%;
+
+	@media (max-width: 832px) {
+		padding: 0 10px;
+	}
 `
 
 export default FluidContainer
