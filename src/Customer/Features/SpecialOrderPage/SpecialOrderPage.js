@@ -67,7 +67,7 @@ const SubmitButton = styled.button`
 	cursor: pointer;
 
 	@media (max-width: 832px) {
-		width: 80%;
+		width: 100%;
 		display: block;
 		margin: 0 auto 32px auto;
 	}
