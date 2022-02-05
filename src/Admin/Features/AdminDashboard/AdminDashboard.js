@@ -1,29 +1,29 @@
 import Layout from '@Admin/Containers/Layout/Layout'
 import styled from 'styled-components'
-import { Text } from '@Components'
+import FeaturesCardsSection from '@Admin/Features/AdminDashboard/Components/FeaturesCardsSection/FeatureCardsSection'
 
 const AdminDashboard = () => {
 	return (
 		<StyledDiv>
 			<Layout />
 			<StyledContainer>
-				<Text fontFamily='Jost-Bold' fontSize={5}>
-					Analytics Overview
-				</Text>
+				<FeaturesCardsSection />
 			</StyledContainer>
 		</StyledDiv>
 	)
 }
 const StyledDiv = styled.div`
-	display: block;
-	position: relative;
+	display: flex;
+	flex-wrap: wrap;
 `
 const StyledContainer = styled.div`
-	display: flex;
 	position: absolute;
 	margin: 20px;
 	left: 200px;
 	top: 100px;
+	@media (max-width: 1000px) {
+		left: 0;
+	}
 `
 
 export default AdminDashboard

@@ -4,37 +4,58 @@ import { Text, Flex } from '@Components'
 import { BsPower } from 'react-icons/bs'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { AiOutlineClose } from 'react-icons/ai'
+import SideBar from '@Admin/Containers/Layout/Components/SideBar/SideBar'
+import PopUpPage from '@Admin/Containers/Layout/Components/OptionsMenu/popUpPage'
 
 const Navbar = () => {
 	const [extendNavbar, setExtendNavbar] = useState(false)
 	const toggleExtendNavBar = () => {
 		setExtendNavbar(!extendNavbar)
 	}
+	const [isOpen, setIsOpen] = useState(false)
 	return (
 		<StyledMainContainer>
 			<Flex height='75px' alignItems='center'>
 				<StyledNavbarInnerContainer>
 					<StyledLeftContainer>
-						<Text fontFamily='KageFreebiesBlack' fontSize={8} color='text.white'>
+						<StyledHeader fontFamily='KageFreebiesBlack' fontSize={8} color='text.white'>
 							Rawmart
-						</Text>
+						</StyledHeader>
 						<StyledNavbarLinkContainer>
 							<NavItem fontSize={3}>Welcome Admin !</NavItem>
 						</StyledNavbarLinkContainer>
 					</StyledLeftContainer>
 					<StyledRightContainer>
-						<NavItem onClick={toggleExtendNavBar}>{extendNavbar ? <CloseIcon /> : <MenuIcon />}</NavItem>
+						<NavItem onClick={toggleExtendNavBar}>
+							{extendNavbar ? (
+								<CloseIcon onClick={() => setIsOpen(false)} />
+							) : (
+								<MenuIcon onClick={() => setIsOpen(true)} />
+							)}
+						</NavItem>
 						<NavItem fontSize={2}>
 							<LogoutIcon />
 							<LogoutLabel>Logout</LogoutLabel>
 						</NavItem>
 					</StyledRightContainer>
 				</StyledNavbarInnerContainer>
-				{/*  TODO::Add slider page here  */}
 			</Flex>
+			<PopUpPage
+				open={isOpen}
+				onClose={() => {
+					setIsOpen(false)
+				}}
+			>
+				{<SideBar />}
+			</PopUpPage>
 		</StyledMainContainer>
 	)
 }
+const StyledHeader = styled(Text)`
+	@media (max-width: 750px) {
+		font-size: 35px;
+	}
+`
 const StyledMainContainer = styled.div`
 	padding-left: 35px;
 	background-color: black;
