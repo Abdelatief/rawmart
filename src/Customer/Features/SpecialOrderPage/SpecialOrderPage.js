@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Flex, Text, FluidContainer, FormInput } from '@Components'
+import { Flex, Text, FluidContainer, FormInput, Button } from '@Components'
 
 const SpecialOrderPage = () => {
 	return (
@@ -29,7 +29,9 @@ const SpecialOrderPage = () => {
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
 					<FormInput label='Request' required />
 				</FormGroupFlex>
-				<SubmitButton>Submit</SubmitButton>
+				<Button width={['100%', null, '290px']} mb='16px'>
+					Submit
+				</Button>
 			</StyledForm>
 
 			<Text fontSize='24px' lineHeight='1.292' mb='30px'>
@@ -54,22 +56,6 @@ const FormGroupFlex = styled(Flex).attrs({
 })`
 	@media (max-width: 832px) {
 		margin-bottom: 16px;
-	}
-`
-
-const SubmitButton = styled.button`
-	border: none;
-	padding: 20px 26px;
-	background-color: black;
-	color: white;
-	margin-bottom: 32px;
-	min-width: 264px;
-	cursor: pointer;
-
-	@media (max-width: 832px) {
-		width: 100%;
-		display: block;
-		margin: 0 auto 32px auto;
 	}
 `
 
