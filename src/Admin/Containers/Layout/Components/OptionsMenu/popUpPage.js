@@ -1,14 +1,12 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 import styled from 'styled-components'
-import { AiOutlineClose } from 'react-icons/ai'
 
 const PopUpPage = ({ open, children, onClose }) => {
 	if (!open) return null
 	return ReactDom.createPortal(
 		<>
 			<OverlayStyles>{children}</OverlayStyles>
-			<CloseIcon onClick={onClose}>Close Modal</CloseIcon>
 		</>,
 		document.getElementById('portal')
 	)
@@ -30,11 +28,5 @@ const OverlayStyles = styled.div`
 		top: 80px;
 	}
 `
-const CloseIcon = styled(AiOutlineClose)`
-	//margin-right: 10px;
-	cursor: pointer;
-	left: 98%;
-	position: relative;
-	font-size: 1.5rem;
-`
+
 export default PopUpPage
