@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Flex } from '@Components'
+import { Button, Flex } from '@Components'
 
 const CarouselItem = ({ imageSrc }) => {
 	return (
@@ -28,14 +28,6 @@ const Title = styled.h3`
 const Subtitle = styled.p`
 	line-height: 1.875;
 	margin-bottom: 44px;
-`
-
-const Button = styled.button`
-	border: none;
-	width: 180px;
-	height: 55px;
-	background-color: black;
-	color: white;
 `
 
 const Image = styled.img`
