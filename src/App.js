@@ -5,6 +5,7 @@ import AdminDashboard from '@Admin/Features/AdminDashboard'
 import AboutUsPage from '@Customer/Features/AboutUsPage'
 import { default as CustomerLayout } from '@Customer/Containers/Layout'
 import SpecialOrderPage from '@Customer/Features/SpecialOrderPage'
+import { default as AdminLayout } from '@Admin/Containers/Layout'
 
 function App() {
 	return (
@@ -17,7 +18,7 @@ function App() {
 			</Route>
 
 			{/*	 Admin Routes  */}
-			<Route path='/admin'>
+			<Route path='/admin' element={<AdminLayout />}>
 				<Route path='dashboard' element={<AdminDashboard />} />
 			</Route>
 		</Routes>
