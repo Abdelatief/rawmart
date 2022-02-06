@@ -19,9 +19,9 @@ const Table = ({ children, loading, resultsCount }) => {
 				</Flex>
 			)
 		}
-		{
-			/*TODO:: Check*/
-		}
+
+		/*TODO:: Check*/
+
 		return <ChakraTable variant='unstyled'>{children}</ChakraTable>
 	}
 	return (
@@ -71,7 +71,6 @@ const Body = styled.div`
 	display: table;
 	border-spacing: 2px;
 	border-color: grey;
-	//width:80vw;
 `
 
 Table.Thead = TableHeader

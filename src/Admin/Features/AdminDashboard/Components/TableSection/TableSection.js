@@ -4,13 +4,13 @@ import { ProductsData } from '@Admin/Features/AdminDashboard/Components/TableSec
 import { Button, Flex, Text } from '@Components'
 import styled from 'styled-components'
 import { HiDotsHorizontal } from 'react-icons/hi'
+
 const TableSection = () => {
 	return (
 		<StyledOuterContainer>
 			<StyledHeaderDiv>
 				<StyledHeader>Recent Sales</StyledHeader>
 				<Button variant='tertiary' minWidth={null} width='197px'>
-					{' '}
 					View All Orders
 				</Button>
 			</StyledHeaderDiv>
@@ -47,7 +47,7 @@ const TableSection = () => {
 									</Flex>
 								</Table.Td>
 								<Table.Td>
-									<img src={product.img} alt={product.alt} width='50px' height='50' />
+									<StyledImg src={product.img} alt={product.alt} />
 								</Table.Td>
 								<Table.Td>
 									<Flex justifyContent='center' alignItems='center'>
@@ -88,10 +88,7 @@ const TableSection = () => {
 	)
 }
 const StyledOuterContainer = styled.div`
-	//display: flex;
-	//flex-wrap: wrap;
 	margin-top: 50px;
-	width: 80vw;
 `
 const StyledHeader = styled(Text).attrs({
 	fontSize: '22px',
@@ -99,7 +96,7 @@ const StyledHeader = styled(Text).attrs({
 	fontWeight: 'bold',
 })`
 	min-height: 50px;
-	position: relative;
+	//position: relative;
 	@media (max-width: 750px) {
 		background: #e0ecde;
 		padding: 10px;
@@ -113,6 +110,10 @@ const StyledHeaderDiv = styled(Flex).attrs()`
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
+`
+const StyledImg = styled.img`
+	width: 75px;
+	height: 75px;
 `
 
 export default TableSection

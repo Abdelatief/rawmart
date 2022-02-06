@@ -2,21 +2,27 @@ import React from 'react'
 import Header from '@Admin/Containers/Layout/Components/Header/Header'
 import styled from 'styled-components'
 import SideBar from '@Admin/Containers/Layout/Components/SideBar/SideBar'
+import { Flex } from '@Components'
+import { Outlet } from 'react-router-dom'
 
 const Layout = () => {
 	return (
 		<StyledLayout>
 			<Header />
-			<StyledLeftPart>
-				<SideBar />
-			</StyledLeftPart>
+			<Flex>
+				<StyledLeftPart>
+					<SideBar />
+				</StyledLeftPart>
 
-			<StyledPageBody></StyledPageBody>
+				<StyledPageBody>
+					<Outlet />
+				</StyledPageBody>
+			</Flex>
 		</StyledLayout>
 	)
 }
 const StyledLayout = styled.div`
-	display: block;
+	//display: block;
 	//flex-direction: column;
 	height: 100%;
 `
@@ -28,6 +34,8 @@ const StyledLeftPart = styled.div`
 `
 const StyledPageBody = styled.div`
 	flex-grow: 1;
+	overflow: auto;
+	padding: 16px 0;
 `
 
 export default Layout

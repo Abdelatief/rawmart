@@ -1,4 +1,3 @@
-import React from 'react'
 import img1 from '../TableSection/Assets/Imags/img1.jpg'
 import img2 from '../TableSection/Assets/Imags/img2.jpg'
 import img3 from '../TableSection/Assets/Imags/img3.jpg'
