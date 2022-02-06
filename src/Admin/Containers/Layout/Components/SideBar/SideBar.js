@@ -87,7 +87,7 @@ const StyledContainer = styled.div`
 	display: inline-block;
 	align-items: center;
 	top: 80px;
-	@media (max-width: 1000px) {
+	@media (max-width: 990px) {
 		top: 5px;
 	}
 `

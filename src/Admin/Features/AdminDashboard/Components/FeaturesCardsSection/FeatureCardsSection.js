@@ -85,9 +85,11 @@ const StyledDiv = styled.div`
 const StyledCardContainer = styled.div`
 	display: flex;
 	flex-wrap: wrap;
-	align-items: center;
 	gap: 22px;
 	margin-bottom: 20px;
+	@media (max-width: 990px) {
+		justify-content: center;
+	}
 `
 const StyledHeader = styled(Text).attrs({
 	fontSize: '22px',

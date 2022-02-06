@@ -29,11 +29,11 @@ const Card = styled.div`
 		cursor: pointer;
 	}
 
-	@media (max-width: 986px) {
+	@media (max-width: 990px) {
 		width: 44%;
 		height: 140px;
 	}
-	@media (max-width: 748px) {
+	@media (max-width: 750px) {
 		width: 100%;
 		height: 140px;
 	}
@@ -50,17 +50,18 @@ const Image = styled.img`
 	left: ${props => (props.sizeLarge ? '80%' : '70%')};
 	opacity: ${props => (props.sizeLarge ? '1' : '0.05')};
 	width: ${props => (props.sizeLarge ? `calc(20% - 5px)` : `calc(40% - 10px)`)};
-	@media (max-width: 986px) {
-		width: ${props => (props.sizeLarge ? `50px` : `calc(40%)`)};
+
+	@media (max-width: 990px) {
+		width: ${`calc(50%-15px)`};
 		height: ${props => (props.sizeLarge ? '67px' : '100px')};
 		top: ${props => (props.sizeLarge ? '30%' : '0')};
-		left: ${props => (props.sizeLarge ? '85%' : '80%')};
+		left: ${props => (props.sizeLarge ? '85%' : '68%')};
 	}
 	@media (max-width: 750px) {
-		width: 50px;
-		height: 50px;
-		top: ${props => (props.sizeLarge ? '50%' : '-10%')};
-		left: ${props => (props.sizeLarge ? '80%' : '85%')};
+		width: 80px;
+		height: 80px;
+		top: ${`calc(50%-15px)`};
+		left: calc(90% - 10px);
 		opacity: ${props => (props.sizeLarge ? '0.3' : '0.05')};
 	}
 `
