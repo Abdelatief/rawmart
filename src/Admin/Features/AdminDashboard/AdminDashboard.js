@@ -1,13 +1,14 @@
 import Layout from '@Admin/Containers/Layout/Layout'
 import styled from 'styled-components'
 import FeaturesCardsSection from '@Admin/Features/AdminDashboard/Components/FeaturesCardsSection/FeatureCardsSection'
-
+import TableSection from '@Admin/Features/AdminDashboard/Components/TableSection/TableSection'
 const AdminDashboard = () => {
 	return (
 		<StyledDiv>
 			<Layout />
 			<StyledContainer>
 				<FeaturesCardsSection />
+				<TableSection />
 			</StyledContainer>
 		</StyledDiv>
 	)

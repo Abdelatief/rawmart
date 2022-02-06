@@ -83,12 +83,14 @@ const StyledContainer = styled.div`
 	height: 100vh;
 	width: 180px;
 	background-color: ${props => props.theme.colors.background.gainsboro};
-	position: relative;
+	//position: relative;
 	display: inline-block;
 	align-items: center;
-	top: 80px;
+	top: 85px;
+	z-index: 100;
+	position: fixed;
 	@media (max-width: 1000px) {
-		top: 5px;
+		top: 65px;
 	}
 `
 
