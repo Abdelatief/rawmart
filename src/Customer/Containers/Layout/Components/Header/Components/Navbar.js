@@ -1,8 +1,13 @@
+import { useState } from 'react'
 import styled from 'styled-components'
 import { RiArrowDownSLine } from 'react-icons/ri'
 import { FluidContainer, Text, Flex, Link } from '@Components'
+import RegistrationPopup from '@Customer/Containers/Layout/Components/RegisterationPopup'
+import LoginPopup from '@Customer/Containers/Layout/Components/LoginPopup'
 
 const Navbar = () => {
+	const [showLoginPopup, setShowLoginPopup] = useState(null)
+	const [showRegistrationPopup, setShowRegistrationPopup] = useState(null)
 	return (
 		<FluidContainer bg='background.black'>
 			<Flex height='55px' alignItems='center'>
@@ -23,7 +28,13 @@ const Navbar = () => {
 				<Link to='/special-order'>
 					<NavItem>Special Order</NavItem>
 				</Link>
-				<NavItem ml='auto'>Login/Register</NavItem>
+				<NavItem onClick={() => setShowLoginPopup(true)} ml='auto'>
+					Login/Register
+				</NavItem>
+				{showLoginPopup && <LoginPopup isOpen={showLoginPopup} setIsOpen={setShowLoginPopup} />}
+				{showRegistrationPopup && (
+					<RegistrationPopup isOpen={showRegistrationPopup} setIsOpen={setShowRegistrationPopup} />
+				)}
 			</Flex>
 		</FluidContainer>
 	)

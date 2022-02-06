@@ -54,7 +54,6 @@ const StyledPopup = styled.div`
 	position: ${props => props?.position ?? 'fixed'};
 	top: ${props => props?.top?.toString() ?? '50%'};
 	left: ${props => props?.left?.toString() ?? '50%'};
-	padding: ${props => props?.padding?.toString() ?? '26px'};
 	width: ${props => props?.width ?? '50%'};
 	height: ${props => props?.height ?? '40%'};
 	transform: ${props => !props?.top && !props?.left && 'translate(-50%, -50%)'};
