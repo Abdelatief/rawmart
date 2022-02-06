@@ -17,7 +17,7 @@ const FeatureCard = ({ title, subtitle, imageSrc, bg, sizeLarge }) => {
 
 const Card = styled.div`
 	position: relative;
-	width: ${props => (props.sizeLarge ? '400px' : '300px')};
+	width: ${props => (props.sizeLarge ? `calc(25% - 60px)` : `calc(25% - 140px)`)};
 	height: ${props => (props.sizeLarge ? '140px' : '125px')};
 	background-color: ${props => props.bg};
 	padding: 23px 19px 15px;
@@ -30,11 +30,11 @@ const Card = styled.div`
 	}
 
 	@media (max-width: 986px) {
-		width: 450px;
+		width: 44%;
 		height: 140px;
 	}
-	@media (max-width: 750px) {
-		width: 600px;
+	@media (max-width: 748px) {
+		width: 100%;
 		height: 140px;
 	}
 `
@@ -46,12 +46,12 @@ const TextContainer = styled.div`
 
 const Image = styled.img`
 	position: relative;
-	top: ${props => (props.sizeLarge ? '40%' : '0%')};
-	left: ${props => (props.sizeLarge ? '80%' : '67%')};
+	top: ${props => (props.sizeLarge ? `calc(35% - 5px)` : '-18%')};
+	left: ${props => (props.sizeLarge ? '80%' : '70%')};
 	opacity: ${props => (props.sizeLarge ? '1' : '0.05')};
-	width: ${props => (props.sizeLarge ? '60px' : '100px')};
+	width: ${props => (props.sizeLarge ? `calc(20% - 5px)` : `calc(40% - 10px)`)};
 	@media (max-width: 986px) {
-		width: ${props => (props.sizeLarge ? '67px' : '100px')};
+		width: ${props => (props.sizeLarge ? `50px` : `calc(40%)`)};
 		height: ${props => (props.sizeLarge ? '67px' : '100px')};
 		top: ${props => (props.sizeLarge ? '30%' : '0')};
 		left: ${props => (props.sizeLarge ? '85%' : '80%')};

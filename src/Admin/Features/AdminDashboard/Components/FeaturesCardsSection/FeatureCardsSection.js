@@ -85,6 +85,7 @@ const StyledDiv = styled.div`
 const StyledCardContainer = styled.div`
 	display: flex;
 	flex-wrap: wrap;
+	align-items: center;
 	gap: 22px;
 	margin-bottom: 20px;
 `
