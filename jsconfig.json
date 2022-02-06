@@ -6,6 +6,7 @@
       "@Features/*": ["./Shared/Features/*"],
       "@Components/*": ["./Shared/Components/*"],
       "@Components": ["./Shared/Components/index"],
+      "@Hooks": ["./Shared/Hooks/index"],
       "@Containers/*": ["./Shared/Containers/*"],
       "@Redux/*": ["./Shared/Redux/*"],
       "@Assets/*": ["./Shared/Assets/*"],
