@@ -4,7 +4,6 @@ import { Flex, Text } from '@Components'
 import styled from 'styled-components'
 import { CgMore } from 'react-icons/cg'
 import { MdOutlineEdit } from 'react-icons/md'
-import { AiOutlineDelete } from 'react-icons/ai'
 import { UsersData } from '@Admin/Features/Users/UsersData'
 
 const UserTableSection = () => {
