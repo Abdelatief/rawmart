@@ -106,7 +106,6 @@ const StyledDropDown = styled.div`
 	padding: 1px 5px 1px;
 	color: #000;
 	border-radius: 7px;
-	//right: -550px;
 	margin-top: -5px;
 	min-width: 100px;
 `
