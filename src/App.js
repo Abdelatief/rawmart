@@ -8,6 +8,7 @@ import SpecialOrderPage from '@Customer/Features/SpecialOrderPage'
 import { default as AdminLayout } from '@Admin/Containers/Layout'
 import Vendors from '@Admin/Features/Vendors/Vendors'
 import Roles from '@Admin/Features/Roles/Roles'
+import Users from '@Admin/Features/Users/Users'
 
 function App() {
 	return (
@@ -24,6 +25,7 @@ function App() {
 				<Route path='dashboard' element={<AdminDashboard />} />
 				<Route path='vendors' element={<Vendors />} />
 				<Route path='roles' element={<Roles />} />
+				<Route path='users' element={<Users />} />
 			</Route>
 		</Routes>
 	)

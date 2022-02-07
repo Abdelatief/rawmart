@@ -1,0 +1,42 @@
+export const UsersData = [
+	{
+		id: 1,
+		name: 'User 1',
+		role: 'Role 1',
+		email: 'user1@gmail.com',
+		phoneNumber: '012345678',
+		address: 'Heliopolis',
+	},
+	{
+		id: 2,
+		name: 'User 2',
+		role: 'Role 2',
+		email: 'user2@gmail.com',
+		phoneNumber: '012345678',
+		address: 'Heliopolis',
+	},
+	{
+		id: 3,
+		name: 'User 3',
+		role: 'Role 3',
+		email: 'user3@gmail.com',
+		phoneNumber: '012345678',
+		address: 'Heliopolis',
+	},
+	{
+		id: 4,
+		name: 'User 4',
+		role: 'Role 4',
+		email: 'user4@gmail.com',
+		phoneNumber: '012345678',
+		address: 'Heliopolis',
+	},
+	{
+		id: 5,
+		name: 'User 5',
+		role: 'Role 5',
+		email: 'user5@gmail.com',
+		phoneNumber: '012345678',
+		address: 'Heliopolis',
+	},
+]
