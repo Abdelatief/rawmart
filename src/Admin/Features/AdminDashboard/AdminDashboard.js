@@ -18,10 +18,7 @@ const StyledDiv = styled.div`
 	max-width: 100%;
 `
 const StyledContainer = styled.div`
-	//position: absolute;
 	margin: 20px;
-	//left: 200px;
-	//top: 100px;
 	@media (max-width: 1000px) {
 		left: 0;
 	}

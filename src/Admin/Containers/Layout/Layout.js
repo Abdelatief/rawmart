@@ -22,8 +22,6 @@ const Layout = () => {
 	)
 }
 const StyledLayout = styled.div`
-	//display: block;
-	//flex-direction: column;
 	height: 100%;
 `
 

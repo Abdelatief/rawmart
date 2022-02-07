@@ -87,7 +87,6 @@ const StyledContainer = styled.div`
 	align-items: center;
 	top: 185px;
 	z-index: 100;
-	//position: fixed;
 	@media (max-width: 1000px) {
 		top: 65px;
 	}

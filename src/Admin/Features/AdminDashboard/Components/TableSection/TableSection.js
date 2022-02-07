@@ -96,7 +96,6 @@ const StyledHeader = styled(Text).attrs({
 	fontWeight: 'bold',
 })`
 	min-height: 50px;
-	//position: relative;
 	@media (max-width: 750px) {
 		background: #e0ecde;
 		padding: 10px;

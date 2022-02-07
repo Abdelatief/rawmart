@@ -5,7 +5,7 @@ import { BsPower } from 'react-icons/bs'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { AiOutlineClose } from 'react-icons/ai'
 import SideBar from '@Admin/Containers/Layout/Components/SideBar/SideBar'
-import PopUpPage from '@Admin/Containers/Layout/Components/OptionsMenu/popUpPage'
+import PopUpPage from '@Admin/Containers/Layout/Components/OptionsMenu/PopUpPage'
 
 const Navbar = () => {
 	const [extendNavbar, setExtendNavbar] = useState(false)
