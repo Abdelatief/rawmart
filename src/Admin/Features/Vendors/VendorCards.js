@@ -75,7 +75,8 @@ const StyledCard = styled(FluidContainer)`
   }
     @media (max-width: 1000px) { {
       width: 80%;
-    }
+    }  
+ }
 `
 
 const TextContainer = styled.div`
