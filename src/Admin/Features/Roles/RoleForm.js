@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Button, Flex, FormInput, Text } from '@Components'
-
+import { MdDone } from 'react-icons/md'
 const RoleForm = () => {
 	return (
 		<div>
@@ -12,7 +12,10 @@ const RoleForm = () => {
 					<FormInput label='Identifier' required />
 				</FormGroupFlex>
 
-				<Button width={['100%', null, '290px']}>Submit</Button>
+				<Button width={['100%', null, '290px']} fontSize={3}>
+					<StyledIcon />
+					Save Role
+				</Button>
 			</StyledForm>
 		</div>
 	)
@@ -33,6 +36,9 @@ const StyledHeader = styled(Text).attrs({
 `
 const StyledForm = styled.form`
 	margin-top: 46px;
+`
+const StyledIcon = styled(MdDone)`
+	margin-right: 5px;
 `
 
 const FormGroupFlex = styled(Flex).attrs({
