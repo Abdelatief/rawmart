@@ -82,7 +82,7 @@ const SideBar = () => {
 const StyledContainer = styled.div`
 	min-height: 100%;
 	width: 180px;
-	background-color: ${props => props.theme.colors.background.gainsboro};
+	background-color: #e0ecde;
 	display: inline-block;
 	align-items: center;
 	top: 185px;

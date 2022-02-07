@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDom from 'react-dom'
 import styled from 'styled-components'
 
-const PopUpPage = ({ open, children, onClose }) => {
+const PopUpPage = ({ open, children, onClose, addCloseIcon }) => {
 	if (!open) return null
 	return ReactDom.createPortal(
 		<>

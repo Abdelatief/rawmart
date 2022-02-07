@@ -1,9 +1,12 @@
-import React from 'react'
-import { Button, Text } from '@Components'
+import React, { useState } from 'react'
+import { Button, Popup, Text } from '@Components'
 import { VscAdd } from 'react-icons/vsc'
 import styled from 'styled-components'
+import RoleForm from '@Admin/Features/Roles/RoleForm'
 
 const RolesHeaderSection = () => {
+	const [isOpen, setIsOpen] = useState(false)
+
 	return (
 		<StyledOuterContainer>
 			<StyledHeaderDiv>
@@ -19,12 +22,18 @@ const RolesHeaderSection = () => {
 						fontSize={3}
 						display='flex'
 						justifyContent='center'
+						onClick={() => {
+							setIsOpen(true)
+						}}
 					>
 						<VscAdd />
 						<Text fontSize={2} ml='5px'>
 							Add Roles
 						</Text>
 					</Button>
+					<Popup isOpen={isOpen} setIsOpen={setIsOpen}>
+						{<RoleForm />}
+					</Popup>
 				</StyledRightContainer>
 			</StyledHeaderDiv>
 		</StyledOuterContainer>
@@ -48,7 +57,7 @@ const StyledLeftContainer = styled.div`
 	justify-content: flex-start;
 `
 const StyledRightContainer = styled.div`
-	flex: 0%;
+	flex: 0.5%;
 	justify-content: flex-end;
 `
 const StyledHeader = styled(Text).attrs({
@@ -59,8 +68,12 @@ const StyledHeader = styled(Text).attrs({
 	min-height: 50px;
 	@media (max-width: 750px) {
 		background: #e0ecde;
+		margin-top: 40px;
+		padding: 10px;
 		text-align: center;
-		width: 100%;
+		margin-bottom: 15px;
+		position: relative;
+		min-height: 50px;
 	}
 `
 export default RolesHeaderSection
