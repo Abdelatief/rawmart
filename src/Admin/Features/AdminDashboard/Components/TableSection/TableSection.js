@@ -1,19 +1,13 @@
 import React from 'react'
 import Table from '@Admin/Components/Table'
 import { ProductsData } from '@Admin/Features/AdminDashboard/Components/TableSection/ProductsData'
-import { Button, Flex, Text } from '@Components'
+import { Flex } from '@Components'
 import styled from 'styled-components'
 import { HiDotsHorizontal } from 'react-icons/hi'
 
 const TableSection = () => {
 	return (
-		<StyledOuterContainer>
-			<StyledHeaderDiv>
-				<StyledHeader>Recent Sales</StyledHeader>
-				<Button variant='tertiary' minWidth={null} width='197px'>
-					View All Orders
-				</Button>
-			</StyledHeaderDiv>
+		<StyledContainer>
 			<Table loading={false} resultCount={5}>
 				<Table.Body>
 					<Table.Thead>
@@ -31,10 +25,9 @@ const TableSection = () => {
 							<Table.Th> </Table.Th>
 						</Table.HeaderRow>
 					</Table.Thead>
-					<div>
+					<Table.TBody>
 						{ProductsData.map(product => (
 							<Table.BodyRow key={product.id}>
-								{/*TODO:: Check*/}
 								<Table.Td>#{product.id}</Table.Td>
 								<Table.Td>
 									<Flex justifyContent='center' alignItems='center'>
@@ -81,34 +74,14 @@ const TableSection = () => {
 								</Table.Td>
 							</Table.BodyRow>
 						))}
-					</div>
+					</Table.TBody>
 				</Table.Body>
 			</Table>
-		</StyledOuterContainer>
+		</StyledContainer>
 	)
 }
-const StyledOuterContainer = styled.div`
-	margin-top: 50px;
-`
-const StyledHeader = styled(Text).attrs({
-	fontSize: '22px',
-	mb: '10px',
-	fontWeight: 'bold',
-})`
-	min-height: 50px;
-	@media (max-width: 750px) {
-		background: #e0ecde;
-		padding: 10px;
-		text-align: center;
-		margin-bottom: 20px;
-	}
-`
-const StyledHeaderDiv = styled(Flex).attrs()`
-	min-height: 53px;
-	margin-bottom: 10px;
+const StyledContainer = styled.div`
 	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
 `
 const StyledImg = styled.img`
 	width: 75px;

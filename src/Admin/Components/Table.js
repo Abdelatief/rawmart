@@ -41,7 +41,7 @@ Table.defaultProps = {
 	loading: false,
 }
 const StyledTable = styled.table`
-	width: 80vw;
+	width: 85vw;
 `
 const BodyRow = styled.tr`
 	height: 150px;
