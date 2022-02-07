@@ -44,7 +44,7 @@ const StyledTable = styled.table`
 	width: 85vw;
 `
 const BodyRow = styled.tr`
-	height: 150px;
+	height: 100%;
 	margin-left: 4px;
 	margin-right: 4px;
 `
@@ -57,8 +57,7 @@ const CenteredTh = styled.th`
 `
 
 const CenteredTd = styled.td`
-	padding-top: 50px;
-	text-align: center;
+	padding: 24px 15px;
 	line-height: 1.5rem;
 	letter-spacing: 0.04rem;
 	border-bottom: 2px solid #dee2e6;

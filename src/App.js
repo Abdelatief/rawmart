@@ -7,6 +7,7 @@ import { default as CustomerLayout } from '@Customer/Containers/Layout'
 import SpecialOrderPage from '@Customer/Features/SpecialOrderPage'
 import { default as AdminLayout } from '@Admin/Containers/Layout'
 import Vendors from '@Admin/Features/Vendors/Vendors'
+import Roles from '@Admin/Features/Roles/Roles'
 
 function App() {
 	return (
@@ -22,6 +23,7 @@ function App() {
 			<Route path='/admin' element={<AdminLayout />}>
 				<Route path='dashboard' element={<AdminDashboard />} />
 				<Route path='vendors' element={<Vendors />} />
+				<Route path='roles' element={<Roles />} />
 			</Route>
 		</Routes>
 	)
