@@ -89,7 +89,8 @@ const StyledContainer = styled.div`
 	z-index: 100;
 	@media (max-width: 1000px) {
 		top: 65px;
-	}
+
+	
 `
 
 const DropDownIcon = styled.div`
