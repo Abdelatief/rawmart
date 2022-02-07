@@ -22,7 +22,11 @@ const Table = ({ children, loading, resultsCount }) => {
 
 		/*TODO:: Check*/
 
-		return <ChakraTable variant='unstyled'>{children}</ChakraTable>
+		return (
+			<ChakraTable variant='unstyled'>
+				<StyledTable>{children}</StyledTable>
+			</ChakraTable>
+		)
 	}
 	return (
 		<>
@@ -36,9 +40,11 @@ const Table = ({ children, loading, resultsCount }) => {
 Table.defaultProps = {
 	loading: false,
 }
-
+const StyledTable = styled.table`
+	width: 80vw;
+`
 const BodyRow = styled.tr`
-	height: 142px;
+	height: 150px;
 	margin-left: 4px;
 	margin-right: 4px;
 `
@@ -71,6 +77,7 @@ const Body = styled.div`
 	display: table;
 	border-spacing: 2px;
 	border-color: grey;
+	width: 100%;
 `
 
 Table.Thead = TableHeader

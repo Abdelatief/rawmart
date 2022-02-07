@@ -1,5 +1,5 @@
 import React from 'react'
-import Table from '@Admin/Features/AdminDashboard/Components/TableSection/Table'
+import Table from '@Admin/Components/Table'
 import { ProductsData } from '@Admin/Features/AdminDashboard/Components/TableSection/ProductsData'
 import { Button, Flex, Text } from '@Components'
 import styled from 'styled-components'
@@ -31,7 +31,7 @@ const TableSection = () => {
 							<Table.Th> </Table.Th>
 						</Table.HeaderRow>
 					</Table.Thead>
-					<Table.TBody>
+					<div>
 						{ProductsData.map(product => (
 							<Table.BodyRow key={product.id}>
 								{/*TODO:: Check*/}
@@ -81,7 +81,7 @@ const TableSection = () => {
 								</Table.Td>
 							</Table.BodyRow>
 						))}
-					</Table.TBody>
+					</div>
 				</Table.Body>
 			</Table>
 		</StyledOuterContainer>

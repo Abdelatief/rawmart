@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import VendorHeaderSection from '@Admin/Features/Vendors/VendorHeaderSection'
-import VendorCardSection from '@Admin/Features/Vendors/VendorCardSection'
+import VendorTableSection from '@Admin/Features/Vendors/VendorTableSection'
 
 const Vendors = () => {
 	return (
 		<StyledDiv>
 			<VendorHeaderSection />
-			<VendorCardSection />
+			<VendorTableSection />
 		</StyledDiv>
 	)
 }
