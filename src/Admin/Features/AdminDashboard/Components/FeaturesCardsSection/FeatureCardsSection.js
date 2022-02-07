@@ -10,7 +10,7 @@ const FeaturesCardsSection = () => {
 				<StyledCardContainer>
 					<FeatureCard
 						title='7'
-						subtitle='VendorsSection'
+						subtitle='Vendors'
 						bg='#fbf4ee'
 						sizeLarge={true}
 						imageSrc={require('./Assets/visitor-card.png')}
