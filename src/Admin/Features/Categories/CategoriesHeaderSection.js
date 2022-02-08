@@ -6,7 +6,6 @@ import CategoriesForm from '@Admin/Features/Categories/AddCategoryForm/Categorie
 
 const CategoriesHeaderSection = ({ headerLabel }) => {
 	const [isOpen, setIsOpen] = useState(false)
-	console.log('header:' + headerLabel)
 	return (
 		<StyledOuterContainer>
 			<StyledHeaderDiv>
