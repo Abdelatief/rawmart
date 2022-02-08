@@ -1,52 +1,70 @@
 import styled from 'styled-components'
 import { Popup, FormInput, Flex, Button, Text } from '@Components'
-import LoginImage from './Assets/login-background.png'
-import FacebookImage from './Assets/facebook.png'
-import TwitterImage from './Assets/twitter.png'
-import GoogleImage from './Assets/google.png'
+import { PopupDataContext } from '@Customer/Containers/Layout/Components/Header/Components/Navbar'
+import LoginImage from '../Assets/auth-background.png'
+import FacebookImage from '../Assets/facebook.png'
+import TwitterImage from '../Assets/twitter.png'
+import GoogleImage from '../Assets/google.png'
 
 const LoginPopup = ({ isOpen, setIsOpen }) => {
+	const handleRegisterButtonClick = value => {
+		const { setShowLoginPopup, setShowRegistrationPopup } = value
+		setShowLoginPopup(false)
+		setShowRegistrationPopup(true)
+	}
+
 	return (
-		<Popup isOpen={isOpen} setIsOpen={setIsOpen} width='1004px' height='604px' padding={null}>
-			<StyledLogin>
-				<StyledLoginBanner>
-					<Text fontFamily='KageFreebiesBlack' fontSize='60px' mt='150px' textAlign='center' color='#212529'>
-						Rawmart
-					</Text>
-				</StyledLoginBanner>
-				<LoginForm>
-					<Flex
-						flexDirection='column'
-						alignItems='center'
-						justifyContent='center'
-						height='100%'
-						maxWidth='450px'
-						margin='0 auto'
-						gap='26px'
-					>
-						<FormInput label='Email' />
-						<FormInput label='Password' type='password' />
-						<Text fontSize='14px' width='100%' textAlign='right' color='#212529' fontWeight={400}>
-							Forgot Password?
-						</Text>
-						<Button width='100%' variant='secondary'>
-							Login
-						</Button>
-						<Button width='100%' variant='primary'>
-							Register
-						</Button>
-						<Flex alignItems='center' gap='12px'>
-							<Text>Login with Social Media</Text>
-							<Flex gap='8px'>
-								<StyledSocialImage src={GoogleImage} alt='google icon' />
-								<StyledSocialImage src={FacebookImage} alt='facebook icon' />
-								<StyledSocialImage src={TwitterImage} alt='twitter icon' />
-							</Flex>
-						</Flex>
-					</Flex>
-				</LoginForm>
-			</StyledLogin>
-		</Popup>
+		<PopupDataContext.Consumer>
+			{value => {
+				return (
+					<Popup isOpen={isOpen} setIsOpen={setIsOpen} width='1004px' height='604px' padding={null}>
+						<StyledLogin>
+							<StyledLoginBanner>
+								<Text fontFamily='KageFreebiesBlack' fontSize='60px' mt='150px' textAlign='center' color='#212529'>
+									Rawmart
+								</Text>
+							</StyledLoginBanner>
+							<LoginForm>
+								<Flex
+									flexDirection='column'
+									alignItems='center'
+									justifyContent='center'
+									height='100%'
+									maxWidth='450px'
+									margin='0 auto'
+									gap='26px'
+								>
+									<FormInput label='Email' />
+									<FormInput label='Password' type='password' />
+									<Text fontSize='14px' width='100%' textAlign='right' color='#212529' fontWeight={400}>
+										Forgot Password?
+									</Text>
+									<Button width='100%' variant='secondary'>
+										Login
+									</Button>
+									<Button
+										width='100%'
+										variant='tertiary'
+										type='button'
+										onClick={() => handleRegisterButtonClick(value)}
+									>
+										Register
+									</Button>
+									<Flex alignItems='center' gap='12px'>
+										<Text>Login with Social Media</Text>
+										<Flex gap='8px'>
+											<StyledSocialImage src={GoogleImage} alt='google icon' />
+											<StyledSocialImage src={FacebookImage} alt='facebook icon' />
+											<StyledSocialImage src={TwitterImage} alt='twitter icon' />
+										</Flex>
+									</Flex>
+								</Flex>
+							</LoginForm>
+						</StyledLogin>
+					</Popup>
+				)
+			}}
+		</PopupDataContext.Consumer>
 	)
 }
 

@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { useOnClickOutside } from '@Hooks'
 import { CgClose } from 'react-icons/cg'
 import { layout, borderRadius, position, space } from 'styled-system'
+import { useLockBodyScroll } from '@Hooks'
 
 export const Popup = ({
 	children,
@@ -14,7 +15,7 @@ export const Popup = ({
 	...props
 }) => {
 	const popupRef = useRef(null)
-
+	useLockBodyScroll()
 	useOnClickOutside(popupRef, () => {
 		if (closeOnOutsideClick) setIsOpen(false)
 	})
