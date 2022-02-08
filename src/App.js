@@ -10,6 +10,7 @@ import Vendors from '@Admin/Features/Vendors/Vendors'
 import Roles from '@Admin/Features/Roles/Roles'
 import Users from '@Admin/Features/Users/Users'
 import Orders from '@Admin/Features/Orders/Orders'
+import Categories from '@Admin/Features/Categories/Categories'
 
 function App() {
 	return (
@@ -28,6 +29,7 @@ function App() {
 				<Route path='roles' element={<Roles />} />
 				<Route path='users' element={<Users />} />
 				<Route path='orders' element={<Orders />} />
+				<Route path='categories' element={<Categories />} />
 			</Route>
 		</Routes>
 	)
