@@ -4,6 +4,8 @@ import plumbingImage from '../CategoryCards/Assets/Plumbing.jpg'
 import paintingImage from '../CategoryCards/Assets/painting.jpg'
 import testImage from '../CategoryCards/Assets/test.png'
 import testImage2 from '../CategoryCards/Assets/test2.png'
+import lightImage from '../CategoryCards/Assets/light.jpg'
+import lampImage from '../CategoryCards/Assets/lamp.png'
 
 export const CategoriesData = [
 	{
@@ -57,13 +59,13 @@ export const CategoriesData = [
 	{
 		id: 9,
 		title: 'Lighting',
-		img: testImage2,
+		img: lightImage,
 		new: true,
 	},
 	{
 		id: 10,
 		title: 'Electrical',
-		img: testImage2,
+		img: lampImage,
 		new: true,
 	},
 ]

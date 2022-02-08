@@ -3,12 +3,16 @@ import styled from 'styled-components'
 import { CategoriesData } from '@Admin/Features/Categories/CategoriesPageBody/CategoryCards/CategoryData'
 import CategoryCards from '@Admin/Features/Categories/CategoriesPageBody/CategoryCards/CategoryCards'
 
-const CategoriesCardsSection = () => {
+const CategoriesCardsSection = ({ newVersion }) => {
 	return (
 		<StyledCardSection>
-			{CategoriesData.map(category => (
-				<CategoryCards key={category.id} title={category.title} image={category.img} />
-			))}
+			{!newVersion
+				? CategoriesData.map(category => (
+						<CategoryCards key={category.id} title={category.title} image={category.img} />
+				  ))
+				: CategoriesData.map(category => {
+						if (category.new) return <CategoryCards key={category.id} title={category.title} image={category.img} />
+				  })}
 		</StyledCardSection>
 	)
 }

@@ -4,14 +4,14 @@ import { VscAdd } from 'react-icons/vsc'
 import styled from 'styled-components'
 import CategoriesForm from '@Admin/Features/Categories/AddCategoryForm/CategoriesForm'
 
-const CategoriesHeaderSection = () => {
+const CategoriesHeaderSection = ({ headerLabel }) => {
 	const [isOpen, setIsOpen] = useState(false)
-
+	console.log('header:' + headerLabel)
 	return (
 		<StyledOuterContainer>
 			<StyledHeaderDiv>
 				<StyledLeftContainer>
-					<StyledHeader>Categories</StyledHeader>
+					<StyledHeader>{headerLabel}</StyledHeader>
 				</StyledLeftContainer>
 				<StyledRightContainer>
 					<Button

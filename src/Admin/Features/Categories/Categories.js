@@ -3,11 +3,11 @@ import CategoriesHeaderSection from '@Admin/Features/Categories/CategoriesHeader
 import styled from 'styled-components'
 import CategoryPageBody from '@Admin/Features/Categories/CategoriesPageBody/CategoryPageBody'
 
-const Categories = () => {
+const Categories = ({ newVersion, headerLabel, labelValue }) => {
 	return (
 		<StyledDiv>
-			<CategoriesHeaderSection />
-			<CategoryPageBody />
+			<CategoriesHeaderSection headerLabel={headerLabel} />
+			<CategoryPageBody newVersion={newVersion} labelValue={labelValue} />
 		</StyledDiv>
 	)
 }
