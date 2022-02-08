@@ -13,6 +13,7 @@ const AdminDashboard = () => {
 		</StyledDiv>
 	)
 }
+
 const StyledDiv = styled.div`
 	display: flex;
 	flex-wrap: wrap;

@@ -15,7 +15,6 @@ const TableSection = () => {
 							<Table.Th>ID</Table.Th>
 							<Table.Th>Product</Table.Th>
 							<Table.Th>Attributes</Table.Th>
-							{/*<Table.SortingHeader header='Amount' sortingField='amount' sortBy={sortBy} setSortBy={setSortBy} />*/}
 							<Table.Th>Photo</Table.Th>
 							<Table.Th>Buyer</Table.Th>
 							<Table.Th>Price</Table.Th>
