@@ -11,11 +11,12 @@ const RoleForm = () => {
 					<FormInput label='Role Name' required />
 					<FormInput label='Identifier' required />
 				</FormGroupFlex>
-
-				<Button width={['100%', null, '290px']} fontSize={3}>
-					<StyledIcon />
-					Save Role
-				</Button>
+				<StyledButtonDiv>
+					<Button width={['100%', null, '290px']} fontSize={3}>
+						<StyledIcon />
+						Save Role
+					</Button>
+				</StyledButtonDiv>
 			</StyledForm>
 		</div>
 	)
@@ -48,6 +49,11 @@ const FormGroupFlex = styled(Flex).attrs({
 	@media (max-width: 832px) {
 		margin-bottom: 16px;
 	}
+`
+
+const StyledButtonDiv = styled.div`
+	display: flex;
+	justify-content: center;
 `
 
 export default RoleForm

@@ -1,10 +1,13 @@
-import React from 'react'
-import { Button, Flex, Text, Box } from '@Components'
+import React, { useState } from 'react'
+import { Button, Flex, Text, Box, Popup } from '@Components'
 import styled from 'styled-components'
 import { VscAdd } from 'react-icons/vsc'
 import { FiSearch } from 'react-icons/fi'
+import VendorsForm from '@Admin/Features/Vendors/VendorsForm/VendorsForm'
 
 const VendorHeaderSection = () => {
+	const [isOpen, setIsOpen] = useState(false)
+
 	return (
 		<StyledOuterContainer>
 			<StyledHeaderDiv>
@@ -20,12 +23,18 @@ const VendorHeaderSection = () => {
 						fontSize={3}
 						display='flex'
 						justifyContent='center'
+						onClick={() => {
+							setIsOpen(true)
+						}}
 					>
 						<VscAdd />
 						<Text fontSize={2} ml='5px'>
 							Add Vendor
 						</Text>
 					</Button>
+					<Popup isOpen={isOpen} setIsOpen={setIsOpen} minWidth='60%' height='98%'>
+						{<VendorsForm />}
+					</Popup>
 				</StyledRightContainer>
 			</StyledHeaderDiv>
 
