@@ -29,7 +29,11 @@ function App() {
 				<Route path='roles' element={<Roles />} />
 				<Route path='users' element={<Users />} />
 				<Route path='orders' element={<Orders />} />
-				<Route path='categories' element={<Categories />} />
+				<Route
+					path='categories'
+					element={<Categories newVersion={false} headerLabel='Categories' labelValue='ALL CATEGORIES' />}
+				/>
+				<Route path='newCategories' element={<Categories newVersion={true} headerLabel='Blog Categories' />} />
 			</Route>
 		</Routes>
 	)

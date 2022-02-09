@@ -3,14 +3,18 @@ import styled from 'styled-components'
 import { CategoriesData } from '@Admin/Features/Categories/CategoriesPageBody/CategoryCards/CategoryData'
 import CategoryCards from '@Admin/Features/Categories/CategoriesPageBody/CategoryCards/CategoryCards'
 
-const CategoriesCardsSection = () => {
-	return (
-		<StyledCardSection>
-			{CategoriesData.map(category => (
+const CategoriesCardsSection = ({ newVersion }) => {
+	const renderer = () => {
+		if (!newVersion) {
+			return CategoriesData.map(category => (
 				<CategoryCards key={category.id} title={category.title} image={category.img} />
-			))}
-		</StyledCardSection>
-	)
+			))
+		}
+		return CategoriesData.filter(value => value.new).map(category => (
+			<CategoryCards key={category.id} title={category.title} image={category.img} />
+		))
+	}
+	return <StyledCardSection>{renderer()}</StyledCardSection>
 }
 const StyledCardSection = styled.div`
 	width: 85vw;

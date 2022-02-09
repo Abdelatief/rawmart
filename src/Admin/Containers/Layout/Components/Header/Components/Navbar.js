@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Text, Flex } from '@Components'
+import { Text, Flex, Box } from '@Components'
 import { BsPower } from 'react-icons/bs'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { AiOutlineClose } from 'react-icons/ai'
@@ -94,7 +94,7 @@ const StyledNavbarLinkContainer = styled.div`
 	margin-left: 50px;
 	float: left;
 `
-const NavItem = styled(Text).attrs({
+const NavItem = styled(Box).attrs({
 	color: 'text.white',
 	mr: '30px',
 })`
@@ -132,7 +132,7 @@ const CloseIcon = styled(AiOutlineClose)`
 		display: none;
 	}
 `
-const LogoutLabel = styled.label`
+const LogoutLabel = styled.p`
 	@media (max-width: 1000px) {
 		display: none;
 	}

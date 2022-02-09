@@ -3,10 +3,10 @@ import styled from 'styled-components'
 import { Flex, Text } from '@Components'
 import SelectedInput from '@Admin/Components/SelectedInput'
 
-const CategoryPageBodyHeader = () => {
+const CategoryPageBodyHeader = ({ labelValue }) => {
 	return (
 		<div>
-			<StyledHeader>ALL CATEGORIES</StyledHeader>
+			<StyledHeader>{labelValue}</StyledHeader>
 			<StyledFlex>
 				<StyledSelectedInput
 					width='770px'

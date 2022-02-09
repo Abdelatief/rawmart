@@ -3,11 +3,11 @@ import CategoryPageBodyHeader from '@Admin/Features/Categories/CategoriesPageBod
 import styled from 'styled-components'
 import CategoriesCardsSection from '@Admin/Features/Categories/CategoriesPageBody/CategoryCards/CategoriesCardsSection'
 
-const CategoryPageBody = () => {
+const CategoryPageBody = ({ newVersion, labelValue }) => {
 	return (
 		<StyledContainer>
-			<CategoryPageBodyHeader />
-			<CategoriesCardsSection />
+			<CategoryPageBodyHeader labelValue={labelValue} />
+			<CategoriesCardsSection newVersion={newVersion} />
 		</StyledContainer>
 	)
 }
