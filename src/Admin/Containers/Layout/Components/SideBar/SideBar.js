@@ -194,7 +194,8 @@ const StyledContainer = styled.div`
   padding-bottom: 20px;
 
   @media (max-width: 1000px) {
-    top: 65px;
+    //top:180px;
+    margin-top: 5px;
 
 
 `
