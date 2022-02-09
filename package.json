@@ -9,6 +9,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "framer-motion": "^6.2.3",
+    "immer": "^9.0.12",
     "node-sass": "^7.0.1",
     "popmotion": "^11.0.3",
     "react": "^17.0.2",
@@ -22,6 +23,7 @@
     "styled-reset": "^4.3.4",
     "styled-system": "^5.1.5",
     "swiper": "^7.4.1",
+    "use-immer": "^0.6.0",
     "yup": "^0.32.11"
   },
   "scripts": {

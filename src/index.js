@@ -1,8 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import { store } from '@Redux/store'
-import { Provider } from 'react-redux'
 import { Reset } from 'styled-reset'
 import { ThemeProvider } from 'styled-components'
 import { BrowserRouter } from 'react-router-dom'
@@ -14,15 +12,13 @@ import 'swiper/css/bundle'
 ReactDOM.render(
 	<React.StrictMode>
 		<GlobalStyles />
-		<Provider store={store}>
-			<Reset />
-			<GlobalStyles />
-			<ThemeProvider theme={theme}>
-				<BrowserRouter>
-					<App />
-				</BrowserRouter>
-			</ThemeProvider>
-		</Provider>
+		<Reset />
+		<GlobalStyles />
+		<ThemeProvider theme={theme}>
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
+		</ThemeProvider>
 	</React.StrictMode>,
 	document.getElementById('root')
 )

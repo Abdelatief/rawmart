@@ -1,16 +1,41 @@
 import styled from 'styled-components'
 import { Popup, FormInput, Flex, Button, Text } from '@Components'
 import { PopupDataContext } from '@Customer/Containers/Layout/Components/Header/Components/Navbar'
+import { useForm } from 'react-hook-form'
+import { DevTool } from '@hookform/devtools'
+import * as yup from 'yup'
 import LoginImage from '../Assets/auth-background.png'
 import FacebookImage from '../Assets/facebook.png'
 import TwitterImage from '../Assets/twitter.png'
 import GoogleImage from '../Assets/google.png'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useLoginMutation } from '@Customer/Redux/CustomerApi'
+import { useEffect } from 'react'
+
+const schema = yup.object().shape({
+	email: yup.string().required(),
+	password: yup.string().required(),
+})
 
 const LoginPopup = ({ isOpen, setIsOpen }) => {
+	const [login, result] = useLoginMutation({ fixedCacheKey: 'customer-login' })
 	const handleRegisterButtonClick = value => {
 		const { setShowLoginPopup, setShowRegistrationPopup } = value
 		setShowLoginPopup(false)
 		setShowRegistrationPopup(true)
+	}
+
+	const { register, handleSubmit, control } = useForm({
+		mode: 'onTouched',
+		resolver: yupResolver(schema),
+	})
+
+	useEffect(() => {
+		if (result?.isSuccess && result?.data?.code === 200) setIsOpen(false)
+	}, [result, setIsOpen])
+
+	const onSubmit = data => {
+		login(data)
 	}
 
 	return (
@@ -24,7 +49,7 @@ const LoginPopup = ({ isOpen, setIsOpen }) => {
 									Rawmart
 								</Text>
 							</StyledLoginBanner>
-							<LoginForm>
+							<LoginForm onSubmit={handleSubmit(onSubmit)}>
 								<Flex
 									flexDirection='column'
 									alignItems='center'
@@ -34,8 +59,8 @@ const LoginPopup = ({ isOpen, setIsOpen }) => {
 									margin='0 auto'
 									gap='26px'
 								>
-									<FormInput label='Email' />
-									<FormInput label='Password' type='password' />
+									<FormInput label='Email' {...register('email')} />
+									<FormInput label='Password' type='password' {...register('password')} />
 									<Text fontSize='14px' width='100%' textAlign='right' color='#212529' fontWeight={400}>
 										Forgot Password?
 									</Text>
@@ -61,6 +86,7 @@ const LoginPopup = ({ isOpen, setIsOpen }) => {
 								</Flex>
 							</LoginForm>
 						</StyledLogin>
+						<DevTool control={control} />
 					</Popup>
 				)
 			}}

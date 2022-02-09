@@ -1,8 +1,11 @@
+import { useEffect } from 'react'
 import styled from 'styled-components'
 import { Popup, FormInput, Flex, Button, Text } from '@Components'
 import { PopupDataContext } from '@Customer/Containers/Layout/Components/Header/Components/Navbar'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { DevTool } from '@hookform/devtools'
+import { useRegisterMutation } from '@Customer/Redux/CustomerApi'
 import * as yup from 'yup'
 import LoginImage from '../Assets/auth-background.png'
 import FacebookImage from '../Assets/facebook.png'
@@ -12,6 +15,7 @@ import GoogleImage from '../Assets/google.png'
 const schema = yup.object().shape({
 	first_name: yup.string().required(),
 	last_name: yup.string().required(),
+	phone: yup.string().required(),
 	email: yup.string().email().required(),
 	password: yup.string().required(),
 	confirm_password: yup
@@ -21,7 +25,8 @@ const schema = yup.object().shape({
 })
 
 const RegistrationPopup = ({ isOpen, setIsOpen }) => {
-	const { register, handleSubmit } = useForm({
+	const { register, handleSubmit, control } = useForm({
+		mode: 'onTouched',
 		resolver: yupResolver(schema),
 		defaultValues: {
 			first_name: '',
@@ -32,10 +37,20 @@ const RegistrationPopup = ({ isOpen, setIsOpen }) => {
 		},
 	})
 
+	const [registerUser, result] = useRegisterMutation({ fixedCacheKey: 'customer-registration' })
+
+	useEffect(() => {
+		if (result?.data?.code === 200) setIsOpen(false)
+	}, [result, setIsOpen])
+
 	const handleSignInButtonClick = value => {
 		const { setShowLoginPopup, setShowRegistrationPopup } = value
 		setShowRegistrationPopup(false)
 		setShowLoginPopup(true)
+	}
+
+	const onSubmit = data => {
+		registerUser(data)
 	}
 
 	return (
@@ -57,7 +72,7 @@ const RegistrationPopup = ({ isOpen, setIsOpen }) => {
 									Rawmart
 								</Text>
 							</StyledLoginBanner>
-							<LoginForm>
+							<LoginForm onSubmit={handleSubmit(onSubmit)}>
 								<Flex
 									flexDirection='column'
 									alignItems='center'
@@ -71,18 +86,18 @@ const RegistrationPopup = ({ isOpen, setIsOpen }) => {
 										Create New Account
 									</Text>
 									<FormGroup>
-										<FormInput label='First Name' />
-										<FormInput label='Last Name' />
+										<FormInput label='First Name' {...register('first_name')} />
+										<FormInput label='Last Name' {...register('last_name')} />
 									</FormGroup>
 
 									<FormGroup>
-										<FormInput label='Phone Number' />
-										<FormInput label='Email' />
+										<FormInput label='Phone Number' {...register('phone')} />
+										<FormInput label='Email' {...register('email')} />
 									</FormGroup>
 
 									<FormGroup>
-										<FormInput label='Password' />
-										<FormInput label='Confirm Password' />
+										<FormInput label='Password' type='password' {...register('password')} />
+										<FormInput label='Confirm Password' type='password' {...register('confirm_password')} />
 									</FormGroup>
 									<Button width='100%' variant='secondary'>
 										Sign up
@@ -101,6 +116,7 @@ const RegistrationPopup = ({ isOpen, setIsOpen }) => {
 								</Flex>
 							</LoginForm>
 						</StyledLogin>
+						<DevTool control={control} />
 					</Popup>
 				)
 			}}
