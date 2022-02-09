@@ -3,9 +3,11 @@ import styled from 'styled-components'
 import { Text } from '@Components'
 import { BsChevronDown } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
+
 const SideBar = () => {
 	const [selectedItem, setSelectedItem] = useState()
 	const [extendDropDown, setExtendDropDown] = useState(false)
+
 	function handleUpdate(item) {
 		setSelectedItem(item)
 		if (item === 'Pages') setExtendDropDown(!extendDropDown)
@@ -80,19 +82,26 @@ const SideBar = () => {
 					New Categories
 				</NavItem>
 			</StyledLink>
-			<NavItem fontSize={3} onClick={() => handleUpdate('News')} selectedValue={selectedItem === 'News'}>
-				News
-			</NavItem>
-			<NavItem
-				fontSize={3}
-				onClick={() => handleUpdate('Special Orders')}
-				selectedValue={selectedItem === 'Special Orders'}
-			>
-				Special Orders
-			</NavItem>
-			<NavItem fontSize={3} onClick={() => handleUpdate('Settings')} selectedValue={selectedItem === 'Settings'}>
-				Settings
-			</NavItem>
+			<StyledLink to='./news'>
+				<NavItem fontSize={3} onClick={() => handleUpdate('News')} selectedValue={selectedItem === 'News'}>
+					News
+				</NavItem>
+			</StyledLink>
+			<StyledLink to='./specialOrders'>
+				<NavItem
+					fontSize={3}
+					onClick={() => handleUpdate('Special Orders')}
+					selectedValue={selectedItem === 'Special Orders'}
+				>
+					Special Orders
+				</NavItem>
+			</StyledLink>
+			<StyledLink to='./settings'>
+				<NavItem fontSize={3} onClick={() => handleUpdate('Settings')} selectedValue={selectedItem === 'Settings'}>
+					Settings
+				</NavItem>
+			</StyledLink>
+
 			<NavItem fontSize={3} onClick={() => handleUpdate('Pages')} selectedValue={selectedItem === 'Pages'}>
 				Pages
 				<DropDownIcon>
@@ -101,69 +110,93 @@ const SideBar = () => {
 			</NavItem>
 			{extendDropDown && (
 				<div>
-					<NavItem fontSize={3} onClick={() => handleUpdate('HomeForm')} selectedValue={selectedItem === 'HomeForm'}>
-						Home
-					</NavItem>
-					<NavItem
-						fontSize={3}
-						onClick={() => handleUpdate('CategoriesForm')}
-						selectedValue={selectedItem === 'CategoriesForm'}
-					>
-						Categories
-					</NavItem>
-					<NavItem
-						fontSize={3}
-						onClick={() => handleUpdate('BrandsForm')}
-						selectedValue={selectedItem === 'BrandsForm'}
-					>
-						Brands
-					</NavItem>
-					<NavItem fontSize={3} onClick={() => handleUpdate('DealsForm')} selectedValue={selectedItem === 'DealsForm'}>
-						Deals
-					</NavItem>
-					<NavItem fontSize={3} onClick={() => handleUpdate('AboutForm')} selectedValue={selectedItem === 'AboutForm'}>
-						About
-					</NavItem>
-					<NavItem
-						fontSize={3}
-						onClick={() => handleUpdate('SpecialOrderForm')}
-						selectedValue={selectedItem === 'SpecialOrderForm'}
-					>
-						Special Order
-					</NavItem>
-					<NavItem
-						fontSize={3}
-						onClick={() => handleUpdate('CollectionsForm')}
-						selectedValue={selectedItem === 'CollectionsForm'}
-					>
-						Collections
-					</NavItem>
-					<NavItem
-						fontSize={3}
-						onClick={() => handleUpdate('SettingsForm')}
-						selectedValue={selectedItem === 'SettingsForm'}
-					>
-						Settings
-					</NavItem>
+					<StyledLink to='./pages/home'>
+						<NavItem fontSize={3} onClick={() => handleUpdate('HomeForm')} selectedValue={selectedItem === 'HomeForm'}>
+							Home
+						</NavItem>
+					</StyledLink>
+					<StyledLink to='./pages/categories'>
+						<NavItem
+							fontSize={3}
+							onClick={() => handleUpdate('CategoriesForm')}
+							selectedValue={selectedItem === 'CategoriesForm'}
+						>
+							Categories
+						</NavItem>
+					</StyledLink>
+					<StyledLink to='./pages/brands'>
+						<NavItem
+							fontSize={3}
+							onClick={() => handleUpdate('BrandsForm')}
+							selectedValue={selectedItem === 'BrandsForm'}
+						>
+							Brands
+						</NavItem>
+					</StyledLink>
+					<StyledLink to='./pages/deals'>
+						<NavItem
+							fontSize={3}
+							onClick={() => handleUpdate('DealsForm')}
+							selectedValue={selectedItem === 'DealsForm'}
+						>
+							Deals
+						</NavItem>
+					</StyledLink>
+					<StyledLink to='./pages/about'>
+						<NavItem
+							fontSize={3}
+							onClick={() => handleUpdate('AboutForm')}
+							selectedValue={selectedItem === 'AboutForm'}
+						>
+							About
+						</NavItem>
+					</StyledLink>
+					<StyledLink to='./pages/specialOrder'>
+						<NavItem
+							fontSize={3}
+							onClick={() => handleUpdate('SpecialOrderForm')}
+							selectedValue={selectedItem === 'SpecialOrderForm'}
+						>
+							Special Order
+						</NavItem>
+					</StyledLink>
+					<StyledLink to='./pages/collection'>
+						<NavItem
+							fontSize={3}
+							onClick={() => handleUpdate('CollectionsForm')}
+							selectedValue={selectedItem === 'CollectionsForm'}
+						>
+							Collections
+						</NavItem>
+					</StyledLink>
+					<StyledLink to='./pages/settings'>
+						<NavItem
+							fontSize={3}
+							onClick={() => handleUpdate('SettingsForm')}
+							selectedValue={selectedItem === 'SettingsForm'}
+						>
+							Settings
+						</NavItem>
+					</StyledLink>
 				</div>
 			)}
 		</StyledContainer>
 	)
 }
 const StyledContainer = styled.div`
-	min-height: 100vh;
-	width: 180px;
-	background-color: #e0ecde;
-	display: inline-block;
-	align-items: center;
-	top: 185px;
-	z-index: 100;
-	padding-bottom: 20px;
-	
-	@media (max-width: 1000px) {
-		top: 65px;
+  min-height: 100vh;
+  width: 180px;
+  background-color: #e0ecde;
+  display: inline-block;
+  align-items: center;
+  top: 185px;
+  z-index: 100;
+  padding-bottom: 20px;
 
-	
+  @media (max-width: 1000px) {
+    top: 65px;
+
+
 `
 
 const DropDownIcon = styled.div`
@@ -182,7 +215,6 @@ const NavItem = styled(Text).attrs({
 	width: '100%',
 	height: '44px',
 })`
-	text-decoration-line: none;
 	background-color: ${props => (props.selectedValue ? 'black' : 'transparent')};
 	color: ${props => (props.selectedValue ? 'white' : 'black')};
 
