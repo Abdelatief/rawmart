@@ -160,7 +160,7 @@ const SideBar = () => {
 							Special Order
 						</NavItem>
 					</StyledLink>
-					<StyledLink to='./pages/collection'>
+					<StyledLink to='./pages/collections'>
 						<NavItem
 							fontSize={3}
 							onClick={() => handleUpdate('CollectionsForm')}
@@ -192,9 +192,10 @@ const StyledContainer = styled.div`
   top: 185px;
   z-index: 100;
   padding-bottom: 20px;
-
+  //overflow : auto;
+	
   @media (max-width: 1000px) {
-    //top:180px;
+	  height: 100%;
     margin-top: 5px;
 
 
