@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Text } from '@Components'
 import { BsChevronDown } from 'react-icons/bs'
-
+import { Link } from 'react-router-dom'
 const SideBar = () => {
 	const [selectedItem, setSelectedItem] = useState()
 	const [extendDropDown, setExtendDropDown] = useState(false)
@@ -13,51 +13,73 @@ const SideBar = () => {
 
 	return (
 		<StyledContainer>
-			<NavItem fontSize={3} onClick={() => handleUpdate('Dashboard')} selectedValue={selectedItem === 'Dashboard'}>
-				Dashboard
-			</NavItem>
-			<NavItem fontSize={3} onClick={() => handleUpdate('Roles')} selectedValue={selectedItem === 'Roles'}>
-				Roles
-			</NavItem>
-			<NavItem fontSize={3} onClick={() => handleUpdate('Users')} selectedValue={selectedItem === 'Users'}>
-				Users
-			</NavItem>
-			<NavItem fontSize={3} onClick={() => handleUpdate('Vendors')} selectedValue={selectedItem === 'Vendors'}>
-				Vendors
-			</NavItem>
-			<NavItem fontSize={3} onClick={() => handleUpdate('Categories')} selectedValue={selectedItem === 'Categories'}>
-				Categories
-			</NavItem>
-			<NavItem fontSize={3} onClick={() => handleUpdate('Products')} selectedValue={selectedItem === 'Products'}>
-				Products
-			</NavItem>
-			<NavItem fontSize={3} onClick={() => handleUpdate('Offers')} selectedValue={selectedItem === 'Offers'}>
-				Offers
-			</NavItem>
-			<NavItem fontSize={3} onClick={() => handleUpdate('Orders')} selectedValue={selectedItem === 'Orders'}>
-				Orders
-			</NavItem>
-			<NavItem
-				fontSize={3}
-				onClick={() => handleUpdate('Payment Methods')}
-				selectedValue={selectedItem === 'Payment Methods'}
-			>
-				Payment Methods
-			</NavItem>
-			<NavItem
-				fontSize={3}
-				onClick={() => handleUpdate('Shipping Method')}
-				selectedValue={selectedItem === 'Shipping Method'}
-			>
-				Shipping Method
-			</NavItem>
-			<NavItem
-				fontSize={3}
-				onClick={() => handleUpdate('New Categories')}
-				selectedValue={selectedItem === 'New Categories'}
-			>
-				New Categories
-			</NavItem>
+			<StyledLink to='./dashboard'>
+				<NavItem fontSize={3} onClick={() => handleUpdate('Dashboard')} selectedValue={selectedItem === 'Dashboard'}>
+					Dashboard
+				</NavItem>
+			</StyledLink>
+			<StyledLink to='./roles'>
+				<NavItem fontSize={3} onClick={() => handleUpdate('Roles')} selectedValue={selectedItem === 'Roles'}>
+					Roles
+				</NavItem>
+			</StyledLink>
+			<StyledLink to='./users'>
+				<NavItem fontSize={3} onClick={() => handleUpdate('Users')} selectedValue={selectedItem === 'Users'}>
+					Users
+				</NavItem>
+			</StyledLink>
+			<StyledLink to='./vendors'>
+				<NavItem fontSize={3} onClick={() => handleUpdate('Vendors')} selectedValue={selectedItem === 'Vendors'}>
+					Vendors
+				</NavItem>
+			</StyledLink>
+			<StyledLink to='./categories'>
+				<NavItem fontSize={3} onClick={() => handleUpdate('Categories')} selectedValue={selectedItem === 'Categories'}>
+					Categories
+				</NavItem>
+			</StyledLink>
+			<StyledLink to='./products'>
+				<NavItem fontSize={3} onClick={() => handleUpdate('Products')} selectedValue={selectedItem === 'Products'}>
+					Products
+				</NavItem>
+			</StyledLink>
+			<StyledLink to='./offers'>
+				<NavItem fontSize={3} onClick={() => handleUpdate('Offers')} selectedValue={selectedItem === 'Offers'}>
+					Offers
+				</NavItem>
+			</StyledLink>
+			<StyledLink to='./orders'>
+				<NavItem fontSize={3} onClick={() => handleUpdate('Orders')} selectedValue={selectedItem === 'Orders'}>
+					Orders
+				</NavItem>
+			</StyledLink>
+			<StyledLink to='./paymentMethod'>
+				<NavItem
+					fontSize={3}
+					onClick={() => handleUpdate('Payment Methods')}
+					selectedValue={selectedItem === 'Payment Methods'}
+				>
+					Payment Methods
+				</NavItem>
+			</StyledLink>
+			<StyledLink to='./shippingMethod'>
+				<NavItem
+					fontSize={3}
+					onClick={() => handleUpdate('Shipping Method')}
+					selectedValue={selectedItem === 'Shipping Method'}
+				>
+					Shipping Method
+				</NavItem>
+			</StyledLink>
+			<StyledLink to='./newCategories'>
+				<NavItem
+					fontSize={3}
+					onClick={() => handleUpdate('New Categories')}
+					selectedValue={selectedItem === 'New Categories'}
+				>
+					New Categories
+				</NavItem>
+			</StyledLink>
 			<NavItem fontSize={3} onClick={() => handleUpdate('News')} selectedValue={selectedItem === 'News'}>
 				News
 			</NavItem>
@@ -160,6 +182,7 @@ const NavItem = styled(Text).attrs({
 	width: '100%',
 	height: '44px',
 })`
+	text-decoration-line: none;
 	background-color: ${props => (props.selectedValue ? 'black' : 'transparent')};
 	color: ${props => (props.selectedValue ? 'white' : 'black')};
 
@@ -170,4 +193,7 @@ const NavItem = styled(Text).attrs({
 	}
 `
 
+const StyledLink = styled(Link)`
+	text-decoration-line: none;
+`
 export default SideBar
