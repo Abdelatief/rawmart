@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Flex, Text, Box } from '@Components'
-import { Spinner, Table as ChakraTable, Tbody } from '@chakra-ui/react'
 
 const Table = ({ children, loading, resultsCount }) => {
 	const renderer = () => {
 		if (loading) {
 			return (
 				<Flex justifyContent='center' alignItems='center' minHeight='inherit' width='100%'>
-					<Spinner size='lg' color='primary' />
+					{/* TODO: show spinner while loading */}
+					<Text>Loading...</Text>
 				</Flex>
 			)
 		}
@@ -22,11 +22,7 @@ const Table = ({ children, loading, resultsCount }) => {
 
 		/*TODO:: Check*/
 
-		return (
-			<ChakraTable variant='unstyled'>
-				<StyledTable>{children}</StyledTable>
-			</ChakraTable>
-		)
+		return <StyledTable>{children}</StyledTable>
 	}
 	return (
 		<>
@@ -72,18 +68,10 @@ const TableHeader = styled.thead`
 const HeaderRow = styled.tr`
 	height: 60px;
 `
-const Body = styled.div`
-	display: table;
-	border-spacing: 2px;
-	border-color: grey;
-	width: 100%;
-`
 
 Table.Thead = TableHeader
 Table.HeaderRow = HeaderRow
 Table.Th = CenteredTh
 Table.BodyRow = BodyRow
 Table.Td = CenteredTd
-Table.Body = Body
-Table.TBody = Tbody
 export default Table

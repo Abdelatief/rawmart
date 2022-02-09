@@ -18,76 +18,74 @@ const UserTableSection = () => {
 	return (
 		<StyledContainer>
 			<Table loading={false} resultCount={5}>
-				<Table.Body>
-					<Table.Thead>
-						<Table.HeaderRow>
-							<Table.Th>ID</Table.Th>
-							<Table.Th>Name</Table.Th>
-							<Table.Th>Role</Table.Th>
-							<Table.Th>Email</Table.Th>
-							<Table.Th>Phone Number</Table.Th>
-							<Table.Th>Address</Table.Th>
-							<Table.Th> </Table.Th>
-						</Table.HeaderRow>
-					</Table.Thead>
-					<Table.TBody>
-						{UsersData.map(user => (
-							<Table.BodyRow key={user.id}>
-								<Table.Td>
-									<Flex justifyContent='center' alignItems='center'>
-										{user.id}
-									</Flex>
-								</Table.Td>
-								<Table.Td>
-									<Flex justifyContent='center' alignItems='center'>
-										{user.name}
-									</Flex>
-								</Table.Td>
-								<Table.Td>
-									<Flex justifyContent='center' alignItems='center'>
-										{user.role}
-									</Flex>
-								</Table.Td>
-								<Table.Td>
-									<Flex justifyContent='center' alignItems='center'>
-										{user.email}
-									</Flex>
-								</Table.Td>
-								<Table.Td>
-									<Flex justifyContent='center' alignItems='center'>
-										{user.phoneNumber}
-									</Flex>
-								</Table.Td>
-								<Table.Td>
-									<Flex justifyContent='center' alignItems='center'>
-										{user.address}
-									</Flex>
-								</Table.Td>
-								<Table.Td>
-									<Flex fontSize={5}>
-										<StyledDotIcon
-											onClick={() => {
-												toggleExtendMenu(user.id)
-											}}
-										/>
-									</Flex>
-									<Flex>
-										{extendMenu && selectedItem === user.id && (
-											<StyledDropDown>
-												<StyledFlex pt='10px'>
-													<StyledEditIcon />
-													<Text fontSize={2} mb='2px'>
-														Edit
-													</Text>
-												</StyledFlex>
-											</StyledDropDown>
-										)}
-									</Flex>
-								</Table.Td>
-							</Table.BodyRow>
-						))}
-					</Table.TBody>
-				</Table.Body>
+				<Table.Thead>
+					<Table.HeaderRow>
+						<Table.Th>ID</Table.Th>
+						<Table.Th>Name</Table.Th>
+						<Table.Th>Role</Table.Th>
+						<Table.Th>Email</Table.Th>
+						<Table.Th>Phone Number</Table.Th>
+						<Table.Th>Address</Table.Th>
+						<Table.Th> </Table.Th>
+					</Table.HeaderRow>
+				</Table.Thead>
+				<tbody>
+					{UsersData.map(user => (
+						<Table.BodyRow key={user.id}>
+							<Table.Td>
+								<Flex justifyContent='center' alignItems='center'>
+									{user.id}
+								</Flex>
+							</Table.Td>
+							<Table.Td>
+								<Flex justifyContent='center' alignItems='center'>
+									{user.name}
+								</Flex>
+							</Table.Td>
+							<Table.Td>
+								<Flex justifyContent='center' alignItems='center'>
+									{user.role}
+								</Flex>
+							</Table.Td>
+							<Table.Td>
+								<Flex justifyContent='center' alignItems='center'>
+									{user.email}
+								</Flex>
+							</Table.Td>
+							<Table.Td>
+								<Flex justifyContent='center' alignItems='center'>
+									{user.phoneNumber}
+								</Flex>
+							</Table.Td>
+							<Table.Td>
+								<Flex justifyContent='center' alignItems='center'>
+									{user.address}
+								</Flex>
+							</Table.Td>
+							<Table.Td>
+								<Flex fontSize={5}>
+									<StyledDotIcon
+										onClick={() => {
+											toggleExtendMenu(user.id)
+										}}
+									/>
+								</Flex>
+								<Flex>
+									{extendMenu && selectedItem === user.id && (
+										<StyledDropDown>
+											<StyledFlex pt='10px'>
+												<StyledEditIcon />
+												<Text fontSize={2} mb='2px'>
+													Edit
+												</Text>
+											</StyledFlex>
+										</StyledDropDown>
+									)}
+								</Flex>
+							</Table.Td>
+						</Table.BodyRow>
+					))}
+				</tbody>
 			</Table>
 		</StyledContainer>
 	)
@@ -100,6 +98,7 @@ const StyledContainer = styled.div`
 `
 const StyledDotIcon = styled(CgMore)`
 	font-size: 24px;
+
 	&:hover {
 		cursor: pointer;
 	}

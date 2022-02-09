@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Text } from '@Components'
+import { Box } from '@Components'
 import { BsChevronDown } from 'react-icons/bs'
 
 const SideBar = () => {
@@ -100,7 +100,7 @@ const DropDownIcon = styled.div`
 	margin-right: 10px;
 	font-size: 18px;
 `
-const NavItem = styled(Text).attrs({
+const NavItem = styled(Box).attrs({
 	color: 'text.black',
 	pl: '30px',
 	pt: '12px',
