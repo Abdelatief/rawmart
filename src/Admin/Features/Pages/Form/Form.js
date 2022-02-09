@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import BannerSection from '@Admin/Features/Pages/Form/BannerSection'
 import MetaSection from '@Admin/Features/Pages/Form/MetaSection'
-import AdditionalHomePart from '@Admin/Features/Pages/Form/AdditionalHomePart'
 import HomePart from '@Admin/Features/Pages/Form/HomePart'
 
 const Form = ({ Name }) => {

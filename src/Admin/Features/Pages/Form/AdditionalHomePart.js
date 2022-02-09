@@ -88,18 +88,4 @@ const StyledTrashIcon = styled(VscTrash)`
 	cursor: pointer;
 `
 
-const AddMoreButton = styled.button`
-	display: flex;
-	background: transparent;
-	border: 0;
-	box-shadow: none !important;
-	border-bottom: 2px solid #a0a0a0;
-	&:hover {
-		cursor: pointer;
-	}
-`
-
-const StyledShowMore = styled.div`
-	width: 100%;
-`
 export default AdditionalHomePart
