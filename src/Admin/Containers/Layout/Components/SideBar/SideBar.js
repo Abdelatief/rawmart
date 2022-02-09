@@ -129,7 +129,7 @@ const SideBar = () => {
 	)
 }
 const StyledContainer = styled.div`
-	min-height: 100%;
+	min-height: 100vh;
 	width: 180px;
 	background-color: #e0ecde;
 	display: inline-block;
@@ -137,6 +137,7 @@ const StyledContainer = styled.div`
 	top: 185px;
 	z-index: 100;
 	padding-bottom: 20px;
+	
 	@media (max-width: 1000px) {
 		top: 65px;
 
