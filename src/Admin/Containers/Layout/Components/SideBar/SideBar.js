@@ -8,11 +8,9 @@ const SideBar = () => {
 	const [extendDropDown, setExtendDropDown] = useState(false)
 	function handleUpdate(item) {
 		setSelectedItem(item)
+		if (item === 'Pages') setExtendDropDown(!extendDropDown)
 	}
 
-	const toggleExtendDropDown = () => {
-		setExtendDropDown(!extendDropDown)
-	}
 	return (
 		<StyledContainer>
 			<NavItem fontSize={3} onClick={() => handleUpdate('Dashboard')} selectedValue={selectedItem === 'Dashboard'}>
@@ -76,7 +74,7 @@ const SideBar = () => {
 			<NavItem fontSize={3} onClick={() => handleUpdate('Pages')} selectedValue={selectedItem === 'Pages'}>
 				Pages
 				<DropDownIcon>
-					<BsChevronDown onClick={toggleExtendDropDown} />
+					<BsChevronDown />
 				</DropDownIcon>
 			</NavItem>
 			{extendDropDown && (
