@@ -184,7 +184,7 @@ const SideBar = () => {
 	)
 }
 const StyledContainer = styled.div`
-  min-height: 100vh;
+  min-height: 100%;
   width: 180px;
   background-color: #e0ecde;
   display: inline-block;

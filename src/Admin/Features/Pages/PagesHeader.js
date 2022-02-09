@@ -15,6 +15,7 @@ const StyledMainHeader = styled(Text).attrs({
 	mb: '10px',
 	fontWeight: 'bold',
 })`
+	color: #212529;
 	min-height: 50px;
 	@media (max-width: 750px) {
 		background: #e0ecde;
@@ -27,8 +28,11 @@ const StyledMainHeader = styled(Text).attrs({
 	}
 `
 const StyledHeader = styled(Text).attrs({
-	fontSize: '22px',
+	fontSize: '18px',
 	mb: '10px',
-})``
+	fontWeight: 500,
+})`
+	color: #212529;
+`
 
 export default PagesHeader
