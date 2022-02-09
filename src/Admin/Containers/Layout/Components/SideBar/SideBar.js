@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Box, Flex } from '@Components'
+import { Flex } from '@Components'
 import { BsChevronDown } from 'react-icons/bs'
 
 const SideBar = () => {
