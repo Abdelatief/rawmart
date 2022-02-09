@@ -136,6 +136,7 @@ const StyledContainer = styled.div`
 	align-items: center;
 	top: 185px;
 	z-index: 100;
+	padding-bottom: 20px;
 	@media (max-width: 1000px) {
 		top: 65px;
 
