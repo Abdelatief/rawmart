@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { useOnClickOutside } from '@Hooks'
 import { CgClose } from 'react-icons/cg'
 import { layout, borderRadius, position, space } from 'styled-system'
+import { useLockBodyScroll } from '@Hooks'
 
 export const Popup = ({
 	children,
@@ -14,7 +15,7 @@ export const Popup = ({
 	...props
 }) => {
 	const popupRef = useRef(null)
-
+	useLockBodyScroll()
 	useOnClickOutside(popupRef, () => {
 		if (closeOnOutsideClick) setIsOpen(false)
 	})
@@ -54,7 +55,6 @@ const StyledPopup = styled.div`
 	position: ${props => props?.position ?? 'fixed'};
 	top: ${props => props?.top?.toString() ?? '50%'};
 	left: ${props => props?.left?.toString() ?? '50%'};
-	padding: ${props => props?.padding?.toString() ?? '26px'};
 	width: ${props => props?.width ?? '50%'};
 	height: ${props => props?.height ?? '40%'};
 	transform: ${props => !props?.top && !props?.left && 'translate(-50%, -50%)'};

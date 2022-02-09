@@ -1,18 +1,15 @@
 import styled from 'styled-components'
 import { Button, Flex } from '@Components'
 
-const CarouselItem = ({ imageSrc }) => {
+const CarouselItem = ({ title, description, image }) => {
 	return (
 		<Flex width='110px' height='400px' justifyContent='center'>
 			<Flex flexDirection='column' justifyContent='center' minWidth='505px'>
-				<Title>We are very proud to present you our furniture</Title>
-				<Subtitle>
-					Egestas maecenas pharetra convallis posuere morbi leo. Convallis a cras semper auctor neque vitae tempus. Quis
-					enim lobortis scelerisque fermentum dui faucibus in ornare.
-				</Subtitle>
+				<Title>{title}</Title>
+				<Subtitle>{description}</Subtitle>
 				<Button>Buy Now</Button>
 			</Flex>
-			<Image src={imageSrc} alt='carousel item' />
+			<Image src={image} alt='carousel item' />
 		</Flex>
 	)
 }

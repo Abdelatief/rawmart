@@ -1,14 +1,35 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import CarouselItem from '@Customer/Features/LandingPage/Components/Carousel/CarouselItem'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Navigation, Pagination } from 'swiper'
-
-const testArr = []
-testArr.push(<CarouselItem imageSrc='http://api.dussurapp.com/uploads/pages/home/slider/16305585180.png' />)
-testArr.push(<CarouselItem imageSrc='http://api.dussurapp.com/uploads/pages/home/slider/16305585181.png' />)
+import { useBannerMutation } from '@Customer/Redux/CustomerApi'
+import { Text } from '@Components'
 
 const Carousel = () => {
+	const [bannerTrigger, { isLoading, isSuccess, data }] = useBannerMutation()
+
+	useEffect(() => {
+		bannerTrigger()
+	}, [bannerTrigger])
+
+	const renderer = () => {
+		if (isLoading) {
+			return <Text fontSize='26px'>Loading...</Text>
+		}
+		if (isSuccess && data?.data?.sliders) {
+			return data?.data?.sliders.map((slider, index) => (
+				<SwiperSlide key={index}>
+					<CarouselItem
+						title={slider?.title}
+						description={slider?.description}
+						image={`${data?.data?.base_url}/${slider?.image}`}
+					/>
+				</SwiperSlide>
+			))
+		}
+	}
+
 	return (
 		<LandingSwiper
 			navigation
@@ -17,9 +38,7 @@ const Carousel = () => {
 			modules={[Navigation, Pagination, Autoplay]}
 			autoplay={{ delay: 2500, disableOnInteraction: false }}
 		>
-			{testArr.map((item, index) => (
-				<SwiperSlide key={index}>{item}</SwiperSlide>
-			))}
+			{renderer()}
 		</LandingSwiper>
 	)
 }
