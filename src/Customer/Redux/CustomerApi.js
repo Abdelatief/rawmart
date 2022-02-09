@@ -18,7 +18,14 @@ export const customerApi = createApi({
 				body: loginBody,
 			}),
 		}),
+		banner: builder.mutation({
+			query: () => ({
+				url: 'web/pages/view',
+				method: 'POST',
+				body: { id: 'home', language: 'en' },
+			}),
+		}),
 	}),
 })
 
-export const { useRegisterMutation, useLoginMutation } = customerApi
+export const { useRegisterMutation, useLoginMutation, useBannerMutation } = customerApi
