@@ -96,13 +96,8 @@ const DropDownIcon = styled.div`
 `
 const NavItem = styled(Flex).attrs({
 	color: 'text.black',
-	// justifyContent: 'center',
 	alignItems: 'center',
 	pl: '30px',
-	// pt: '12px',
-	// mt: '15px',
-	// mb: '-5px',
-	// width: '100%',
 	height: '44px',
 })`
 	background-color: ${props => (props.selectedValue ? 'black' : 'transparent')};
