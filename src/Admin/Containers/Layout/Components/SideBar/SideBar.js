@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Box } from '@Components'
+import { Box, Flex } from '@Components'
 import { BsChevronDown } from 'react-icons/bs'
 
 const SideBar = () => {
@@ -85,12 +85,6 @@ const StyledContainer = styled.div`
 	background-color: #e0ecde;
 	display: inline-block;
 	align-items: center;
-	top: 185px;
-	z-index: 100;
-	@media (max-width: 1000px) {
-		top: 65px;
-
-	
 `
 
 const DropDownIcon = styled.div`
@@ -100,13 +94,15 @@ const DropDownIcon = styled.div`
 	margin-right: 10px;
 	font-size: 18px;
 `
-const NavItem = styled(Box).attrs({
+const NavItem = styled(Flex).attrs({
 	color: 'text.black',
+	// justifyContent: 'center',
+	alignItems: 'center',
 	pl: '30px',
-	pt: '12px',
-	mt: '15px',
-	mb: '-5px',
-	width: '100%',
+	// pt: '12px',
+	// mt: '15px',
+	// mb: '-5px',
+	// width: '100%',
 	height: '44px',
 })`
 	background-color: ${props => (props.selectedValue ? 'black' : 'transparent')};

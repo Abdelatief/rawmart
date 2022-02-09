@@ -18,13 +18,9 @@ const StyledDiv = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 	max-height: 100%;
-	max-width: 100%;
 `
 const StyledContainer = styled.div`
 	margin: 20px;
-	@media (max-width: 1000px) {
-		left: 0;
-	}
 `
 
 export default AdminDashboard

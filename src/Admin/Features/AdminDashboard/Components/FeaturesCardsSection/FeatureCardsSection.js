@@ -79,7 +79,7 @@ const FeaturesCardsSection = () => {
 }
 
 const StyledDiv = styled.div`
-	width: 95vw;
+	//width: 95vw;
 `
 
 const StyledCardContainer = styled.div`
