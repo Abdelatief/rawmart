@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Flex, Input, Text } from '@Components'
+import { Button, Flex, Text } from '@Components'
 import styled from 'styled-components'
 import { MdDone } from 'react-icons/md'
 
