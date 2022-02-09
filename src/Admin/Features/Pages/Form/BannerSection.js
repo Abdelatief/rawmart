@@ -56,8 +56,7 @@ const StyledSelectedInput = styled(SelectedInput)`
 	min-height: 55px;
 	font-size: 14px;
 	width: ${props => (props.sizeLarge ? 'calc(100% - 20px)' : 'calc(80% - 20px)')};
-	//transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-
+	cursor: pointer;
 	&:hover {
 		border: 1px solid #ced4da;
 	}

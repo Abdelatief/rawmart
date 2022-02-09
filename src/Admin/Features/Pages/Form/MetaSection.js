@@ -9,10 +9,9 @@ const MetaSection = () => {
 			<StyledHeader>META SECTION</StyledHeader>
 			<FormGroupFlex flexDirection={['column', null, 'row']}>
 				<StyledLabel>
-					{' '}
 					Meta Title<StyledAsterisk> *</StyledAsterisk>
 				</StyledLabel>
-				<StyledFormInput label='Meta Title' required sizeLarge={true} />
+				<StyledFormInput />
 			</FormGroupFlex>
 
 			<FormGroupFlex flexDirection={['column', null, 'row']}>
@@ -69,7 +68,7 @@ const TextArea = styled.textarea`
 	border: 1px solid black;
 	padding: 10px;
 	width: calc(100% - 20px);
-
+	cursor: pointer;
 	&:hover {
 		border: 1px solid #ced4da;
 	}
@@ -88,6 +87,7 @@ const StyledFormInput = styled.input`
 	width: calc(100% - 20px);
 	height: 55px;
 	padding: 10px;
+	cursor: pointer;
 	&:hover {
 		border: 1px solid #ced4da;
 	}

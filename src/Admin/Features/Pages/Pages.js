@@ -7,7 +7,7 @@ const Pages = ({ HeaderLabel }) => {
 	return (
 		<StyledDiv>
 			<PagesHeader HeaderLabel={HeaderLabel} />
-			<Form />
+			<Form Name={HeaderLabel} />
 		</StyledDiv>
 	)
 }

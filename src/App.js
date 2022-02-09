@@ -38,7 +38,7 @@ function App() {
 				<Route path='newCategories' element={<Categories newVersion={true} headerLabel='Blog Categories' />} />
 
 				<Route path='pages' element={<PageLayout />}>
-					<Route path='home' element={<Pages HeaderLabel='Home' />} />
+					<Route path='home' element={<Pages HeaderLabel='HOME' />} />
 					<Route path='categories' element={<Pages HeaderLabel='CATEGORY' />} />
 					<Route path='brands' element={<Pages HeaderLabel='BRANDS' />} />
 					<Route path='deals' element={<Pages HeaderLabel='DEALS' />} />
