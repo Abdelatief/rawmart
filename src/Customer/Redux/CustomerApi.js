@@ -18,7 +18,7 @@ export const customerApi = createApi({
 				body: loginBody,
 			}),
 		}),
-		banner: builder.mutation({
+		banner: builder.query({
 			query: () => ({
 				url: 'web/pages/view',
 				method: 'POST',
@@ -28,4 +28,4 @@ export const customerApi = createApi({
 	}),
 })
 
-export const { useRegisterMutation, useLoginMutation, useBannerMutation } = customerApi
+export const { useRegisterMutation, useLoginMutation, useBannerQuery } = customerApi

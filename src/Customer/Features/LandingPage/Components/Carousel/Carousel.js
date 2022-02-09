@@ -1,17 +1,13 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import CarouselItem from '@Customer/Features/LandingPage/Components/Carousel/CarouselItem'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Navigation, Pagination } from 'swiper'
-import { useBannerMutation } from '@Customer/Redux/CustomerApi'
+import { useBannerQuery } from '@Customer/Redux/CustomerApi'
 import { Text } from '@Components'
 
 const Carousel = () => {
-	const [bannerTrigger, { isLoading, isSuccess, data }] = useBannerMutation()
-
-	useEffect(() => {
-		bannerTrigger()
-	}, [bannerTrigger])
+	const { isLoading, isSuccess, data } = useBannerQuery()
 
 	const renderer = () => {
 		if (isLoading) {
