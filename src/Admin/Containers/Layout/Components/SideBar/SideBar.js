@@ -5,11 +5,14 @@ import { BsChevronDown } from 'react-icons/bs'
 
 const SideBar = () => {
 	const [selectedItem, setSelectedItem] = useState()
-
+	const [extendDropDown, setExtendDropDown] = useState(false)
 	function handleUpdate(item) {
 		setSelectedItem(item)
 	}
 
+	const toggleExtendDropDown = () => {
+		setExtendDropDown(!extendDropDown)
+	}
 	return (
 		<StyledContainer>
 			<NavItem fontSize={3} onClick={() => handleUpdate('Dashboard')} selectedValue={selectedItem === 'Dashboard'}>
@@ -73,9 +76,57 @@ const SideBar = () => {
 			<NavItem fontSize={3} onClick={() => handleUpdate('Pages')} selectedValue={selectedItem === 'Pages'}>
 				Pages
 				<DropDownIcon>
-					<BsChevronDown />
+					<BsChevronDown onClick={toggleExtendDropDown} />
 				</DropDownIcon>
 			</NavItem>
+			{extendDropDown && (
+				<div>
+					<NavItem fontSize={3} onClick={() => handleUpdate('HomeForm')} selectedValue={selectedItem === 'HomeForm'}>
+						Home
+					</NavItem>
+					<NavItem
+						fontSize={3}
+						onClick={() => handleUpdate('CategoriesForm')}
+						selectedValue={selectedItem === 'CategoriesForm'}
+					>
+						Categories
+					</NavItem>
+					<NavItem
+						fontSize={3}
+						onClick={() => handleUpdate('BrandsForm')}
+						selectedValue={selectedItem === 'BrandsForm'}
+					>
+						Brands
+					</NavItem>
+					<NavItem fontSize={3} onClick={() => handleUpdate('DealsForm')} selectedValue={selectedItem === 'DealsForm'}>
+						Deals
+					</NavItem>
+					<NavItem fontSize={3} onClick={() => handleUpdate('AboutForm')} selectedValue={selectedItem === 'AboutForm'}>
+						About
+					</NavItem>
+					<NavItem
+						fontSize={3}
+						onClick={() => handleUpdate('SpecialOrderForm')}
+						selectedValue={selectedItem === 'SpecialOrderForm'}
+					>
+						Special Order
+					</NavItem>
+					<NavItem
+						fontSize={3}
+						onClick={() => handleUpdate('CollectionsForm')}
+						selectedValue={selectedItem === 'CollectionsForm'}
+					>
+						Collections
+					</NavItem>
+					<NavItem
+						fontSize={3}
+						onClick={() => handleUpdate('SettingsForm')}
+						selectedValue={selectedItem === 'SettingsForm'}
+					>
+						Settings
+					</NavItem>
+				</div>
+			)}
 		</StyledContainer>
 	)
 }
