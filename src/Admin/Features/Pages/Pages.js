@@ -3,7 +3,6 @@ import PagesHeader from '@Admin/Features/Pages/PagesHeader'
 import styled from 'styled-components'
 
 const Pages = ({ HeaderLabel }) => {
-	console.log(HeaderLabel)
 	return (
 		<StyledDiv>
 			<PagesHeader HeaderLabel={HeaderLabel} />
