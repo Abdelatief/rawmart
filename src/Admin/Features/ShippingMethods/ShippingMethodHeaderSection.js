@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Button, Popup, Text } from '@Components'
 import { VscAdd } from 'react-icons/vsc'
-import CategoriesForm from '@Admin/Features/Categories/AddCategoryForm/CategoriesForm'
 import styled from 'styled-components'
+import ShippingMethodsForm from '@Admin/Features/ShippingMethods/ShippingMethodsForm'
 
 const ShippingMethodHeaderSection = () => {
 	const [isOpen, setIsOpen] = useState(false)
@@ -30,8 +30,8 @@ const ShippingMethodHeaderSection = () => {
 							Add Shipping Method
 						</Text>
 					</Button>
-					<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px'>
-						{<div />}
+					<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px' width='70%' height='67%'>
+						{<ShippingMethodsForm />}
 					</Popup>
 				</StyledRightContainer>
 			</StyledHeaderDiv>
