@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
 import { Text, Flex, Box } from '@Components'
 import { BsPower } from 'react-icons/bs'
@@ -6,8 +6,10 @@ import { GiHamburgerMenu } from 'react-icons/gi'
 import { AiOutlineClose } from 'react-icons/ai'
 import SideBar from '@Admin/Containers/Layout/Components/SideBar/SideBar'
 import PopUpPage from '@Admin/Components/PopUpPage'
+import { AdminAuthContext } from '@Admin/Containers/Layout/Layout'
 
 const Navbar = () => {
+	const adminAuthContext = useContext(AdminAuthContext)
 	const [extendNavbar, setExtendNavbar] = useState(false)
 	const toggleExtendNavBar = () => {
 		setExtendNavbar(!extendNavbar)
@@ -35,7 +37,7 @@ const Navbar = () => {
 						</NavItem>
 						<NavItem fontSize={2}>
 							<LogoutIcon />
-							<LogoutLabel>Logout</LogoutLabel>
+							<LogoutLabel onClick={() => adminAuthContext.logout()}>Logout</LogoutLabel>
 						</NavItem>
 					</StyledRightContainer>
 				</StyledNavbarInnerContainer>
