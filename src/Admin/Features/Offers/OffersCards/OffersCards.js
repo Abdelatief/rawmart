@@ -22,7 +22,7 @@ const OffersCards = ({ title, startDate, endDate }) => {
 				</Text>
 			</Flex>
 			<Flex>
-				<Text fontSize={4} mt='10px' ml='10px'>
+				<Text fontSize={1} mt='10px' ml='10px' mb='10px'>
 					{startDate} - {endDate}
 				</Text>
 			</Flex>
@@ -47,8 +47,8 @@ const OffersCards = ({ title, startDate, endDate }) => {
 }
 
 const StyledCard = styled(FluidContainer)`
-  width: calc(46% - 10px);
-  height: 150px;
+  width: calc(50% - 20px);
+  height: 135px;
   font-weight: 400;
   padding: 15px;
   background: url(${imgBg});
@@ -66,7 +66,7 @@ const StyledCard = styled(FluidContainer)`
 const StyledDropDown = styled.div`
 	position: relative;
 	right: 0;
-	background: #e0ecde;
+	background: #ffffff;
 	box-shadow: 1px 1px 7px -6px #fff;
 	padding: 10px 19px 5px;
 	color: #000;
@@ -74,8 +74,8 @@ const StyledDropDown = styled.div`
 	width: calc(20% - 20px);
 	height: 80px;
 	min-width: 120px;
-	left: calc(80% - 10px);
-	bottom: calc(80% - 10px);
+	left: calc(79% - 10px);
+	bottom: calc(96% - 10px);
 `
 
 const StyledEditIcon = styled(MdOutlineEdit)`

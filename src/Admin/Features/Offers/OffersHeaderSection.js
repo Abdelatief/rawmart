@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Button, Popup, Text } from '@Components'
 import { VscAdd } from 'react-icons/vsc'
 import styled from 'styled-components'
+import OfferForm from '@Admin/Features/Offers/OfferForm'
 
 const OffersHeaderSection = () => {
 	const [isOpen, setIsOpen] = useState(false)
@@ -30,8 +31,8 @@ const OffersHeaderSection = () => {
 							Add Offer
 						</Text>
 					</Button>
-					<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px'>
-						{<div />}
+					<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px' minHeight='60%'>
+						{<OfferForm />}
 					</Popup>
 				</StyledRightContainer>
 			</StyledHeaderDiv>
