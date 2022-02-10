@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 import FeaturesCardsSection from '@Admin/Features/AdminDashboard/Components/FeaturesCardsSection/FeatureCardsSection'
 import TableSection from '@Admin/Features/AdminDashboard/Components/TableSection/TableSection'
-import TableHeader from '@Admin/Features/AdminDashboard/Components/TableSection/TableHeader'
+import MiddelPartOfPage from '@Admin/Features/AdminDashboard/Components/TableSection/MiddelPartOfPage'
 const AdminDashboard = () => {
 	return (
 		<StyledDiv>
 			<StyledContainer>
 				<FeaturesCardsSection />
-				<TableHeader />
+				<MiddelPartOfPage />
 				<TableSection />
 			</StyledContainer>
 		</StyledDiv>

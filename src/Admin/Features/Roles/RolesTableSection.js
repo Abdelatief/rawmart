@@ -68,6 +68,7 @@ const RolesTableSection = () => {
 													Edit
 												</Text>
 											</StyledFlex>
+
 											<StyledFlex onClick={() => deleteRole(role.id)}>
 												<StyledDeleteIcon />
 												<Text fontSize={2}>Delete</Text>

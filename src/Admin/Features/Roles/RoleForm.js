@@ -2,10 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import { Button, Flex, FormInput, Text } from '@Components'
 import { MdDone } from 'react-icons/md'
-const RoleForm = () => {
+const RoleForm = ({ title }) => {
 	return (
 		<div>
-			<StyledHeader>ADD ROLE</StyledHeader>
+			<StyledHeader>{title}</StyledHeader>
 			<StyledForm style>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
 					<FormInput label='Role Name' required />

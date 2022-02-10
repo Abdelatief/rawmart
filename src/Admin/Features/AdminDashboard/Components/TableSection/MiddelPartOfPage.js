@@ -1,8 +1,9 @@
 import React from 'react'
 import { Button, Text } from '@Components'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
-const TableHeader = () => {
+const MiddelPartOfPage = () => {
 	return (
 		<StyledOuterContainer>
 			<StyledHeaderDiv>
@@ -10,19 +11,21 @@ const TableHeader = () => {
 					<StyledHeader>Recent Sales</StyledHeader>
 				</StyledLeftContainer>
 				<StyledRightContainer>
-					<Button
-						variant='tertiary'
-						mt='-20px'
-						minWidth={null}
-						width='187px'
-						fontSize={3}
-						display='flex'
-						justifyContent='center'
-					>
-						<Text fontSize={2} ml='5px'>
-							View All Orders
-						</Text>
-					</Button>
+					<StyledLink to='../orders'>
+						<Button
+							variant='tertiary'
+							mt='-20px'
+							minWidth={null}
+							width='187px'
+							fontSize={3}
+							display='flex'
+							justifyContent='center'
+						>
+							<Text fontSize={2} ml='5px'>
+								View All Orders
+							</Text>
+						</Button>
+					</StyledLink>
 				</StyledRightContainer>
 			</StyledHeaderDiv>
 		</StyledOuterContainer>
@@ -62,4 +65,7 @@ const StyledHeader = styled(Text).attrs({
 		width: 100%;
 	}
 `
-export default TableHeader
+const StyledLink = styled(Link)`
+	text-decoration-line: none;
+`
+export default MiddelPartOfPage

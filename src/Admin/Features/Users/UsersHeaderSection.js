@@ -30,7 +30,7 @@ const UsersHeaderSection = () => {
 						</Text>
 					</Button>
 					<Popup isOpen={isOpen} setIsOpen={setIsOpen} height='80%' width='70%' padding='30px'>
-						{<UserForm />}
+						{<UserForm title='ADD USER' />}
 					</Popup>
 				</StyledRightContainer>
 			</StyledHeaderDiv>

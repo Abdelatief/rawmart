@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import Table from '@Admin/Components/Table'
-import { Flex, Text } from '@Components'
+import { Flex, Popup, Text } from '@Components'
 import styled from 'styled-components'
 import { CgMore } from 'react-icons/cg'
 import { MdOutlineEdit } from 'react-icons/md'
 import { UsersData } from '@Admin/Features/Users/UsersData'
+import UserForm from '@Admin/Features/Users/UserForm'
 
 const UserTableSection = () => {
 	const [extendMenu, setExtendMenu] = useState(false)
 	const [selectedItem, setSelectedItem] = useState()
+	const [isOpen, setIsOpen] = useState(false)
 
 	const toggleExtendMenu = item => {
 		setExtendMenu(!extendMenu)
@@ -73,7 +75,12 @@ const UserTableSection = () => {
 								<Flex>
 									{extendMenu && selectedItem === user.id && (
 										<StyledDropDown>
-											<StyledFlex pt='10px'>
+											<StyledFlex
+												pt='10px'
+												onClick={() => {
+													setIsOpen(true)
+												}}
+											>
 												<StyledEditIcon />
 												<Text fontSize={2} mb='2px'>
 													Edit
@@ -83,6 +90,9 @@ const UserTableSection = () => {
 									)}
 								</Flex>
 							</Table.Td>
+							<Popup isOpen={isOpen} setIsOpen={setIsOpen} height='80%' width='70%' padding='30px'>
+								{<UserForm title='EDIT USER' user={user} />}
+							</Popup>
 						</Table.BodyRow>
 					))}
 				</tbody>

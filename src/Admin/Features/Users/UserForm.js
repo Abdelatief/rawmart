@@ -4,10 +4,10 @@ import styled from 'styled-components'
 import FormSelectedInput from '@Admin/Components/FormSelectedInput'
 import { RolesData } from '@Admin/Features/Roles/RolesData'
 
-const UserForm = () => {
+const UserForm = ({ title, user }) => {
 	return (
 		<div>
-			<StyledHeader>ADD USER</StyledHeader>
+			<StyledHeader>{title}</StyledHeader>
 			<StyledForm style>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
 					<FormSelectedInput label='Role' required options={RolesData} />
@@ -28,7 +28,7 @@ const UserForm = () => {
 					<FormInput label='State' />
 					<FormInput label='Postal Code' />
 				</FormGroupFlex>
-				<Button width={['100%', null, '290px']}>Submit</Button>
+				<Button width={['100%', null, '290px']}>Save User</Button>
 			</StyledForm>
 		</div>
 	)
