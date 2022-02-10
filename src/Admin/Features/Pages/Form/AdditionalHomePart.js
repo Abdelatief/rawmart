@@ -2,13 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import { Flex, Text } from '@Components'
 import { VscTrash } from 'react-icons/vsc'
+import DragAndDropImage from '@Admin/Components/DragAndDropImage'
 
 const AdditionalHomePart = () => {
 	return (
 		<StyledOuterContainer flexDirection={['column', null, 'row']}>
 			<div>
 				<StyledLabel>Image</StyledLabel>
-				<StyledFlex>ADD Image</StyledFlex>
+				<DragAndDropImage />
 			</div>
 			<StyledInnerContainer>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>

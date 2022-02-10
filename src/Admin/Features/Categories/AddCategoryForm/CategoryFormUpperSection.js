@@ -2,14 +2,14 @@ import React from 'react'
 import { Flex, FormInput, Text } from '@Components'
 import styled from 'styled-components'
 import FormSelectedInput from '@Admin/Components/FormSelectedInput'
+import DragAndDropImage from '@Admin/Components/DragAndDropImage'
 
 const CategoryFormUpperSection = () => {
 	return (
 		<FormGroupFlex flexDirection={['column', null, 'row']}>
-			{/*TODO:Add image upload */}
 			<div>
 				<StyledLabel>Image</StyledLabel>
-				<StyledFlex>ADD Image</StyledFlex>
+				<DragAndDropImage />
 			</div>
 			<StyledInnerContainer>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>

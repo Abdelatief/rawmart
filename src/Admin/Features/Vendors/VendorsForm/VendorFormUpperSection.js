@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Flex, FormInput, Text } from '@Components'
 import { VscAdd } from 'react-icons/vsc'
+import DragAndDropImage from '@Admin/Components/DragAndDropImage'
 
 const VendorFormUpperSection = () => {
 	const [additionalAddress, setAdditionalAddress] = useState(false)
@@ -9,10 +10,9 @@ const VendorFormUpperSection = () => {
 
 	return (
 		<FormGroupFlex flexDirection={['column', null, 'row']}>
-			{/*TODO:Add image upload */}
 			<div>
 				<StyledLabel>Image</StyledLabel>
-				<StyledFlex>ADD Image</StyledFlex>
+				<DragAndDropImage />
 			</div>
 			<StyledInnerContainer>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
@@ -54,13 +54,6 @@ const VendorFormUpperSection = () => {
 }
 const StyledInnerContainer = styled.div`
 	width: 100%;
-`
-const StyledFlex = styled(Flex)`
-	margin-right: 20px;
-	min-width: 183px;
-	min-height: 183px;
-	background-color: #d9d8d8;
-	border: 1px dashed black;
 `
 
 const FormGroupFlex = styled(Flex).attrs({

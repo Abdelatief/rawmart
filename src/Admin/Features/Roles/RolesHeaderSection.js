@@ -31,7 +31,7 @@ const RolesHeaderSection = () => {
 							Add Roles
 						</Text>
 					</Button>
-					<Popup isOpen={isOpen} setIsOpen={setIsOpen}>
+					<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px'>
 						{<RoleForm />}
 					</Popup>
 				</StyledRightContainer>
