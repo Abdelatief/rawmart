@@ -19,6 +19,7 @@ import { adminApi } from '@Admin/Redux/AdminApi'
 import AdminHome from '@Admin/Features/AdminHome'
 import SpecialOrders from '@Admin/Features/Special Orders/SpecialOrders'
 import Offers from '@Admin/Features/Offers/Offers'
+import ShippingMethods from '@Admin/Features/ShippingMethods/ShippingMethods'
 
 function App() {
 	return (
@@ -29,17 +30,19 @@ function App() {
 					<Route path='/admin' element={<AdminLayout />}>
 						<Route index element={<AdminHome />} />
 						<Route path='dashboard' element={<AdminDashboard />} />
-						<Route path='vendors' element={<Vendors />} />
 						<Route path='roles' element={<Roles />} />
 						<Route path='users' element={<Users />} />
-						<Route path='offers' element={<Offers />} />
-						<Route path='orders' element={<Orders />} />
+						<Route path='vendors' element={<Vendors />} />
 						<Route
 							path='categories'
 							element={<Categories newVersion={false} headerLabel='Categories' labelValue='ALL CATEGORIES' />}
 						/>
-						<Route path='specialOrders' element={<SpecialOrders />} />
+						<Route path='offers' element={<Offers />} />
+						<Route path='orders' element={<Orders />} />
+						<Route path='shippingMethod' element={<ShippingMethods />} />
 						<Route path='newCategories' element={<Categories newVersion={true} headerLabel='Blog Categories' />} />
+						<Route path='specialOrders' element={<SpecialOrders />} />
+
 						<Route path='pages' element={<PageLayout />}>
 							<Route path='home' element={<Pages HeaderLabel='HOME' />} />
 							<Route path='categories' element={<Pages HeaderLabel='CATEGORY' />} />
