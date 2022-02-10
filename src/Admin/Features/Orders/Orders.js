@@ -4,13 +4,11 @@ import { Flex, Text } from '@Components'
 import Table from '@Admin/Components/Table'
 import { ProductsData } from '@Admin/Features/AdminDashboard/Components/TableSection/ProductsData'
 import { HiDotsHorizontal } from 'react-icons/hi'
-// import TableSection from "@Admin/Features/AdminDashboard/Components/TableSection/TableSection"
 
 const Orders = () => {
 	return (
 		<StyledContainer>
 			<StyledHeader>Orders</StyledHeader>
-			{/*<TableSection/>*/}
 			<Table loading={false} resultCount={5}>
 				<Table.Thead>
 					<Table.HeaderRow>

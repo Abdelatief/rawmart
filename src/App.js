@@ -17,6 +17,7 @@ import { ApiProvider } from '@reduxjs/toolkit/dist/query/react'
 import { customerApi } from '@Customer/Redux/CustomerApi'
 import { adminApi } from '@Admin/Redux/AdminApi'
 import AdminHome from '@Admin/Features/AdminHome'
+import SpecialOrders from '@Admin/Features/Special Orders/SpecialOrders'
 
 function App() {
 	return (
@@ -35,6 +36,7 @@ function App() {
 							path='categories'
 							element={<Categories newVersion={false} headerLabel='Categories' labelValue='ALL CATEGORIES' />}
 						/>
+						<Route path='specialOrders' element={<SpecialOrders />} />
 						<Route path='newCategories' element={<Categories newVersion={true} headerLabel='Blog Categories' />} />
 						<Route path='pages' element={<PageLayout />}>
 							<Route path='home' element={<Pages HeaderLabel='HOME' />} />
