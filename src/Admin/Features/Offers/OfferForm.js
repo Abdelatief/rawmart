@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { Button, Flex, FormInput, Text } from '@Components'
 import { MdDone } from 'react-icons/md'
-import DateRangePicker from '@Admin/Components/DateRangePicker'
 import FormDateRangePicker from '@Admin/Components/FormDateRangePicker'
 
 const OfferForm = () => {

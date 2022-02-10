@@ -29,13 +29,6 @@ const CategoryFormUpperSection = () => {
 const StyledInnerContainer = styled.div`
 	width: 100%;
 `
-const StyledFlex = styled(Flex)`
-	margin-right: 20px;
-	min-width: 183px;
-	min-height: 183px;
-	background-color: #d9d8d8;
-	border: 1px dashed black;
-`
 
 const FormGroupFlex = styled(Flex).attrs({
 	gap: '16px',
