@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Table from '@Admin/Components/Table'
 import { Flex, Text } from '@Components'
 import { CgMore } from 'react-icons/cg'
 import { MdOutlineEdit } from 'react-icons/md'
 import { AiOutlineDelete } from 'react-icons/ai'
-import { RolesData } from '@Admin/Features/Roles/RolesData'
+import { useGetRolesQuery, useDeleteRoleMutation } from '@Admin/Redux/AdminApi'
 
 const RolesTableSection = () => {
+	const { data, refetch } = useGetRolesQuery()
+	const [deleteRole, deleteRoleResult] = useDeleteRoleMutation()
 	const [extendMenu, setExtendMenu] = useState(false)
 	const [selectedItem, setSelectedItem] = useState()
 
@@ -15,6 +17,15 @@ const RolesTableSection = () => {
 		setExtendMenu(!extendMenu)
 		setSelectedItem(item)
 	}
+
+	useEffect(() => {
+		console.log({ rolesData: data })
+	}, [data])
+
+	useEffect(() => {
+		console.log({ deleteRoleResponse: deleteRoleResult })
+		if (deleteRoleResult?.isSuccess) refetch()
+	}, [deleteRoleResult])
 
 	return (
 		<StyledContainer>
@@ -27,7 +38,7 @@ const RolesTableSection = () => {
 					</Table.HeaderRow>
 				</Table.Thead>
 				<tbody>
-					{RolesData.map(role => (
+					{data?.data?.map(role => (
 						<Table.BodyRow key={role.id}>
 							<Table.Td>
 								<Flex justifyContent='center' alignItems='center'>
@@ -57,7 +68,7 @@ const RolesTableSection = () => {
 													Edit
 												</Text>
 											</StyledFlex>
-											<StyledFlex>
+											<StyledFlex onClick={() => deleteRole(role.id)}>
 												<StyledDeleteIcon />
 												<Text fontSize={2}>Delete</Text>
 											</StyledFlex>

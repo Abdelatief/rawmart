@@ -21,6 +21,10 @@ const LoginPopup = ({ isOpen, setIsOpen }) => {
 	const { register, handleSubmit, control } = useForm({
 		mode: 'onTouched',
 		resolver: yupResolver(schema),
+		defaultValues: {
+			username: 'admin@gmail.com',
+			password: '12345678',
+		},
 	})
 
 	useEffect(() => {
