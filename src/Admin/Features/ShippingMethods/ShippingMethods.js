@@ -13,7 +13,7 @@ const ShippingMethods = () => {
 }
 const StyledDiv = styled.div`
 	min-height: 100vh;
-	margin: 50px 50px 10px 60px;
+	margin: 50px 30px 10px 30px;
 	@media (max-width: 750px) {
 		justify-content: center;
 	}

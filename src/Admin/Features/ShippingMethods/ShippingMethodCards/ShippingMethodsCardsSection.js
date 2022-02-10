@@ -17,7 +17,6 @@ const ShippingMethodsCardsSection = () => {
 	)
 }
 const StyledCardSection = styled.div`
-	width: 85vw;
 	display: flex;
 	flex-wrap: wrap;
 	gap: 30px;
