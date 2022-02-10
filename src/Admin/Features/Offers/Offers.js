@@ -1,8 +1,6 @@
 import React from 'react'
 import OffersHeaderSection from '@Admin/Features/Offers/OffersHeaderSection'
 import styled from 'styled-components'
-import OffersCards from '@Admin/Features/Offers/OffersCards/OffersCards'
-import { Flex } from '@Components'
 import OfferCardsSection from '@Admin/Features/Offers/OffersCards/OfferCardsSection'
 
 const Offers = () => {
