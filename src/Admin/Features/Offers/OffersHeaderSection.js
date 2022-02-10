@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
 import { Button, Popup, Text } from '@Components'
 import { VscAdd } from 'react-icons/vsc'
-import UserForm from '@Admin/Features/Users/UserForm'
+import styled from 'styled-components'
+import RoleForm from '@Admin/Features/Roles/RoleForm'
 
-const UsersHeaderSection = () => {
+const OffersHeaderSection = () => {
 	const [isOpen, setIsOpen] = useState(false)
 
 	return (
 		<StyledOuterContainer>
 			<StyledHeaderDiv>
 				<StyledLeftContainer>
-					<StyledHeader>Users</StyledHeader>
+					<StyledMainHeader>Offers</StyledMainHeader>
 				</StyledLeftContainer>
 				<StyledRightContainer>
 					<Button
@@ -20,23 +20,27 @@ const UsersHeaderSection = () => {
 						minWidth={null}
 						width='187px'
 						fontSize={3}
+						display='flex'
+						justifyContent='center'
 						onClick={() => {
 							setIsOpen(true)
 						}}
 					>
-						<Text fontSize={2}>
-							<VscAdd fontSize='15px' mr='5px' />
-							Add User
+						<VscAdd />
+						<Text fontSize={2} ml='5px'>
+							Add Offer
 						</Text>
 					</Button>
-					<Popup isOpen={isOpen} setIsOpen={setIsOpen} height='80%' width='70%' padding='30px'>
-						{<UserForm />}
+					<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px'>
+						{<div />}
 					</Popup>
 				</StyledRightContainer>
 			</StyledHeaderDiv>
+			<StyledHeader>ALL OFFERS</StyledHeader>
 		</StyledOuterContainer>
 	)
 }
+
 const StyledOuterContainer = styled.div`
 	display: block;
 	margin-top: -20px;
@@ -46,7 +50,7 @@ const StyledHeaderDiv = styled.div`
 	@media (max-width: 750px) {
 		display: block;
 	}
-	margin-top: -20px;
+	margin-top: 20px;
 `
 
 const StyledLeftContainer = styled.div`
@@ -57,12 +61,13 @@ const StyledRightContainer = styled.div`
 	flex: 0.5%;
 	justify-content: flex-end;
 `
-const StyledHeader = styled(Text).attrs({
+const StyledMainHeader = styled(Text).attrs({
 	fontSize: '22px',
 	mb: '10px',
 	fontWeight: 'bold',
 })`
 	min-height: 50px;
+	color: #212529;
 	@media (max-width: 750px) {
 		background: #e0ecde;
 		margin-top: 40px;
@@ -73,4 +78,14 @@ const StyledHeader = styled(Text).attrs({
 		min-height: 50px;
 	}
 `
-export default UsersHeaderSection
+
+const StyledHeader = styled(Text).attrs({
+	fontSize: '18px',
+	mb: '10px',
+	fontWeight: 500,
+})`
+	color: #212529;
+	margin-top: 20px;
+`
+
+export default OffersHeaderSection

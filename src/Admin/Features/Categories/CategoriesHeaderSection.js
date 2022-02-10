@@ -30,7 +30,7 @@ const CategoriesHeaderSection = ({ headerLabel }) => {
 							Add Category
 						</Text>
 					</Button>
-					<Popup isOpen={isOpen} setIsOpen={setIsOpen} minWidth='60%' height='98%'>
+					<Popup isOpen={isOpen} setIsOpen={setIsOpen} minWidth='60%' height='98%' padding='30px'>
 						{<CategoriesForm />}
 					</Popup>
 				</StyledRightContainer>

@@ -32,7 +32,7 @@ const VendorHeaderSection = () => {
 							Add Vendor
 						</Text>
 					</Button>
-					<Popup isOpen={isOpen} setIsOpen={setIsOpen} minWidth='60%' height='98%'>
+					<Popup isOpen={isOpen} setIsOpen={setIsOpen} minWidth='60%' height='98%' padding='30px'>
 						{<VendorsForm />}
 					</Popup>
 				</StyledRightContainer>

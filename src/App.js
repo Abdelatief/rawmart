@@ -18,6 +18,7 @@ import { customerApi } from '@Customer/Redux/CustomerApi'
 import { adminApi } from '@Admin/Redux/AdminApi'
 import AdminHome from '@Admin/Features/AdminHome'
 import SpecialOrders from '@Admin/Features/Special Orders/SpecialOrders'
+import Offers from '@Admin/Features/Offers/Offers'
 
 function App() {
 	return (
@@ -31,6 +32,7 @@ function App() {
 						<Route path='vendors' element={<Vendors />} />
 						<Route path='roles' element={<Roles />} />
 						<Route path='users' element={<Users />} />
+						<Route path='offers' element={<Offers />} />
 						<Route path='orders' element={<Orders />} />
 						<Route
 							path='categories'
