@@ -20,6 +20,7 @@ import AdminHome from '@Admin/Features/AdminHome'
 import SpecialOrders from '@Admin/Features/Special Orders/SpecialOrders'
 import Offers from '@Admin/Features/Offers/Offers'
 import ShippingMethods from '@Admin/Features/ShippingMethods/ShippingMethods'
+import Settings from '@Admin/Features/Settings/Settings'
 
 function App() {
 	return (
@@ -42,6 +43,7 @@ function App() {
 						<Route path='shippingMethod' element={<ShippingMethods />} />
 						<Route path='newCategories' element={<Categories newVersion={true} headerLabel='Blog Categories' />} />
 						<Route path='specialOrders' element={<SpecialOrders />} />
+						<Route path='settings' element={<Settings />} />
 
 						<Route path='pages' element={<PageLayout />}>
 							<Route path='home' element={<Pages HeaderLabel='HOME' />} />

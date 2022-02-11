@@ -1,28 +1,22 @@
 import React from 'react'
 import { Button, Text } from '@Components'
 import styled from 'styled-components'
+import { GiHamburgerMenu } from 'react-icons/gi'
 import { Link } from 'react-router-dom'
 
-const MiddelPartOfPage = () => {
+const SettingsPageHeader = () => {
 	return (
 		<StyledOuterContainer>
 			<StyledHeaderDiv>
 				<StyledLeftContainer>
-					<StyledHeader>Recent Sales</StyledHeader>
+					<StyledHeader>Settings</StyledHeader>
 				</StyledLeftContainer>
 				<StyledRightContainer>
-					<StyledLink to='../orders'>
-						<Button
-							variant='tertiary'
-							mt='-20px'
-							minWidth={null}
-							width='187px'
-							fontSize={3}
-							display='flex'
-							justifyContent='center'
-						>
+					<StyledLink to='../products'>
+						<Button variant='tertiary' mt='-20px' minWidth={null} width='187px' fontSize={3} display='flex'>
+							<MenuIcon />
 							<Text fontSize={2} ml='5px'>
-								View All Orders
+								All Products
 							</Text>
 						</Button>
 					</StyledLink>
@@ -31,18 +25,18 @@ const MiddelPartOfPage = () => {
 		</StyledOuterContainer>
 	)
 }
+
 const StyledOuterContainer = styled.div`
-	margin-bottom: 40px;
 	display: block;
-	margin-top: 30px;
+	margin-top: -20px;
 `
 const StyledHeaderDiv = styled.div`
-	margin-bottom: 40px;
 	display: flex;
 	@media (max-width: 750px) {
 		display: block;
 	}
-	margin-top: 20px;
+	margin-top: -20px;
+	margin-bottom: 20px;
 `
 
 const StyledLeftContainer = styled.div`
@@ -50,7 +44,7 @@ const StyledLeftContainer = styled.div`
 	justify-content: flex-start;
 `
 const StyledRightContainer = styled.div`
-	flex: 10%;
+	flex: 0.5%;
 	justify-content: flex-end;
 `
 const StyledHeader = styled(Text).attrs({
@@ -61,11 +55,19 @@ const StyledHeader = styled(Text).attrs({
 	min-height: 50px;
 	@media (max-width: 750px) {
 		background: #e0ecde;
+		margin-top: 40px;
+		padding: 10px;
 		text-align: center;
-		width: 100%;
+		margin-bottom: 15px;
+		position: relative;
+		min-height: 50px;
 	}
+`
+const MenuIcon = styled(GiHamburgerMenu)`
+	margin-left: 20px;
 `
 const StyledLink = styled(Link)`
 	text-decoration-line: none;
 `
-export default MiddelPartOfPage
+
+export default SettingsPageHeader
