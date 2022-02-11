@@ -16,16 +16,16 @@ const CategoryFormUpperSection = ({ category }) => {
 					<FormSelectedInput
 						label='Language'
 						options={[{ name: 'English' }, { name: 'Arabic' }]}
-						// placeHolder={category ? category.language : ''}
+						defaultValue={category ? category.language : ''}
 					/>
 					<FormSelectedInput
 						label='Parent Category'
 						options={[{ name: 'Electric sub' }, { name: 'Electrical' }, { name: 'Painting' }]}
-						// placeHolder={category ? category.parent : ''}
+						defaultValue={category ? category.parent : ''}
 					/>
 				</FormGroupFlex>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
-					<FormInput label='Category Name' required value={category ? category.name : ''} />
+					<FormInput label='Category Name' required defaultValue={category ? category.name : ''} />
 				</FormGroupFlex>
 			</StyledInnerContainer>
 		</FormGroupFlex>
