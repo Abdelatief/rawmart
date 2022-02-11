@@ -55,7 +55,7 @@ const SideBar = () => {
 					Orders
 				</NavItem>
 			</StyledLink>
-			<StyledLink to='./paymentMethod'>
+			<StyledLink to='./paymentMethods'>
 				<NavItem
 					fontSize={3}
 					onClick={() => handleUpdate('Payment Methods')}

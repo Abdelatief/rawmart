@@ -21,6 +21,7 @@ import SpecialOrders from '@Admin/Features/Special Orders/SpecialOrders'
 import Offers from '@Admin/Features/Offers/Offers'
 import ShippingMethods from '@Admin/Features/ShippingMethods/ShippingMethods'
 import Settings from '@Admin/Features/Settings/Settings'
+import PaymentMethods from '@Admin/Features/Payment Methods/PaymentMethods'
 
 function App() {
 	return (
@@ -40,6 +41,7 @@ function App() {
 						/>
 						<Route path='offers' element={<Offers />} />
 						<Route path='orders' element={<Orders />} />
+						<Route path='paymentMethods' element={<PaymentMethods />} />
 						<Route path='shippingMethod' element={<ShippingMethods />} />
 						<Route path='newCategories' element={<Categories newVersion={true} headerLabel='Blog Categories' />} />
 						<Route path='specialOrders' element={<SpecialOrders />} />
