@@ -39,7 +39,7 @@ const ShippingMethodsCards = ({ shippingMethod }) => {
 					</StyledInnerFlex>
 				</StyledDropDown>
 			)}
-			<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px' width='70%' height='75%'>
+			<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px' width='70%' height='85%'>
 				{<ShippingMethodsForm title='EDIT SHIPPING METHOD' shippingMethod={shippingMethod} />}
 			</Popup>
 		</StyledCard>

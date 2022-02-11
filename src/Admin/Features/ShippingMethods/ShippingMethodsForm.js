@@ -15,16 +15,18 @@ const ShippingMethodsForm = ({ title, shippingMethod }) => {
 						label='Type'
 						required
 						options={[
-							{ id: 1, name: 'Free Shipping' },
-							{ id: 2, name: 'Flat Rate' },
-							{ id: 2, name: 'Price Based' },
+							{ id: 1, name: 'Flat Rate' },
+							// { id: 2, name: 'Free Shipping' },
+							// { id: 3, name: 'Price Based' },
 						]}
-						value={shippingMethod ? shippingMethod.type : ''}
+						// value={shippingMethod ? shippingMethod.type : ''}
 					/>
+				</FormGroupFlex>
+				<FormGroupFlex flexDirection={['column', null, 'row']}>
+					<FormInput label='Shipping Price' required value={shippingMethod ? shippingMethod.shippingPrice : ''} />
 				</FormGroupFlex>
 				{shippingMethod && (
 					<FormGroupFlex flexDirection={['column', null, 'row']}>
-						<FormInput label='Shipping Price' required value={shippingMethod ? shippingMethod.shippingPrice : ''} />
 						<FormInput label='Name' required value={shippingMethod ? shippingMethod.overPrice : ''} />
 					</FormGroupFlex>
 				)}
