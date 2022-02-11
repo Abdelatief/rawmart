@@ -7,11 +7,7 @@ const ShippingMethodsCardsSection = () => {
 	return (
 		<StyledCardSection>
 			{ShippingMethodsData.map(shippingMethod => (
-				<ShippingMethodsCards
-					key={shippingMethod.id}
-					title={shippingMethod.title}
-					description={shippingMethod.description}
-				/>
+				<ShippingMethodsCards key={shippingMethod.id} shippingMethod={shippingMethod} />
 			))}
 		</StyledCardSection>
 	)

@@ -4,13 +4,13 @@ import { Button, Flex, FormInput, Text } from '@Components'
 import { MdDone } from 'react-icons/md'
 import FormSelectedInput from '@Admin/Components/FormSelectedInput'
 
-const ShippingMethodsForm = () => {
+const ShippingMethodsForm = ({ title, shippingMethod }) => {
 	return (
 		<div>
-			<StyledHeader>ADD SHIPPING METHOD</StyledHeader>
+			<StyledHeader>{title}</StyledHeader>
 			<StyledForm style>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
-					<FormInput label='Name' required />
+					<FormInput label='Name' required value={shippingMethod ? shippingMethod.name : ''} />
 					<FormSelectedInput
 						label='Type'
 						required
@@ -19,14 +19,21 @@ const ShippingMethodsForm = () => {
 							{ id: 2, name: 'Flat Rate' },
 							{ id: 2, name: 'Price Based' },
 						]}
+						value={shippingMethod ? shippingMethod.type : ''}
 					/>
 				</FormGroupFlex>
+				{shippingMethod && (
+					<FormGroupFlex flexDirection={['column', null, 'row']}>
+						<FormInput label='Shipping Price' required value={shippingMethod ? shippingMethod.shippingPrice : ''} />
+						<FormInput label='Name' required value={shippingMethod ? shippingMethod.overPrice : ''} />
+					</FormGroupFlex>
+				)}
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
 					<StyledInnerContainer>
 						<StyledLabel>
 							Zip codes<StyledAsterisk> *</StyledAsterisk>
 						</StyledLabel>
-						<TextArea />
+						<TextArea value={shippingMethod ? shippingMethod.zipCode : ''} />
 					</StyledInnerContainer>
 				</FormGroupFlex>
 				<StyledButtonDiv>

@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
-import { Text, Flex, FluidContainer } from '@Components'
+import { Text, Flex, FluidContainer, Popup } from '@Components'
 import styled from 'styled-components'
 import { MdOutlineEdit } from 'react-icons/md'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { CgMore } from 'react-icons/cg'
+import ShippingMethodsForm from '@Admin/Features/ShippingMethods/ShippingMethodsForm'
 
-const ShippingMethodsCards = ({ title, description }) => {
+const ShippingMethodsCards = ({ shippingMethod }) => {
 	const [extendMenu, setExtendMenu] = useState(false)
+	const [isOpen, setIsOpen] = useState(false)
+
 	const toggleExtendMenu = () => {
 		setExtendMenu(!extendMenu)
 	}
@@ -14,11 +17,15 @@ const ShippingMethodsCards = ({ title, description }) => {
 		<StyledCard>
 			<StyledDotIcon onClick={toggleExtendMenu} />
 
-			<StyledTitle fontSize={4}>{title}</StyledTitle>
-			<Text fontSize={1}>{description}</Text>
+			<StyledTitle fontSize={4}>{shippingMethod.name}</StyledTitle>
+			<Text fontSize={1}>{shippingMethod.type}</Text>
 			{extendMenu && (
 				<StyledDropDown>
-					<StyledInnerFlex>
+					<StyledInnerFlex
+						onClick={() => {
+							setIsOpen(true)
+						}}
+					>
 						<StyledEditIcon />
 						<Text fontSize={3} mb='20px'>
 							Edit
@@ -32,6 +39,9 @@ const ShippingMethodsCards = ({ title, description }) => {
 					</StyledInnerFlex>
 				</StyledDropDown>
 			)}
+			<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px' width='70%' height='75%'>
+				{<ShippingMethodsForm title='EDIT SHIPPING METHOD' shippingMethod={shippingMethod} />}
+			</Popup>
 		</StyledCard>
 	)
 }
