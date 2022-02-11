@@ -16,11 +16,16 @@ const VendorFormUpperSection = ({ vendor }) => {
 			</div>
 			<StyledInnerContainer>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
-					<FormInput label='Vendor Name (Brand Name)' required sizeLarge={true} value={vendor ? vendor.name : ''} />
+					<FormInput
+						label='Vendor Name (Brand Name)'
+						required
+						sizeLarge={true}
+						defaultValue={vendor ? vendor.name : ''}
+					/>
 				</FormGroupFlex>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
-					<FormInput label='Phone Number' required value={vendor ? vendor.phone : ''} />
-					<FormInput label='Address' required value={vendor ? vendor.address : ''} />
+					<FormInput label='Phone Number' required defaultValue={vendor ? vendor.phone : ''} />
+					<FormInput label='Address' required defaultValue={vendor ? vendor.address : ''} />
 				</FormGroupFlex>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
 					{!additionalPhoneNumber ? (

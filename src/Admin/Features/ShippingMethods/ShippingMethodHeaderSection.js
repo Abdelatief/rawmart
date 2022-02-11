@@ -30,7 +30,7 @@ const ShippingMethodHeaderSection = () => {
 							Add Shipping Method
 						</Text>
 					</Button>
-					<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px' width='70%' height='67%'>
+					<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px' width='70%' height='80%'>
 						{<ShippingMethodsForm title='ADD SHIPPING METHOD' />}
 					</Popup>
 				</StyledRightContainer>

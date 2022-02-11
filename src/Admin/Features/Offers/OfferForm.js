@@ -10,16 +10,16 @@ const OfferForm = ({ offer }) => {
 			<StyledHeader>ADD OFFER</StyledHeader>
 			<StyledForm style>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
-					<FormInput label='Offer Name' required value={offer ? offer.name : ''} />
+					<FormInput label='Offer Name' required defaultValue={offer ? offer.name : ''} />
 				</FormGroupFlex>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
-					<FormInput label='Offer Percentage' required value={offer ? offer.percentage : ''} />
+					<FormInput label='Offer Percentage' required defaultValue={offer ? offer.percentage : ''} />
 				</FormGroupFlex>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
 					<FormDateRangePicker
 						label='Offer Duration (Start Date to End date)'
 						required
-						value={offer ? offer.startDate - offer.endDate : ''}
+						defaultValue={offer ? offer.startDate - offer.endDate : ''}
 					/>
 				</FormGroupFlex>
 				<StyledButtonDiv>

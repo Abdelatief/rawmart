@@ -8,7 +8,7 @@ const VendorsFormLowerSection = ({ vendor }) => {
 		<div>
 			<StyledHeader>META SECTION</StyledHeader>
 			<FormGroupFlex flexDirection={['column', null, 'row']}>
-				<FormInput label='Meta Title' required sizeLarge={true} value={vendor ? vendor.title : ''} />
+				<FormInput label='Meta Title' required sizeLarge={true} defaultValue={vendor ? vendor.title : ''} />
 			</FormGroupFlex>
 
 			<FormGroupFlex flexDirection={['column', null, 'row']}>
@@ -16,11 +16,11 @@ const VendorsFormLowerSection = ({ vendor }) => {
 					<FormLabel>
 						Meta Description<StyledAsterisk> *</StyledAsterisk>
 					</FormLabel>
-					<TextArea value={vendor ? vendor.metaDescription : ''} />
+					<TextArea defaultValue={vendor ? vendor.metaDescription : ''} />
 				</div>
 			</FormGroupFlex>
 			<FormGroupFlex flexDirection={['column', null, 'row']}>
-				<FormInput label='Meta Slug' required value={vendor ? vendor.metaSlug : ''} />
+				<FormInput label='Meta Slug' required defaultValue={vendor ? vendor.metaSlug : ''} />
 			</FormGroupFlex>
 			<StyledButtonDiv>
 				<Button width={['100%', null, '290px']} fontSize={3}>
