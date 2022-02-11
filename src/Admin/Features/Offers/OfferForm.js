@@ -4,19 +4,23 @@ import { Button, Flex, FormInput, Text } from '@Components'
 import { MdDone } from 'react-icons/md'
 import FormDateRangePicker from '@Admin/Components/FormDateRangePicker'
 
-const OfferForm = () => {
+const OfferForm = ({ offer }) => {
 	return (
 		<div>
 			<StyledHeader>ADD OFFER</StyledHeader>
 			<StyledForm style>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
-					<FormInput label='Offer Name' required />
+					<FormInput label='Offer Name' required value={offer ? offer.name : ''} />
 				</FormGroupFlex>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
-					<FormInput label='Offer Percentage' required />
+					<FormInput label='Offer Percentage' required value={offer ? offer.percentage : ''} />
 				</FormGroupFlex>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
-					<FormDateRangePicker label='Offer Duration (Start Date to End date)' required />
+					<FormDateRangePicker
+						label='Offer Duration (Start Date to End date)'
+						required
+						value={offer ? offer.startDate - offer.endDate : ''}
+					/>
 				</FormGroupFlex>
 				<StyledButtonDiv>
 					<Button width={['100%', null, '290px']} fontSize={3}>

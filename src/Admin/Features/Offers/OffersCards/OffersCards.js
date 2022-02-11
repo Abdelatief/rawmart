@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
-import { Flex, Text, FluidContainer } from '@Components'
+import { Flex, Text, FluidContainer, Popup } from '@Components'
 import styled from 'styled-components'
 import { MdOutlineEdit } from 'react-icons/md'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { CgMore } from 'react-icons/cg'
 import imgBg from '../OffersCards/Assets/bg.jpg'
+import OfferForm from '@Admin/Features/Offers/OfferForm'
 
-const OffersCards = ({ title, startDate, endDate }) => {
+const OffersCards = ({ offer }) => {
 	const [extendMenu, setExtendMenu] = useState(false)
+	const [isOpen, setIsOpen] = useState(false)
+
 	const toggleExtendMenu = () => {
 		setExtendMenu(!extendMenu)
 	}
@@ -18,19 +21,25 @@ const OffersCards = ({ title, startDate, endDate }) => {
 			</Flex>
 			<Flex>
 				<Text fontSize={5} mt='20px' ml='10px' fontWeight='bold'>
-					{title}
+					{offer.name}
 				</Text>
 			</Flex>
 			<Flex>
 				<Text fontSize={1} mt='10px' ml='10px' mb='10px'>
-					{startDate} - {endDate}
+					{offer.startDate} - {offer.endDate}
 				</Text>
 			</Flex>
 			{extendMenu && (
 				<StyledDropDown>
 					<StyledInnerFlex>
 						<StyledEditIcon />
-						<Text fontSize={3} mb='20px'>
+						<Text
+							fontSize={3}
+							mb='20px'
+							onClick={() => {
+								setIsOpen(true)
+							}}
+						>
 							Edit
 						</Text>
 					</StyledInnerFlex>
@@ -42,6 +51,9 @@ const OffersCards = ({ title, startDate, endDate }) => {
 					</StyledInnerFlex>
 				</StyledDropDown>
 			)}
+			<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px' minHeight='60%'>
+				{<OfferForm offer={offer} />}
+			</Popup>
 		</StyledCard>
 	)
 }

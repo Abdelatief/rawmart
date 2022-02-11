@@ -7,7 +7,7 @@ const OfferCardsSection = () => {
 	return (
 		<StyledCardSection>
 			{OffersData.map(offer => (
-				<OffersCards key={offer.id} title={offer.title} startDate={offer.startDate} endDate={offer.endDate} />
+				<OffersCards key={offer.id} offer={offer} />
 			))}
 		</StyledCardSection>
 	)
