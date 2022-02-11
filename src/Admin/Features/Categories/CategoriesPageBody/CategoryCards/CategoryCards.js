@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Flex, Text, FluidContainer } from '@Components'
+import { Flex, Text, FluidContainer, Popup } from '@Components'
 import { MdOutlineEdit } from 'react-icons/md'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { CgMore } from 'react-icons/cg'
+import CategoriesForm from '@Admin/Features/Categories/CategoryForm/CategoriesForm'
 
-const CategoryCards = ({ title, image }) => {
+const CategoryCards = ({ category }) => {
 	const [extendMenu, setExtendMenu] = useState(false)
+	const [isOpen, setIsOpen] = useState(false)
 	const toggleExtendMenu = () => {
 		setExtendMenu(!extendMenu)
 	}
@@ -16,14 +18,18 @@ const CategoryCards = ({ title, image }) => {
 				<StyledDotIcon onClick={toggleExtendMenu} />
 			</Flex>
 			<Flex>
-				<StyledImage src={image} />
+				<StyledImage src={category.img} />
 				<Text fontSize={4} mb='20px'>
-					{title}
+					{category.name}
 				</Text>
 			</Flex>
 			{extendMenu && (
 				<StyledDropDown>
-					<StyledInnerFlex>
+					<StyledInnerFlex
+						onClick={() => {
+							setIsOpen(true)
+						}}
+					>
 						<StyledEditIcon />
 						<Text fontSize={3} mb='20px'>
 							Edit
@@ -37,6 +43,9 @@ const CategoryCards = ({ title, image }) => {
 					</StyledInnerFlex>
 				</StyledDropDown>
 			)}
+			<Popup isOpen={isOpen} setIsOpen={setIsOpen} minWidth='60%' height='98%' padding='30px'>
+				{<CategoriesForm title='EDIT CATEGORY' category={category} />}
+			</Popup>
 		</StyledCard>
 	)
 }

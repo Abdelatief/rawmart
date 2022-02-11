@@ -6,12 +6,10 @@ import CategoryCards from '@Admin/Features/Categories/CategoriesPageBody/Categor
 const CategoriesCardsSection = ({ newVersion }) => {
 	const renderer = () => {
 		if (!newVersion) {
-			return CategoriesData.map(category => (
-				<CategoryCards key={category.id} title={category.title} image={category.img} />
-			))
+			return CategoriesData.map(category => <CategoryCards key={category.id} category={category} />)
 		}
 		return CategoriesData.filter(value => value.new).map(category => (
-			<CategoryCards key={category.id} title={category.title} image={category.img} />
+			<CategoryCards key={category.id} category={category} />
 		))
 	}
 	return <StyledCardSection>{renderer()}</StyledCardSection>

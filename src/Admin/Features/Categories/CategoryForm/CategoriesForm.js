@@ -1,16 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Text } from '@Components'
-import CategoryFormUpperSection from '@Admin/Features/Categories/AddCategoryForm/CategoryFormUpperSection'
-import CategoryFormLowerSection from '@Admin/Features/Categories/AddCategoryForm/CategoryFormLowerSection'
+import CategoryFormUpperSection from '@Admin/Features/Categories/CategoryForm/CategoryFormUpperSection'
+import CategoryFormLowerSection from '@Admin/Features/Categories/CategoryForm/CategoryFormLowerSection'
 
-const CategoriesForm = () => {
+const CategoriesForm = ({ title, category }) => {
 	return (
 		<div>
-			<StyledHeader>ADD CATEGORY</StyledHeader>
+			<StyledHeader>{title}</StyledHeader>
 			<StyledForm style>
-				<CategoryFormUpperSection />
-				<CategoryFormLowerSection />
+				<CategoryFormUpperSection category={category} />
+				<CategoryFormLowerSection category={category} />
 			</StyledForm>
 		</div>
 	)

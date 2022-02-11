@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import FormSelectedInput from '@Admin/Components/FormSelectedInput'
 import DragAndDropImage from '@Admin/Components/DragAndDropImage'
 
-const CategoryFormUpperSection = () => {
+const CategoryFormUpperSection = ({ category }) => {
 	return (
 		<FormGroupFlex flexDirection={['column', null, 'row']}>
 			<div>
@@ -13,14 +13,19 @@ const CategoryFormUpperSection = () => {
 			</div>
 			<StyledInnerContainer>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
-					<FormSelectedInput label='Language' options={[{ name: 'English' }, { name: 'Arabic' }]} />
+					<FormSelectedInput
+						label='Language'
+						options={[{ name: 'English' }, { name: 'Arabic' }]}
+						value={category ? category.language : ''}
+					/>
 					<FormSelectedInput
 						label='Parent Category'
 						options={[{ name: 'Electric sub' }, { name: 'Electrical' }, { name: 'Painting' }]}
+						value={category ? category.parent : ''}
 					/>
 				</FormGroupFlex>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
-					<FormInput label='Category Name' required />
+					<FormInput label='Category Name' required value={category ? category.name : ''} />
 				</FormGroupFlex>
 			</StyledInnerContainer>
 		</FormGroupFlex>

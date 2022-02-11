@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Button, Popup, Text } from '@Components'
 import { VscAdd } from 'react-icons/vsc'
 import styled from 'styled-components'
-import CategoriesForm from '@Admin/Features/Categories/AddCategoryForm/CategoriesForm'
+import CategoriesForm from '@Admin/Features/Categories/CategoryForm/CategoriesForm'
 
 const CategoriesHeaderSection = ({ headerLabel }) => {
 	const [isOpen, setIsOpen] = useState(false)
@@ -31,7 +31,7 @@ const CategoriesHeaderSection = ({ headerLabel }) => {
 						</Text>
 					</Button>
 					<Popup isOpen={isOpen} setIsOpen={setIsOpen} minWidth='60%' height='98%' padding='30px'>
-						{<CategoriesForm />}
+						{<CategoriesForm title='ADD CATEGORY' />}
 					</Popup>
 				</StyledRightContainer>
 			</StyledHeaderDiv>
