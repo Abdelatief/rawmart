@@ -1,11 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import PaymentHeaderSection from '@Admin/Features/Payment Methods/PaymentHeaderSection'
+import PaymentsCardsSection from '@Admin/Features/Payment Methods/Payment Cards/PaymentsCardsSection'
 
 const PaymentMethods = () => {
 	return (
 		<StyledDiv>
 			<PaymentHeaderSection />
+			<PaymentsCardsSection />
 		</StyledDiv>
 	)
 }

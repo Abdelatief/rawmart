@@ -15,11 +15,11 @@ const PaymentMethodsForm = ({ title, paymentMethod }) => {
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
 					<div>
 						<StyledLabel>Logo</StyledLabel>
-						<DragAndDropImage />
+						<DragAndDropImage value={paymentMethod ? paymentMethod.image : null} />
 					</div>
 					<StyledInnerContainer>
 						<FormGroupFlex flexDirection={['column', null, 'row']}>
-							<FormInput label='Name' required value={paymentMethod ? paymentMethod.name : ''} />
+							<FormInput label='Name' required placeHolder={paymentMethod ? paymentMethod.name : ''} />
 						</FormGroupFlex>
 						<FormGroupFlex flexDirection={['column', null, 'row']}>
 							<FormInput label='Description' value={paymentMethod ? paymentMethod.description : ''} />
