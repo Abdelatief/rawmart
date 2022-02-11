@@ -4,7 +4,7 @@ import { Flex, FormInput, Text } from '@Components'
 import { VscAdd } from 'react-icons/vsc'
 import DragAndDropImage from '@Admin/Components/DragAndDropImage'
 
-const VendorFormUpperSection = () => {
+const VendorFormUpperSection = ({ vendor }) => {
 	const [additionalAddress, setAdditionalAddress] = useState(false)
 	const [additionalPhoneNumber, setAdditionalPhoneNumber] = useState(false)
 
@@ -16,11 +16,11 @@ const VendorFormUpperSection = () => {
 			</div>
 			<StyledInnerContainer>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
-					<FormInput label='Vendor Name (Brand Name)' required sizeLarge={true} />
+					<FormInput label='Vendor Name (Brand Name)' required sizeLarge={true} value={vendor ? vendor.name : ''} />
 				</FormGroupFlex>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
-					<FormInput label='Phone Number' required />
-					<FormInput label='Address' required />
+					<FormInput label='Phone Number' required value={vendor ? vendor.phone : ''} />
+					<FormInput label='Address' required value={vendor ? vendor.address : ''} />
 				</FormGroupFlex>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
 					{!additionalPhoneNumber ? (

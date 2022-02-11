@@ -33,7 +33,7 @@ const VendorHeaderSection = () => {
 						</Text>
 					</Button>
 					<Popup isOpen={isOpen} setIsOpen={setIsOpen} minWidth='60%' height='98%' padding='30px'>
-						{<VendorsForm />}
+						{<VendorsForm title='ADD VENDOR' />}
 					</Popup>
 				</StyledRightContainer>
 			</StyledHeaderDiv>

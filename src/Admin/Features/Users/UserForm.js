@@ -11,13 +11,13 @@ const UserForm = ({ title, user }) => {
 			<StyledForm style>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
 					<FormSelectedInput label='Role' required options={RolesData} />
-					<FormInput label='First Name' required />
-					<FormInput label='Last Name' required />
+					<FormInput label='First Name' required value={user ? user.first_name : ''} />
+					<FormInput label='Last Name' required value={user ? user.last_name : ''} />
 				</FormGroupFlex>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
-					<FormInput label='Email' required />
+					<FormInput label='Email' required value={user ? user.email : ''} />
 					<FormInput label='Password' required />
-					<FormInput label='Phone' />
+					<FormInput label='Phone' value={user ? user.phoneNumber : ''} />
 				</FormGroupFlex>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
 					<FormInput label='House Number/Street' />

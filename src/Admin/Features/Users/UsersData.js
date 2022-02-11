@@ -1,7 +1,8 @@
 export const UsersData = [
 	{
 		id: 1,
-		name: 'User 1',
+		first_name: 'User 1',
+		last_name: 'last name',
 		role: 'Role 1',
 		email: 'user1@gmail.com',
 		phoneNumber: '012345678',
@@ -9,7 +10,8 @@ export const UsersData = [
 	},
 	{
 		id: 2,
-		name: 'User 2',
+		first_name: 'User 2',
+		last_name: 'last name',
 		role: 'Role 2',
 		email: 'user2@gmail.com',
 		phoneNumber: '012345678',
@@ -17,7 +19,8 @@ export const UsersData = [
 	},
 	{
 		id: 3,
-		name: 'User 3',
+		first_name: 'User 3',
+		last_name: 'last name',
 		role: 'Role 3',
 		email: 'user3@gmail.com',
 		phoneNumber: '012345678',
@@ -25,7 +28,8 @@ export const UsersData = [
 	},
 	{
 		id: 4,
-		name: 'User 4',
+		first_name: 'User 4',
+		last_name: 'last name',
 		role: 'Role 4',
 		email: 'user4@gmail.com',
 		phoneNumber: '012345678',
@@ -33,7 +37,8 @@ export const UsersData = [
 	},
 	{
 		id: 5,
-		name: 'User 5',
+		first_name: 'User 5',
+		last_name: 'last name',
 		role: 'Role 5',
 		email: 'user5@gmail.com',
 		phoneNumber: '012345678',

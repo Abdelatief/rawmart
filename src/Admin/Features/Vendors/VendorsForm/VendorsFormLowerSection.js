@@ -3,12 +3,12 @@ import styled from 'styled-components'
 import { Button, Flex, FormInput, Text } from '@Components'
 import { MdDone } from 'react-icons/md'
 
-const VendorsFormLowerSection = () => {
+const VendorsFormLowerSection = ({ vendor }) => {
 	return (
 		<div>
 			<StyledHeader>META SECTION</StyledHeader>
 			<FormGroupFlex flexDirection={['column', null, 'row']}>
-				<FormInput label='Meta Title' required sizeLarge={true} />
+				<FormInput label='Meta Title' required sizeLarge={true} value={vendor ? vendor.title : ''} />
 			</FormGroupFlex>
 
 			<FormGroupFlex flexDirection={['column', null, 'row']}>
@@ -16,11 +16,11 @@ const VendorsFormLowerSection = () => {
 					<FormLabel>
 						Meta Description<StyledAsterisk> *</StyledAsterisk>
 					</FormLabel>
-					<TextArea />
+					<TextArea value={vendor ? vendor.metaDescription : ''} />
 				</div>
 			</FormGroupFlex>
 			<FormGroupFlex flexDirection={['column', null, 'row']}>
-				<FormInput label='Meta Slug' required />
+				<FormInput label='Meta Slug' required value={vendor ? vendor.metaSlug : ''} />
 			</FormGroupFlex>
 			<StyledButtonDiv>
 				<Button width={['100%', null, '290px']} fontSize={3}>
@@ -71,6 +71,7 @@ const TextArea = styled.textarea`
 	height: 150px;
 	width: 57.5vw;
 	border: 1px solid gainsboro;
+	padding: 10px;
 `
 const StyledIcon = styled(MdDone)`
 	margin-right: 5px;

@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
 import Table from '@Admin/Components/Table'
 import { VendorData } from '@Admin/Features/Vendors/VendorData'
-import { Flex, Text } from '@Components'
+import { Flex, Popup, Text } from '@Components'
 import { HiOutlineEye } from 'react-icons/hi'
 import styled from 'styled-components'
 import { CgMore } from 'react-icons/cg'
 import { MdOutlineEdit } from 'react-icons/md'
 import { AiOutlineDelete } from 'react-icons/ai'
+import VendorsForm from '@Admin/Features/Vendors/VendorsForm/VendorsForm'
 
 const VendorTableSection = () => {
 	const [extendMenu, setExtendMenu] = useState(false)
 	const [selectedItem, setSelectedItem] = useState()
+	const [isOpen, setIsOpen] = useState(false)
 
 	const toggleExtendMenu = item => {
 		setExtendMenu(!extendMenu)
@@ -63,7 +65,11 @@ const VendorTableSection = () => {
 													View
 												</Text>
 											</StyledFlex>
-											<StyledFlex>
+											<StyledFlex
+												onClick={() => {
+													setIsOpen(true)
+												}}
+											>
 												<StyledEditIcon />
 												<Text fontSize={2} mb='2px'>
 													Edit
@@ -77,6 +83,9 @@ const VendorTableSection = () => {
 									)}
 								</Flex>
 							</Table.Td>
+							<Popup isOpen={isOpen} setIsOpen={setIsOpen} minWidth='60%' height='98%' padding='30px'>
+								{<VendorsForm title='EDIT VENDOR' vendor={vendor} />}
+							</Popup>
 						</Table.BodyRow>
 					))}
 				</tbody>

@@ -4,13 +4,13 @@ import { Text } from '@Components'
 import VendorFormUpperSection from '@Admin/Features/Vendors/VendorsForm/VendorFormUpperSection'
 import VendorsFormLowerSection from '@Admin/Features/Vendors/VendorsForm/VendorsFormLowerSection'
 
-const VendorsForm = () => {
+const VendorsForm = ({ title, vendor }) => {
 	return (
 		<div>
-			<StyledHeader>ADD VENDOR</StyledHeader>
+			<StyledHeader>{title}</StyledHeader>
 			<StyledForm style>
-				<VendorFormUpperSection />
-				<VendorsFormLowerSection />
+				<VendorFormUpperSection vendor={vendor} />
+				<VendorsFormLowerSection vendor={vendor} />
 			</StyledForm>
 		</div>
 	)
