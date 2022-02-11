@@ -8,7 +8,7 @@ const CategoryFormLowerSection = ({ category }) => {
 		<div>
 			<StyledHeader>META SECTION</StyledHeader>
 			<FormGroupFlex flexDirection={['column', null, 'row']}>
-				<FormInput label='Meta Title' required sizeLarge={true} value={category ? category.title : ''} />
+				<FormInput label='Meta Title' required sizeLarge={true} placeHolder={category ? category.title : ''} />
 			</FormGroupFlex>
 
 			<FormGroupFlex flexDirection={['column', null, 'row']}>
@@ -16,11 +16,11 @@ const CategoryFormLowerSection = ({ category }) => {
 					<FormLabel>
 						Meta Description<StyledAsterisk> *</StyledAsterisk>
 					</FormLabel>
-					<TextArea value={category ? category.metaDescription : ''} />
+					<TextArea placeHolder={category ? category.metaDescription : ''} />
 				</div>
 			</FormGroupFlex>
 			<FormGroupFlex flexDirection={['column', null, 'row']}>
-				<FormInput label='Meta Slug' required value={category ? category.metaSlug : ''} />
+				<FormInput label='Meta Slug' required placeHolder={category ? category.metaSlug : ''} />
 			</FormGroupFlex>
 			<StyledButtonDiv>
 				<Button width={['100%', null, '290px']} fontSize={3}>

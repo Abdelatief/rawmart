@@ -15,14 +15,14 @@ const PaymentMethodsForm = ({ title, paymentMethod }) => {
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
 					<div>
 						<StyledLabel>Logo</StyledLabel>
-						<DragAndDropImage value={paymentMethod ? paymentMethod.image : null} />
+						<DragAndDropImage defaultValue={paymentMethod ? paymentMethod.image : null} />
 					</div>
 					<StyledInnerContainer>
 						<FormGroupFlex flexDirection={['column', null, 'row']}>
-							<FormInput label='Name' required placeHolder={paymentMethod ? paymentMethod.name : ''} />
+							<FormInput label='Name' required defaultValue={paymentMethod ? paymentMethod.name : ''} />
 						</FormGroupFlex>
 						<FormGroupFlex flexDirection={['column', null, 'row']}>
-							<FormInput label='Description' value={paymentMethod ? paymentMethod.description : ''} />
+							<FormInput label='Description' defaultValue={paymentMethod ? paymentMethod.description : ''} />
 						</FormGroupFlex>
 					</StyledInnerContainer>
 				</FormGroupFlex>
@@ -47,8 +47,8 @@ const PaymentMethodsForm = ({ title, paymentMethod }) => {
 				</Text>
 				{/*TODO:Refactor Dynamic Form*/}
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
-					<FormInput label='Key' value={paymentMethod ? paymentMethod.key : ''} />
-					<FormInput label='Value' value={paymentMethod ? paymentMethod.value : ''} />
+					<FormInput label='Key' defaultValue={paymentMethod ? paymentMethod.credentials[0].key : ''} />
+					<FormInput label='Value' defaultValue={paymentMethod ? paymentMethod.credentials[0].value : ''} />
 					<StyledTrashIcon />
 				</FormGroupFlex>
 
