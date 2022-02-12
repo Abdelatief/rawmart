@@ -9,7 +9,7 @@ const PaymentMethodsForm = ({ title, paymentMethod }) => {
 	const [Active, setActive] = useState(true)
 	useEffect(() => {
 		if (paymentMethod) setActive(paymentMethod.status)
-	})
+	}, [])
 	return (
 		<div>
 			<StyledHeader>{title}</StyledHeader>
