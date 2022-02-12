@@ -3,10 +3,17 @@ import { Button, Flex, FormInput, Text } from '@Components'
 import styled from 'styled-components'
 import FormSelectedInput from '@Admin/Components/FormSelectedInput'
 import { RolesData } from '@Admin/Features/Roles/RolesData'
+import { useUpdateUserMutation } from '@Admin/Redux/AdminApi'
 
 const UserForm = ({ title, user }) => {
+	const [updateUser, updateUserResult] = useUpdateUserMutation()
 	let Username
 	if (user) Username = user.name.split(' ')
+	const updateOrCreateUser = () => {
+		if (user) {
+			updateUser(user)
+		}
+	}
 	return (
 		<div>
 			<StyledHeader>{title}</StyledHeader>
@@ -19,7 +26,7 @@ const UserForm = ({ title, user }) => {
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
 					<FormInput label='Email' required defaultValue={user ? user.email : ''} />
 					<FormInput label='Password' required />
-					<FormInput label='Phone' defaultValue={user ? user.phoneNumber : ''} />
+					<FormInput label='Phone' defaultValue={user ? user.phone : ''} />
 				</FormGroupFlex>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
 					<FormInput label='House Number/Street' />
@@ -30,7 +37,9 @@ const UserForm = ({ title, user }) => {
 					<FormInput label='State' />
 					<FormInput label='Postal Code' />
 				</FormGroupFlex>
-				<Button width={['100%', null, '290px']}>Save User</Button>
+				<Button width={['100%', null, '290px']} onClick={updateOrCreateUser}>
+					Save User
+				</Button>
 			</StyledForm>
 		</div>
 	)

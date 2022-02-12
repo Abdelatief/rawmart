@@ -8,12 +8,14 @@ import { CgMore } from 'react-icons/cg'
 import { MdOutlineEdit } from 'react-icons/md'
 import { AiOutlineDelete } from 'react-icons/ai'
 import VendorsForm from '@Admin/Features/Vendors/VendorsForm/VendorsForm'
+import { useGetVendorsQuery } from '@Admin/Redux/AdminApi'
 
 const VendorTableSection = () => {
+	const { data, refetch } = useGetVendorsQuery()
 	const [extendMenu, setExtendMenu] = useState(false)
 	const [selectedItem, setSelectedItem] = useState()
 	const [isOpen, setIsOpen] = useState(false)
-
+	const [vendorValue, setVendorValue] = useState()
 	const toggleExtendMenu = item => {
 		setExtendMenu(!extendMenu)
 		setSelectedItem(item)
@@ -31,7 +33,7 @@ const VendorTableSection = () => {
 					</Table.HeaderRow>
 				</Table.Thead>
 				<tbody>
-					{VendorData.map(vendor => (
+					{data?.data?.map(vendor => (
 						<Table.BodyRow key={vendor.id}>
 							<Table.Td>
 								<Flex justifyContent='center' alignItems='center'>
@@ -68,6 +70,7 @@ const VendorTableSection = () => {
 											<StyledFlex
 												onClick={() => {
 													setIsOpen(true)
+													setVendorValue(vendor)
 												}}
 											>
 												<StyledEditIcon />
@@ -83,13 +86,13 @@ const VendorTableSection = () => {
 									)}
 								</Flex>
 							</Table.Td>
-							<Popup isOpen={isOpen} setIsOpen={setIsOpen} minWidth='60%' height='98%' padding='30px'>
-								{<VendorsForm title='EDIT VENDOR' vendor={vendor} />}
-							</Popup>
 						</Table.BodyRow>
 					))}
 				</tbody>
 			</Table>
+			<Popup isOpen={isOpen} setIsOpen={setIsOpen} minWidth='60%' height='98%' padding='30px'>
+				{<VendorsForm title='EDIT VENDOR' vendor={vendorValue} />}
+			</Popup>
 		</StyledContainer>
 	)
 }

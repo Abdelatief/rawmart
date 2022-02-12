@@ -93,13 +93,13 @@ const UserTableSection = () => {
 									)}
 								</Flex>
 							</Table.Td>
-							<Popup isOpen={isOpen} setIsOpen={setIsOpen} height='80%' width='70%' padding='30px'>
-								{<UserForm title='EDIT USER' user={userValue} />}
-							</Popup>
 						</Table.BodyRow>
 					))}
 				</tbody>
 			</Table>
+			<Popup isOpen={isOpen} setIsOpen={setIsOpen} height='80%' width='70%' padding='30px'>
+				{<UserForm title='EDIT USER' user={userValue} />}
+			</Popup>
 		</StyledContainer>
 	)
 }
