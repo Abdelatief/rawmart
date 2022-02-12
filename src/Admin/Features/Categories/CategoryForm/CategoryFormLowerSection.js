@@ -20,7 +20,7 @@ const CategoryFormLowerSection = ({ category }) => {
 				</div>
 			</FormGroupFlex>
 			<FormGroupFlex flexDirection={['column', null, 'row']}>
-				<FormInput label='Meta Slug' required defaultValue={category ? category.metaSlug : ''} />
+				<FormInput label='Meta Slug' required defaultValue={category ? category.slug : ''} />
 			</FormGroupFlex>
 			<StyledButtonDiv>
 				<Button width={['100%', null, '290px']} fontSize={3}>

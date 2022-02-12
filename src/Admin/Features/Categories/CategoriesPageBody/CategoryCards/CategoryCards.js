@@ -18,7 +18,7 @@ const CategoryCards = ({ category }) => {
 				<StyledDotIcon onClick={toggleExtendMenu} />
 			</Flex>
 			<Flex>
-				<StyledImage src={category.img} />
+				<StyledImage src={category.image_url} />
 				<Text fontSize={4} mb='20px'>
 					{category.name}
 				</Text>
@@ -100,6 +100,7 @@ const StyledDeleteIcon = styled(AiOutlineDelete)`
 	margin-right: 5px;
 `
 const StyledDotIcon = styled(CgMore)`
+	position: relative;
 	margin-left: calc(80% - 60px);
 	font-size: 20px;
 

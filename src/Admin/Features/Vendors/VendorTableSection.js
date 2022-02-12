@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Table from '@Admin/Components/Table'
-import { VendorData } from '@Admin/Features/Vendors/VendorData'
 import { Flex, Popup, Text } from '@Components'
 import { HiOutlineEye } from 'react-icons/hi'
 import styled from 'styled-components'

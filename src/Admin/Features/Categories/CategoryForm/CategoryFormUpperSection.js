@@ -21,7 +21,7 @@ const CategoryFormUpperSection = ({ category }) => {
 					<FormSelectedInput
 						label='Parent Category'
 						options={[{ name: 'Electric sub' }, { name: 'Electrical' }, { name: 'Painting' }]}
-						defaultValue={category ? category.parent : ''}
+						defaultValue={category ? category.parent_name : ''}
 					/>
 				</FormGroupFlex>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>

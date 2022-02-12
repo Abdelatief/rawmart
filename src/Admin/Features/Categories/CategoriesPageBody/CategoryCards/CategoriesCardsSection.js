@@ -1,16 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
-import { CategoriesData } from '@Admin/Features/Categories/CategoriesPageBody/CategoryCards/CategoryData'
 import CategoryCards from '@Admin/Features/Categories/CategoriesPageBody/CategoryCards/CategoryCards'
+import { useGetCategoriesQuery } from '@Admin/Redux/AdminApi'
 
 const CategoriesCardsSection = ({ newVersion }) => {
+	const { data, refetch } = useGetCategoriesQuery()
 	const renderer = () => {
 		if (!newVersion) {
-			return CategoriesData.map(category => <CategoryCards key={category.id} category={category} />)
+			return data?.data?.map(category => <CategoryCards key={category.id} category={category} />)
 		}
-		return CategoriesData.filter(value => value.new).map(category => (
-			<CategoryCards key={category.id} category={category} />
-		))
+		return data?.data
+			?.filter(value => value.new)
+			.map(category => <CategoryCards key={category.id} category={category} />)
 	}
 	return <StyledCardSection>{renderer()}</StyledCardSection>
 }

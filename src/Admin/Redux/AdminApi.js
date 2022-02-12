@@ -16,7 +16,7 @@ const baseQuery = fetchBaseQuery({
 export const adminApi = createApi({
 	reducerPath: 'admin-api',
 	baseQuery,
-	tagTypes: ['Role', 'User', 'Vendor'],
+	tagTypes: ['Role', 'User', 'Vendor', 'Category'],
 	endpoints: builder => ({
 		login: builder.mutation({
 			query: loginBody => ({
@@ -97,6 +97,21 @@ export const adminApi = createApi({
 				},
 			}),
 		}),
+		getCategories: builder.query({
+			query: () => ({
+				url: '/categories',
+				method: 'POST',
+				providesTags: ['Category'],
+				body: {
+					dir: 'desc',
+					language: 'en',
+					page: 1,
+					per_page: 10,
+					search: '',
+					sort: 'id',
+				},
+			}),
+		}),
 	}),
 })
 
@@ -107,4 +122,5 @@ export const {
 	useGetUsersQuery,
 	useUpdateUserMutation,
 	useGetVendorsQuery,
+	useGetCategoriesQuery,
 } = adminApi
