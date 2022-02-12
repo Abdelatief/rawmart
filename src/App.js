@@ -16,6 +16,7 @@ import PageLayout from '@Admin/Features/Pages/PageLayout'
 import { ApiProvider } from '@reduxjs/toolkit/dist/query/react'
 import { customerApi } from '@Customer/Redux/CustomerApi'
 import CategoryPage from '@Customer/Features/CategoryPage'
+import BrandPage from '@Customer/Features/BrandPage/BrandPage'
 
 function App() {
 	return (
@@ -51,9 +52,11 @@ function App() {
 						<Route index element={<LandingPage />} />
 						<Route path='about-us' element={<AboutUsPage />} />
 						<Route path='special-order' element={<SpecialOrderPage />} />
-						{/*<Route path='categories/:slug' element={<CategoryPage />} />*/}
 						<Route path='categories'>
 							<Route path=':slug' element={<CategoryPage />} />
+						</Route>
+						<Route path='brands'>
+							<Route path=':slug' element={<BrandPage />} />
 						</Route>
 					</Route>
 				</Routes>

@@ -31,6 +31,10 @@ const Navbar = () => {
 		setShowCategories(!showCategories)
 	}
 
+	const brandItemClickHandler = brand => {
+		navigate(`brands/${brand.slug}`)
+	}
+
 	const categoryNavItemClickHandler = category => {
 		// setCategoryParentId(category.parent_id)
 		// navigate(`/categories/${category.slug}`, {
@@ -75,29 +79,33 @@ const Navbar = () => {
 					<StyledFlexContainer height='55px' alignItems='center'>
 						<Link to='/'>
 							<NavItem textAlign='left'>Home</NavItem>
-							{showCategories && (
-								<StyledNavMenu>
-									{isSuccess &&
-										data?.data &&
-										data?.data?.map((category, index) => (
-											<StyledNavMenuItem key={index} onClick={() => categoryNavItemClickHandler(category)}>
-												{category.name}
-											</StyledNavMenuItem>
-										))}
-									<StyledNavMenuItem>All Categories</StyledNavMenuItem>
-								</StyledNavMenu>
-							)}
-
-							{showBrands && (
-								<StyledNavMenu>
-									{brandsResult.isSuccess &&
-										brandsResult?.data?.data &&
-										brandsResult.data.data.map((brand, index) => (
-											<StyledNavMenuItem key={index}>{brand.name}</StyledNavMenuItem>
-										))}
-								</StyledNavMenu>
-							)}
 						</Link>
+
+						{showCategories && (
+							<StyledNavMenu>
+								{isSuccess &&
+									data?.data &&
+									data?.data?.map((category, index) => (
+										<StyledNavMenuItem key={index} onClick={() => categoryNavItemClickHandler(category)}>
+											{category.name}
+										</StyledNavMenuItem>
+									))}
+								<StyledNavMenuItem>All Categories</StyledNavMenuItem>
+							</StyledNavMenu>
+						)}
+
+						{showBrands && (
+							<StyledNavMenu>
+								{brandsResult.isSuccess &&
+									brandsResult?.data?.data &&
+									brandsResult.data.data.map((brand, index) => (
+										<StyledNavMenuItem onClick={() => brandItemClickHandler(brand)} key={index}>
+											{brand.name}
+										</StyledNavMenuItem>
+									))}
+							</StyledNavMenu>
+						)}
+
 						<NavItem onClick={categoriesClickHandler}>
 							Category <RiArrowDownSLine fontSize='24px' />
 						</NavItem>
@@ -133,9 +141,6 @@ const StyledNavMenu = styled.div`
 	z-index: 3;
 	padding: 20px;
 	border-radius: 0 0 10px 10px;
-	//display: flex;
-	//flex-wrap: wrap;
-	//gap: 206px;
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 	gap: 1.2rem;
@@ -146,6 +151,7 @@ const StyledNavMenuItem = styled.p`
 
 	&:hover {
 		color: ${props => props.theme.colors.text.celadon};
+		cursor: pointer;
 	}
 `
 
