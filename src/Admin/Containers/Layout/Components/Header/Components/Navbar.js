@@ -35,9 +35,9 @@ const Navbar = () => {
 								<MenuIcon onClick={() => setIsOpen(true)} />
 							)}
 						</NavItem>
-						<NavItem fontSize={2}>
+						<NavItem fontSize={2} onClick={() => adminAuthContext.logout()}>
 							<LogoutIcon />
-							<LogoutLabel onClick={() => adminAuthContext.logout()}>Logout</LogoutLabel>
+							<LogoutLabel>Logout</LogoutLabel>
 						</NavItem>
 					</StyledRightContainer>
 				</StyledNavbarInnerContainer>
