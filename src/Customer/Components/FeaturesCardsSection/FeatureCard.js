@@ -6,10 +6,10 @@ const FeatureCard = ({ title, subtitle, imageSrc, bg }) => {
 		<Card bg={bg}>
 			<Image src={imageSrc} />
 			<TextContainer>
-				<Text fontSize='30px' mb='16px'>
+				<Text fontSize={['26px', '30px']} mb='16px'>
 					{title}
 				</Text>
-				<Text fontSize='22px' color='#4b4b4b'>
+				<Text fontSize={['18px', '22px']} color='#4b4b4b'>
 					{subtitle}
 				</Text>
 			</TextContainer>
@@ -24,6 +24,10 @@ const Card = styled.div`
 	background-color: ${props => props.bg};
 	border-radius: 5px;
 	margin-bottom: 100px;
+
+	@media (max-width: 400px) {
+		width: 100%;
+	}
 `
 
 const TextContainer = styled.div`

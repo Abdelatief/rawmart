@@ -68,6 +68,7 @@ const SearchIcon = styled(FiSearch)`
 `
 
 const StyledIconsFlexContainer = styled.div`
+	display: flex;
 	margin-left: auto;
 	gap: 18px;
 
