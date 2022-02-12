@@ -38,7 +38,7 @@ const VendorFormUpperSection = ({ vendor }) => {
 							</AddMoreButton>
 						</StyledFormInput>
 					) : (
-						<FormInput label='Additional Phone Number' />
+						<FormInput label='Additional Phone Number' defaultValue={vendor ? vendor.additional_phone : ''} />
 					)}
 					{!additionalAddress ? (
 						<StyledFormInput>
@@ -50,7 +50,7 @@ const VendorFormUpperSection = ({ vendor }) => {
 							</AddMoreButton>
 						</StyledFormInput>
 					) : (
-						<FormInput label='Additional Address' />
+						<FormInput label='Additional Address' defaultValue={vendor ? vendor.additional_address : ''} />
 					)}
 				</FormGroupFlex>
 			</StyledInnerContainer>

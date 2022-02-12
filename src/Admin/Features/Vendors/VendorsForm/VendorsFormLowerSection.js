@@ -20,7 +20,7 @@ const VendorsFormLowerSection = ({ vendor }) => {
 				</div>
 			</FormGroupFlex>
 			<FormGroupFlex flexDirection={['column', null, 'row']}>
-				<FormInput label='Meta Slug' required defaultValue={vendor ? vendor.metaSlug : ''} />
+				<FormInput label='Meta Slug' required defaultValue={vendor ? vendor.slug : ''} />
 			</FormGroupFlex>
 			<StyledButtonDiv>
 				<Button width={['100%', null, '290px']} fontSize={3}>
