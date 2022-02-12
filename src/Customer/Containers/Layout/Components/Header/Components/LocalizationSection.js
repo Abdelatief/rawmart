@@ -5,7 +5,7 @@ import { AiFillInstagram } from 'react-icons/ai'
 const LocalizationSection = () => {
 	return (
 		<FluidContainer bg='background.cultured'>
-			<Flex height='45px' alignItems='center' gap='56px'>
+			<Flex height='45px' alignItems='center' justifyContent={['space-between', null, 'unset']} gap='56px'>
 				<Text width='138px' fontFamily='Jost' fontSize={1}>
 					Corners/Egypt
 				</Text>

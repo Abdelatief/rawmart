@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import Flex from './Flex'
 import Box from './Box'
-import { layout } from 'styled-system'
+import { layout, flexbox } from 'styled-system'
 
-export const Input = React.forwardRef(({ width, icon, ...props }, ref) => {
+export const Input = React.forwardRef(({ width, height, icon, ...props }, ref) => {
 	return (
-		<Flex width={width} height='46px' border='1px solid' borderColor='border.gainsboro' alignItems='center'>
+		<Flex width={width} height={height} border='1px solid' borderColor='border.gainsboro' alignItems='center'>
 			<StyledInput icon={icon} ref={ref} {...props} />
 			{icon && (
 				<IconWrapper height='100%' px='8px'>
@@ -17,8 +17,13 @@ export const Input = React.forwardRef(({ width, icon, ...props }, ref) => {
 	)
 })
 
+Input.defaultProps = {
+	height: '46px',
+}
+
 const StyledInput = styled.input`
 	${layout};
+	${flexbox};
 	padding: 0 16px;
 	border: none;
 	font-size: ${props => props.theme.fontSizes[3]}px;
