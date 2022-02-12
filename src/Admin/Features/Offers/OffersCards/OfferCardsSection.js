@@ -1,12 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import OffersCards from '@Admin/Features/Offers/OffersCards/OffersCards'
-import { OffersData } from '@Admin/Features/Offers/OffersCards/OffersData'
+import { useGetOffersQuery } from '@Admin/Redux/AdminApi'
 
 const OfferCardsSection = () => {
+	const { data, refetch } = useGetOffersQuery()
 	return (
 		<StyledCardSection>
-			{OffersData.map(offer => (
+			{data?.data?.map(offer => (
 				<OffersCards key={offer.id} offer={offer} />
 			))}
 		</StyledCardSection>

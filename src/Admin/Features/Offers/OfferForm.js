@@ -13,13 +13,13 @@ const OfferForm = ({ offer }) => {
 					<FormInput label='Offer Name' required defaultValue={offer ? offer.name : ''} />
 				</FormGroupFlex>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
-					<FormInput label='Offer Percentage' required defaultValue={offer ? offer.percentage : ''} />
+					<FormInput label='Offer Percentage' required defaultValue={offer ? offer.phone : ''} />
 				</FormGroupFlex>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
 					<FormDateRangePicker
 						label='Offer Duration (Start Date to End date)'
 						required
-						defaultValue={offer ? offer.startDate - offer.endDate : ''}
+						defaultValue={offer ? offer.start_date - offer.end_date : ''}
 					/>
 				</FormGroupFlex>
 				<StyledButtonDiv>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { FluidContainer, Popup, Flex, Text } from '@Components'
-import CategoriesForm from '@Admin/Features/Categories/CategoryForm/CategoriesForm'
 import styled from 'styled-components'
 import { MdOutlineEdit } from 'react-icons/md'
 import { AiOutlineDelete } from 'react-icons/ai'

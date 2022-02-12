@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { Flex, Text, FluidContainer, Popup } from '@Components'
 import styled from 'styled-components'
+import imgBg from '../OffersCards/Assets/bg.jpg'
+import OfferForm from '@Admin/Features/Offers/OfferForm'
+import moment from 'moment'
+import { Flex, Text, FluidContainer, Popup } from '@Components'
 import { MdOutlineEdit } from 'react-icons/md'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { CgMore } from 'react-icons/cg'
-import imgBg from '../OffersCards/Assets/bg.jpg'
-import OfferForm from '@Admin/Features/Offers/OfferForm'
 
 const OffersCards = ({ offer }) => {
 	const [extendMenu, setExtendMenu] = useState(false)
@@ -26,7 +27,7 @@ const OffersCards = ({ offer }) => {
 			</Flex>
 			<Flex>
 				<Text fontSize={1} mt='10px' ml='10px' mb='10px'>
-					{offer.startDate} - {offer.endDate}
+					{moment(offer.start_date).format('ll')} - {moment(offer.end_date).format('ll')}
 				</Text>
 			</Flex>
 			{extendMenu && (
