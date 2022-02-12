@@ -19,6 +19,7 @@ const schema = yup.object().shape({
 
 const LoginPopup = ({ isOpen, setIsOpen }) => {
 	const [login, result] = useLoginMutation({ fixedCacheKey: 'customer-login' })
+
 	const handleRegisterButtonClick = value => {
 		const { setShowLoginPopup, setShowRegistrationPopup } = value
 		setShowLoginPopup(false)

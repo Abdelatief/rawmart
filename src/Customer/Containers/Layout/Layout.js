@@ -75,10 +75,8 @@ const Layout = () => {
 			{isAuthChecked ? (
 				<StyledLayout>
 					<Header />
-					{/*<StyledPageBody>*/}
-					{/*	<Outlet />*/}
-					{/*</StyledPageBody>*/}
-					{/*<Footer />*/}
+					<StyledPageBody>{/*<Outlet />*/}</StyledPageBody>
+					<Footer />
 				</StyledLayout>
 			) : (
 				<Text fontSize='26px'>Loading...</Text>

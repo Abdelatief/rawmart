@@ -7,7 +7,7 @@ const Header = () => {
 		<>
 			<LocalizationSection />
 			<SearchSection />
-			{/*<Navbar />*/}
+			<Navbar />
 		</>
 	)
 }
