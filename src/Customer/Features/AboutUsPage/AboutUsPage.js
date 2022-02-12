@@ -9,7 +9,7 @@ const AboutUsPage = () => {
 			<FluidContainer bg='#e7e7e9' py='78px'>
 				<Text fontSize='34px'>All about us</Text>
 
-				<Flex mt='82px' gap='70px'>
+				<Flex mt='82px' gap='70px' alignItems='center' flexDirection={['column', null, null, 'row']}>
 					<AboutUsSection
 						title='Who are we'
 						subtitle='Corners is a specialized online marketplace designed to be one-stop-shop for fit-out products and building materials in Egypt.'

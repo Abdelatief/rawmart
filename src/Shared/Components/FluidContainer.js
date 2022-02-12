@@ -22,7 +22,7 @@ const StyledContent = styled.div`
 	height: 100%;
 
 	@media (max-width: 832px) {
-		padding: 0 10px;
+		padding: 0 12px;
 	}
 `
 
