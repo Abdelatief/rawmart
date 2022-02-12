@@ -70,6 +70,16 @@ const LandingSwiper = styled(Swiper)`
 		-webkit-align-items: center;
 		align-items: center;
 	}
+
+	@media (max-width: 900px) {
+		height: auto;
+		padding: 16px 0;
+
+		.swiper-button-prev,
+		.swiper-button-next {
+			display: none;
+		}
+	}
 `
 
 export default Carousel

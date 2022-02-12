@@ -75,7 +75,9 @@ const Layout = () => {
 			{isAuthChecked ? (
 				<StyledLayout>
 					<Header />
-					<StyledPageBody>{/*<Outlet />*/}</StyledPageBody>
+					<StyledPageBody>
+						<Outlet />
+					</StyledPageBody>
 					<Footer />
 				</StyledLayout>
 			) : (
