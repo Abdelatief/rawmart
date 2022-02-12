@@ -19,19 +19,23 @@ const ShippingMethodsForm = ({ title, shippingMethod }) => {
 							// { id: 2, name: 'Free Shipping' },
 							// { id: 3, name: 'Price Based' },
 						]}
-						defaultValue={shippingMethod ? shippingMethod.type : ''}
+						defaultValue={shippingMethod ? shippingMethod.shipping_method : ''}
 					/>
 				</FormGroupFlex>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
 					<FormInput
 						label='Shipping Price'
 						required
-						defaultValue={shippingMethod ? shippingMethod.shippingPrice : ''}
+						defaultValue={shippingMethod ? shippingMethod.shipping_price : ''}
 					/>
 				</FormGroupFlex>
 				{shippingMethod && (
 					<FormGroupFlex flexDirection={['column', null, 'row']}>
-						<FormInput label='Name' required defaultValue={shippingMethod ? shippingMethod.overPrice : ''} />
+						<FormInput
+							label='Shipping Price'
+							required
+							defaultValue={shippingMethod ? shippingMethod.shipping_price : ''}
+						/>
 					</FormGroupFlex>
 				)}
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
@@ -39,7 +43,7 @@ const ShippingMethodsForm = ({ title, shippingMethod }) => {
 						<StyledLabel>
 							Zip codes<StyledAsterisk> *</StyledAsterisk>
 						</StyledLabel>
-						<TextArea defaultValue={shippingMethod ? shippingMethod.zipCode : ''} />
+						<TextArea defaultValue={shippingMethod ? shippingMethod.zip_codes : ''} />
 					</StyledInnerContainer>
 				</FormGroupFlex>
 				<StyledButtonDiv>

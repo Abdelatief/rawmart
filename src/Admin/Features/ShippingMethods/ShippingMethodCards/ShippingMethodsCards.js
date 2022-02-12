@@ -18,7 +18,7 @@ const ShippingMethodsCards = ({ shippingMethod }) => {
 			<StyledDotIcon onClick={toggleExtendMenu} />
 
 			<StyledTitle fontSize={4}>{shippingMethod.name}</StyledTitle>
-			<Text fontSize={1}>{shippingMethod.type}</Text>
+			<Text fontSize={1}>{shippingMethod.shipping_method}</Text>
 			{extendMenu && (
 				<StyledDropDown>
 					<StyledInnerFlex

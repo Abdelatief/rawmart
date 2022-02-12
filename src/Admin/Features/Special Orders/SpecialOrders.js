@@ -2,9 +2,11 @@ import React from 'react'
 import Table from '@Admin/Components/Table'
 import styled from 'styled-components'
 import { Text, Flex } from '@Components'
-import { SpecialOrdersData } from '@Admin/Features/Special Orders/SpecialOrdersData'
+import { useGetSpecialOrdersQuery } from '@Admin/Redux/AdminApi'
 
 const SpecialOrders = () => {
+	const { data, refetch } = useGetSpecialOrdersQuery()
+
 	return (
 		<StyledContainer>
 			<StyledHeader>Special Orders</StyledHeader>
@@ -20,7 +22,7 @@ const SpecialOrders = () => {
 					</Table.HeaderRow>
 				</Table.Thead>
 				<tbody>
-					{SpecialOrdersData.map(specialOrder => (
+					{data?.data?.map(specialOrder => (
 						<Table.BodyRow key={specialOrder.id}>
 							<Table.Td>
 								<Flex justifyContent='center' alignItems='center'>

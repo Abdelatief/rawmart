@@ -9,16 +9,18 @@ import PaymentMethodsForm from '@Admin/Features/Payment Methods/PaymentMethodsFo
 const PaymentCards = ({ paymentMethod }) => {
 	const [extendMenu, setExtendMenu] = useState(false)
 	const [isOpen, setIsOpen] = useState(false)
+
 	const toggleExtendMenu = () => {
 		setExtendMenu(!extendMenu)
 	}
 	return (
 		<StyledCard>
+			<Text>{paymentMethod.name}</Text>
 			<Flex mb='10px'>
 				<StyledDotIcon onClick={toggleExtendMenu} />
 			</Flex>
 			<Flex>
-				<StyledImage src={paymentMethod.img} />
+				<StyledImage src={paymentMethod.image_url} />
 			</Flex>
 			{extendMenu && (
 				<StyledDropDown>

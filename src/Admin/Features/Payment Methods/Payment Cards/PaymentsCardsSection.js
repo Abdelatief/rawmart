@@ -1,12 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
-import { PaymentsData } from '@Admin/Features/Payment Methods/Payment Cards/PaymentsData'
 import PaymentCards from '@Admin/Features/Payment Methods/Payment Cards/PaymentCards'
+import { useGetPaymentMethodsQuery } from '@Admin/Redux/AdminApi'
 
 const PaymentsCardsSection = () => {
+	const { data, refetch } = useGetPaymentMethodsQuery()
+	console.log(useGetPaymentMethodsQuery)
 	return (
 		<StyledCardSection>
-			{PaymentsData.map(paymentMethod => (
+			{data?.data?.map(paymentMethod => (
 				<PaymentCards key={paymentMethod.id} paymentMethod={paymentMethod} />
 			))}
 		</StyledCardSection>

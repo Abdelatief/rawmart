@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import ShippingMethodsCards from '@Admin/Features/ShippingMethods/ShippingMethodCards/ShippingMethodsCards'
-import { ShippingMethodsData } from '@Admin/Features/ShippingMethods/ShippingMethodCards/ShippingMethodsData'
+import { useGetShippingMethodsQuery } from '@Admin/Redux/AdminApi'
 
 const ShippingMethodsCardsSection = () => {
+	const { data, refetch } = useGetShippingMethodsQuery()
+
 	return (
 		<StyledCardSection>
-			{ShippingMethodsData.map(shippingMethod => (
+			{data?.data?.map(shippingMethod => (
 				<ShippingMethodsCards key={shippingMethod.id} shippingMethod={shippingMethod} />
 			))}
 		</StyledCardSection>

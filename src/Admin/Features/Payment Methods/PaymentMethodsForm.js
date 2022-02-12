@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import DragAndDropImage from '@Admin/Components/DragAndDropImage'
 import { Button, Flex, FormInput, Text } from '@Components'
@@ -7,7 +7,9 @@ import { VscAdd, VscTrash } from 'react-icons/vsc'
 
 const PaymentMethodsForm = ({ title, paymentMethod }) => {
 	const [Active, setActive] = useState(true)
-
+	useEffect(() => {
+		if (paymentMethod) setActive(paymentMethod.status)
+	})
 	return (
 		<div>
 			<StyledHeader>{title}</StyledHeader>
@@ -15,14 +17,14 @@ const PaymentMethodsForm = ({ title, paymentMethod }) => {
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
 					<div>
 						<StyledLabel>Logo</StyledLabel>
-						<DragAndDropImage defaultValue={paymentMethod ? paymentMethod.image : null} />
+						<DragAndDropImage defaultValue={paymentMethod ? paymentMethod.image_url : null} />
 					</div>
 					<StyledInnerContainer>
 						<FormGroupFlex flexDirection={['column', null, 'row']}>
 							<FormInput label='Name' required defaultValue={paymentMethod ? paymentMethod.name : ''} />
 						</FormGroupFlex>
 						<FormGroupFlex flexDirection={['column', null, 'row']}>
-							<FormInput label='Description' defaultValue={paymentMethod ? paymentMethod.description : ''} />
+							<FormInput label='Description' />
 						</FormGroupFlex>
 					</StyledInnerContainer>
 				</FormGroupFlex>
@@ -47,8 +49,8 @@ const PaymentMethodsForm = ({ title, paymentMethod }) => {
 				</Text>
 				{/*TODO:Refactor Dynamic Form*/}
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
-					<FormInput label='Key' defaultValue={paymentMethod ? paymentMethod.credentials[0].key : ''} />
-					<FormInput label='Value' defaultValue={paymentMethod ? paymentMethod.credentials[0].value : ''} />
+					<FormInput label='Key' />
+					<FormInput label='Value' />
 					<StyledTrashIcon />
 				</FormGroupFlex>
 

@@ -2,10 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 import { Flex, Text } from '@Components'
 import Table from '@Admin/Components/Table'
-import { ProductsData } from '@Admin/Features/AdminDashboard/Components/TableSection/ProductsData'
 import { HiDotsHorizontal } from 'react-icons/hi'
+import { useGetOrdersQuery } from '@Admin/Redux/AdminApi'
 
 const Orders = () => {
+	const { data, refetch } = useGetOrdersQuery()
+
 	return (
 		<StyledContainer>
 			<StyledHeader>Orders</StyledHeader>
@@ -25,12 +27,12 @@ const Orders = () => {
 					</Table.HeaderRow>
 				</Table.Thead>
 				<tbody>
-					{ProductsData.map(product => (
+					{data?.data?.map(product => (
 						<Table.BodyRow key={product.id}>
 							<Table.Td>#{product.id}</Table.Td>
 							<Table.Td>
 								<Flex justifyContent='center' alignItems='center'>
-									{product.product}
+									{product.name}
 								</Flex>
 							</Table.Td>
 							<Table.Td>
@@ -39,7 +41,7 @@ const Orders = () => {
 								</Flex>
 							</Table.Td>
 							<Table.Td>
-								<StyledImg src={product.img} alt={product.alt} />
+								<StyledImg src={product.image} />
 							</Table.Td>
 							<Table.Td>
 								<Flex justifyContent='center' alignItems='center'>
@@ -58,12 +60,17 @@ const Orders = () => {
 							</Table.Td>
 							<Table.Td>
 								<Flex justifyContent='center' alignItems='center'>
-									{product.address}
+									<Text>
+										{product.status_id} {product.city} {product.state} {product.country} {product.postal_code}
+									</Text>
 								</Flex>
 							</Table.Td>
 							<Table.Td>
-								<Flex justifyContent='center' alignItems='center' color='#ecc756'>
-									{product.status}
+								<Flex justifyContent='center' alignItems='center'>
+									{product.status === 'Progress' && <Text color='blue'>{product.status}</Text>}
+									{product.status === 'Shipped' && <Text color='yellow'>{product.status}</Text>}
+									{product.status === 'Delivered' && <Text color='green'>{product.status}</Text>}
+									{product.status === 'Cancelled' && <Text color='red'>{product.status}</Text>}
 								</Flex>
 							</Table.Td>
 							<Table.Td>

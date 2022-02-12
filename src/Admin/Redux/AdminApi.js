@@ -16,7 +16,18 @@ const baseQuery = fetchBaseQuery({
 export const adminApi = createApi({
 	reducerPath: 'admin-api',
 	baseQuery,
-	tagTypes: ['Role', 'User', 'Vendor', 'Category', 'Offer'],
+	tagTypes: [
+		'Role',
+		'User',
+		'Vendor',
+		'Category',
+		'Offer',
+		'Order',
+		'Payment',
+		'Shipping',
+		'BlogCategory',
+		'SpecialOrder',
+	],
 	endpoints: builder => ({
 		login: builder.mutation({
 			query: loginBody => ({
@@ -126,6 +137,80 @@ export const adminApi = createApi({
 				},
 			}),
 		}),
+
+		getOrders: builder.query({
+			query: () => ({
+				url: '/orders',
+				method: 'POST',
+				providesTags: ['Order'],
+				body: {
+					dir: 'desc',
+					page: 1,
+					per_page: 10,
+					search: '',
+					sort: 'id',
+				},
+			}),
+		}),
+
+		getPaymentMethods: builder.query({
+			query: () => ({
+				url: '/payment-methods',
+				method: 'POST',
+				providesTags: ['Payment'],
+				body: {
+					dir: 'desc',
+					page: 1,
+					per_page: -1,
+					search: '',
+					sort: 'id',
+				},
+			}),
+		}),
+		getShippingMethods: builder.query({
+			query: () => ({
+				url: '/shipping-methods',
+				method: 'POST',
+				providesTags: ['Shipping'],
+				body: {
+					dir: 'desc',
+					page: 1,
+					per_page: 10,
+					search: '',
+					sort: 'id',
+				},
+			}),
+		}),
+		getBlogCategories: builder.query({
+			query: () => ({
+				url: '/blog-categories',
+				method: 'POST',
+				providesTags: ['BlogCategory'],
+				body: {
+					dir: 'desc',
+					language: 'en',
+					page: 1,
+					per_page: 10,
+					search: '',
+					sort: 'id',
+				},
+			}),
+		}),
+
+		getSpecialOrders: builder.query({
+			query: () => ({
+				url: '/special-orders',
+				method: 'POST',
+				providesTags: ['SpecialOrder'],
+				body: {
+					dir: 'desc',
+					page: 1,
+					per_page: 10,
+					search: '',
+					sort: 'id',
+				},
+			}),
+		}),
 	}),
 })
 
@@ -138,4 +223,9 @@ export const {
 	useGetVendorsQuery,
 	useGetCategoriesQuery,
 	useGetOffersQuery,
+	useGetOrdersQuery,
+	useGetPaymentMethodsQuery,
+	useGetShippingMethodsQuery,
+	useGetBlogCategoriesQuery,
+	useGetSpecialOrdersQuery,
 } = adminApi

@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import CategoryCards from '@Admin/Features/Categories/CategoriesPageBody/CategoryCards/CategoryCards'
-import { useGetCategoriesQuery } from '@Admin/Redux/AdminApi'
+import { useGetBlogCategoriesQuery } from '@Admin/Redux/AdminApi'
 
-const CategoriesCardsSection = () => {
-	const { data, refetch } = useGetCategoriesQuery()
+const BlogCategoriesCardSection = () => {
+	const { data, refetch } = useGetBlogCategoriesQuery()
 
 	return (
 		<StyledCardSection>
@@ -26,4 +26,4 @@ const StyledCardSection = styled.div`
 	}
 `
 
-export default CategoriesCardsSection
+export default BlogCategoriesCardSection
