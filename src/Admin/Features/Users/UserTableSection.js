@@ -1,16 +1,18 @@
-import React, { useState } from 'react'
-import Table from '@Admin/Components/Table'
-import { Flex, Popup, Text } from '@Components'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import Table from '@Admin/Components/Table'
+import UserForm from '@Admin/Features/Users/UserForm'
+import { Flex, Popup, Text } from '@Components'
 import { CgMore } from 'react-icons/cg'
 import { MdOutlineEdit } from 'react-icons/md'
-import { UsersData } from '@Admin/Features/Users/UsersData'
-import UserForm from '@Admin/Features/Users/UserForm'
+import { useGetUsersQuery } from '@Admin/Redux/AdminApi'
 
 const UserTableSection = () => {
 	const [extendMenu, setExtendMenu] = useState(false)
 	const [selectedItem, setSelectedItem] = useState()
+	const [userValue, setUserValue] = useState()
 	const [isOpen, setIsOpen] = useState(false)
+	const { data, refetch } = useGetUsersQuery()
 
 	const toggleExtendMenu = item => {
 		setExtendMenu(!extendMenu)
@@ -32,7 +34,7 @@ const UserTableSection = () => {
 					</Table.HeaderRow>
 				</Table.Thead>
 				<tbody>
-					{UsersData.map(user => (
+					{data?.data?.map(user => (
 						<Table.BodyRow key={user.id}>
 							<Table.Td>
 								<Flex justifyContent='center' alignItems='center'>
@@ -79,6 +81,7 @@ const UserTableSection = () => {
 												pt='10px'
 												onClick={() => {
 													setIsOpen(true)
+													setUserValue(user)
 												}}
 											>
 												<StyledEditIcon />
@@ -91,7 +94,7 @@ const UserTableSection = () => {
 								</Flex>
 							</Table.Td>
 							<Popup isOpen={isOpen} setIsOpen={setIsOpen} height='80%' width='70%' padding='30px'>
-								{<UserForm title='EDIT USER' user={user} flag={true} />}
+								{<UserForm title='EDIT USER' user={userValue} />}
 							</Popup>
 						</Table.BodyRow>
 					))}

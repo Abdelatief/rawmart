@@ -5,14 +5,16 @@ import FormSelectedInput from '@Admin/Components/FormSelectedInput'
 import { RolesData } from '@Admin/Features/Roles/RolesData'
 
 const UserForm = ({ title, user }) => {
+	let Username
+	if (user) Username = user.name.split(' ')
 	return (
 		<div>
 			<StyledHeader>{title}</StyledHeader>
 			<StyledForm style>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
 					<FormSelectedInput label='Role' required options={RolesData} />
-					<FormInput label='First Name' required defaultValue={user ? user.first_name : ''} />
-					<FormInput label='Last Name' required defaultValue={user ? user.last_name : ''} />
+					<FormInput label='First Name' required defaultValue={user ? Username[0] : ''} />
+					<FormInput label='Last Name' required defaultValue={user ? Username[1] : ''} />
 				</FormGroupFlex>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
 					<FormInput label='Email' required defaultValue={user ? user.email : ''} />

@@ -16,7 +16,7 @@ const baseQuery = fetchBaseQuery({
 export const adminApi = createApi({
 	reducerPath: 'admin-api',
 	baseQuery,
-	tagTypes: ['Role'],
+	tagTypes: ['Role', 'User'],
 	endpoints: builder => ({
 		login: builder.mutation({
 			query: loginBody => ({
@@ -48,7 +48,22 @@ export const adminApi = createApi({
 				invalidateTags: ['Role'],
 			}),
 		}),
+		getUsers: builder.query({
+			query: () => ({
+				url: '/users',
+				method: 'POST',
+				providesTags: ['User'],
+				body: {
+					dir: 'desc',
+					name: '',
+					page: 1,
+					per_page: 10,
+					search: '',
+					sort: 'id',
+				},
+			}),
+		}),
 	}),
 })
 
-export const { useLoginMutation, useGetRolesQuery, useDeleteRoleMutation } = adminApi
+export const { useLoginMutation, useGetRolesQuery, useDeleteRoleMutation, useGetUsersQuery } = adminApi
