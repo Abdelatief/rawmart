@@ -1,20 +1,57 @@
-import { useState, createContext, useContext } from 'react'
+import { useState, createContext, useContext, useEffect } from 'react'
 import styled from 'styled-components'
 import { RiArrowDownSLine } from 'react-icons/ri'
 import { FluidContainer, Text, Flex, Link, Button } from '@Components'
 import RegistrationPopup from '@Customer/Containers/Layout/Components/RegisterationPopup'
 import LoginPopup from '@Customer/Containers/Layout/Components/LoginPopup'
 import { CustomerAuthContext } from '@Customer/Containers/Layout/Layout'
+import { useGetCategoriesQuery, useGetBrandsQuery } from '@Customer/Redux/CustomerApi'
 import { useMediaQuery } from '@Hooks'
+import { useNavigate, Navigate } from 'react-router-dom'
 
 export const PopupDataContext = createContext({})
 
 const Navbar = () => {
+	const navigate = useNavigate()
 	const matches = useMediaQuery('(max-width: 900px)')
 	const customerAuthContext = useContext(CustomerAuthContext)
 	const [showLoginPopup, setShowLoginPopup] = useState(null)
 	const [showRegistrationPopup, setShowRegistrationPopup] = useState(null)
-	const [showNavMenu, setShowNavMenu] = useState(false)
+	const [showCategories, setShowCategories] = useState(false)
+	const [showBrands, setShowBrands] = useState(false)
+
+	const { data, isLoading, isSuccess } = useGetCategoriesQuery()
+	const brandsResult = useGetBrandsQuery()
+
+	const brandsNavClickHandler = () => {
+		setShowBrands(!showBrands)
+	}
+
+	const categoriesClickHandler = () => {
+		setShowCategories(!showCategories)
+	}
+
+	const categoryNavItemClickHandler = category => {
+		// setCategoryParentId(category.parent_id)
+		// navigate(`/categories/${category.slug}`, {
+		// 	state: { parentId: category.parent_id}
+		// })
+		console.log({ category })
+		navigate(`categories/${category.slug}`)
+		// navigate('categories')
+	}
+
+	useEffect(() => {
+		if (showBrands) {
+			if (showCategories) setShowCategories(false)
+		}
+	}, [showBrands])
+
+	useEffect(() => {
+		if (showCategories) {
+			if (showBrands) setShowBrands(false)
+		}
+	}, [showCategories])
 
 	const renderAuthenticationButton = () => {
 		if (customerAuthContext?.authTokens?.access_token) {
@@ -38,26 +75,33 @@ const Navbar = () => {
 					<StyledFlexContainer height='55px' alignItems='center'>
 						<Link to='/'>
 							<NavItem textAlign='left'>Home</NavItem>
-							{showNavMenu && (
+							{showCategories && (
 								<StyledNavMenu>
-									<Text color='white'>Test</Text>
-									<Text color='white'>Test</Text>
-									<Text color='white'>Test</Text>
-									<Text color='white'>Test</Text>
-									<Text color='white'>Test</Text>
-									<Text color='white'>Test</Text>
-									<Text color='white'>Test</Text>
+									{isSuccess &&
+										data?.data &&
+										data?.data?.map((category, index) => (
+											<StyledNavMenuItem key={index} onClick={() => categoryNavItemClickHandler(category)}>
+												{category.name}
+											</StyledNavMenuItem>
+										))}
+									<StyledNavMenuItem>All Categories</StyledNavMenuItem>
+								</StyledNavMenu>
+							)}
+
+							{showBrands && (
+								<StyledNavMenu>
+									{brandsResult.isSuccess &&
+										brandsResult?.data?.data &&
+										brandsResult.data.data.map((brand, index) => (
+											<StyledNavMenuItem key={index}>{brand.name}</StyledNavMenuItem>
+										))}
 								</StyledNavMenu>
 							)}
 						</Link>
-						<NavItem
-							onClick={() => {
-								setShowNavMenu(!showNavMenu)
-							}}
-						>
+						<NavItem onClick={categoriesClickHandler}>
 							Category <RiArrowDownSLine fontSize='24px' />
 						</NavItem>
-						<NavItem>
+						<NavItem onClick={brandsNavClickHandler}>
 							Brands <RiArrowDownSLine fontSize='24px' />
 						</NavItem>
 						<NavItem>Deals</NavItem>
@@ -95,6 +139,14 @@ const StyledNavMenu = styled.div`
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 	gap: 1.2rem;
+`
+
+const StyledNavMenuItem = styled.p`
+	color: white;
+
+	&:hover {
+		color: ${props => props.theme.colors.text.celadon};
+	}
 `
 
 const StyledFlexContainer = styled.div`

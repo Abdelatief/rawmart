@@ -25,7 +25,35 @@ export const customerApi = createApi({
 				body: { id: 'home', language: 'en' },
 			}),
 		}),
+		getCategories: builder.query({
+			query: () => ({
+				url: 'web/categories',
+				method: 'POST',
+				body: {
+					dir: 'asc',
+					language: 'en',
+					page: 0,
+					per_page: -1,
+					search: '',
+					sort: 'name',
+				},
+			}),
+		}),
+		getBrands: builder.query({
+			query: () => ({
+				url: 'web/brands',
+				method: 'POST',
+				body: {
+					page: 0,
+					per_page: -1,
+					search: '',
+					sort: 'name',
+					dir: 'asc',
+				},
+			}),
+		}),
 	}),
 })
 
-export const { useRegisterMutation, useLoginMutation, useBannerQuery } = customerApi
+export const { useRegisterMutation, useLoginMutation, useBannerQuery, useGetCategoriesQuery, useGetBrandsQuery } =
+	customerApi
