@@ -29,6 +29,7 @@ export const adminApi = createApi({
 		'SpecialOrder',
 		'Option',
 		'Bolg',
+		'Country',
 	],
 	endpoints: builder => ({
 		login: builder.mutation({
@@ -240,6 +241,13 @@ export const adminApi = createApi({
 				},
 			}),
 		}),
+		getCountries: builder.query({
+			query: () => ({
+				url: '/web/countries',
+				method: 'POST',
+				providesTags: ['Country'],
+			}),
+		}),
 	}),
 })
 
@@ -259,4 +267,5 @@ export const {
 	useGetSpecialOrdersQuery,
 	useGetOptionsQuery,
 	useGetBlogsQuery,
+	useGetCountriesQuery,
 } = adminApi

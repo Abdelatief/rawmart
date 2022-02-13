@@ -6,7 +6,7 @@ const SelectedInput = forwardRef(({ required = false, label, options, width, ico
 		<StyledSelectedInput>
 			<SelectInput ref={ref} width={width} icon={icon} {...restProps}>
 				<StyledOption value={0}> {label}</StyledOption>
-				{options?.map(option => (
+				{options.map(option => (
 					<StyledOption value={option.id} key={option.id}>
 						{option.name}
 					</StyledOption>
