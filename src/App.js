@@ -24,6 +24,7 @@ import Settings from '@Admin/Features/Settings/Settings'
 import PaymentMethods from '@Admin/Features/Payment Methods/PaymentMethods'
 import News from '@Admin/Features/News/News'
 import Products from '@Admin/Features/Products/Products'
+import Reviews from '@Admin/Features/Products/ProductsReviews'
 
 function App() {
 	return (
@@ -50,6 +51,7 @@ function App() {
 						<Route path='specialOrders' element={<SpecialOrders />} />
 						<Route path='settings' element={<Settings />} />
 						<Route path='products' element={<Products />} />
+						<Route path='reviews' element={<Reviews />} />
 
 						<Route path='pages' element={<PageLayout />}>
 							<Route path='home' element={<Pages HeaderLabel='HOME' />} />

@@ -7,6 +7,7 @@ import { MdOutlineEdit } from 'react-icons/md'
 import { BsChatLeftText } from 'react-icons/bs'
 import { useGetProductsQuery } from '@Admin/Redux/AdminApi'
 import { AiOutlineDelete } from 'react-icons/ai'
+import { Link } from 'react-router-dom'
 
 const ProductsTable = () => {
 	const [extendMenu, setExtendMenu] = useState(false)
@@ -103,12 +104,14 @@ const ProductsTable = () => {
 								<Flex>
 									{extendMenu && selectedItem === product.id && (
 										<StyledDropDown>
-											<StyledFlex pt='10px'>
-												<StyledReviewIcon />
-												<Text fontSize={2} mb='2px'>
-													Review
-												</Text>
-											</StyledFlex>
+											<StyledLink to='../reviews'>
+												<StyledFlex pt='10px'>
+													<StyledReviewIcon />
+													<Text fontSize={2} mb='2px'>
+														Review
+													</Text>
+												</StyledFlex>
+											</StyledLink>
 											<StyledFlex
 												onClick={() => {
 													setProduct(product)
@@ -223,5 +226,10 @@ const StyledSelectedInput = styled.select`
 	width: 80px;
 	margin: 0 5px 0 5px;
 	bottom: 5px;
+`
+
+const StyledLink = styled(Link)`
+	text-decoration-line: none;
+	color: black;
 `
 export default ProductsTable

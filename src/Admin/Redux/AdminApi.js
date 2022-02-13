@@ -31,6 +31,7 @@ export const adminApi = createApi({
 		'Bolg',
 		'Country',
 		'Product',
+		'Review',
 	],
 	endpoints: builder => ({
 		login: builder.mutation({
@@ -268,6 +269,20 @@ export const adminApi = createApi({
 				},
 			}),
 		}),
+		getReviews: builder.query({
+			query: () => ({
+				url: '/reviews',
+				method: 'POST',
+				providesTags: ['Review'],
+				body: {
+					dir: 'desc',
+					page: 1,
+					per_page: 10,
+					product_id: '6',
+					sort: 'id',
+				},
+			}),
+		}),
 	}),
 })
 
@@ -289,4 +304,5 @@ export const {
 	useGetBlogsQuery,
 	useGetCountriesQuery,
 	useGetProductsQuery,
+	useGetReviewsQuery,
 } = adminApi
