@@ -11,7 +11,7 @@ const SearchSection = () => {
 		<FluidContainer>
 			<StyledFlexContainer height='88px' alignItems='center'>
 				{matches && (
-					<Flex width='100%' my='12px' alignItems='center' justifyContent='space-between'>
+					<Flex width='100%' alignItems='center' justifyContent='space-between'>
 						<Text fontSize={7} fontFamily='KageFreebiesBlack'>
 							Rawmart
 						</Text>

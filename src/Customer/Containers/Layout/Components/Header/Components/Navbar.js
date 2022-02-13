@@ -1,13 +1,27 @@
 import { useState, createContext, useContext, useEffect } from 'react'
 import styled from 'styled-components'
 import { RiArrowDownSLine } from 'react-icons/ri'
-import { FluidContainer, Text, Flex, Link, Button } from '@Components'
+import { GiHamburgerMenu } from 'react-icons/gi'
+import { FluidContainer, Text, Link } from '@Components'
 import RegistrationPopup from '@Customer/Containers/Layout/Components/RegisterationPopup'
 import LoginPopup from '@Customer/Containers/Layout/Components/LoginPopup'
 import { CustomerAuthContext } from '@Customer/Containers/Layout/Layout'
 import { useGetCategoriesQuery, useGetBrandsQuery } from '@Customer/Redux/CustomerApi'
 import { useMediaQuery } from '@Hooks'
-import { useNavigate, Navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import {
+	IconButton,
+	Drawer,
+	DrawerBody,
+	DrawerFooter,
+	DrawerHeader,
+	DrawerOverlay,
+	DrawerContent,
+	DrawerCloseButton,
+	Input,
+	useDisclosure,
+	Button,
+} from '@chakra-ui/react'
 
 export const PopupDataContext = createContext({})
 
@@ -19,6 +33,7 @@ const Navbar = () => {
 	const [showRegistrationPopup, setShowRegistrationPopup] = useState(null)
 	const [showCategories, setShowCategories] = useState(false)
 	const [showBrands, setShowBrands] = useState(false)
+	const { isOpen, onClose, onOpen } = useDisclosure()
 
 	const { data, isLoading, isSuccess } = useGetCategoriesQuery()
 	const brandsResult = useGetBrandsQuery()
@@ -32,17 +47,13 @@ const Navbar = () => {
 	}
 
 	const brandItemClickHandler = brand => {
-		navigate(`brands/${brand.slug}`)
+		navigate(`brands/${brand.slug}`, {
+			state: { brand },
+		})
 	}
 
 	const categoryNavItemClickHandler = category => {
-		// setCategoryParentId(category.parent_id)
-		// navigate(`/categories/${category.slug}`, {
-		// 	state: { parentId: category.parent_id}
-		// })
-		console.log({ category })
 		navigate(`categories/${category.slug}`)
-		// navigate('categories')
 	}
 
 	useEffect(() => {
@@ -127,8 +138,36 @@ const Navbar = () => {
 						)}
 					</StyledFlexContainer>
 				)}
-				{matches && <Button>show sidebar</Button>}
+				{matches && (
+					<IconButton
+						aria-label='hamburger menu'
+						bg='transparent'
+						_hover={{ bg: '#AFD39A' }}
+						color='white'
+						borderRadius={0}
+						icon={<GiHamburgerMenu />}
+						onClick={onOpen}
+					/>
+				)}
 			</FluidContainer>
+			<Drawer isOpen={isOpen} placement='right' onClose={onClose}>
+				<DrawerOverlay />
+				<DrawerContent>
+					<DrawerCloseButton />
+					<DrawerHeader>Create your account</DrawerHeader>
+
+					<DrawerBody>
+						<Input placeholder='Type here...' />
+					</DrawerBody>
+
+					<DrawerFooter>
+						<Button variant='outline' mr={3} onClick={onClose}>
+							Cancel
+						</Button>
+						<Button colorScheme='blue'>Save</Button>
+					</DrawerFooter>
+				</DrawerContent>
+			</Drawer>
 		</PopupDataContext.Provider>
 	)
 }

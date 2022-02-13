@@ -8,17 +8,20 @@ import theme from './Shared/Styles/theme'
 import GlobalStyles from './Shared/Styles/GlobalStyles'
 import * as serviceWorker from './serviceWorker'
 import 'swiper/css/bundle'
+import { ChakraProvider } from '@chakra-ui/react'
 
 ReactDOM.render(
 	<React.StrictMode>
-		<GlobalStyles />
-		<Reset />
-		<GlobalStyles />
-		<ThemeProvider theme={theme}>
-			<BrowserRouter>
-				<App />
-			</BrowserRouter>
-		</ThemeProvider>
+		<ChakraProvider>
+			<GlobalStyles />
+			<Reset />
+			<GlobalStyles />
+			<ThemeProvider theme={theme}>
+				<BrowserRouter>
+					<App />
+				</BrowserRouter>
+			</ThemeProvider>
+		</ChakraProvider>
 	</React.StrictMode>,
 	document.getElementById('root')
 )
