@@ -1,11 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import ProductsHeaderSection from '@Admin/Features/Products/ProductsHeaderSection'
+import ProductsTable from '@Admin/Features/Products/ProductsTable'
 
 const Products = () => {
 	return (
 		<StyledDiv>
 			<ProductsHeaderSection />
+			<ProductsTable />
 		</StyledDiv>
 	)
 }

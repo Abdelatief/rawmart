@@ -4,7 +4,7 @@ import OffersCards from '@Admin/Features/Offers/OffersCards/OffersCards'
 import { useGetOffersQuery } from '@Admin/Redux/AdminApi'
 
 const OfferCardsSection = () => {
-	const { data, refetch } = useGetOffersQuery()
+	const { data } = useGetOffersQuery()
 	return (
 		<StyledCardSection>
 			{data?.data?.map(offer => (

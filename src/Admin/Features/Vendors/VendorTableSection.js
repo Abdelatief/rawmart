@@ -10,7 +10,7 @@ import VendorsForm from '@Admin/Features/Vendors/VendorsForm/VendorsForm'
 import { useGetVendorsQuery } from '@Admin/Redux/AdminApi'
 
 const VendorTableSection = () => {
-	const { data, refetch } = useGetVendorsQuery()
+	const { data } = useGetVendorsQuery()
 	const [extendMenu, setExtendMenu] = useState(false)
 	const [selectedItem, setSelectedItem] = useState()
 	const [isOpen, setIsOpen] = useState(false)

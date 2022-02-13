@@ -5,7 +5,7 @@ import { Text, Flex } from '@Components'
 import { useGetSpecialOrdersQuery } from '@Admin/Redux/AdminApi'
 
 const SpecialOrders = () => {
-	const { data, refetch } = useGetSpecialOrdersQuery()
+	const { data } = useGetSpecialOrdersQuery()
 
 	return (
 		<StyledContainer>

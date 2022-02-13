@@ -4,7 +4,7 @@ import PaymentCards from '@Admin/Features/Payment Methods/Payment Cards/PaymentC
 import { useGetPaymentMethodsQuery } from '@Admin/Redux/AdminApi'
 
 const PaymentsCardsSection = () => {
-	const { data, refetch } = useGetPaymentMethodsQuery()
+	const { data } = useGetPaymentMethodsQuery()
 	return (
 		<StyledCardSection>
 			{data?.data?.map(paymentMethod => (

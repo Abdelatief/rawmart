@@ -9,7 +9,7 @@ import { useGetBlogsQuery } from '@Admin/Redux/AdminApi'
 import NewsForm from '@Admin/Features/News/NewForm/NewsForm'
 
 const NewsTable = () => {
-	const { data, refetch } = useGetBlogsQuery()
+	const { data } = useGetBlogsQuery()
 	const [extendMenu, setExtendMenu] = useState(false)
 	const [selectedItem, setSelectedItem] = useState()
 	const [isOpen, setIsOpen] = useState(false)

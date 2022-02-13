@@ -30,6 +30,7 @@ export const adminApi = createApi({
 		'Option',
 		'Bolg',
 		'Country',
+		'Product',
 	],
 	endpoints: builder => ({
 		login: builder.mutation({
@@ -248,6 +249,25 @@ export const adminApi = createApi({
 				providesTags: ['Country'],
 			}),
 		}),
+		getProducts: builder.query({
+			query: () => ({
+				url: '/products',
+				method: 'POST',
+				providesTags: ['Product'],
+				body: {
+					availability: '',
+					category: '',
+					dir: 'desc',
+					language: 'en',
+					name: '',
+					page: 1,
+					per_page: 10,
+					search: '',
+					sort: 'id',
+					vendor: '',
+				},
+			}),
+		}),
 	}),
 })
 
@@ -268,4 +288,5 @@ export const {
 	useGetOptionsQuery,
 	useGetBlogsQuery,
 	useGetCountriesQuery,
+	useGetProductsQuery,
 } = adminApi

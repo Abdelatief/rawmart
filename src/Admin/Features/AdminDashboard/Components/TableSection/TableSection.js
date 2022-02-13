@@ -7,7 +7,7 @@ import { useGetOrdersQuery } from '@Admin/Redux/AdminApi'
 import moment from 'moment'
 
 const TableSection = () => {
-	const { data, refetch } = useGetOrdersQuery()
+	const { data } = useGetOrdersQuery()
 	return (
 		<StyledContainer>
 			<Table loading={false} resultCount={5}>

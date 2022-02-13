@@ -49,6 +49,7 @@ const ProductsHeaderSection = () => {
 					<FormInput label='Products' placeholder='Search Products' />
 					<FormSelectedInput label='Category' options={categoriesData?.data} />
 					<FormSelectedInput label='Vendor' options={vendorsData?.data} />
+					<FormSelectedInput label='Availability' options={[{ name: 'In Stock' }, { name: 'Out of Stock' }]} />
 				</FormGroupFlex>
 			</StyledInnerContainer>
 		</StyledOuterContainer>

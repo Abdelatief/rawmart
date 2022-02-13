@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import Table from '@Admin/Components/Table'
 import UserForm from '@Admin/Features/Users/UserForm'
@@ -12,7 +12,7 @@ const UserTableSection = () => {
 	const [selectedItem, setSelectedItem] = useState()
 	const [userValue, setUserValue] = useState()
 	const [isOpen, setIsOpen] = useState(false)
-	const { data, refetch } = useGetUsersQuery()
+	const { data } = useGetUsersQuery()
 
 	const toggleExtendMenu = item => {
 		setExtendMenu(!extendMenu)

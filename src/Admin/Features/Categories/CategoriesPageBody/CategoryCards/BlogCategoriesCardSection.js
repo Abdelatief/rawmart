@@ -4,7 +4,7 @@ import CategoryCards from '@Admin/Features/Categories/CategoriesPageBody/Categor
 import { useGetBlogCategoriesQuery } from '@Admin/Redux/AdminApi'
 
 const BlogCategoriesCardSection = () => {
-	const { data, refetch } = useGetBlogCategoriesQuery()
+	const { data } = useGetBlogCategoriesQuery()
 
 	return (
 		<StyledCardSection>

@@ -8,7 +8,7 @@ import { useGetOptionsQuery } from '@Admin/Redux/AdminApi'
 const PaymentHeaderSection = () => {
 	const [isOpen, setIsOpen] = useState(false)
 	const [live, setLive] = useState()
-	const { data, refetch } = useGetOptionsQuery()
+	const { data } = useGetOptionsQuery()
 	useEffect(() => {
 		if (data?.payment_mode === 'live') setLive(true)
 		else setLive(false)
