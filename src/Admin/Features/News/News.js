@@ -1,11 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import NewsHeaderSection from '@Admin/Features/News/NewsHeaderSection'
+import NewsTable from '@Admin/Features/News/NewsTable'
 
 const News = () => {
 	return (
 		<StyledDiv>
 			<NewsHeaderSection />
+			<NewsTable />
 		</StyledDiv>
 	)
 }

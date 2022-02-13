@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Button, Flex, FormInput, Popup, Text } from '@Components'
-import SelectedInput from '@Admin/Components/SelectedInput'
-import { VscAdd } from 'react-icons/vsc'
+import NewsForm from '@Admin/Features/News/NewForm/NewsForm'
 import FormSelectedInput from '@Admin/Components/FormSelectedInput'
+import { Button, Flex, FormInput, Popup, Text } from '@Components'
+import { VscAdd } from 'react-icons/vsc'
 
 const NewsHeaderSection = () => {
 	const [isOpen, setIsOpen] = useState(false)
@@ -30,8 +30,8 @@ const NewsHeaderSection = () => {
 							Add News
 						</Text>
 					</Button>
-					<Popup isOpen={isOpen} setIsOpen={setIsOpen} minWidth='60%' height='98%' padding='30px'>
-						{<div />}
+					<Popup isOpen={isOpen} setIsOpen={setIsOpen} minWidth='80%' height='98%' padding='30px' overflow='scroll'>
+						{<NewsForm title='ADD NEWS' />}
 					</Popup>
 				</StyledRightContainer>
 			</StyledHeaderDiv>
@@ -98,7 +98,7 @@ const StyledInnerContainer = styled.div`
 	flex-wrap: wrap;
 	background-color: #fbfbfb;
 	padding: 20px;
-	margin: 30px;
+	margin: 30px 0 30px 0;
 `
 const FormGroupFlex = styled(Flex)`
 	width: 100%;

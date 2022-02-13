@@ -28,6 +28,7 @@ export const adminApi = createApi({
 		'BlogCategory',
 		'SpecialOrder',
 		'Option',
+		'Bolg',
 	],
 	endpoints: builder => ({
 		login: builder.mutation({
@@ -223,6 +224,22 @@ export const adminApi = createApi({
 				},
 			}),
 		}),
+		getBlogs: builder.query({
+			query: () => ({
+				url: '/blogs',
+				method: 'POST',
+				providesTags: ['Blog'],
+				body: {
+					category: '',
+					dir: 'desc',
+					language: 'en',
+					page: 1,
+					per_page: 12,
+					sort: 'id',
+					title: '',
+				},
+			}),
+		}),
 	}),
 })
 
@@ -241,4 +258,5 @@ export const {
 	useGetBlogCategoriesQuery,
 	useGetSpecialOrdersQuery,
 	useGetOptionsQuery,
+	useGetBlogsQuery,
 } = adminApi
