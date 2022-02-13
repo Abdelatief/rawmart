@@ -58,7 +58,7 @@ const UserTableSection = () => {
 							</Table.Td>
 							<Table.Td>
 								<Flex justifyContent='center' alignItems='center'>
-									{user.phoneNumber}
+									{user.phone}
 								</Flex>
 							</Table.Td>
 							<Table.Td>

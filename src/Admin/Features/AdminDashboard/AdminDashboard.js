@@ -20,7 +20,7 @@ const StyledDiv = styled.div`
 	max-height: 100%;
 `
 const StyledContainer = styled.div`
-	margin: 20px;
+	margin: 30px;
 `
 
 export default AdminDashboard

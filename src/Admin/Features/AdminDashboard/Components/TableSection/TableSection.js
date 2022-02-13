@@ -1,11 +1,13 @@
 import React from 'react'
 import Table from '@Admin/Components/Table'
-import { ProductsData } from '@Admin/Features/AdminDashboard/Components/TableSection/ProductsData'
-import { Flex } from '@Components'
+import { Flex, Text } from '@Components'
 import styled from 'styled-components'
 import { HiDotsHorizontal } from 'react-icons/hi'
+import { useGetOrdersQuery } from '@Admin/Redux/AdminApi'
+import moment from 'moment'
 
 const TableSection = () => {
+	const { data, refetch } = useGetOrdersQuery()
 	return (
 		<StyledContainer>
 			<Table loading={false} resultCount={5}>
@@ -24,12 +26,12 @@ const TableSection = () => {
 					</Table.HeaderRow>
 				</Table.Thead>
 				<tbody>
-					{ProductsData.map(product => (
+					{data?.data?.slice(0, 5).map(product => (
 						<Table.BodyRow key={product.id}>
 							<Table.Td>#{product.id}</Table.Td>
 							<Table.Td>
 								<Flex justifyContent='center' alignItems='center'>
-									{product.product}
+									{product.name}
 								</Flex>
 							</Table.Td>
 							<Table.Td>
@@ -38,7 +40,7 @@ const TableSection = () => {
 								</Flex>
 							</Table.Td>
 							<Table.Td>
-								<StyledImg src={product.img} alt={product.alt} />
+								<StyledImg src={product.image} alt={product.alt} />
 							</Table.Td>
 							<Table.Td>
 								<Flex justifyContent='center' alignItems='center'>
@@ -52,17 +54,22 @@ const TableSection = () => {
 							</Table.Td>
 							<Table.Td>
 								<Flex justifyContent='center' alignItems='center'>
-									{product.date}
+									{moment(product.date).format('ll')}
 								</Flex>
 							</Table.Td>
 							<Table.Td>
 								<Flex justifyContent='center' alignItems='center'>
-									{product.address}
+									<Text>
+										{product.status_id} {product.city} {product.state} {product.country} {product.postal_code}
+									</Text>
 								</Flex>
 							</Table.Td>
 							<Table.Td>
 								<Flex justifyContent='center' alignItems='center' color='#ecc756'>
-									{product.status}
+									{product.status === 'Progress' && <Text color='blue'>{product.status}</Text>}
+									{product.status === 'Shipped' && <Text color='yellow'>{product.status}</Text>}
+									{product.status === 'Delivered' && <Text color='green'>{product.status}</Text>}
+									{product.status === 'Cancelled' && <Text color='red'>{product.status}</Text>}
 								</Flex>
 							</Table.Td>
 							<Table.Td>
@@ -79,6 +86,7 @@ const TableSection = () => {
 }
 const StyledContainer = styled.div`
 	display: flex;
+	margin-bottom: 30px;
 `
 const StyledImg = styled.img`
 	width: 75px;

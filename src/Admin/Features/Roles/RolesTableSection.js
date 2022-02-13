@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Table from '@Admin/Components/Table'
-import { Flex, Text } from '@Components'
+import RoleForm from '@Admin/Features/Roles/RoleForm'
+import { Flex, Popup, Text } from '@Components'
 import { CgMore } from 'react-icons/cg'
 import { MdOutlineEdit } from 'react-icons/md'
 import { AiOutlineDelete } from 'react-icons/ai'
@@ -12,7 +13,8 @@ const RolesTableSection = () => {
 	const [deleteRole, deleteRoleResult] = useDeleteRoleMutation()
 	const [extendMenu, setExtendMenu] = useState(false)
 	const [selectedItem, setSelectedItem] = useState()
-
+	const [isOpen, setIsOpen] = useState(false)
+	const [roleValue, setRole] = useState()
 	const toggleExtendMenu = item => {
 		setExtendMenu(!extendMenu)
 		setSelectedItem(item)
@@ -62,7 +64,13 @@ const RolesTableSection = () => {
 								<Flex>
 									{extendMenu && selectedItem === role.id && (
 										<StyledDropDown>
-											<StyledFlex pt='10px'>
+											<StyledFlex
+												pt='10px'
+												onClick={() => {
+													setRole(role)
+													setIsOpen(true)
+												}}
+											>
 												<StyledEditIcon />
 												<Text fontSize={2} mb='2px'>
 													Edit
@@ -81,6 +89,9 @@ const RolesTableSection = () => {
 					))}
 				</tbody>
 			</Table>
+			<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px'>
+				{<RoleForm title='Edit ROLE' role={roleValue} />}
+			</Popup>
 		</StyledContainer>
 	)
 }

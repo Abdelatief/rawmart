@@ -34,10 +34,10 @@ const MiddlePartOfPage = () => {
 const StyledOuterContainer = styled.div`
 	margin-bottom: 40px;
 	display: block;
-	margin-top: 30px;
+	margin-top: 40px;
 `
 const StyledHeaderDiv = styled.div`
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 	display: flex;
 	@media (max-width: 750px) {
 		display: block;
@@ -50,12 +50,11 @@ const StyledLeftContainer = styled.div`
 	justify-content: flex-start;
 `
 const StyledRightContainer = styled.div`
-	flex: 10%;
+	//flex: 0%;
 	justify-content: flex-end;
 `
 const StyledHeader = styled(Text).attrs({
 	fontSize: '22px',
-	mb: '10px',
 	fontWeight: 'bold',
 })`
 	min-height: 50px;

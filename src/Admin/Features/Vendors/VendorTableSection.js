@@ -46,7 +46,7 @@ const VendorTableSection = () => {
 							</Table.Td>
 							<Table.Td>
 								<Flex justifyContent='center' alignItems='center'>
-									{vendor.title}
+									{vendor.name}
 								</Flex>
 							</Table.Td>
 							<Table.Td>

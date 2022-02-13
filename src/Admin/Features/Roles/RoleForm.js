@@ -2,14 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import { Button, Flex, FormInput, Text } from '@Components'
 import { MdDone } from 'react-icons/md'
-const RoleForm = ({ title }) => {
+const RoleForm = ({ title, role }) => {
 	return (
 		<div>
 			<StyledHeader>{title}</StyledHeader>
 			<StyledForm style>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
-					<FormInput label='Role Name' required />
-					<FormInput label='Identifier' required />
+					<FormInput label='Role Name' required defaultValue={role ? role.name : ''} />
+					<FormInput label='Identifier' required defaultValue={role ? role.identifier : ''} />
 				</FormGroupFlex>
 				<StyledButtonDiv>
 					<Button width={['100%', null, '290px']} fontSize={3}>
