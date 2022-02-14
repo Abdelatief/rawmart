@@ -2,7 +2,10 @@ import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { useGetSingleBrandQuery } from '@Customer/Redux/CustomerApi'
-import { FluidContainer, Text, Flex } from '@Components'
+import { FluidContainer } from '@Components'
+import { Flex, Text, Checkbox, Menu, MenuButton, Button, MenuList, MenuItem, Box } from '@chakra-ui/react'
+import { ChevronDownIcon } from '@chakra-ui/icons'
+import ProductCard from '@Customer/Features/BrandPage/Components/ProductCard'
 
 const BrandPage = () => {
 	const {
@@ -35,13 +38,65 @@ const BrandPage = () => {
 							</Flex>
 						))}
 					</StyledCategoriesContainer>
-					<StyledShopSection>
-						<StyledFiltersContainer></StyledFiltersContainer>
-						<Flex>
-							<StyledProductsHeader></StyledProductsHeader>
-							<StyledProductsSection></StyledProductsSection>
+					{/*<StyledShopSection>*/}
+					{/*	<StyledFiltersContainer></StyledFiltersContainer>*/}
+					{/*	<Flex>*/}
+					{/*		<StyledProductsHeader></StyledProductsHeader>*/}
+					{/*		<StyledProductsSection></StyledProductsSection>*/}
+					{/*	</Flex>*/}
+					{/*</StyledShopSection>*/}
+
+					{/*	Shop Section */}
+					<Flex mt='26px' flexDirection={['column', null, null, 'row']}>
+						{/*	Filters Section */}
+						<Flex mr='46px'>
+							{/*	Categories Filters */}
+							<Flex flexDirection='column'>
+								<Text textTransform='uppercase' lineHeight='3' fontWeight={600} mb='16px'>
+									Categories
+								</Text>
+								<Checkbox py='6px' fontSize='14px' borderColor='gray' color='gray'>
+									Plumbing(1)
+								</Checkbox>
+							</Flex>
 						</Flex>
-					</StyledShopSection>
+
+						{/*	Products Section */}
+						<Flex grow={1} flexDirection='column' gap='16px'>
+							{/*	Products Header */}
+							<Flex width='100%' justifyContent='space-between' alignItems='center' my='16px'>
+								<Text>2 Products</Text>
+								<Menu>
+									<MenuButton
+										width='200px'
+										variant='unstyled'
+										borderRadius={0}
+										bg='black'
+										color='white'
+										as={Button}
+										rightIcon={<ChevronDownIcon />}
+									>
+										Sort By
+									</MenuButton>
+									<MenuList>
+										<MenuItem>Download</MenuItem>
+										<MenuItem>Create a Copy</MenuItem>
+										<MenuItem>Mark as Draft</MenuItem>
+										<MenuItem>Delete</MenuItem>
+										<MenuItem>Attend a Workshop</MenuItem>
+									</MenuList>
+								</Menu>
+							</Flex>
+
+							{/*	Products list */}
+							<Flex gap='26px' flexWrap='wrap' my='16px' bg='gray' justifyContent='center'>
+								<ProductCard />
+								<ProductCard />
+								<ProductCard />
+								<ProductCard />
+							</Flex>
+						</Flex>
+					</Flex>
 				</>
 			)
 		}
