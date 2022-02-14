@@ -1,15 +1,19 @@
+import React from 'react'
 import FeatureCard from '@Admin/Features/AdminDashboard/Components/FeaturesCardsSection/FeatureCard'
 import { Text } from '@Components'
 import styled from 'styled-components'
+import { useGetAnalyticsQuery } from '@Admin/Redux/AdminApi'
 
 const FeaturesCardsSection = () => {
+	const { data } = useGetAnalyticsQuery()
+
 	return (
 		<div>
 			<StyledHeader>Analytics Overview</StyledHeader>
 			<StyledDiv>
 				<StyledCardContainer>
 					<FeatureCard
-						title='7'
+						title={data?.data['vendors']}
 						subtitle='Vendors'
 						bg='#fbf4ee'
 						sizeLarge={true}
@@ -17,7 +21,7 @@ const FeaturesCardsSection = () => {
 					/>
 
 					<FeatureCard
-						title='12'
+						title={data?.data['orders']}
 						subtitle='Orders'
 						bg='#f7f3f4'
 						sizeLarge={true}
@@ -25,7 +29,7 @@ const FeaturesCardsSection = () => {
 					/>
 
 					<FeatureCard
-						title='2'
+						title={data?.data['users']}
 						subtitle='Customers'
 						bg='#ffecd3'
 						sizeLarge={true}
@@ -33,7 +37,7 @@ const FeaturesCardsSection = () => {
 					/>
 
 					<FeatureCard
-						title='EGP 0'
+						title={'EGP ' + data?.data['total_sale']}
 						subtitle='Total Sale'
 						bg='#d9e2eb'
 						sizeLarge={true}
@@ -42,7 +46,7 @@ const FeaturesCardsSection = () => {
 				</StyledCardContainer>
 				<StyledCardContainer>
 					<FeatureCard
-						title='11'
+						title={data?.data['placed_orders']}
 						subtitle='In Process'
 						bg='#d9e2eb'
 						sizeLarge={false}
@@ -50,7 +54,7 @@ const FeaturesCardsSection = () => {
 					/>
 
 					<FeatureCard
-						title='0'
+						title={data?.data['shipped_orders']}
 						subtitle='Shipped'
 						bg='#d9e2eb'
 						sizeLarge={false}
@@ -58,7 +62,7 @@ const FeaturesCardsSection = () => {
 					/>
 
 					<FeatureCard
-						title='1'
+						title={data?.data['delivered_orders']}
 						subtitle='Delivered'
 						bg='#d9e2eb'
 						sizeLarge={false}
@@ -66,7 +70,7 @@ const FeaturesCardsSection = () => {
 					/>
 
 					<FeatureCard
-						title='0'
+						title={data?.data['cancelled_orders']}
 						subtitle='Cancelled'
 						bg='#d9e2eb'
 						sizeLarge={false}

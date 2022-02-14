@@ -32,6 +32,7 @@ export const adminApi = createApi({
 		'Country',
 		'Product',
 		'Review',
+		'Analytics',
 	],
 	endpoints: builder => ({
 		login: builder.mutation({
@@ -283,6 +284,16 @@ export const adminApi = createApi({
 				},
 			}),
 		}),
+		getAnalytics: builder.query({
+			query: () => ({
+				url: '/analytics',
+				method: 'POST',
+				providesTags: ['Analytic'],
+				body: {
+					data_count: true,
+				},
+			}),
+		}),
 	}),
 })
 
@@ -305,4 +316,5 @@ export const {
 	useGetCountriesQuery,
 	useGetProductsQuery,
 	useGetReviewsQuery,
+	useGetAnalyticsQuery,
 } = adminApi

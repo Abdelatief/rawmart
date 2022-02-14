@@ -1,13 +1,20 @@
-import React from 'react'
-import Table from '@Admin/Components/Table'
-import { Flex, Text } from '@Components'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { HiDotsHorizontal } from 'react-icons/hi'
-import { useGetOrdersQuery } from '@Admin/Redux/AdminApi'
+import Table from '@Admin/Components/Table'
 import moment from 'moment'
+import { Flex, Text } from '@Components'
+import { HiOutlineEye } from 'react-icons/hi'
+import { useGetOrdersQuery } from '@Admin/Redux/AdminApi'
+import { CgMore } from 'react-icons/cg'
 
 const TableSection = () => {
 	const { data } = useGetOrdersQuery()
+	const [extendMenu, setExtendMenu] = useState(false)
+	const [selectedItem, setSelectedItem] = useState()
+	const toggleExtendMenu = item => {
+		setExtendMenu(!extendMenu)
+		setSelectedItem(item)
+	}
 	return (
 		<StyledContainer>
 			<Table loading={false} resultCount={5}>
@@ -73,8 +80,24 @@ const TableSection = () => {
 								</Flex>
 							</Table.Td>
 							<Table.Td>
-								<Flex justifyContent='center' alignItems='center' fontSize={5} pl='50px' pr='50px'>
-									<HiDotsHorizontal />
+								<Flex fontSize={5}>
+									<StyledDotIcon
+										onClick={() => {
+											toggleExtendMenu(product.id)
+										}}
+									/>
+								</Flex>
+								<Flex>
+									{extendMenu && selectedItem === product.id && (
+										<StyledDropDown>
+											<StyledFlex>
+												<StyledViewIcon />
+												<Text fontSize={2} mb='2px' cursor='pointer'>
+													View
+												</Text>
+											</StyledFlex>
+										</StyledDropDown>
+									)}
 								</Flex>
 							</Table.Td>
 						</Table.BodyRow>
@@ -91,6 +114,39 @@ const StyledContainer = styled.div`
 const StyledImg = styled.img`
 	width: 75px;
 	height: 75px;
+`
+
+const StyledDropDown = styled.div`
+	position: absolute;
+	background: #d9e2eb;
+	box-shadow: 1px 1px 7px -6px #fff;
+	padding: 1px 5px 1px;
+	color: #000;
+	border-radius: 7px;
+	margin-top: -5px;
+	min-width: 100px;
+`
+
+const StyledViewIcon = styled(HiOutlineEye)`
+	background-color: green;
+	color: white;
+	border-radius: 10px;
+	font-size: 18px;
+	margin-right: 5px;
+`
+
+const StyledDotIcon = styled(CgMore)`
+	font-size: 24px;
+
+	&:hover {
+		cursor: pointer;
+	}
+`
+
+const StyledFlex = styled(Flex)`
+	&:hover {
+		cursor: pointer;
+	}
 `
 
 export default TableSection
