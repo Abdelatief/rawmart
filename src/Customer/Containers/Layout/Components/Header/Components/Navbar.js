@@ -50,6 +50,7 @@ const Navbar = () => {
 		navigate(`brands/${brand.slug}`, {
 			state: { brand },
 		})
+		setShowBrands(false)
 	}
 
 	const categoryNavItemClickHandler = category => {

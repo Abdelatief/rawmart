@@ -38,18 +38,11 @@ const BrandPage = () => {
 							</Flex>
 						))}
 					</StyledCategoriesContainer>
-					{/*<StyledShopSection>*/}
-					{/*	<StyledFiltersContainer></StyledFiltersContainer>*/}
-					{/*	<Flex>*/}
-					{/*		<StyledProductsHeader></StyledProductsHeader>*/}
-					{/*		<StyledProductsSection></StyledProductsSection>*/}
-					{/*	</Flex>*/}
-					{/*</StyledShopSection>*/}
 
 					{/*	Shop Section */}
 					<Flex mt='26px' flexDirection={['column', null, null, 'row']}>
 						{/*	Filters Section */}
-						<Flex mr='46px'>
+						<Flex mr='46px' width={['100%', null, null, '310px']}>
 							{/*	Categories Filters */}
 							<Flex flexDirection='column'>
 								<Text textTransform='uppercase' lineHeight='3' fontWeight={600} mb='16px'>
@@ -116,13 +109,5 @@ const StyledCategoryImage = styled.img`
 	width: 164px;
 	height: 164px;
 `
-
-const StyledShopSection = styled.div``
-
-const StyledFiltersContainer = styled.div``
-
-const StyledProductsHeader = styled.div``
-
-const StyledProductsSection = styled.div``
 
 export default BrandPage
