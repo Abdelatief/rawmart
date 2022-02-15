@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
-import Table from '@Admin/Components/Table'
-import { Flex, Text } from '@Components'
 import styled from 'styled-components'
+import Table from '@Admin/Components/Table'
+import UserForm from '@Admin/Features/Users/UserForm'
+import { Flex, Popup, Text } from '@Components'
 import { CgMore } from 'react-icons/cg'
 import { MdOutlineEdit } from 'react-icons/md'
-import { UsersData } from '@Admin/Features/Users/UsersData'
+import { useGetUsersQuery } from '@Admin/Redux/AdminApi'
 
 const UserTableSection = () => {
 	const [extendMenu, setExtendMenu] = useState(false)
 	const [selectedItem, setSelectedItem] = useState()
+	const [userValue, setUserValue] = useState()
+	const [isOpen, setIsOpen] = useState(false)
+	const { data } = useGetUsersQuery()
 
 	const toggleExtendMenu = item => {
 		setExtendMenu(!extendMenu)
@@ -30,7 +34,7 @@ const UserTableSection = () => {
 					</Table.HeaderRow>
 				</Table.Thead>
 				<tbody>
-					{UsersData.map(user => (
+					{data?.data?.map(user => (
 						<Table.BodyRow key={user.id}>
 							<Table.Td>
 								<Flex justifyContent='center' alignItems='center'>
@@ -54,7 +58,7 @@ const UserTableSection = () => {
 							</Table.Td>
 							<Table.Td>
 								<Flex justifyContent='center' alignItems='center'>
-									{user.phoneNumber}
+									{user.phone}
 								</Flex>
 							</Table.Td>
 							<Table.Td>
@@ -73,7 +77,13 @@ const UserTableSection = () => {
 								<Flex>
 									{extendMenu && selectedItem === user.id && (
 										<StyledDropDown>
-											<StyledFlex pt='10px'>
+											<StyledFlex
+												pt='10px'
+												onClick={() => {
+													setIsOpen(true)
+													setUserValue(user)
+												}}
+											>
 												<StyledEditIcon />
 												<Text fontSize={2} mb='2px'>
 													Edit
@@ -87,6 +97,9 @@ const UserTableSection = () => {
 					))}
 				</tbody>
 			</Table>
+			<Popup isOpen={isOpen} setIsOpen={setIsOpen} height='80%' width='70%' padding='30px'>
+				{<UserForm title='EDIT USER' user={userValue} />}
+			</Popup>
 		</StyledContainer>
 	)
 }

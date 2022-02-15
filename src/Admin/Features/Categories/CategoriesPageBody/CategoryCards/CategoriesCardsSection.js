@@ -1,20 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
-import { CategoriesData } from '@Admin/Features/Categories/CategoriesPageBody/CategoryCards/CategoryData'
 import CategoryCards from '@Admin/Features/Categories/CategoriesPageBody/CategoryCards/CategoryCards'
+import { useGetCategoriesQuery } from '@Admin/Redux/AdminApi'
 
-const CategoriesCardsSection = ({ newVersion }) => {
-	const renderer = () => {
-		if (!newVersion) {
-			return CategoriesData.map(category => (
-				<CategoryCards key={category.id} title={category.title} image={category.img} />
-			))
-		}
-		return CategoriesData.filter(value => value.new).map(category => (
-			<CategoryCards key={category.id} title={category.title} image={category.img} />
-		))
-	}
-	return <StyledCardSection>{renderer()}</StyledCardSection>
+const CategoriesCardsSection = () => {
+	const { data } = useGetCategoriesQuery()
+
+	return (
+		<StyledCardSection>
+			{data?.data?.map(category => (
+				<CategoryCards key={category.id} category={category} />
+			))}
+		</StyledCardSection>
+	)
 }
 const StyledCardSection = styled.div`
 	width: 85vw;
