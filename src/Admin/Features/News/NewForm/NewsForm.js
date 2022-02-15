@@ -1,16 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
+import NewFromUpperSection from '@Admin/Features/News/NewForm/NewFromUpperSection'
+import NewsFromLowerSection from '@Admin/Features/News/NewForm/NewsFromLowerSection'
 import { Text } from '@Components'
-import CategoryFormUpperSection from '@Admin/Features/Categories/AddCategoryForm/CategoryFormUpperSection'
-import CategoryFormLowerSection from '@Admin/Features/Categories/AddCategoryForm/CategoryFormLowerSection'
 
-const CategoriesForm = () => {
+const NewsForm = ({ title, news }) => {
 	return (
 		<div>
-			<StyledHeader>ADD CATEGORY</StyledHeader>
+			<StyledHeader>{title}</StyledHeader>
 			<StyledForm style>
-				<CategoryFormUpperSection />
-				<CategoryFormLowerSection />
+				<NewFromUpperSection news={news} />
+				<NewsFromLowerSection news={news} />
 			</StyledForm>
 		</div>
 	)
@@ -35,4 +35,4 @@ const StyledForm = styled.form`
 	margin-top: 46px;
 `
 
-export default CategoriesForm
+export default NewsForm

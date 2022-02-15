@@ -2,25 +2,30 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Flex, FormInput, Text } from '@Components'
 import { VscAdd } from 'react-icons/vsc'
+import DragAndDropImage from '@Admin/Components/DragAndDropImage'
 
-const VendorFormUpperSection = () => {
+const VendorFormUpperSection = ({ vendor }) => {
 	const [additionalAddress, setAdditionalAddress] = useState(false)
 	const [additionalPhoneNumber, setAdditionalPhoneNumber] = useState(false)
 
 	return (
 		<FormGroupFlex flexDirection={['column', null, 'row']}>
-			{/*TODO:Add image upload */}
 			<div>
 				<StyledLabel>Image</StyledLabel>
-				<StyledFlex>ADD Image</StyledFlex>
+				<DragAndDropImage />
 			</div>
 			<StyledInnerContainer>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
-					<FormInput label='Vendor Name (Brand Name)' required sizeLarge={true} />
+					<FormInput
+						label='Vendor Name (Brand Name)'
+						required
+						sizeLarge={true}
+						defaultValue={vendor ? vendor.name : ''}
+					/>
 				</FormGroupFlex>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
-					<FormInput label='Phone Number' required />
-					<FormInput label='Address' required />
+					<FormInput label='Phone Number' required defaultValue={vendor ? vendor.phone : ''} />
+					<FormInput label='Address' required defaultValue={vendor ? vendor.address : ''} />
 				</FormGroupFlex>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
 					{!additionalPhoneNumber ? (
@@ -33,7 +38,7 @@ const VendorFormUpperSection = () => {
 							</AddMoreButton>
 						</StyledFormInput>
 					) : (
-						<FormInput label='Additional Phone Number' />
+						<FormInput label='Additional Phone Number' defaultValue={vendor ? vendor.additional_phone : ''} />
 					)}
 					{!additionalAddress ? (
 						<StyledFormInput>
@@ -45,7 +50,7 @@ const VendorFormUpperSection = () => {
 							</AddMoreButton>
 						</StyledFormInput>
 					) : (
-						<FormInput label='Additional Address' />
+						<FormInput label='Additional Address' defaultValue={vendor ? vendor.additional_address : ''} />
 					)}
 				</FormGroupFlex>
 			</StyledInnerContainer>
@@ -54,13 +59,6 @@ const VendorFormUpperSection = () => {
 }
 const StyledInnerContainer = styled.div`
 	width: 100%;
-`
-const StyledFlex = styled(Flex)`
-	margin-right: 20px;
-	min-width: 183px;
-	min-height: 183px;
-	background-color: #d9d8d8;
-	border: 1px dashed black;
 `
 
 const FormGroupFlex = styled(Flex).attrs({

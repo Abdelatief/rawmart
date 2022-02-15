@@ -1,20 +1,33 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Table from '@Admin/Components/Table'
-import { Flex, Text } from '@Components'
+import RoleForm from '@Admin/Features/Roles/RoleForm'
+import { Flex, Popup, Text } from '@Components'
 import { CgMore } from 'react-icons/cg'
 import { MdOutlineEdit } from 'react-icons/md'
 import { AiOutlineDelete } from 'react-icons/ai'
-import { RolesData } from '@Admin/Features/Roles/RolesData'
+import { useGetRolesQuery, useDeleteRoleMutation } from '@Admin/Redux/AdminApi'
 
 const RolesTableSection = () => {
+	const { data, refetch } = useGetRolesQuery()
+	const [deleteRole, deleteRoleResult] = useDeleteRoleMutation()
 	const [extendMenu, setExtendMenu] = useState(false)
 	const [selectedItem, setSelectedItem] = useState()
-
+	const [isOpen, setIsOpen] = useState(false)
+	const [roleValue, setRole] = useState()
 	const toggleExtendMenu = item => {
 		setExtendMenu(!extendMenu)
 		setSelectedItem(item)
 	}
+
+	useEffect(() => {
+		console.log({ rolesData: data })
+	}, [data])
+
+	useEffect(() => {
+		console.log({ deleteRoleResponse: deleteRoleResult })
+		if (deleteRoleResult?.isSuccess) refetch()
+	}, [deleteRoleResult])
 
 	return (
 		<StyledContainer>
@@ -27,7 +40,7 @@ const RolesTableSection = () => {
 					</Table.HeaderRow>
 				</Table.Thead>
 				<tbody>
-					{RolesData.map(role => (
+					{data?.data?.map(role => (
 						<Table.BodyRow key={role.id}>
 							<Table.Td>
 								<Flex justifyContent='center' alignItems='center'>
@@ -51,13 +64,20 @@ const RolesTableSection = () => {
 								<Flex>
 									{extendMenu && selectedItem === role.id && (
 										<StyledDropDown>
-											<StyledFlex pt='10px'>
+											<StyledFlex
+												pt='10px'
+												onClick={() => {
+													setRole(role)
+													setIsOpen(true)
+												}}
+											>
 												<StyledEditIcon />
 												<Text fontSize={2} mb='2px'>
 													Edit
 												</Text>
 											</StyledFlex>
-											<StyledFlex>
+
+											<StyledFlex onClick={() => deleteRole(role.id)}>
 												<StyledDeleteIcon />
 												<Text fontSize={2}>Delete</Text>
 											</StyledFlex>
@@ -69,6 +89,9 @@ const RolesTableSection = () => {
 					))}
 				</tbody>
 			</Table>
+			<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px'>
+				{<RoleForm title='Edit ROLE' role={roleValue} />}
+			</Popup>
 		</StyledContainer>
 	)
 }
