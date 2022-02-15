@@ -10,7 +10,7 @@ const FormSelectedInput = forwardRef(({ required = false, label, options, width,
 			</FormLabel>
 			<SelectInput ref={ref} width={width} icon={icon} {...restProps}>
 				<StyledOption value={0}>Select {label}</StyledOption>
-				{options.map(option => (
+				{options?.map(option => (
 					<StyledOption value={option.id} key={option.id}>
 						{option.name}
 					</StyledOption>

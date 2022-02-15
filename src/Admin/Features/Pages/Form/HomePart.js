@@ -5,7 +5,7 @@ import { Text } from '@Components'
 import AdditionalHomePart from '@Admin/Features/Pages/Form/AdditionalHomePart'
 
 const HomePart = () => {
-	/*TODO:Refactor*/
+	/*TODO:Refactor Dynamic Form*/
 	const renderer = () => {
 		return <AdditionalHomePart />
 	}

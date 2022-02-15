@@ -1,45 +1,54 @@
-import React from 'react'
-import { Button, Text } from '@Components'
+import React, { useState } from 'react'
+import { Button, Popup, Text } from '@Components'
+import { VscAdd } from 'react-icons/vsc'
 import styled from 'styled-components'
+import ShippingMethodsForm from '@Admin/Features/ShippingMethods/ShippingMethodsForm'
 
-const TableHeader = () => {
+const ShippingMethodHeaderSection = () => {
+	const [isOpen, setIsOpen] = useState(false)
 	return (
 		<StyledOuterContainer>
 			<StyledHeaderDiv>
 				<StyledLeftContainer>
-					<StyledHeader>Recent Sales</StyledHeader>
+					<StyledHeader>Shipping Methods</StyledHeader>
 				</StyledLeftContainer>
 				<StyledRightContainer>
 					<Button
 						variant='tertiary'
 						mt='-20px'
 						minWidth={null}
-						width='187px'
+						width='230px'
 						fontSize={3}
 						display='flex'
 						justifyContent='center'
+						onClick={() => {
+							setIsOpen(true)
+						}}
 					>
+						<VscAdd />
 						<Text fontSize={2} ml='5px'>
-							View All Orders
+							Add Shipping Method
 						</Text>
 					</Button>
+					<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px' width='70%' height='80%'>
+						{<ShippingMethodsForm title='ADD SHIPPING METHOD' />}
+					</Popup>
 				</StyledRightContainer>
 			</StyledHeaderDiv>
 		</StyledOuterContainer>
 	)
 }
+
 const StyledOuterContainer = styled.div`
-	margin-bottom: 40px;
 	display: block;
-	margin-top: 30px;
+	margin-top: -20px;
 `
 const StyledHeaderDiv = styled.div`
-	margin-bottom: 40px;
 	display: flex;
 	@media (max-width: 750px) {
 		display: block;
 	}
-	margin-top: 20px;
+	margin-top: -20px;
 `
 
 const StyledLeftContainer = styled.div`
@@ -47,7 +56,7 @@ const StyledLeftContainer = styled.div`
 	justify-content: flex-start;
 `
 const StyledRightContainer = styled.div`
-	flex: 10%;
+	flex: 0.5%;
 	justify-content: flex-end;
 `
 const StyledHeader = styled(Text).attrs({
@@ -58,8 +67,13 @@ const StyledHeader = styled(Text).attrs({
 	min-height: 50px;
 	@media (max-width: 750px) {
 		background: #e0ecde;
+		margin-top: 40px;
+		padding: 10px;
 		text-align: center;
-		width: 100%;
+		margin-bottom: 15px;
+		position: relative;
+		min-height: 50px;
 	}
 `
-export default TableHeader
+
+export default ShippingMethodHeaderSection

@@ -2,25 +2,30 @@ import React from 'react'
 import { Flex, FormInput, Text } from '@Components'
 import styled from 'styled-components'
 import FormSelectedInput from '@Admin/Components/FormSelectedInput'
+import DragAndDropImage from '@Admin/Components/DragAndDropImage'
 
-const CategoryFormUpperSection = () => {
+const CategoryFormUpperSection = ({ category }) => {
 	return (
 		<FormGroupFlex flexDirection={['column', null, 'row']}>
-			{/*TODO:Add image upload */}
 			<div>
 				<StyledLabel>Image</StyledLabel>
-				<StyledFlex>ADD Image</StyledFlex>
+				<DragAndDropImage />
 			</div>
 			<StyledInnerContainer>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
-					<FormSelectedInput label='Language' options={[{ name: 'English' }, { name: 'Arabic' }]} />
+					<FormSelectedInput
+						label='Language'
+						options={[{ name: 'English' }, { name: 'Arabic' }]}
+						defaultValue={category ? category.language : ''}
+					/>
 					<FormSelectedInput
 						label='Parent Category'
 						options={[{ name: 'Electric sub' }, { name: 'Electrical' }, { name: 'Painting' }]}
+						defaultValue={category ? category.parent_name : ''}
 					/>
 				</FormGroupFlex>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
-					<FormInput label='Category Name' required />
+					<FormInput label='Category Name' required defaultValue={category ? category.name : ''} />
 				</FormGroupFlex>
 			</StyledInnerContainer>
 		</FormGroupFlex>
@@ -28,13 +33,6 @@ const CategoryFormUpperSection = () => {
 }
 const StyledInnerContainer = styled.div`
 	width: 100%;
-`
-const StyledFlex = styled(Flex)`
-	margin-right: 20px;
-	min-width: 183px;
-	min-height: 183px;
-	background-color: #d9d8d8;
-	border: 1px dashed black;
 `
 
 const FormGroupFlex = styled(Flex).attrs({

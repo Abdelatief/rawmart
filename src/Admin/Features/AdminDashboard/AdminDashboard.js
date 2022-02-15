@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 import FeaturesCardsSection from '@Admin/Features/AdminDashboard/Components/FeaturesCardsSection/FeatureCardsSection'
 import TableSection from '@Admin/Features/AdminDashboard/Components/TableSection/TableSection'
-import TableHeader from '@Admin/Features/AdminDashboard/Components/TableSection/TableHeader'
+import MiddlePartOfPage from '@Admin/Features/AdminDashboard/Components/TableSection/MiddlePartOfPage'
 const AdminDashboard = () => {
 	return (
 		<StyledDiv>
 			<StyledContainer>
 				<FeaturesCardsSection />
-				<TableHeader />
+				<MiddlePartOfPage />
 				<TableSection />
 			</StyledContainer>
 		</StyledDiv>
@@ -20,7 +20,7 @@ const StyledDiv = styled.div`
 	max-height: 100%;
 `
 const StyledContainer = styled.div`
-	margin: 20px;
+	margin: 30px;
 `
 
 export default AdminDashboard
