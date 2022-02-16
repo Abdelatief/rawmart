@@ -3,40 +3,33 @@ import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
 import { Button, Flex, FormInput, Text, Popup } from '@Components'
 import { MdDone } from 'react-icons/md'
-import { useAddRoleMutation, useGetRolesQuery } from '@Admin/Redux/AdminApi'
-import {
-	Modal,
-	ModalOverlay,
-	ModalContent,
-	ModalHeader,
-	ModalFooter,
-	ModalBody,
-	ModalCloseButton,
-} from '@chakra-ui/react'
+import { useAddRoleMutation, useGetRolesQuery, useUpdateRoleMutation } from '@Admin/Redux/AdminApi'
 
 const RoleForm = ({ title, role, isOpen, setIsOpen }) => {
 	const [addRole, addRoleResult] = useAddRoleMutation()
+	const [updateRole, updateRoleResult] = useUpdateRoleMutation()
 	const { refetch } = useGetRolesQuery()
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 	} = useForm()
-	console.log({ refetchForm: refetch })
 	const onSubmit = data => {
 		if (title === 'ADD ROLE') {
-			console.log({ dataValue: data })
-			// addRole({data[name], data[identifier]})
 			addRole(data)
-			// onClose()
+			setIsOpen(false)
+		} else if (title === 'Edit ROLE') {
+			updateRole({ id: role.id, identifier: data.identifier, name: data.name })
 			setIsOpen(false)
 		}
 	}
 	useEffect(() => {
-		console.log({ addRoleResponse: addRoleResult })
 		if (addRoleResult?.isSuccess) refetch()
 	}, [addRoleResult])
 
+	useEffect(() => {
+		if (updateRoleResult?.isSuccess) refetch()
+	}, [updateRoleResult])
 	return (
 		<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px'>
 			<StyledHeader>{title}</StyledHeader>
@@ -111,7 +104,5 @@ const StyledButtonDiv = styled.div`
 
 export const StyledErrorMessage = styled.text`
 	color: red;
-	//margin-left:42px;
-	//display: block;
 `
 export default RoleForm

@@ -13,8 +13,8 @@ const RolesTableSection = () => {
 	const [deleteRole, deleteRoleResult] = useDeleteRoleMutation()
 	const [extendMenu, setExtendMenu] = useState(false)
 	const [selectedItem, setSelectedItem] = useState()
-	const [roleValue, setRole] = useState()
 	const [isOpen, setIsOpen] = useState(false)
+	const [roleData, setRoleData] = useState()
 	const toggleExtendMenu = item => {
 		setExtendMenu(!extendMenu)
 		setSelectedItem(item)
@@ -58,11 +58,13 @@ const RolesTableSection = () => {
 								</Flex>
 								<Flex>
 									{extendMenu && selectedItem === role.id && (
-										<StyledDropDown>
+										<StyledDropDown onClick={() => setRoleData(role)}>
 											<StyledFlex
 												pt='10px'
 												onClick={() => {
-													setRole(role)
+													setRoleData(role)
+													console.log({ roleValue: roleData })
+													console.log({ role: role })
 													setIsOpen(true)
 												}}
 											>
@@ -84,7 +86,7 @@ const RolesTableSection = () => {
 					))}
 				</tbody>
 			</Table>
-			<RoleForm title='Edit ROLE' role={roleValue} isOpen={isOpen} setIsOpen={setIsOpen} />
+			<RoleForm title='Edit ROLE' role={roleData} isOpen={isOpen} setIsOpen={setIsOpen} />
 		</StyledContainer>
 	)
 }

@@ -76,6 +76,15 @@ export const adminApi = createApi({
 			}),
 		}),
 
+		updateRole: builder.mutation({
+			query: body => ({
+				url: `/roles/edit`,
+				method: 'POST',
+				body,
+				invalidateTags: ['Role'],
+			}),
+		}),
+
 		getUsers: builder.query({
 			query: () => ({
 				url: '/users',
@@ -312,6 +321,8 @@ export const {
 	useLoginMutation,
 	useGetRolesQuery,
 	useDeleteRoleMutation,
+	useAddRoleMutation,
+	useUpdateRoleMutation,
 	useGetUsersQuery,
 	useUpdateUserMutation,
 	useGetVendorsQuery,
@@ -328,5 +339,4 @@ export const {
 	useGetProductsQuery,
 	useGetReviewsQuery,
 	useGetAnalyticsQuery,
-	useAddRoleMutation,
 } = adminApi
