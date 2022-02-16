@@ -20,9 +20,9 @@ const RolesTableSection = () => {
 		setSelectedItem(item)
 	}
 
-	useEffect(() => {
-		if (deleteRoleResult?.isSuccess) refetch()
-	}, [deleteRoleResult])
+	// useEffect(() => {
+	// 	if (deleteRoleResult?.isSuccess) refetch()
+	// }, [deleteRoleResult])
 
 	return (
 		<StyledContainer>

@@ -2,8 +2,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
 import { LocalStorageKeys } from '@Admin/Constants'
 
 const baseQuery = fetchBaseQuery({
-	// baseUrl: 'https://api.rawmartapp.com/api',
-	baseUrl: 'http://api.dussurapp.com/api',
+	baseUrl: 'https://api.rawmartapp.com/public/api',
+	// baseUrl: 'http://api.dussurapp.com/api',
 	prepareHeaders: headers => {
 		const authTokens = JSON.parse(localStorage.getItem(LocalStorageKeys.adminAuthKey) ?? '{}')
 		if (authTokens?.access_token) {
@@ -64,7 +64,7 @@ export const adminApi = createApi({
 				method: 'POST',
 				body: { id },
 			}),
-			invalidateTags: ['Role'],
+			invalidatesTags: ['Role'],
 		}),
 
 		addRole: builder.mutation({
@@ -73,7 +73,7 @@ export const adminApi = createApi({
 				method: 'POST',
 				body,
 			}),
-			invalidateTags: ['Role'],
+			invalidatesTags: ['Role'],
 		}),
 
 		updateRole: builder.mutation({
@@ -81,8 +81,8 @@ export const adminApi = createApi({
 				url: `/roles/edit`,
 				method: 'POST',
 				body,
-				invalidateTags: ['Role'],
 			}),
+			invalidatesTags: ['Role'],
 		}),
 
 		getUsers: builder.query({
