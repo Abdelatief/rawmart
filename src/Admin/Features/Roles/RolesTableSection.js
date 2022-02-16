@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import Table from '@Admin/Components/Table'
 import RoleForm from '@Admin/Features/Roles/RoleForm'
@@ -19,10 +19,6 @@ const RolesTableSection = () => {
 		setExtendMenu(!extendMenu)
 		setSelectedItem(item)
 	}
-
-	// useEffect(() => {
-	// 	if (deleteRoleResult?.isSuccess) refetch()
-	// }, [deleteRoleResult])
 
 	return (
 		<StyledContainer>
