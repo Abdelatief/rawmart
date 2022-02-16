@@ -27,12 +27,14 @@ import PaymentMethods from '@Admin/Features/Payment Methods/PaymentMethods'
 import News from '@Admin/Features/News/News'
 import Products from '@Admin/Features/Products/Products'
 import Reviews from '@Admin/Features/Products/ProductsReviews'
+import { adminStore } from '@Admin/Redux/AdminStore'
+import { Provider } from 'react-redux'
 
 function App() {
 	return (
 		<>
 			{/*  Admin Routes  */}
-			<ApiProvider api={adminApi}>
+			<Provider store={adminStore}>
 				<Routes>
 					<Route path='/admin' element={<AdminLayout />}>
 						<Route index element={<AdminHome />} />
@@ -67,7 +69,7 @@ function App() {
 						</Route>
 					</Route>
 				</Routes>
-			</ApiProvider>
+			</Provider>
 
 			{/*  Customer Routes  */}
 			<ApiProvider api={customerApi}>

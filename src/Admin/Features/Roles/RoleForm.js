@@ -1,14 +1,13 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
 import { Button, Flex, FormInput, Text, Popup } from '@Components'
 import { MdDone } from 'react-icons/md'
-import { useAddRoleMutation, useGetRolesQuery, useUpdateRoleMutation } from '@Admin/Redux/AdminApi'
+import { useAddRoleMutation, useUpdateRoleMutation } from '@Admin/Redux/AdminApi'
 
 const RoleForm = ({ title, role, isOpen, setIsOpen }) => {
 	const [addRole, addRoleResult] = useAddRoleMutation()
 	const [updateRole, updateRoleResult] = useUpdateRoleMutation()
-	const { refetch } = useGetRolesQuery()
 	const {
 		register,
 		handleSubmit,
@@ -23,13 +22,7 @@ const RoleForm = ({ title, role, isOpen, setIsOpen }) => {
 			setIsOpen(false)
 		}
 	}
-	useEffect(() => {
-		if (addRoleResult?.isSuccess) refetch()
-	}, [addRoleResult])
 
-	useEffect(() => {
-		if (updateRoleResult?.isSuccess) refetch()
-	}, [updateRoleResult])
 	return (
 		<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px'>
 			<StyledHeader>{title}</StyledHeader>

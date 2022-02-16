@@ -46,7 +46,6 @@ export const adminApi = createApi({
 			query: () => ({
 				url: '/roles',
 				method: 'POST',
-				providesTags: ['Role'],
 				body: {
 					dir: 'desc',
 					name: '',
@@ -56,6 +55,7 @@ export const adminApi = createApi({
 					sort: 'id',
 				},
 			}),
+			providesTags: ['Role'],
 		}),
 
 		deleteRole: builder.mutation({
@@ -63,8 +63,8 @@ export const adminApi = createApi({
 				url: '/roles/delete',
 				method: 'POST',
 				body: { id },
-				invalidateTags: ['Role'],
 			}),
+			invalidateTags: ['Role'],
 		}),
 
 		addRole: builder.mutation({
@@ -72,8 +72,8 @@ export const adminApi = createApi({
 				url: 'roles/add',
 				method: 'POST',
 				body,
-				invalidateTags: ['Role'],
 			}),
+			invalidateTags: ['Role'],
 		}),
 
 		updateRole: builder.mutation({
