@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Table from '@Admin/Components/Table'
 import RoleForm from '@Admin/Features/Roles/RoleForm'
-import { Flex, Popup, Text } from '@Components'
+import { Flex, Text } from '@Components'
 import { CgMore } from 'react-icons/cg'
 import { MdOutlineEdit } from 'react-icons/md'
 import { AiOutlineDelete } from 'react-icons/ai'
@@ -13,25 +13,20 @@ const RolesTableSection = () => {
 	const [deleteRole, deleteRoleResult] = useDeleteRoleMutation()
 	const [extendMenu, setExtendMenu] = useState(false)
 	const [selectedItem, setSelectedItem] = useState()
-	const [isOpen, setIsOpen] = useState(false)
 	const [roleValue, setRole] = useState()
+	const [isOpen, setIsOpen] = useState(false)
 	const toggleExtendMenu = item => {
 		setExtendMenu(!extendMenu)
 		setSelectedItem(item)
 	}
 
 	useEffect(() => {
-		console.log({ rolesData: data })
-	}, [data])
-
-	useEffect(() => {
-		console.log({ deleteRoleResponse: deleteRoleResult })
 		if (deleteRoleResult?.isSuccess) refetch()
 	}, [deleteRoleResult])
 
 	return (
 		<StyledContainer>
-			<Table loading={false} resultCount={5}>
+			<Table loading={false} resultCount={data?.data.length}>
 				<Table.Thead>
 					<Table.HeaderRow>
 						<Table.Th>Name</Table.Th>
@@ -89,9 +84,7 @@ const RolesTableSection = () => {
 					))}
 				</tbody>
 			</Table>
-			<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px'>
-				{<RoleForm title='Edit ROLE' role={roleValue} />}
-			</Popup>
+			<RoleForm title='Edit ROLE' role={roleValue} isOpen={isOpen} setIsOpen={setIsOpen} />
 		</StyledContainer>
 	)
 }

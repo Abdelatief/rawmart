@@ -1,24 +1,76 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import { Button, Flex, FormInput, Text } from '@Components'
+import { useForm } from 'react-hook-form'
+import { Button, Flex, FormInput, Text, Popup } from '@Components'
 import { MdDone } from 'react-icons/md'
-const RoleForm = ({ title, role }) => {
+import { useAddRoleMutation, useGetRolesQuery } from '@Admin/Redux/AdminApi'
+import {
+	Modal,
+	ModalOverlay,
+	ModalContent,
+	ModalHeader,
+	ModalFooter,
+	ModalBody,
+	ModalCloseButton,
+} from '@chakra-ui/react'
+
+const RoleForm = ({ title, role, isOpen, setIsOpen }) => {
+	const [addRole, addRoleResult] = useAddRoleMutation()
+	const { refetch } = useGetRolesQuery()
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm()
+	console.log({ refetchForm: refetch })
+	const onSubmit = data => {
+		if (title === 'ADD ROLE') {
+			console.log({ dataValue: data })
+			// addRole({data[name], data[identifier]})
+			addRole(data)
+			// onClose()
+			setIsOpen(false)
+		}
+	}
+	useEffect(() => {
+		console.log({ addRoleResponse: addRoleResult })
+		if (addRoleResult?.isSuccess) refetch()
+	}, [addRoleResult])
+
 	return (
-		<div>
+		<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px'>
 			<StyledHeader>{title}</StyledHeader>
-			<StyledForm style>
+			<StyledForm style onSubmit={handleSubmit(onSubmit)}>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
-					<FormInput label='Role Name' required defaultValue={role ? role.name : ''} />
-					<FormInput label='Identifier' required defaultValue={role ? role.identifier : ''} />
+					<div>
+						<FormInput
+							label='Role Name'
+							required
+							defaultValue={role ? role.name : ''}
+							{...register('name', { required: true })}
+						/>
+						{errors.name && <StyledErrorMessage>Role name is required!</StyledErrorMessage>}
+					</div>
+					<div>
+						<FormInput
+							label='Identifier'
+							required
+							defaultValue={role ? role.identifier : ''}
+							{...register('identifier', { required: true })}
+						/>
+						{errors.identifier && <StyledErrorMessage>Role Identifier is required!</StyledErrorMessage>}
+					</div>
 				</FormGroupFlex>
 				<StyledButtonDiv>
 					<Button width={['100%', null, '290px']} fontSize={3}>
-						<StyledIcon />
-						Save Role
+						<Flex justifyContent='center'>
+							<StyledIcon />
+							Save Role
+						</Flex>
 					</Button>
 				</StyledButtonDiv>
 			</StyledForm>
-		</div>
+		</Popup>
 	)
 }
 
@@ -57,4 +109,9 @@ const StyledButtonDiv = styled.div`
 	justify-content: center;
 `
 
+export const StyledErrorMessage = styled.text`
+	color: red;
+	//margin-left:42px;
+	//display: block;
+`
 export default RoleForm
