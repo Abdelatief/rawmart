@@ -38,6 +38,10 @@ const Navbar = () => {
 	const { data, isLoading, isSuccess } = useGetCategoriesQuery()
 	const brandsResult = useGetBrandsQuery()
 
+	useEffect(() => {
+		console.log({ data, isSuccess })
+	}, [data, isSuccess])
+
 	const brandsNavClickHandler = () => {
 		setShowBrands(!showBrands)
 	}

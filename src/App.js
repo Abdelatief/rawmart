@@ -14,7 +14,6 @@ import Categories from '@Admin/Features/Categories/Categories'
 import Pages from '@Admin/Features/Pages/Pages'
 import PageLayout from '@Admin/Features/Pages/PageLayout'
 import { ApiProvider } from '@reduxjs/toolkit/dist/query/react'
-import { customerApi } from '@Customer/Redux/CustomerApi'
 import CategoryPage from '@Customer/Features/CategoryPage'
 import BrandPage from '@Customer/Features/BrandPage/BrandPage'
 import { adminApi } from '@Admin/Redux/AdminApi'
@@ -27,6 +26,8 @@ import PaymentMethods from '@Admin/Features/Payment Methods/PaymentMethods'
 import News from '@Admin/Features/News/News'
 import Products from '@Admin/Features/Products/Products'
 import Reviews from '@Admin/Features/Products/ProductsReviews'
+import { Provider } from 'react-redux'
+import { customerStore } from '@Customer/Redux/CustomerStore'
 
 function App() {
 	return (
@@ -70,7 +71,7 @@ function App() {
 			</ApiProvider>
 
 			{/*  Customer Routes  */}
-			<ApiProvider api={customerApi}>
+			<Provider store={customerStore}>
 				<Routes>
 					<Route path='/' element={<CustomerLayout />}>
 						<Route index element={<LandingPage />} />
@@ -84,7 +85,7 @@ function App() {
 						</Route>
 					</Route>
 				</Routes>
-			</ApiProvider>
+			</Provider>
 		</>
 	)
 }
