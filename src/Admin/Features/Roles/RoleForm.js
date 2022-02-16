@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Button, Flex, FormInput, Text } from '@Components'
 import { MdDone } from 'react-icons/md'
 const RoleForm = ({ title, role }) => {
+	console.log({ role })
 	return (
 		<div>
 			<StyledHeader>{title}</StyledHeader>

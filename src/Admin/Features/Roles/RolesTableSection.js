@@ -89,9 +89,11 @@ const RolesTableSection = () => {
 					))}
 				</tbody>
 			</Table>
-			<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px'>
-				{<RoleForm title='Edit ROLE' role={roleValue} />}
-			</Popup>
+			{isOpen && roleValue && (
+				<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px'>
+					{<RoleForm title='Edit ROLE' role={roleValue} />}
+				</Popup>
+			)}
 		</StyledContainer>
 	)
 }
