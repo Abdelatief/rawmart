@@ -57,6 +57,7 @@ export const adminApi = createApi({
 				},
 			}),
 		}),
+
 		deleteRole: builder.mutation({
 			query: id => ({
 				url: '/roles/delete',
@@ -65,6 +66,25 @@ export const adminApi = createApi({
 				invalidateTags: ['Role'],
 			}),
 		}),
+
+		addRole: builder.mutation({
+			query: body => ({
+				url: 'roles/add',
+				method: 'POST',
+				body,
+				invalidateTags: ['Role'],
+			}),
+		}),
+
+		updateRole: builder.mutation({
+			query: body => ({
+				url: `/roles/edit`,
+				method: 'POST',
+				body,
+				invalidateTags: ['Role'],
+			}),
+		}),
+
 		getUsers: builder.query({
 			query: () => ({
 				url: '/users',
@@ -301,6 +321,8 @@ export const {
 	useLoginMutation,
 	useGetRolesQuery,
 	useDeleteRoleMutation,
+	useAddRoleMutation,
+	useUpdateRoleMutation,
 	useGetUsersQuery,
 	useUpdateUserMutation,
 	useGetVendorsQuery,

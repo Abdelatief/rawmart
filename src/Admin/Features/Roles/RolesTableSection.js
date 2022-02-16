@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Table from '@Admin/Components/Table'
 import RoleForm from '@Admin/Features/Roles/RoleForm'
-import { Flex, Popup, Text } from '@Components'
+import { Flex, Text } from '@Components'
 import { CgMore } from 'react-icons/cg'
 import { MdOutlineEdit } from 'react-icons/md'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { useGetRolesQuery, useDeleteRoleMutation } from '@Admin/Redux/AdminApi'
+import { Popup } from '@Components'
 
 const RolesTableSection = () => {
 	const { data, refetch } = useGetRolesQuery()
@@ -14,24 +15,19 @@ const RolesTableSection = () => {
 	const [extendMenu, setExtendMenu] = useState(false)
 	const [selectedItem, setSelectedItem] = useState()
 	const [isOpen, setIsOpen] = useState(false)
-	const [roleValue, setRole] = useState()
+	const [roleData, setRoleData] = useState()
 	const toggleExtendMenu = item => {
 		setExtendMenu(!extendMenu)
 		setSelectedItem(item)
 	}
 
 	useEffect(() => {
-		console.log({ rolesData: data })
-	}, [data])
-
-	useEffect(() => {
-		console.log({ deleteRoleResponse: deleteRoleResult })
 		if (deleteRoleResult?.isSuccess) refetch()
 	}, [deleteRoleResult])
 
 	return (
 		<StyledContainer>
-			<Table loading={false} resultCount={5}>
+			<Table loading={false} resultCount={data?.data.length}>
 				<Table.Thead>
 					<Table.HeaderRow>
 						<Table.Th>Name</Table.Th>
@@ -63,11 +59,13 @@ const RolesTableSection = () => {
 								</Flex>
 								<Flex>
 									{extendMenu && selectedItem === role.id && (
-										<StyledDropDown>
+										<StyledDropDown onClick={() => setRoleData(role)}>
 											<StyledFlex
 												pt='10px'
 												onClick={() => {
-													setRole(role)
+													setRoleData(role)
+													console.log({ roleValue: roleData })
+													console.log({ role: role })
 													setIsOpen(true)
 												}}
 											>
@@ -89,9 +87,9 @@ const RolesTableSection = () => {
 					))}
 				</tbody>
 			</Table>
-			{isOpen && roleValue && (
+			{isOpen && roleData && (
 				<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px'>
-					{<RoleForm title='Edit ROLE' role={roleValue} />}
+					{<RoleForm title='Edit ROLE' role={roleData} />}
 				</Popup>
 			)}
 		</StyledContainer>

@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
-import { Button, Popup, Text } from '@Components'
+import { Button, Text } from '@Components'
 import { VscAdd } from 'react-icons/vsc'
 import styled from 'styled-components'
 import RoleForm from '@Admin/Features/Roles/RoleForm'
 
 const RolesHeaderSection = () => {
 	const [isOpen, setIsOpen] = useState(false)
-
 	return (
 		<StyledOuterContainer>
 			<StyledHeaderDiv>
@@ -31,9 +30,8 @@ const RolesHeaderSection = () => {
 							Add Roles
 						</Text>
 					</Button>
-					<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px'>
-						{<RoleForm title='ADD ROLE' />}
-					</Popup>
+
+					<RoleForm title='ADD ROLE' isOpen={isOpen} setIsOpen={setIsOpen} />
 				</StyledRightContainer>
 			</StyledHeaderDiv>
 		</StyledOuterContainer>
