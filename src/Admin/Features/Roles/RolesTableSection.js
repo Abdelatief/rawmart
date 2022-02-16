@@ -7,7 +7,6 @@ import { CgMore } from 'react-icons/cg'
 import { MdOutlineEdit } from 'react-icons/md'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { useGetRolesQuery, useDeleteRoleMutation } from '@Admin/Redux/AdminApi'
-import { Popup } from '@Components'
 
 const RolesTableSection = () => {
 	const { data, refetch } = useGetRolesQuery()
@@ -87,11 +86,7 @@ const RolesTableSection = () => {
 					))}
 				</tbody>
 			</Table>
-			{isOpen && roleData && (
-				<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px'>
-					{<RoleForm title='Edit ROLE' role={roleData} />}
-				</Popup>
-			)}
+			{isOpen && roleData && <RoleForm title='Edit ROLE' role={roleData} isOpen={isOpen} setIsOpen={setIsOpen} />}
 		</StyledContainer>
 	)
 }
