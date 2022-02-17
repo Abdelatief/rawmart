@@ -29,9 +29,7 @@ const UsersHeaderSection = () => {
 							Add User
 						</Flex>
 					</Button>
-					<Popup isOpen={isOpen} setIsOpen={setIsOpen} height='80%' width='70%' padding='30px' overflow='auto'>
-						{<UserForm title='ADD USER' />}
-					</Popup>
+					{isOpen && <UserForm title='ADD USER' isOpen={isOpen} setIsOpen={setIsOpen} />}
 				</StyledRightContainer>
 			</StyledHeaderDiv>
 			<StyledInnerContainer>

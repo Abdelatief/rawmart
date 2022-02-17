@@ -95,7 +95,7 @@ const StyledButtonDiv = styled.div`
 	justify-content: center;
 `
 
-export const StyledErrorMessage = styled.text`
+const StyledErrorMessage = styled.text`
 	color: red;
 `
 export default RoleForm

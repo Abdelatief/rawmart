@@ -1,24 +1,39 @@
 import React, { forwardRef } from 'react'
 import styled from 'styled-components'
 
-const FormSelectedInput = forwardRef(({ required = false, label, options, width, icon, ...restProps }, ref) => {
-	return (
-		<StyledFormInput>
-			<FormLabel required={required}>
-				{label}
-				<FormSelectedInput.RequiredAsterisk required={required} />
-			</FormLabel>
-			<SelectInput ref={ref} width={width} icon={icon} {...restProps}>
-				<StyledOption value={0}>Select {label}</StyledOption>
-				{options?.map(option => (
-					<StyledOption value={option.id} key={option.id}>
-						{option.name}
+const FormSelectedInput = forwardRef(
+	({ required = false, label, options, width, icon, object = false, ...restProps }, ref) => {
+		return (
+			<StyledFormInput>
+				<FormLabel required={required}>
+					{label}
+					<FormSelectedInput.RequiredAsterisk required={required} />
+				</FormLabel>
+				<SelectInput ref={ref} width={width} object={object} icon={icon} {...restProps}>
+					<StyledOption value='' disabled selected>
+						Select {label}
 					</StyledOption>
-				))}
-			</SelectInput>
-		</StyledFormInput>
-	)
-})
+					{object
+						? // Object.values(options)?.map((option => (
+						  // 	<StyledOption  key={option.key}>
+						  // 		{option}
+						  // 	</StyledOption>
+						  // )))
+						  Object.entries(options)?.map(option => (
+								<StyledOption value={option[0]} key={option[0]}>
+									{option[1]}
+								</StyledOption>
+						  ))
+						: options?.map(option => (
+								<StyledOption value={option.id} key={option.id}>
+									{option.name}
+								</StyledOption>
+						  ))}
+				</SelectInput>
+			</StyledFormInput>
+		)
+	}
+)
 FormSelectedInput.RequiredAsterisk = ({ required }) => {
 	if (required) {
 		return <StyledAsterisk> *</StyledAsterisk>
