@@ -21,7 +21,7 @@ const UserTableSection = () => {
 
 	return (
 		<StyledContainer>
-			<Table loading={false} resultCount={5}>
+			<Table loading={false} resultCount={data?.data.length}>
 				<Table.Thead>
 					<Table.HeaderRow>
 						<Table.Th>ID</Table.Th>
@@ -97,9 +97,8 @@ const UserTableSection = () => {
 					))}
 				</tbody>
 			</Table>
-			<Popup isOpen={isOpen} setIsOpen={setIsOpen} height='80%' width='70%' padding='30px'>
-				{<UserForm title='EDIT USER' user={userValue} />}
-			</Popup>
+
+			{isOpen && userValue && <UserForm title='EDIT USER' user={userValue} isOpen={isOpen} setIsOpen={setIsOpen} />}
 		</StyledContainer>
 	)
 }

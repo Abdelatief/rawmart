@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button, Flex, FormInput, Popup, Text } from '@Components'
 import styled from 'styled-components'
 import FormSelectedInput from '@Admin/Components/FormSelectedInput'
@@ -7,9 +7,8 @@ import { useForm } from 'react-hook-form'
 
 const UserForm = ({ title, user, isOpen, setIsOpen }) => {
 	const [updateUser, updateUserResult] = useUpdateUserMutation()
-	const { data: rolesData } = useGetRolesQuery()
-	/*TODO REFACTOR*/
-	const { data: countriesData } = useGetCountriesQuery()
+	const { data: rolesData, isLoading: roleIsLoading } = useGetRolesQuery()
+	const { data: countriesData, isLoading } = useGetCountriesQuery()
 
 	let Username
 	if (user) Username = user.name.split(' ')
@@ -20,14 +19,33 @@ const UserForm = ({ title, user, isOpen, setIsOpen }) => {
 		formState: { errors },
 	} = useForm()
 	const onSubmit = data => {
-		if (title === 'ADD USER') {
-			// addUser(data)
+		for (let i = 0; i < rolesData?.data?.length; i++) {
+			console.log(rolesData?.data[i]?.id)
+			console.log(data.role_identifier)
+			console.log(rolesData?.data[i]?.id === data.role_identifier)
+			if (rolesData?.data[i]?.id === data.role_identifier) {
+				console.log(data.role_identifier)
+				data.role_identifier = rolesData.data[i].role_identifier
+				console.log(data.role_identifier)
+			}
+		}
+		if (user) {
+			// console.log(rolesData.data.get)
+			// console.log(data.role_identifier)
+
+			data.role_identifier = rolesData.data[data.role_identifier]
+			console.log({ roleData: rolesData.data })
+			updateUser({ id: user.id, ...data })
+			console.log({ id: user.id, ...data })
 			setIsOpen(false)
-		} else if (title === 'Edit USER') {
-			// updateUser({ id: user.id, identifier: data.identifier, name: data.name })
+		} else {
+			// addUser(data)
+
 			setIsOpen(false)
 		}
 	}
+	if (isLoading || roleIsLoading) return <div>Loading...</div>
+
 	return (
 		<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px' minHeight='80%'>
 			<StyledHeader>{title}</StyledHeader>
@@ -39,9 +57,9 @@ const UserForm = ({ title, user, isOpen, setIsOpen }) => {
 							label='Role'
 							required
 							options={rolesData?.data}
-							{...register('role', { required: true })}
+							{...register('role_identifier', { required: true })}
 						/>
-						{errors.role && <StyledErrorMessage>Role is required!</StyledErrorMessage>}
+						{errors.role_identifier && <StyledErrorMessage>Role is required!</StyledErrorMessage>}
 					</div>
 					<div>
 						<FormInput
@@ -72,10 +90,17 @@ const UserForm = ({ title, user, isOpen, setIsOpen }) => {
 						/>
 						{errors.email && <StyledErrorMessage>Email is required!</StyledErrorMessage>}
 					</div>
-					<div>
-						<FormInput label='Password' required {...register('password', { required: true })} />
-						{errors.password && <StyledErrorMessage>Password is required!</StyledErrorMessage>}
-					</div>
+					{user ? (
+						<div>
+							<FormInput label='Password' {...register('password')} />
+						</div>
+					) : (
+						<div>
+							<FormInput label='Password' required {...register('password', { required: true })} />
+							{errors.password && <StyledErrorMessage>Password is required!</StyledErrorMessage>}
+						</div>
+					)}
+
 					<div>
 						<FormInput label='Phone' defaultValue={user ? user.phone : ''} {...register('phone')} />
 					</div>

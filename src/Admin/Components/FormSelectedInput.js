@@ -14,12 +14,7 @@ const FormSelectedInput = forwardRef(
 						Select {label}
 					</StyledOption>
 					{object
-						? // Object.values(options)?.map((option => (
-						  // 	<StyledOption  key={option.key}>
-						  // 		{option}
-						  // 	</StyledOption>
-						  // )))
-						  Object.entries(options)?.map(option => (
+						? Object.entries(options)?.map(option => (
 								<StyledOption value={option[0]} key={option[0]}>
 									{option[1]}
 								</StyledOption>

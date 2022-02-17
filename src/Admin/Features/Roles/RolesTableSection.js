@@ -9,8 +9,8 @@ import { AiOutlineDelete } from 'react-icons/ai'
 import { useGetRolesQuery, useDeleteRoleMutation } from '@Admin/Redux/AdminApi'
 
 const RolesTableSection = () => {
-	const { data, refetch } = useGetRolesQuery()
-	const [deleteRole, deleteRoleResult] = useDeleteRoleMutation()
+	const { data } = useGetRolesQuery()
+	const [deleteRole] = useDeleteRoleMutation()
 	const [extendMenu, setExtendMenu] = useState(false)
 	const [selectedItem, setSelectedItem] = useState()
 	const [isOpen, setIsOpen] = useState(false)
@@ -59,8 +59,6 @@ const RolesTableSection = () => {
 												pt='10px'
 												onClick={() => {
 													setRoleData(role)
-													console.log({ roleValue: roleData })
-													console.log({ role: role })
 													setIsOpen(true)
 												}}
 											>
