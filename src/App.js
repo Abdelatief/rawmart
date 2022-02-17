@@ -26,6 +26,7 @@ import PaymentMethods from '@Admin/Features/Payment Methods/PaymentMethods'
 import News from '@Admin/Features/News/News'
 import Products from '@Admin/Features/Products/Products'
 import Reviews from '@Admin/Features/Products/ProductsReviews'
+import Cart from '@Customer/Features/Cart'
 import { Provider } from 'react-redux'
 import { customerStore } from '@Customer/Redux/CustomerStore'
 
@@ -83,6 +84,7 @@ function App() {
 						<Route path='brands'>
 							<Route path=':slug' element={<BrandPage />} />
 						</Route>
+						<Route path='cart' element={<Cart />} />
 					</Route>
 				</Routes>
 			</Provider>

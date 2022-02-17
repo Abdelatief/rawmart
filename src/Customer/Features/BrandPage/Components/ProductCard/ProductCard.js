@@ -1,11 +1,25 @@
 import { Image, Text, Flex, Button } from '@chakra-ui/react'
 import { AiOutlineHeart } from 'react-icons/ai'
 import { BsArrowRepeat } from 'react-icons/bs'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { addItem } from '@Customer/Redux/CartSlice'
 
 const ProductCard = ({ product }) => {
-	console.log({ product })
-	const [isHoverd, setIsHovered] = useState(false)
+	const dispatch = useDispatch()
+	// const { items } = useSelector(state => state.cart)
+	// console.log({ product })
+	const [isHovered, setIsHovered] = useState(false)
+
+	const addToCart = () => {
+		console.log({ product })
+		dispatch(addItem({ id: product?.id, variant: 'false' }))
+	}
+
+	// useEffect(() => {
+	// 	console.log({ storeItems: items })
+	// }, [items])
+
 	return (
 		<Flex
 			flexDirection='column'
@@ -19,12 +33,20 @@ const ProductCard = ({ product }) => {
 			_hover={{ cursor: 'pointer' }}
 		>
 			{/* card action buttons */}
-			{isHoverd && (
+			{isHovered && (
 				<Flex position='absolute' top='50%' bot='50%' width='100%' height='62px'>
 					<Button width='25%' height='62px' borderRadius={0}>
 						<AiOutlineHeart fontSize='26px' />
 					</Button>
-					<Button height='auto' bg='black' _hover={{ bg: '#AFD39A' }} width='50%' borderRadius={0} color='white'>
+					<Button
+						height='auto'
+						bg='black'
+						_hover={{ bg: '#AFD39A' }}
+						width='50%'
+						borderRadius={0}
+						color='white'
+						onClick={addToCart}
+					>
 						Add to Cart
 					</Button>
 					<Button width='25%' height='62px' borderRadius={0}>
