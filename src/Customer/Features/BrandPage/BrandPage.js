@@ -1,8 +1,9 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { useGetSingleBrandQuery } from '@Customer/Redux/CustomerApi'
 import { FluidContainer } from '@Components'
+import { useImmer } from 'use-immer'
 import {
 	Flex,
 	Text,
@@ -16,6 +17,7 @@ import {
 	RangeSliderTrack,
 	RangeSliderFilledTrack,
 	RangeSliderThumb,
+	useRangeSlider,
 } from '@chakra-ui/react'
 import { ChevronDownIcon } from '@chakra-ui/icons'
 import ProductCard from '@Customer/Features/BrandPage/Components/ProductCard'
@@ -24,13 +26,64 @@ const BrandPage = () => {
 	const {
 		state: { brand },
 	} = useLocation()
+	const [categories, setCategories] = useImmer({})
+	const [variableData, setVariableData] = useImmer({})
 	const brandResult = useGetSingleBrandQuery(brand.id)
+	const [priceRange, setPriceRange] = useImmer({})
+	const rangeSlider = useRangeSlider({
+		min: brandResult?.data?.min,
+		max: brandResult?.data?.max,
+		defaultValue: [brandResult?.data?.min, brandResult?.data?.max],
+		onChange: ([val1, val2]) => {
+			console.log({ val1, val2 })
+		},
+	})
 
 	console.log({ brand })
 
 	useEffect(() => {
 		console.log({ brandResult })
-	}, [brandResult])
+		if (brandResult?.isSuccess) {
+			console.log({ categories: brandResult?.data?.categories })
+			setCategories(draft => {
+				brandResult?.data?.categories.forEach(category => {
+					draft[category?.id] = { ...category, checked: false }
+				})
+			})
+			setVariableData(draft => {
+				brandResult?.data?.variable_data?.forEach(variable => {
+					draft[variable.variant_id] = { ...variable, checked: false }
+				})
+			})
+			setPriceRange(draft => {
+				draft.min = Number(brandResult?.data?.min)
+				draft.max = Number(brandResult?.data?.max)
+			})
+		}
+	}, [brandResult, setCategories])
+
+	useEffect(() => {
+		console.log({ priceRange })
+	}, [priceRange])
+
+	const categoryChangeHandler = (event, id) => {
+		setCategories(draft => {
+			draft[id].checked = event.target.checked
+		})
+	}
+
+	const variantChangeHandler = (event, id) => {
+		setVariableData(draft => {
+			draft[id].checked = event.target.checked
+		})
+	}
+
+	const priceRangeChangeHandler = ([val1, val2]) => {
+		setPriceRange(draft => {
+			draft.min = val1
+			draft.max = val2
+		})
+	}
 
 	const renderer = () => {
 		if (brandResult.isLoading) {
@@ -57,30 +110,80 @@ const BrandPage = () => {
 						{/*	Filters Section */}
 						<Flex mr='46px' width={['100%', null, null, '310px']} flexDirection='column' gap='26px'>
 							{/*	Categories Filters */}
-							<Flex flexDirection='column'>
-								<Text textTransform='uppercase' lineHeight='3' fontWeight={600} mb='16px'>
-									Categories
-								</Text>
-								<Checkbox py='6px' fontSize='14px' borderColor='gray' color='gray'>
-									Plumbing(1)
-								</Checkbox>
-								<Checkbox py='6px' fontSize='14px' borderColor='gray' color='gray'>
-									Test sub category(1)
-								</Checkbox>
-							</Flex>
+							{Object.keys(categories).length > 0 && (
+								<Flex flexDirection='column'>
+									<Text textTransform='uppercase' lineHeight='3' fontWeight={600} mb='16px'>
+										Categories
+									</Text>
+									{Object.values(categories).map(category => (
+										<Checkbox
+											onChange={e => categoryChangeHandler(e, category?.id)}
+											isChecked={category?.checked}
+											key={category?.id}
+											py='6px'
+											fontSize='14px'
+											borderColor='gray'
+											color='gray'
+										>
+											{category?.name}({category?.no_of_products})
+										</Checkbox>
+									))}
+								</Flex>
+							)}
+
+							{/* variable data section */}
+							{Object.keys(variableData).length > 0 && (
+								<Flex flexDirection='column'>
+									<Text textTransform='uppercase' lineHeight='3' fontWeight={600} mb='16px'>
+										Variant Item
+									</Text>
+									{Object.values(variableData).map(variable => (
+										<Checkbox
+											onChange={e => variantChangeHandler(e, variable.variant_id)}
+											isChecked={variable?.checked}
+											key={variable?.variant_id}
+											py='6px'
+											fontSize='14px'
+											borderColor='gray'
+											color='gray'
+										>
+											{variable?.variant_name}({variable?.no_of_products})
+										</Checkbox>
+									))}
+								</Flex>
+							)}
+
 							{/*	Price Range Section */}
-							<Flex flexDirection='column'>
-								<Text textTransform='uppercase' lineHeight='3' fontWeight={600} mb='16px'>
-									Price (EGP)
-								</Text>
-								<RangeSlider colorScheme='green' defaultValue={[10, 30]} width='100%' mt='10px'>
-									<RangeSliderTrack>
-										<RangeSliderFilledTrack />
-									</RangeSliderTrack>
-									<RangeSliderThumb bg='green.100' index={0} />
-									<RangeSliderThumb bg='green.100' index={1} />
-								</RangeSlider>
-							</Flex>
+							{brandResult?.data?.min !== brandResult?.data?.max && (
+								<Flex flexDirection='column'>
+									<Text textTransform='uppercase' lineHeight='3' fontWeight={600} mb='16px'>
+										Price (EGP)
+									</Text>
+									<RangeSlider
+										colorScheme='green'
+										width='100%'
+										mt='20px'
+										onChange={priceRangeChangeHandler}
+										min={Number(brandResult?.data?.min)}
+										max={Number(brandResult?.data?.max)}
+										defaultValue={[Number(brandResult?.data?.min), Number(brandResult?.data?.max)]}
+									>
+										<RangeSliderTrack>
+											<RangeSliderFilledTrack />
+										</RangeSliderTrack>
+										<RangeSliderThumb bg='green.100' index={0} position='relative'>
+											<Text position='absolute' top='-26px'>
+												{priceRange.min}
+											</Text>
+										</RangeSliderThumb>
+										<RangeSliderThumb bg='green.100' index={1}>
+											<Text position='absolute' top='-26px'>
+												{priceRange.max}
+											</Text>
+										</RangeSliderThumb>
+									</RangeSlider>
+								</Flex>
+							)}
 						</Flex>
 
 						{/*	Products Section */}
