@@ -38,9 +38,9 @@ const Navbar = () => {
 	const { data, isLoading, isSuccess } = useGetCategoriesQuery()
 	const brandsResult = useGetBrandsQuery()
 
-	useEffect(() => {
-		console.log({ data, isSuccess })
-	}, [data, isSuccess])
+	// useEffect(() => {
+	// 	console.log({ data, isSuccess })
+	// }, [data, isSuccess])
 
 	const brandsNavClickHandler = () => {
 		setShowBrands(!showBrands)
@@ -100,8 +100,8 @@ const Navbar = () => {
 						{showCategories && (
 							<StyledNavMenu>
 								{isSuccess &&
-									data?.data &&
-									data?.data?.map((category, index) => (
+									data &&
+									data?.map((category, index) => (
 										<StyledNavMenuItem key={index} onClick={() => categoryNavItemClickHandler(category)}>
 											{category.name}
 										</StyledNavMenuItem>
