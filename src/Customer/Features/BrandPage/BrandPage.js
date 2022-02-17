@@ -3,7 +3,20 @@ import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { useGetSingleBrandQuery } from '@Customer/Redux/CustomerApi'
 import { FluidContainer } from '@Components'
-import { Flex, Text, Checkbox, Menu, MenuButton, Button, MenuList, MenuItem, Box } from '@chakra-ui/react'
+import {
+	Flex,
+	Text,
+	Checkbox,
+	Menu,
+	MenuButton,
+	Button,
+	MenuList,
+	MenuItem,
+	RangeSlider,
+	RangeSliderTrack,
+	RangeSliderFilledTrack,
+	RangeSliderThumb,
+} from '@chakra-ui/react'
 import { ChevronDownIcon } from '@chakra-ui/icons'
 import ProductCard from '@Customer/Features/BrandPage/Components/ProductCard'
 
@@ -42,7 +55,7 @@ const BrandPage = () => {
 					{/*	Shop Section */}
 					<Flex mt='26px' flexDirection={['column', null, null, 'row']}>
 						{/*	Filters Section */}
-						<Flex mr='46px' width={['100%', null, null, '310px']}>
+						<Flex mr='46px' width={['100%', null, null, '310px']} flexDirection='column' gap='26px'>
 							{/*	Categories Filters */}
 							<Flex flexDirection='column'>
 								<Text textTransform='uppercase' lineHeight='3' fontWeight={600} mb='16px'>
@@ -51,6 +64,22 @@ const BrandPage = () => {
 								<Checkbox py='6px' fontSize='14px' borderColor='gray' color='gray'>
 									Plumbing(1)
 								</Checkbox>
+								<Checkbox py='6px' fontSize='14px' borderColor='gray' color='gray'>
+									Test sub category(1)
+								</Checkbox>
+							</Flex>
+							{/*	Price Range Section */}
+							<Flex flexDirection='column'>
+								<Text textTransform='uppercase' lineHeight='3' fontWeight={600} mb='16px'>
+									Price (EGP)
+								</Text>
+								<RangeSlider colorScheme='green' defaultValue={[10, 30]} width='100%' mt='10px'>
+									<RangeSliderTrack>
+										<RangeSliderFilledTrack />
+									</RangeSliderTrack>
+									<RangeSliderThumb bg='green.100' index={0} />
+									<RangeSliderThumb bg='green.100' index={1} />
+								</RangeSlider>
 							</Flex>
 						</Flex>
 
@@ -82,11 +111,10 @@ const BrandPage = () => {
 							</Flex>
 
 							{/*	Products list */}
-							<Flex gap='26px' flexWrap='wrap' my='16px' bg='gray' justifyContent='center'>
-								<ProductCard />
-								<ProductCard />
-								<ProductCard />
-								<ProductCard />
+							<Flex gap='26px' flexWrap='wrap' my='16px' pb='26px' justifyContent='center'>
+								{brandResult?.data?.data?.map(product => (
+									<ProductCard key={product.id} product={product} />
+								))}
 							</Flex>
 						</Flex>
 					</Flex>

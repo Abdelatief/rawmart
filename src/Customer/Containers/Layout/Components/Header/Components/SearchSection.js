@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components'
 import FluidContainer from '../../../../../../Shared/Components/FluidContainer'
 import { Flex, Text, Input } from '../../../../../../Shared/Components'
 import { FiSearch, FiRepeat, FiHeart, FiShoppingBag } from 'react-icons/fi'
+import { Link } from 'react-router-dom'
 import { useMediaQuery } from '@Hooks'
 
 const SearchSection = () => {
@@ -15,10 +16,12 @@ const SearchSection = () => {
 						<Text fontSize={7} fontFamily='KageFreebiesBlack'>
 							Rawmart
 						</Text>
-						<Flex gap='18px'>
+						<Flex gap='18px' _hover={{ cursor: 'pointer' }}>
 							<CompareIcon />
 							<HeartIcon />
-							<CartIcon />
+							<Link to='/cart'>
+								<CartIcon />
+							</Link>
 						</Flex>
 					</Flex>
 				)}
@@ -28,7 +31,9 @@ const SearchSection = () => {
 					<StyledIconsFlexContainer>
 						<CompareIcon />
 						<HeartIcon />
-						<CartIcon />
+						<Link to='/cart'>
+							<CartIcon />
+						</Link>
 					</StyledIconsFlexContainer>
 				)}
 			</StyledFlexContainer>
@@ -71,6 +76,7 @@ const StyledIconsFlexContainer = styled.div`
 	display: flex;
 	margin-left: auto;
 	gap: 18px;
+	cursor: pointer;
 
 	@media (max-width: 900px) {
 		margin: 12px auto;
