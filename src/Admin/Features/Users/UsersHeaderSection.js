@@ -44,7 +44,7 @@ const UsersHeaderSection = () => {
 }
 const StyledOuterContainer = styled.div`
 	display: block;
-	margin-top: -20px;
+	margin-right: 45px;
 `
 const StyledHeaderDiv = styled.div`
 	display: flex;
@@ -55,7 +55,7 @@ const StyledHeaderDiv = styled.div`
 `
 
 const StyledLeftContainer = styled.div`
-	flex: 70%;
+	flex: 80%;
 	justify-content: flex-start;
 `
 const StyledRightContainer = styled.div`
