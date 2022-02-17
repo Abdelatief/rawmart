@@ -1,20 +1,35 @@
 import React, { forwardRef } from 'react'
 import styled from 'styled-components'
 
-const SelectedInput = forwardRef(({ required = false, label, options, width, icon, ...restProps }, ref) => {
-	return (
-		<StyledSelectedInput>
-			<SelectInput ref={ref} width={width} icon={icon} {...restProps}>
-				<StyledOption value={0}> {label}</StyledOption>
-				{options?.map(option => (
-					<StyledOption value={option.id} key={option.id}>
-						{option.name}
+const SelectedInput = forwardRef(
+	({ required = false, label, options, width, icon, object = false, ...restProps }, ref) => {
+		return (
+			<StyledSelectedInput>
+				<SelectInput ref={ref} width={width} icon={icon} {...restProps}>
+					<StyledOption value='' disabled selected>
+						Select {label}
 					</StyledOption>
-				))}
-			</SelectInput>
-		</StyledSelectedInput>
-	)
-})
+					{object
+						? // Object.values(options)?.map((option => (
+						  // 	<StyledOption  key={option.key}>
+						  // 		{option}
+						  // 	</StyledOption>
+						  // )))
+						  Object.entries(options)?.map(option => (
+								<StyledOption value={option[0]} key={option[0]}>
+									{option[1]}
+								</StyledOption>
+						  ))
+						: options?.map(option => (
+								<StyledOption value={option.id} key={option.id}>
+									{option.name}
+								</StyledOption>
+						  ))}
+				</SelectInput>
+			</StyledSelectedInput>
+		)
+	}
+)
 
 const StyledOption = styled.option`
 	color: #686868;

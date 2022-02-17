@@ -32,7 +32,7 @@ export const adminApi = createApi({
 		'Country',
 		'Product',
 		'Review',
-		'Analytics',
+		'Analytic',
 	],
 	endpoints: builder => ({
 		login: builder.mutation({
@@ -89,7 +89,6 @@ export const adminApi = createApi({
 			query: () => ({
 				url: '/users',
 				method: 'POST',
-				providesTags: ['User'],
 				body: {
 					dir: 'desc',
 					name: '',
@@ -99,25 +98,16 @@ export const adminApi = createApi({
 					sort: 'id',
 				},
 			}),
+			providesTags: ['User'],
 		}),
-		// updateUser: builder.mutation({
-		// 	query(data)  {
-		// 		const {id, ...body} = data
-		// 		return{
-		// 			url: '/users/edit',
-		// 			method: 'POST',
-		// 			body,
-		// 			invalidateTags: ['User'],
-		// 		}
-		//
-		// 	},
-		// })
+
 		updateUser: builder.mutation({
-			query: userBody => ({
+			query: body => ({
 				url: '/users/edit',
 				method: 'POST',
-				body: userBody,
+				body,
 			}),
+			invalidatesTags: ['User'],
 		}),
 
 		getVendors: builder.query({
@@ -268,8 +258,8 @@ export const adminApi = createApi({
 			query: () => ({
 				url: '/web/countries',
 				method: 'POST',
-				providesTags: ['Country'],
 			}),
+			providesTags: ['Country'],
 		}),
 		getProducts: builder.query({
 			query: () => ({

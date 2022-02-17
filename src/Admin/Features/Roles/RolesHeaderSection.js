@@ -31,7 +31,7 @@ const RolesHeaderSection = () => {
 						</Text>
 					</Button>
 
-					<RoleForm title='ADD ROLE' isOpen={isOpen} setIsOpen={setIsOpen} />
+					{isOpen && <RoleForm title='ADD ROLE' isOpen={isOpen} setIsOpen={setIsOpen} />}
 				</StyledRightContainer>
 			</StyledHeaderDiv>
 		</StyledOuterContainer>

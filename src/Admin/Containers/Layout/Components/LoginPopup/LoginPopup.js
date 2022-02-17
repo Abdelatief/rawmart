@@ -23,7 +23,7 @@ const LoginPopup = ({ isOpen, setIsOpen }) => {
 		resolver: yupResolver(schema),
 		defaultValues: {
 			username: 'admin@gmail.com',
-			password: '12345678',
+			password: 'password',
 		},
 	})
 
