@@ -110,6 +110,15 @@ export const adminApi = createApi({
 			invalidatesTags: ['User'],
 		}),
 
+		addUser: builder.mutation({
+			query: body => ({
+				url: 'users/add',
+				method: 'POST',
+				body,
+			}),
+			invalidatesTags: ['User'],
+		}),
+
 		getVendors: builder.query({
 			query: () => ({
 				url: '/vendors',
@@ -309,12 +318,16 @@ export const adminApi = createApi({
 
 export const {
 	useLoginMutation,
+
 	useGetRolesQuery,
 	useDeleteRoleMutation,
 	useAddRoleMutation,
 	useUpdateRoleMutation,
+
 	useGetUsersQuery,
 	useUpdateUserMutation,
+	useAddUserMutation,
+
 	useGetVendorsQuery,
 	useGetCategoriesQuery,
 	useGetOffersQuery,

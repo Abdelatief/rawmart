@@ -1,12 +1,18 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Button, Flex, FormInput, Popup, Text } from '@Components'
 import styled from 'styled-components'
 import FormSelectedInput from '@Admin/Components/FormSelectedInput'
-import { useGetCountriesQuery, useGetRolesQuery, useUpdateUserMutation } from '@Admin/Redux/AdminApi'
+import {
+	useAddUserMutation,
+	useGetCountriesQuery,
+	useGetRolesQuery,
+	useUpdateUserMutation,
+} from '@Admin/Redux/AdminApi'
 import { useForm } from 'react-hook-form'
 
 const UserForm = ({ title, user, isOpen, setIsOpen }) => {
-	const [updateUser, updateUserResult] = useUpdateUserMutation()
+	const [updateUser] = useUpdateUserMutation()
+	const [addUser] = useAddUserMutation()
 	const { data: rolesData, isLoading: roleIsLoading } = useGetRolesQuery()
 	const { data: countriesData, isLoading } = useGetCountriesQuery()
 
@@ -19,28 +25,11 @@ const UserForm = ({ title, user, isOpen, setIsOpen }) => {
 		formState: { errors },
 	} = useForm()
 	const onSubmit = data => {
-		for (let i = 0; i < rolesData?.data?.length; i++) {
-			console.log(rolesData?.data[i]?.id)
-			console.log(data.role_identifier)
-			console.log(rolesData?.data[i]?.id === data.role_identifier)
-			if (rolesData?.data[i]?.id === data.role_identifier) {
-				console.log(data.role_identifier)
-				data.role_identifier = rolesData.data[i].role_identifier
-				console.log(data.role_identifier)
-			}
-		}
 		if (user) {
-			// console.log(rolesData.data.get)
-			// console.log(data.role_identifier)
-
-			data.role_identifier = rolesData.data[data.role_identifier]
-			console.log({ roleData: rolesData.data })
 			updateUser({ id: user.id, ...data })
-			console.log({ id: user.id, ...data })
 			setIsOpen(false)
 		} else {
-			// addUser(data)
-
+			addUser(data)
 			setIsOpen(false)
 		}
 	}
@@ -56,6 +45,7 @@ const UserForm = ({ title, user, isOpen, setIsOpen }) => {
 							width='280px'
 							label='Role'
 							required
+							requiredValue='identifier'
 							options={rolesData?.data}
 							{...register('role_identifier', { required: true })}
 						/>
@@ -111,6 +101,7 @@ const UserForm = ({ title, user, isOpen, setIsOpen }) => {
 					<FormSelectedInput
 						label='Country'
 						options={countriesData?.countries}
+						requiredValue='country'
 						object={true}
 						{...register('country')}
 					/>
