@@ -42,6 +42,7 @@ export const adminApi = createApi({
 				body: loginBody,
 			}),
 		}),
+
 		getRoles: builder.query({
 			query: () => ({
 				url: '/roles',
@@ -133,6 +134,7 @@ export const adminApi = createApi({
 				},
 			}),
 		}),
+
 		getCategories: builder.query({
 			query: () => ({
 				url: '/categories',
@@ -148,6 +150,7 @@ export const adminApi = createApi({
 				},
 			}),
 		}),
+
 		getOffers: builder.query({
 			query: () => ({
 				url: '/offers',
@@ -192,6 +195,7 @@ export const adminApi = createApi({
 				},
 			}),
 		}),
+
 		getShippingMethods: builder.query({
 			query: () => ({
 				url: '/shipping-methods',
@@ -215,6 +219,25 @@ export const adminApi = createApi({
 			}),
 			invalidatesTags: ['Shipping'],
 		}),
+
+		updateShippingMethod: builder.mutation({
+			query: body => ({
+				url: '/shipping-methods/edit',
+				method: 'POST',
+				body,
+			}),
+			invalidatesTags: ['Shipping'],
+		}),
+
+		deleteShippingMethod: builder.mutation({
+			query: id => ({
+				url: '/shipping-methods/delete',
+				method: 'POST',
+				body: { id },
+			}),
+			invalidatesTags: ['Shipping'],
+		}),
+
 		getBlogCategories: builder.query({
 			query: () => ({
 				url: '/blog-categories',
@@ -256,6 +279,7 @@ export const adminApi = createApi({
 				},
 			}),
 		}),
+
 		getBlogs: builder.query({
 			query: () => ({
 				url: '/blogs',
@@ -272,6 +296,7 @@ export const adminApi = createApi({
 				},
 			}),
 		}),
+
 		getCountries: builder.query({
 			query: () => ({
 				url: '/web/countries',
@@ -279,6 +304,7 @@ export const adminApi = createApi({
 			}),
 			providesTags: ['Country'],
 		}),
+
 		getProducts: builder.query({
 			query: () => ({
 				url: '/products',
@@ -298,6 +324,7 @@ export const adminApi = createApi({
 				},
 			}),
 		}),
+
 		getReviews: builder.query({
 			query: () => ({
 				url: '/reviews',
@@ -312,6 +339,7 @@ export const adminApi = createApi({
 				},
 			}),
 		}),
+
 		getAnalytics: builder.query({
 			query: () => ({
 				url: '/analytics',
@@ -345,6 +373,8 @@ export const {
 
 	useGetShippingMethodsQuery,
 	useAddShippingMethodMutation,
+	useUpdateShippingMethodMutation,
+	useDeleteShippingMethodMutation,
 
 	useGetBlogCategoriesQuery,
 	useGetSpecialOrdersQuery,

@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
-import { Text, Flex, FluidContainer, Popup } from '@Components'
+import { Text, Flex, FluidContainer } from '@Components'
 import styled from 'styled-components'
 import { MdOutlineEdit } from 'react-icons/md'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { CgMore } from 'react-icons/cg'
 import ShippingMethodsForm from '@Admin/Features/ShippingMethods/ShippingMethodsForm'
+import { useDeleteShippingMethodMutation } from '@Admin/Redux/AdminApi'
 
 const ShippingMethodsCards = ({ shippingMethod }) => {
 	const [extendMenu, setExtendMenu] = useState(false)
 	const [isOpen, setIsOpen] = useState(false)
+	const [deleteShippingMethod] = useDeleteShippingMethodMutation()
 
 	const toggleExtendMenu = () => {
 		setExtendMenu(!extendMenu)
@@ -31,7 +33,7 @@ const ShippingMethodsCards = ({ shippingMethod }) => {
 							Edit
 						</Text>
 					</StyledInnerFlex>
-					<StyledInnerFlex>
+					<StyledInnerFlex onClick={() => deleteShippingMethod(shippingMethod.id)}>
 						<StyledDeleteIcon />
 						<Text fontSize={3} mb='20px'>
 							Delete
@@ -39,9 +41,15 @@ const ShippingMethodsCards = ({ shippingMethod }) => {
 					</StyledInnerFlex>
 				</StyledDropDown>
 			)}
-			<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px' width='70%' height='85%'>
-				{<ShippingMethodsForm title='EDIT SHIPPING METHOD' shippingMethod={shippingMethod} />}
-			</Popup>
+
+			{isOpen && shippingMethod && (
+				<ShippingMethodsForm
+					title='EDIT SHIPPING METHOD'
+					shippingMethod={shippingMethod}
+					isOpen={isOpen}
+					setIsOpen={setIsOpen}
+				/>
+			)}
 		</StyledCard>
 	)
 }

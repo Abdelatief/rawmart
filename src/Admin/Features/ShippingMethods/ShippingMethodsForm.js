@@ -4,8 +4,12 @@ import { Button, Flex, FormInput, Text, Popup } from '@Components'
 import { MdDone } from 'react-icons/md'
 import FormSelectedInput from '@Admin/Components/FormSelectedInput'
 import { useForm } from 'react-hook-form'
+import { useAddShippingMethodMutation, useUpdateShippingMethodMutation } from '@Admin/Redux/AdminApi'
 
 const ShippingMethodsForm = ({ title, shippingMethod, isOpen, setIsOpen }) => {
+	const [addShippingMethod] = useAddShippingMethodMutation()
+	const [updateShippingMethod] = useUpdateShippingMethodMutation()
+
 	const {
 		register,
 		handleSubmit,
@@ -13,8 +17,10 @@ const ShippingMethodsForm = ({ title, shippingMethod, isOpen, setIsOpen }) => {
 	} = useForm()
 	const onSubmit = data => {
 		if (shippingMethod) {
+			updateShippingMethod({ id: shippingMethod.id, ...data })
 			setIsOpen(false)
 		} else {
+			addShippingMethod(data)
 			setIsOpen(false)
 		}
 	}
@@ -54,7 +60,7 @@ const ShippingMethodsForm = ({ title, shippingMethod, isOpen, setIsOpen }) => {
 							label='Shipping Price'
 							required
 							defaultValue={shippingMethod ? shippingMethod.shipping_price : ''}
-							{...register('flat_rate_price', { required: true }, { number: true })}
+							{...register('flat_rate_price', { required: true, valueAsNumber: true })}
 						/>
 						{errors.flat_rate_price && <StyledErrorMessage>Flat rate price is required!</StyledErrorMessage>}
 					</div>
@@ -75,7 +81,7 @@ const ShippingMethodsForm = ({ title, shippingMethod, isOpen, setIsOpen }) => {
 						</StyledLabel>
 						<TextArea
 							defaultValue={shippingMethod ? shippingMethod.zip_codes : ''}
-							{...register('zip_codes', { required: true })}
+							{...register('zip_codes', { required: true, valueAsNumber: true })}
 						/>
 						{errors.zip_codes && <StyledErrorMessage>zip_codes are required!</StyledErrorMessage>}
 					</StyledInnerContainer>
