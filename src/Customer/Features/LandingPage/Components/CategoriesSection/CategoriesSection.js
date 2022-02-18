@@ -1,11 +1,17 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import styled, { css } from 'styled-components'
 import { Flex, FluidContainer, Text } from '@Components'
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
 import CategoryItem from '@Customer/Features/LandingPage/Components/CategoriesSection/CategoryItem'
+import { useGetCategoriesQuery } from '@Customer/Redux/CustomerApi'
 
 const CategoriesSection = () => {
+	const { data, isLoading, isSuccess } = useGetCategoriesQuery()
 	const categoriesContainerRef = useRef(null)
+
+	useEffect(() => {
+		console.log({ data, isLoading, isSuccess })
+	}, [data, isLoading, isSuccess])
 
 	const scroll = direction => {
 		const scrollDistance = 166 * 2
@@ -25,15 +31,11 @@ const CategoriesSection = () => {
 					</Flex>
 				</Flex>
 				<CategoriesContainer ref={categoriesContainerRef}>
-					<CategoryItem />
-					<CategoryItem />
-					<CategoryItem />
-					<CategoryItem />
-					<CategoryItem />
-					<CategoryItem />
-					<CategoryItem />
-					<CategoryItem />
-					<CategoryItem />
+					{isSuccess &&
+						data &&
+						data.map(category => (
+							<CategoryItem key={category.id} name={category?.name} imageUrl={category.image_url} />
+						))}
 				</CategoriesContainer>
 			</StyledCategoriesSection>
 		</FluidContainer>

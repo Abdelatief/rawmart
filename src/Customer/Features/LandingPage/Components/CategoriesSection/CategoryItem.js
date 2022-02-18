@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 import { Box, Text } from '@Components'
 
-const CategoryItem = () => {
+const CategoryItem = ({ name, imageUrl }) => {
 	return (
 		<Box>
-			<CategoryImage src='http://api.dussurapp.com/uploads/categories/3/1638652463.jpg' />
-			<Text textAlign='center'>Plumbing</Text>
+			<CategoryImage src={imageUrl} alt={name} />
+			<Text textAlign='center'>{name}</Text>
 		</Box>
 	)
 }

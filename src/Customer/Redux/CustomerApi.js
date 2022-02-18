@@ -71,6 +71,13 @@ export const customerApi = createApi({
 				},
 			}),
 		}),
+		getCart: builder.query({
+			query: body => ({
+				url: 'web/cart',
+				method: 'POST',
+				body,
+			}),
+		}),
 	}),
 })
 
@@ -81,4 +88,5 @@ export const {
 	useGetCategoriesQuery,
 	useGetBrandsQuery,
 	useGetSingleBrandQuery,
+	useGetCartQuery,
 } = customerApi
