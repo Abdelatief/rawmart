@@ -17,7 +17,6 @@ import {
 	RangeSliderTrack,
 	RangeSliderFilledTrack,
 	RangeSliderThumb,
-	useRangeSlider,
 } from '@chakra-ui/react'
 import { ChevronDownIcon } from '@chakra-ui/icons'
 import ProductCard from '@Customer/Features/BrandPage/Components/ProductCard'
@@ -28,10 +27,27 @@ const BrandPage = () => {
 	} = useLocation()
 	const [categories, setCategories] = useImmer({})
 	const [variableData, setVariableData] = useImmer({})
-	const brandResult = useGetSingleBrandQuery(brand.id)
 	const [priceRange, setPriceRange] = useImmer({})
+	const [body, setBody] = useImmer({
+		brandId: brand.id,
+		categories: [],
+	})
+	const brandResult = useGetSingleBrandQuery(body)
 
 	console.log({ brand })
+
+	useEffect(() => {
+		console.log({ body })
+	}, [body])
+
+	// useEffect(() => {
+	// 	console.log('categories side effect')
+	// 	console.log({ allCategories: Object.values(categories)})
+	// 	console.log({ checkedCategories: Object.values(categories).filter(value => value.checked).map(category => category?.id) })
+	// 	setBody(draft => {
+	// 		draft.categories = Object.values(categories).filter(value => value.checked).map(category => category?.id)
+	// 	})
+	// }, [categories])
 
 	useEffect(() => {
 		console.log({ brandResult })
@@ -61,6 +77,11 @@ const BrandPage = () => {
 	const categoryChangeHandler = (event, id) => {
 		setCategories(draft => {
 			draft[id].checked = event.target.checked
+		})
+		setBody(draft => {
+			draft.categories = Object.values(categories)
+				.filter(value => value.checked)
+				.map(category => category?.id)
 		})
 	}
 
