@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import { Popup, FormInput, Flex, Button, Text } from '@Components'
 import { PopupDataContext } from '@Customer/Containers/Layout/Components/Header/Components/Navbar'
 import { useForm } from 'react-hook-form'
-import { DevTool } from '@hookform/devtools'
 import * as yup from 'yup'
 import LoginImage from '../Assets/auth-background.png'
 import FacebookImage from '../Assets/facebook.png'
@@ -87,7 +86,6 @@ const LoginPopup = ({ isOpen, setIsOpen }) => {
 								</Flex>
 							</LoginForm>
 						</StyledLogin>
-						<DevTool control={control} />
 					</Popup>
 				)
 			}}
