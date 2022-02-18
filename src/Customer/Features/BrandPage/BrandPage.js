@@ -30,14 +30,6 @@ const BrandPage = () => {
 	const [variableData, setVariableData] = useImmer({})
 	const brandResult = useGetSingleBrandQuery(brand.id)
 	const [priceRange, setPriceRange] = useImmer({})
-	const rangeSlider = useRangeSlider({
-		min: brandResult?.data?.min,
-		max: brandResult?.data?.max,
-		defaultValue: [brandResult?.data?.min, brandResult?.data?.max],
-		onChange: ([val1, val2]) => {
-			console.log({ val1, val2 })
-		},
-	})
 
 	console.log({ brand })
 

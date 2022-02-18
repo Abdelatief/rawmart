@@ -16,7 +16,10 @@ export const cartSlice = createSlice({
 				state.items[payload?.id] = { id: payload?.id, quantity: 1, variant: payload?.variant }
 			}
 		},
+		removeItem: (state, { payload }) => {
+			delete state.items[payload]
+		},
 	},
 })
 
-export const { addItem } = cartSlice.actions
+export const { addItem, removeItem } = cartSlice.actions
