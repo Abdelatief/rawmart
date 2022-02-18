@@ -196,7 +196,6 @@ export const adminApi = createApi({
 			query: () => ({
 				url: '/shipping-methods',
 				method: 'POST',
-				providesTags: ['Shipping'],
 				body: {
 					dir: 'desc',
 					page: 1,
@@ -205,6 +204,16 @@ export const adminApi = createApi({
 					sort: 'id',
 				},
 			}),
+			providesTags: ['Shipping'],
+		}),
+
+		addShippingMethod: builder.mutation({
+			query: body => ({
+				url: 'shipping-methods/add',
+				method: 'POST',
+				body,
+			}),
+			invalidatesTags: ['Shipping'],
 		}),
 		getBlogCategories: builder.query({
 			query: () => ({
@@ -226,7 +235,6 @@ export const adminApi = createApi({
 			query: () => ({
 				url: '/special-orders',
 				method: 'POST',
-				providesTags: ['SpecialOrder'],
 				body: {
 					dir: 'desc',
 					page: 1,
@@ -235,6 +243,7 @@ export const adminApi = createApi({
 					sort: 'id',
 				},
 			}),
+			providesTags: ['SpecialOrder'],
 		}),
 
 		getOptions: builder.query({
@@ -333,7 +342,10 @@ export const {
 	useGetOffersQuery,
 	useGetOrdersQuery,
 	useGetPaymentMethodsQuery,
+
 	useGetShippingMethodsQuery,
+	useAddShippingMethodMutation,
+
 	useGetBlogCategoriesQuery,
 	useGetSpecialOrdersQuery,
 	useGetOptionsQuery,

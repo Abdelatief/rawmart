@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Popup, Text } from '@Components'
+import { Button, Text } from '@Components'
 import { VscAdd } from 'react-icons/vsc'
 import styled from 'styled-components'
 import ShippingMethodsForm from '@Admin/Features/ShippingMethods/ShippingMethodsForm'
@@ -30,9 +30,8 @@ const ShippingMethodHeaderSection = () => {
 							Add Shipping Method
 						</Text>
 					</Button>
-					<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px' width='70%' height='80%'>
-						{<ShippingMethodsForm title='ADD SHIPPING METHOD' />}
-					</Popup>
+
+					{isOpen && <ShippingMethodsForm title='ADD SHIPPING METHOD' isOpen={isOpen} setIsOpen={setIsOpen} />}
 				</StyledRightContainer>
 			</StyledHeaderDiv>
 		</StyledOuterContainer>
