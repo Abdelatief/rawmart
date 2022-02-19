@@ -42,6 +42,7 @@ export const adminApi = createApi({
 				body: loginBody,
 			}),
 		}),
+
 		getRoles: builder.query({
 			query: () => ({
 				url: '/roles',
@@ -110,6 +111,15 @@ export const adminApi = createApi({
 			invalidatesTags: ['User'],
 		}),
 
+		addUser: builder.mutation({
+			query: body => ({
+				url: 'users/add',
+				method: 'POST',
+				body,
+			}),
+			invalidatesTags: ['User'],
+		}),
+
 		getVendors: builder.query({
 			query: () => ({
 				url: '/vendors',
@@ -124,6 +134,7 @@ export const adminApi = createApi({
 				},
 			}),
 		}),
+
 		getCategories: builder.query({
 			query: () => ({
 				url: '/categories',
@@ -139,6 +150,7 @@ export const adminApi = createApi({
 				},
 			}),
 		}),
+
 		getOffers: builder.query({
 			query: () => ({
 				url: '/offers',
@@ -183,11 +195,11 @@ export const adminApi = createApi({
 				},
 			}),
 		}),
+
 		getShippingMethods: builder.query({
 			query: () => ({
 				url: '/shipping-methods',
 				method: 'POST',
-				providesTags: ['Shipping'],
 				body: {
 					dir: 'desc',
 					page: 1,
@@ -196,7 +208,36 @@ export const adminApi = createApi({
 					sort: 'id',
 				},
 			}),
+			providesTags: ['Shipping'],
 		}),
+
+		addShippingMethod: builder.mutation({
+			query: body => ({
+				url: 'shipping-methods/add',
+				method: 'POST',
+				body,
+			}),
+			invalidatesTags: ['Shipping'],
+		}),
+
+		updateShippingMethod: builder.mutation({
+			query: body => ({
+				url: '/shipping-methods/edit',
+				method: 'POST',
+				body,
+			}),
+			invalidatesTags: ['Shipping'],
+		}),
+
+		deleteShippingMethod: builder.mutation({
+			query: id => ({
+				url: '/shipping-methods/delete',
+				method: 'POST',
+				body: { id },
+			}),
+			invalidatesTags: ['Shipping'],
+		}),
+
 		getBlogCategories: builder.query({
 			query: () => ({
 				url: '/blog-categories',
@@ -217,7 +258,6 @@ export const adminApi = createApi({
 			query: () => ({
 				url: '/special-orders',
 				method: 'POST',
-				providesTags: ['SpecialOrder'],
 				body: {
 					dir: 'desc',
 					page: 1,
@@ -226,6 +266,7 @@ export const adminApi = createApi({
 					sort: 'id',
 				},
 			}),
+			providesTags: ['SpecialOrder'],
 		}),
 
 		getOptions: builder.query({
@@ -238,6 +279,7 @@ export const adminApi = createApi({
 				},
 			}),
 		}),
+
 		getBlogs: builder.query({
 			query: () => ({
 				url: '/blogs',
@@ -254,6 +296,7 @@ export const adminApi = createApi({
 				},
 			}),
 		}),
+
 		getCountries: builder.query({
 			query: () => ({
 				url: '/web/countries',
@@ -261,6 +304,7 @@ export const adminApi = createApi({
 			}),
 			providesTags: ['Country'],
 		}),
+
 		getProducts: builder.query({
 			query: () => ({
 				url: '/products',
@@ -280,6 +324,7 @@ export const adminApi = createApi({
 				},
 			}),
 		}),
+
 		getReviews: builder.query({
 			query: () => ({
 				url: '/reviews',
@@ -294,6 +339,7 @@ export const adminApi = createApi({
 				},
 			}),
 		}),
+
 		getAnalytics: builder.query({
 			query: () => ({
 				url: '/analytics',
@@ -309,18 +355,27 @@ export const adminApi = createApi({
 
 export const {
 	useLoginMutation,
+
 	useGetRolesQuery,
 	useDeleteRoleMutation,
 	useAddRoleMutation,
 	useUpdateRoleMutation,
+
 	useGetUsersQuery,
 	useUpdateUserMutation,
+	useAddUserMutation,
+
 	useGetVendorsQuery,
 	useGetCategoriesQuery,
 	useGetOffersQuery,
 	useGetOrdersQuery,
 	useGetPaymentMethodsQuery,
+
 	useGetShippingMethodsQuery,
+	useAddShippingMethodMutation,
+	useUpdateShippingMethodMutation,
+	useDeleteShippingMethodMutation,
+
 	useGetBlogCategoriesQuery,
 	useGetSpecialOrdersQuery,
 	useGetOptionsQuery,

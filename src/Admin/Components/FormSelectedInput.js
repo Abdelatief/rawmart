@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react'
 import styled from 'styled-components'
 
 const FormSelectedInput = forwardRef(
-	({ required = false, label, options, width, icon, object = false, ...restProps }, ref) => {
+	({ required = false, label, options, width, icon, object = false, requiredValue, ...restProps }, ref) => {
 		return (
 			<StyledFormInput>
 				<FormLabel required={required}>
@@ -14,18 +14,13 @@ const FormSelectedInput = forwardRef(
 						Select {label}
 					</StyledOption>
 					{object
-						? // Object.values(options)?.map((option => (
-						  // 	<StyledOption  key={option.key}>
-						  // 		{option}
-						  // 	</StyledOption>
-						  // )))
-						  Object.entries(options)?.map(option => (
-								<StyledOption value={option[0]} key={option[0]}>
+						? Object.entries(options)?.map(option => (
+								<StyledOption value={option[requiredValue]} key={option[0]}>
 									{option[1]}
 								</StyledOption>
 						  ))
 						: options?.map(option => (
-								<StyledOption value={option.id} key={option.id}>
+								<StyledOption value={option[requiredValue]} key={option.id}>
 									{option.name}
 								</StyledOption>
 						  ))}

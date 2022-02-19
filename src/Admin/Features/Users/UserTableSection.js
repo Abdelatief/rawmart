@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import Table from '@Admin/Components/Table'
 import UserForm from '@Admin/Features/Users/UserForm'
-import { Flex, Popup, Text } from '@Components'
+import { Flex, Text } from '@Components'
 import { CgMore } from 'react-icons/cg'
 import { MdOutlineEdit } from 'react-icons/md'
 import { useGetUsersQuery } from '@Admin/Redux/AdminApi'
@@ -12,7 +12,7 @@ const UserTableSection = () => {
 	const [selectedItem, setSelectedItem] = useState()
 	const [userValue, setUserValue] = useState()
 	const [isOpen, setIsOpen] = useState(false)
-	const { data } = useGetUsersQuery()
+	const { data, isLoading } = useGetUsersQuery()
 
 	const toggleExtendMenu = item => {
 		setExtendMenu(!extendMenu)
@@ -21,7 +21,7 @@ const UserTableSection = () => {
 
 	return (
 		<StyledContainer>
-			<Table loading={false} resultCount={5}>
+			<Table loading={isLoading} resultCount={data?.data.length}>
 				<Table.Thead>
 					<Table.HeaderRow>
 						<Table.Th>ID</Table.Th>
@@ -97,9 +97,8 @@ const UserTableSection = () => {
 					))}
 				</tbody>
 			</Table>
-			<Popup isOpen={isOpen} setIsOpen={setIsOpen} height='80%' width='70%' padding='30px'>
-				{<UserForm title='EDIT USER' user={userValue} />}
-			</Popup>
+
+			{isOpen && userValue && <UserForm title='EDIT USER' user={userValue} isOpen={isOpen} setIsOpen={setIsOpen} />}
 		</StyledContainer>
 	)
 }

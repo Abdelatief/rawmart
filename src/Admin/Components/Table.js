@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Flex, Text, Box } from '@Components'
+import { Spinner } from '@chakra-ui/react'
 
 const Table = ({ children, loading, resultsCount }) => {
 	const renderer = () => {
 		if (loading) {
 			return (
 				<Flex justifyContent='center' alignItems='center' minHeight='inherit' width='100%'>
-					{/* TODO: show spinner while loading */}
-					<Text>Loading...</Text>
+					<Spinner size='lg' color='primary' />
 				</Flex>
 			)
 		}
@@ -19,8 +19,6 @@ const Table = ({ children, loading, resultsCount }) => {
 				</Flex>
 			)
 		}
-
-		/*TODO:: Check*/
 
 		return <StyledTable>{children}</StyledTable>
 	}

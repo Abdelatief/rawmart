@@ -1,49 +1,89 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button, Flex, FormInput, Text } from '@Components'
+import { Button, Flex, FormInput, Text, Popup } from '@Components'
 import { MdDone } from 'react-icons/md'
 import FormSelectedInput from '@Admin/Components/FormSelectedInput'
+import { useForm } from 'react-hook-form'
+import { useAddShippingMethodMutation, useUpdateShippingMethodMutation } from '@Admin/Redux/AdminApi'
 
-const ShippingMethodsForm = ({ title, shippingMethod }) => {
+const ShippingMethodsForm = ({ title, shippingMethod, isOpen, setIsOpen }) => {
+	const [addShippingMethod] = useAddShippingMethodMutation()
+	const [updateShippingMethod] = useUpdateShippingMethodMutation()
+
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm()
+	const onSubmit = data => {
+		if (shippingMethod) {
+			updateShippingMethod({ id: shippingMethod.id, ...data })
+			setIsOpen(false)
+		} else {
+			addShippingMethod(data)
+			setIsOpen(false)
+		}
+	}
+
 	return (
-		<div>
+		<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px' minHeight='80%'>
 			<StyledHeader>{title}</StyledHeader>
-			<StyledForm style>
+			<StyledForm style onSubmit={handleSubmit(onSubmit)}>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
-					<FormInput label='Name' required defaultValue={shippingMethod ? shippingMethod.name : ''} />
-					<FormSelectedInput
-						label='Type'
-						required
-						options={[
-							{ id: 1, name: 'Flat Rate' },
-							// { id: 2, name: 'Free Shipping' },
-							// { id: 3, name: 'Price Based' },
-						]}
-						defaultValue={shippingMethod ? shippingMethod.shipping_method : ''}
-					/>
+					<div>
+						<FormInput
+							label='Name'
+							required
+							defaultValue={shippingMethod ? shippingMethod.name : ''}
+							{...register('name', { required: true })}
+						/>
+						{errors.name && <StyledErrorMessage>Name is required!</StyledErrorMessage>}
+					</div>
+					<div>
+						<FormSelectedInput
+							label='Type'
+							required
+							options={[
+								{ id: 1, name: 'Flat Rate' },
+								// { id: 2, name: 'Free Shipping' },
+								// { id: 3, name: 'Price Based' },
+							]}
+							defaultValue={shippingMethod ? shippingMethod.shipping_method : ''}
+							{...register('shipping_method', { required: true })}
+						/>
+						{errors.shipping_method && <StyledErrorMessage>Shipping method is required!</StyledErrorMessage>}
+					</div>
 				</FormGroupFlex>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
-					<FormInput
-						label='Shipping Price'
-						required
-						defaultValue={shippingMethod ? shippingMethod.shipping_price : ''}
-					/>
-				</FormGroupFlex>
-				{shippingMethod && (
-					<FormGroupFlex flexDirection={['column', null, 'row']}>
+					<div>
 						<FormInput
 							label='Shipping Price'
 							required
 							defaultValue={shippingMethod ? shippingMethod.shipping_price : ''}
+							{...register('flat_rate_price', { required: true, valueAsNumber: true })}
 						/>
-					</FormGroupFlex>
-				)}
+						{errors.flat_rate_price && <StyledErrorMessage>Flat rate price is required!</StyledErrorMessage>}
+					</div>
+				</FormGroupFlex>
+				{/*{shippingMethod && (*/}
+				{/*    <FormGroupFlex flexDirection={['column', null, 'row']}>*/}
+				{/*        <FormInput*/}
+				{/*            label='Shipping Price'*/}
+				{/*            required*/}
+				{/*            defaultValue={shippingMethod ? shippingMethod.shipping_price : ''}*/}
+				{/*        />*/}
+				{/*    </FormGroupFlex>*/}
+				{/*)}*/}
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
 					<StyledInnerContainer>
 						<StyledLabel>
 							Zip codes<StyledAsterisk> *</StyledAsterisk>
 						</StyledLabel>
-						<TextArea defaultValue={shippingMethod ? shippingMethod.zip_codes : ''} />
+						<TextArea
+							defaultValue={shippingMethod ? shippingMethod.zip_codes : ''}
+							{...register('zip_codes', { required: true, valueAsNumber: true })}
+						/>
+						{errors.zip_codes && <StyledErrorMessage>zip_codes are required!</StyledErrorMessage>}
 					</StyledInnerContainer>
 				</FormGroupFlex>
 				<StyledButtonDiv>
@@ -53,7 +93,7 @@ const ShippingMethodsForm = ({ title, shippingMethod }) => {
 					</Button>
 				</StyledButtonDiv>
 			</StyledForm>
-		</div>
+		</Popup>
 	)
 }
 
@@ -108,5 +148,8 @@ const TextArea = styled.textarea`
 `
 const StyledInnerContainer = styled.div`
 	width: 100%;
+`
+const StyledErrorMessage = styled.text`
+	color: red;
 `
 export default ShippingMethodsForm

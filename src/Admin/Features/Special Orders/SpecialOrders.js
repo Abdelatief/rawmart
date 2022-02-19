@@ -5,12 +5,11 @@ import { Text, Flex } from '@Components'
 import { useGetSpecialOrdersQuery } from '@Admin/Redux/AdminApi'
 
 const SpecialOrders = () => {
-	const { data } = useGetSpecialOrdersQuery()
-
+	const { data, isLoading } = useGetSpecialOrdersQuery()
 	return (
 		<StyledContainer>
 			<StyledHeader>Special Orders</StyledHeader>
-			<Table loading={false} resultCount={5}>
+			<Table loading={isLoading} resultCount={data?.data?.length}>
 				<Table.Thead>
 					<Table.HeaderRow>
 						<Table.Th>Date</Table.Th>

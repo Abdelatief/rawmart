@@ -2,14 +2,19 @@ import React from 'react'
 import { Button, Flex, FormInput, Popup, Text } from '@Components'
 import styled from 'styled-components'
 import FormSelectedInput from '@Admin/Components/FormSelectedInput'
-import { useGetCountriesQuery, useGetRolesQuery, useUpdateUserMutation } from '@Admin/Redux/AdminApi'
+import {
+	useAddUserMutation,
+	useGetCountriesQuery,
+	useGetRolesQuery,
+	useUpdateUserMutation,
+} from '@Admin/Redux/AdminApi'
 import { useForm } from 'react-hook-form'
 
 const UserForm = ({ title, user, isOpen, setIsOpen }) => {
-	const [updateUser, updateUserResult] = useUpdateUserMutation()
-	const { data: rolesData } = useGetRolesQuery()
-	/*TODO REFACTOR*/
-	const { data: countriesData } = useGetCountriesQuery()
+	const [updateUser] = useUpdateUserMutation()
+	const [addUser] = useAddUserMutation()
+	const { data: rolesData, isLoading: roleIsLoading } = useGetRolesQuery()
+	const { data: countriesData, isLoading } = useGetCountriesQuery()
 
 	let Username
 	if (user) Username = user.name.split(' ')
@@ -20,14 +25,16 @@ const UserForm = ({ title, user, isOpen, setIsOpen }) => {
 		formState: { errors },
 	} = useForm()
 	const onSubmit = data => {
-		if (title === 'ADD USER') {
-			// addUser(data)
+		if (user) {
+			updateUser({ id: user.id, ...data })
 			setIsOpen(false)
-		} else if (title === 'Edit USER') {
-			// updateUser({ id: user.id, identifier: data.identifier, name: data.name })
+		} else {
+			addUser(data)
 			setIsOpen(false)
 		}
 	}
+	if (isLoading || roleIsLoading) return <div>Loading...</div>
+
 	return (
 		<Popup isOpen={isOpen} setIsOpen={setIsOpen} padding='30px' minHeight='80%'>
 			<StyledHeader>{title}</StyledHeader>
@@ -38,10 +45,11 @@ const UserForm = ({ title, user, isOpen, setIsOpen }) => {
 							width='280px'
 							label='Role'
 							required
+							requiredValue='identifier'
 							options={rolesData?.data}
-							{...register('role', { required: true })}
+							{...register('role_identifier', { required: true })}
 						/>
-						{errors.role && <StyledErrorMessage>Role is required!</StyledErrorMessage>}
+						{errors.role_identifier && <StyledErrorMessage>Role is required!</StyledErrorMessage>}
 					</div>
 					<div>
 						<FormInput
@@ -72,10 +80,17 @@ const UserForm = ({ title, user, isOpen, setIsOpen }) => {
 						/>
 						{errors.email && <StyledErrorMessage>Email is required!</StyledErrorMessage>}
 					</div>
-					<div>
-						<FormInput label='Password' required {...register('password', { required: true })} />
-						{errors.password && <StyledErrorMessage>Password is required!</StyledErrorMessage>}
-					</div>
+					{user ? (
+						<div>
+							<FormInput label='Password' {...register('password')} />
+						</div>
+					) : (
+						<div>
+							<FormInput label='Password' required {...register('password', { required: true })} />
+							{errors.password && <StyledErrorMessage>Password is required!</StyledErrorMessage>}
+						</div>
+					)}
+
 					<div>
 						<FormInput label='Phone' defaultValue={user ? user.phone : ''} {...register('phone')} />
 					</div>
@@ -86,6 +101,7 @@ const UserForm = ({ title, user, isOpen, setIsOpen }) => {
 					<FormSelectedInput
 						label='Country'
 						options={countriesData?.countries}
+						requiredValue='country'
 						object={true}
 						{...register('country')}
 					/>
