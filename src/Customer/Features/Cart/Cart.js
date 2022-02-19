@@ -1,11 +1,13 @@
 import { FluidContainer } from '@Components'
 import { CloseIcon } from '@chakra-ui/icons'
-import { Text, Table, Thead, Tbody, Tr, Th, Td, chakra, Image, Box, Flex } from '@chakra-ui/react'
+import { Text, Table, Thead, Tbody, Tr, Th, Td, chakra, Image, Box, Flex, Button } from '@chakra-ui/react'
 import { useGetCartQuery } from '@Customer/Redux/CustomerApi'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
+import { removeItem } from '@Customer/Redux/CartSlice'
 
 const Cart = () => {
+	const dispatch = useDispatch()
 	const products = useSelector(state => state.cart.items)
 	const { data, isLoading, isSuccess } = useGetCartQuery({
 		dir: 'desc',
@@ -19,6 +21,10 @@ const Cart = () => {
 	useEffect(() => {
 		console.log({ cartData: data })
 	}, [data])
+
+	const removeProduct = id => {
+		dispatch(removeItem(id))
+	}
 
 	return (
 		<FluidContainer py='26px'>
@@ -43,7 +49,7 @@ const Cart = () => {
 							{data?.data.map(item => (
 								<Tr key={item.id}>
 									<CustomTd _hover={{ cursor: 'pointer' }}>
-										<CloseIcon width='26px' height='26px' color='red' />
+										<CloseIcon width='26px' height='26px' color='red' onClick={() => removeProduct(item.id)} />
 									</CustomTd>
 									<CustomTd>
 										<Image src={item.image_url} alt={item.name} />
@@ -64,14 +70,33 @@ const Cart = () => {
 							))}
 						</Tbody>
 					</Table>
-					<Box maxWidth='360px'>
+					<Box maxWidth='360px' mx='auto' my='26px'>
 						<Text fontSize='24px' weight={500} borderBottom='1px solid lightgray' pb='16px'>
 							Cart Summary
 						</Text>
-						<Flex>
-							<Text lineHeight='1.938'>Sub Total</Text>
-							{/*<Text>{data?.summary?.}</Text>*/}
-						</Flex>
+						<SummaryFlex mt='26px'>
+							<Text lineHeight='1.938' fontWeight={600}>
+								Sub Total
+							</Text>
+							<Text>{data?.summary?.sub_total} EGP</Text>
+						</SummaryFlex>
+						<SummaryFlex mb='26px'>
+							<Text lineHeight='1.938' fontWeight={600}>
+								Shipping
+							</Text>
+							<Text>{data?.summary?.shipping} EGP</Text>
+						</SummaryFlex>
+						<SummaryFlex py='26px' borderY='1px solid lightgray'>
+							<Text fontSize='18px' lineHeight='1.938' fontWeight={600}>
+								Total
+							</Text>
+							<Text fontSize='18px' fontWeight={600}>
+								{data?.summary?.total} EGP
+							</Text>
+						</SummaryFlex>
+						<Button bg='#AFD39A' color='black' borderRadius={0} width='100%' my='16px'>
+							Proceed to Checkout
+						</Button>
 					</Box>
 				</>
 			)}
@@ -91,6 +116,13 @@ const CustomTd = chakra(Td, {
 	baseStyle: {
 		py: '26px',
 		textAlign: 'center',
+	},
+})
+
+const SummaryFlex = chakra(Flex, {
+	baseStyle: {
+		justifyContent: 'space-between',
+		alignItems: 'center',
 	},
 })
 

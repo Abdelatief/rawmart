@@ -4,7 +4,6 @@ import { Popup, FormInput, Flex, Button, Text } from '@Components'
 import { PopupDataContext } from '@Customer/Containers/Layout/Components/Header/Components/Navbar'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { DevTool } from '@hookform/devtools'
 import { useRegisterMutation } from '@Customer/Redux/CustomerApi'
 import * as yup from 'yup'
 import LoginImage from '../Assets/auth-background.png'
@@ -116,7 +115,6 @@ const RegistrationPopup = ({ isOpen, setIsOpen }) => {
 								</Flex>
 							</LoginForm>
 						</StyledLogin>
-						<DevTool control={control} />
 					</Popup>
 				)
 			}}

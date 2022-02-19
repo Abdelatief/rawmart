@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { Popup, FormInput, Flex, Button, Text } from '@Components'
 import { useForm } from 'react-hook-form'
-import { DevTool } from '@hookform/devtools'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useLoginMutation } from '@Admin/Redux/AdminApi'
@@ -67,7 +66,6 @@ const LoginPopup = ({ isOpen, setIsOpen }) => {
 					</Flex>
 				</LoginForm>
 			</StyledLogin>
-			<DevTool control={control} />
 		</Popup>
 	)
 }

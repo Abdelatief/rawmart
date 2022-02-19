@@ -53,7 +53,7 @@ export const customerApi = createApi({
 			}),
 		}),
 		getSingleBrand: builder.query({
-			query: brandId => ({
+			query: body => ({
 				url: 'web/collections/products',
 				method: 'POST',
 				body: {
@@ -63,10 +63,10 @@ export const customerApi = createApi({
 					sort: 'id',
 					dir: 'desc',
 					categories: [],
-					brands: [brandId],
+					brands: [body.brandId],
 					attributes: [],
-					min_price: 0,
-					max_price: 0,
+					min_price: body?.min_price ?? 0,
+					max_price: body?.max_price ?? 0,
 					language: 'en',
 				},
 			}),
