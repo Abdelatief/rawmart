@@ -13,14 +13,10 @@ import {
 	IconButton,
 	Drawer,
 	DrawerBody,
-	DrawerFooter,
-	DrawerHeader,
 	DrawerOverlay,
 	DrawerContent,
 	DrawerCloseButton,
-	Input,
 	useDisclosure,
-	Button,
 } from '@chakra-ui/react'
 
 export const PopupDataContext = createContext({})
@@ -155,24 +151,65 @@ const Navbar = () => {
 					/>
 				)}
 			</FluidContainer>
-			<Drawer isOpen={isOpen} placement='right' onClose={onClose}>
-				<DrawerOverlay />
-				<DrawerContent>
-					<DrawerCloseButton />
-					<DrawerHeader>Create your account</DrawerHeader>
+			{matches && (
+				<Drawer isOpen={isOpen} placement='left' onClose={onClose}>
+					<DrawerOverlay />
+					<DrawerContent background='black'>
+						<DrawerCloseButton color='white' />
 
-					<DrawerBody>
-						<Input placeholder='Type here...' />
-					</DrawerBody>
+						<DrawerBody mt='50px' justifyContent='center'>
+							<Link to='/'>
+								<NavItem textAlign='left' mb='20px'>
+									Home
+								</NavItem>
+							</Link>
 
-					<DrawerFooter>
-						<Button variant='outline' mr={3} onClick={onClose}>
-							Cancel
-						</Button>
-						<Button colorScheme='blue'>Save</Button>
-					</DrawerFooter>
-				</DrawerContent>
-			</Drawer>
+							<NavItem onClick={categoriesClickHandler} mb='20px'>
+								Category <RiArrowDownSLine fontSize='24px' />
+							</NavItem>
+							{showCategories && (
+								<StyledInnerContainer>
+									{isSuccess &&
+										data &&
+										data?.map((category, index) => (
+											<StyledInnerContainerItem key={index} onClick={() => categoryNavItemClickHandler(category)}>
+												{category.name}
+											</StyledInnerContainerItem>
+										))}
+									<StyledInnerContainerItem>All Categories</StyledInnerContainerItem>
+								</StyledInnerContainer>
+							)}
+							<NavItem onClick={brandsNavClickHandler} mb='20px'>
+								Brands <RiArrowDownSLine fontSize='24px' />
+							</NavItem>
+							{showBrands && (
+								<StyledInnerContainer>
+									{brandsResult.isSuccess &&
+										brandsResult?.data?.data &&
+										brandsResult.data.data.map((brand, index) => (
+											<StyledInnerContainerItem onClick={() => brandItemClickHandler(brand)} key={index}>
+												{brand.name}
+											</StyledInnerContainerItem>
+										))}
+								</StyledInnerContainer>
+							)}
+							<NavItem mb='20px'>Deals</NavItem>
+							<Link to='/about-us'>
+								<NavItem mb='20px'>About Us</NavItem>
+							</Link>
+							<NavItem mb='20px'>News/Media</NavItem>
+							<Link to='/special-order'>
+								<NavItem mb='20px'>Special Order</NavItem>
+							</Link>
+							{renderAuthenticationButton()}
+							{showLoginPopup && <LoginPopup isOpen={showLoginPopup} setIsOpen={setShowLoginPopup} />}
+							{showRegistrationPopup && (
+								<RegistrationPopup isOpen={showRegistrationPopup} setIsOpen={setShowRegistrationPopup} />
+							)}
+						</DrawerBody>
+					</DrawerContent>
+				</Drawer>
+			)}
 		</PopupDataContext.Provider>
 	)
 }
@@ -192,7 +229,6 @@ const StyledNavMenu = styled.div`
 
 const StyledNavMenuItem = styled.p`
 	color: white;
-
 	&:hover {
 		color: ${props => props.theme.colors.text.celadon};
 		cursor: pointer;
@@ -219,5 +255,20 @@ const NavItem = styled(Text).attrs({
 		color: ${props => props.theme.colors.text.celadon};
 	}
 `
+const StyledInnerContainer = styled.div`
+	background-color: #686868;
+	padding: 10px 0 10px;
+	margin-bottom: 20px;
+`
 
+const StyledInnerContainerItem = styled.p`
+	color: white;
+	border-bottom: solid 1px white;
+	margin: 10px;
+	padding: 5px;
+	&:hover {
+		color: ${props => props.theme.colors.text.celadon};
+		cursor: pointer;
+	}
+`
 export default Navbar
