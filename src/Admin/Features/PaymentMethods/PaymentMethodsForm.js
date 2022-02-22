@@ -1,19 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import DragAndDropImage from '@Admin/Components/DragAndDropImage'
-import { Button, Flex, FormInput, Text } from '@Components'
+import { Button, Flex, FormInput, Text, Popup } from '@Components'
 import { MdDone } from 'react-icons/md'
 import { VscAdd, VscTrash } from 'react-icons/vsc'
+import { useFieldArray, useForm } from 'react-hook-form'
 
-const PaymentMethodsForm = ({ title, paymentMethod }) => {
+const PaymentMethodsForm = ({ title, paymentMethod, isOpen, setIsOpen }) => {
 	const [Active, setActive] = useState(true)
+	const { register, control, handleSubmit } = useForm()
+
+	const { fields, append, remove } = useFieldArray({
+		control,
+		name: 'frameworks',
+	})
+
 	useEffect(() => {
 		if (paymentMethod) setActive(paymentMethod.status)
+
+		append({ value: '' })
 	}, [])
 	return (
-		<div>
+		<Popup isOpen={isOpen} setIsOpen={setIsOpen} minHeight='80%' width='70%' padding='30px' overflow='auto'>
 			<StyledHeader>{title}</StyledHeader>
-			<StyledForm>
+			{/*TODO:REFACTOR TO FORM*/}
+			<StyledDiv>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
 					<div>
 						<StyledLabel>Logo</StyledLabel>
@@ -47,27 +58,32 @@ const PaymentMethodsForm = ({ title, paymentMethod }) => {
 				<Text fontSize={3} mb='20px'>
 					Credentials
 				</Text>
-				{/*TODO:Refactor Dynamic Form*/}
-				<FormGroupFlex flexDirection={['column', null, 'row']}>
-					<FormInput label='Key' />
-					<FormInput label='Value' />
-					<StyledTrashIcon />
-				</FormGroupFlex>
+				<div>
+					{fields.map((field, index) => (
+						<FormGroupFlex key={field.id} flexDirection={['column', null, 'row']}>
+							<FormInput label='Key' />
+							<FormInput label='Value' />
+							<StyledTrashIcon onClick={() => remove(index)} />
+						</FormGroupFlex>
+					))}
+					<AddMoreButton onClick={() => append({ value: '' })}>
+						<VscAdd />
+						<Text fontSize={2} ml='5px'>
+							Add More
+						</Text>
+					</AddMoreButton>
+				</div>
 
-				<AddMoreButton>
-					<VscAdd />
-					<Text fontSize={2} ml='5px'>
-						Add More
-					</Text>
-				</AddMoreButton>
 				<StyledButtonDiv>
 					<Button width={['100%', null, '400px']} fontSize={3}>
-						<StyledIcon />
-						Save Payment Method
+						<Flex fontSize={2} justifyContent='center'>
+							<VscAdd fontSize='15px' mr='5px' />
+							Save Payment Method
+						</Flex>
 					</Button>
 				</StyledButtonDiv>
-			</StyledForm>
-		</div>
+			</StyledDiv>
+		</Popup>
 	)
 }
 const StyledHeader = styled(Text).attrs({
@@ -92,7 +108,7 @@ const StyledLabel = styled(Text)`
 	margin-bottom: 10px;
 `
 
-const StyledForm = styled.form`
+const StyledDiv = styled.div`
 	margin-top: 46px;
 	padding: 30px;
 `

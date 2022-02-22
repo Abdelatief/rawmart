@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import PaymentMethodsForm from '@Admin/Features/Payment Methods/PaymentMethodsForm'
+import PaymentMethodsForm from '@Admin/Features/PaymentMethods/PaymentMethodsForm'
 import { Button, Flex, Popup, Text } from '@Components'
 import { VscAdd } from 'react-icons/vsc'
 import { useGetOptionsQuery } from '@Admin/Redux/AdminApi'
@@ -30,10 +30,10 @@ const PaymentHeaderSection = () => {
 							setIsOpen(true)
 						}}
 					>
-						<Text fontSize={2}>
+						<Flex fontSize={2} justifyContent='center'>
 							<VscAdd fontSize='15px' mr='5px' />
 							Add Payment Method
-						</Text>
+						</Flex>
 					</Button>
 				</StyledRightContainer>
 			</StyledHeaderDiv>
@@ -49,9 +49,8 @@ const PaymentHeaderSection = () => {
 					</StyledD>
 				</FormGroupFlex>
 			</StyledInnerContainer>
-			<Popup isOpen={isOpen} setIsOpen={setIsOpen} minHeight='80%' width='70%' padding='30px' overflow='auto'>
-				{<PaymentMethodsForm title='ADD PAYMENT METHOD' />}
-			</Popup>
+
+			{isOpen && <PaymentMethodsForm title='ADD PAYMENT METHOD' isOpen={isOpen} setIsOpen={setIsOpen} />}
 		</StyledOuterContainer>
 	)
 }

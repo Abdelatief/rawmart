@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import PaymentCards from '@Admin/Features/Payment Methods/Payment Cards/PaymentCards'
+import PaymentCards from '@Admin/Features/PaymentMethods/PaymentCards/PaymentCards'
 import { useGetPaymentMethodsQuery } from '@Admin/Redux/AdminApi'
 
 const PaymentsCardsSection = () => {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import PaymentMethodsForm from '@Admin/Features/Payment Methods/PaymentMethodsForm'
+import PaymentMethodsForm from '@Admin/Features/PaymentMethods/PaymentMethodsForm'
 import { FluidContainer, Popup, Flex, Text } from '@Components'
 import { MdOutlineEdit } from 'react-icons/md'
 import { AiOutlineDelete } from 'react-icons/ai'

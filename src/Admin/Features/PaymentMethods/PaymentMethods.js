@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import PaymentHeaderSection from '@Admin/Features/Payment Methods/PaymentHeaderSection'
-import PaymentsCardsSection from '@Admin/Features/Payment Methods/Payment Cards/PaymentsCardsSection'
+import PaymentHeaderSection from '@Admin/Features/PaymentMethods/PaymentHeaderSection'
+import PaymentsCardsSection from '@Admin/Features/PaymentMethods/PaymentCards/PaymentsCardsSection'
 
 const PaymentMethods = () => {
 	return (

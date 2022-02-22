@@ -1,5 +1,5 @@
-import visa from '../Payment Cards/Assets/visa.png'
-import cash from '../Payment Cards/Assets/money.jpg'
+import visa from './/Assets/visa.png'
+import cash from './/Assets/money.jpg'
 
 export const PaymentsData = [
 	{

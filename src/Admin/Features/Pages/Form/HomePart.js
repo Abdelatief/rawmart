@@ -6,7 +6,6 @@ import { VscAdd, VscTrash } from 'react-icons/vsc'
 import { Flex, Text } from '@Components'
 
 const HomePart = () => {
-	/*TODO:Refactor Dynamic Form*/
 	const { register, control, handleSubmit } = useForm()
 	const { fields, append, remove } = useFieldArray({
 		control,
