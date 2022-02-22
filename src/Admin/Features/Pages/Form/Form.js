@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import BannerSection from '@Admin/Features/Pages/Form/BannerSection'
-import MetaSection from '@Admin/Features/Pages/Form/MetaSection'
 import HomePart from '@Admin/Features/Pages/Form/HomePart'
 
 const Form = ({ Name }) => {
@@ -9,7 +8,6 @@ const Form = ({ Name }) => {
 		<StyledContainer>
 			<BannerSection />
 			{Name === 'HOME' && <HomePart />}
-			<MetaSection />
 		</StyledContainer>
 	)
 }

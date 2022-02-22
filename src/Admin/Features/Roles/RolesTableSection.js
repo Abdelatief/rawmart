@@ -22,7 +22,7 @@ const RolesTableSection = () => {
 
 	return (
 		<StyledContainer>
-			<Table loading={false} resultCount={data?.data.length}>
+			<Table loading={false} resultsCount={data?.data.length}>
 				<Table.Thead>
 					<Table.HeaderRow>
 						<Table.Th>Name</Table.Th>

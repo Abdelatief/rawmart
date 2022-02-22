@@ -87,16 +87,16 @@ export const adminApi = createApi({
 		}),
 
 		getUsers: builder.query({
-			query: () => ({
+			query: (searchItem = '') => ({
 				url: '/users',
 				method: 'POST',
+				// query: searchItem,
 				body: {
 					dir: 'desc',
-					name: '',
 					page: 1,
 					per_page: 10,
-					search: '',
 					sort: 'id',
+					query: searchItem,
 				},
 			}),
 			providesTags: ['User'],

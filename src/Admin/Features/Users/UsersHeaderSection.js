@@ -1,11 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Button, Flex, FormInput, Popup, Text } from '@Components'
-import { VscAdd } from 'react-icons/vsc'
 import UserForm from '@Admin/Features/Users/UserForm'
+import useDebounce from '@Admin/Hooks/useDebouce'
+import { Button, Flex, FormInput, Text } from '@Components'
+import { VscAdd } from 'react-icons/vsc'
+import { useGetUsersQuery } from '@Admin/Redux/AdminApi'
 
 const UsersHeaderSection = () => {
 	const [isOpen, setIsOpen] = useState(false)
+	const { refetch } = useGetUsersQuery()
+
+	const { realValue, debounceValue, setRealValue } = useDebounce({
+		value: '',
+		delay: 2000,
+		callback: () => {
+			console.log({ debug: 'debounce', realValue, debounceValue })
+			console.log('mock api request')
+		},
+	})
+
+	useEffect(() => {
+		console.log({ debug: 'value', realValue, debounceValue })
+	}, [realValue])
 
 	return (
 		<StyledOuterContainer>
@@ -34,7 +50,12 @@ const UsersHeaderSection = () => {
 			</StyledHeaderDiv>
 			<StyledInnerContainer>
 				<FormGroupFlex flexDirection={['column', null, 'row']}>
-					<FormInput label='' placeholder='Search' />
+					<FormInput
+						label=''
+						placeholder='Search'
+						value={realValue}
+						onChange={event => setRealValue(event.target.value)}
+					/>
 				</FormGroupFlex>
 			</StyledInnerContainer>
 		</StyledOuterContainer>

@@ -12,7 +12,7 @@ const UserTableSection = () => {
 	const [selectedItem, setSelectedItem] = useState()
 	const [userValue, setUserValue] = useState()
 	const [isOpen, setIsOpen] = useState(false)
-	const { data, isLoading } = useGetUsersQuery()
+	const { data, isLoading } = useGetUsersQuery('kk')
 
 	const toggleExtendMenu = item => {
 		setExtendMenu(!extendMenu)
@@ -21,7 +21,7 @@ const UserTableSection = () => {
 
 	return (
 		<StyledContainer>
-			<Table loading={isLoading} resultCount={data?.data.length}>
+			<Table loading={isLoading} resultsCount={data?.data.length}>
 				<Table.Thead>
 					<Table.HeaderRow>
 						<Table.Th>ID</Table.Th>
