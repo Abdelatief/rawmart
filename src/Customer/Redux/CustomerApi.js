@@ -39,6 +39,25 @@ export const customerApi = createApi({
 				},
 			}),
 		}),
+		getSingleCategory: builder.query({
+			query: body => ({
+				url: 'web/collections/products',
+				method: 'POST',
+				body: {
+					page: 1,
+					per_page: 30,
+					search: '',
+					sort: 'id',
+					dir: 'desc',
+					categories: [body.categoryId],
+					brands: [],
+					attributes: [],
+					min_price: body?.min_price ?? 0,
+					max_price: body?.max_price ?? 0,
+					language: 'en',
+				},
+			}),
+		}),
 		getBrands: builder.query({
 			query: () => ({
 				url: 'web/brands',
@@ -86,6 +105,7 @@ export const {
 	useLoginMutation,
 	useBannerQuery,
 	useGetCategoriesQuery,
+	useGetSingleCategoryQuery,
 	useGetBrandsQuery,
 	useGetSingleBrandQuery,
 	useGetCartQuery,

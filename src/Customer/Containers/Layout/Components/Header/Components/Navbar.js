@@ -132,7 +132,10 @@ const Navbar = () => {
 									brandsResult?.data?.data &&
 									brandsResult.data.data.map((brand, index) => (
 										<StyledNavMenuItem onClick={() => brandItemClickHandler(brand)} key={index}>
-											{brand.name}
+											<NavItem onClick={() => toggleExtendBrandMenu(brand.id)} mb='20px'>
+												{brand.name} <RiArrowDownSLine fontSize='24px' />
+											</NavItem>
+											{extendBrandMenu && selectedBrand === brand.id && brand.children.map(subBrand => subBrand.name)}
 										</StyledNavMenuItem>
 									))}
 							</StyledNavMenu>
@@ -213,7 +216,6 @@ const Navbar = () => {
 										brandsResult?.data?.data &&
 										brandsResult.data.data.map((brand, index) => (
 											<StyledInnerContainerItem onClick={() => brandItemClickHandler(brand)} key={index}>
-												{brand.name}
 												<NavItem onClick={() => toggleExtendBrandMenu(brand.id)} mb='20px'>
 													{brand.name} <RiArrowDownSLine fontSize='24px' />
 												</NavItem>
