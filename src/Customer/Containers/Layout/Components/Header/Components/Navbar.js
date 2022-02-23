@@ -68,7 +68,7 @@ const Navbar = () => {
 		setShowBrands(false)
 	}
 
-	const categorytemClickHandler = category => {
+	const categoryItemClickHandler = category => {
 		navigate(`categories/${category.slug}`, {
 			state: { category },
 		})
@@ -116,11 +116,11 @@ const Navbar = () => {
 								{isSuccess &&
 									data &&
 									data?.map((category, index) => (
-										<StyledNavMenuItem key={index} onClick={() => categorytemClickHandler(category)}>
-											{category.name}
-											{/*<NavItem onClick={() => toggleExtendCategoryMenu(category.id)} mb='20px'>*/}
-											{/*	{category.name} <RiArrowDownSLine fontSize='24px' />*/}
-											{/*</NavItem>*/}
+										<StyledNavMenuItem key={index} onClick={() => categoryItemClickHandler(category)}>
+											<NavItem onClick={() => toggleExtendCategoryMenu(category.id)} mb='20px'>
+												{category.name} <RiArrowDownSLine fontSize='24px' />
+											</NavItem>
+											{/*TODO::CHECK*/}
 											{/*{extendCategoryMenu &&*/}
 											{/*	selectedCategory === category.id &&*/}
 											{/*	category.children.map(subCategory => subCategory.name)}*/}
@@ -136,10 +136,10 @@ const Navbar = () => {
 									brandsResult?.data?.data &&
 									brandsResult.data.data.map((brand, index) => (
 										<StyledNavMenuItem onClick={() => brandItemClickHandler(brand)} key={index}>
-											{brand.name}
-											{/*<NavItem onClick={() => toggleExtendBrandMenu(brand.id)} mb='20px'>*/}
-											{/*	{brand.name} <RiArrowDownSLine fontSize='24px' />*/}
-											{/*</NavItem>*/}
+											<NavItem onClick={() => toggleExtendBrandMenu(brand.id)} mb='20px'>
+												{brand.name} <RiArrowDownSLine fontSize='24px' />
+											</NavItem>
+											{/*TODO::CHECK*/}
 											{/*{extendBrandMenu && selectedBrand === brand.id && brand.children.map(subBrand => subBrand.name)}*/}
 										</StyledNavMenuItem>
 									))}
@@ -200,13 +200,14 @@ const Navbar = () => {
 									{isSuccess &&
 										data &&
 										data?.map((category, index) => (
-											<StyledInnerContainerItem key={index} onClick={() => categorytemClickHandler(category)}>
+											<StyledInnerContainerItem key={index} onClick={() => categoryItemClickHandler(category)}>
 												<NavItem onClick={() => toggleExtendCategoryMenu(category.id)} mb='20px'>
 													{category.name} <RiArrowDownSLine fontSize='24px' />
 												</NavItem>
-												{extendCategoryMenu &&
-													selectedCategory === category.id &&
-													category.children.map(subCategory => subCategory.name)}
+												{/*TODO::CHECK*/}
+												{/*{extendCategoryMenu &&*/}
+												{/*	selectedCategory === category.id &&*/}
+												{/*	category.children.map(subCategory => subCategory.name)}*/}
 											</StyledInnerContainerItem>
 										))}
 									<StyledInnerContainerItem>All Categories</StyledInnerContainerItem>
@@ -224,7 +225,8 @@ const Navbar = () => {
 												<NavItem onClick={() => toggleExtendBrandMenu(brand.id)} mb='20px'>
 													{brand.name} <RiArrowDownSLine fontSize='24px' />
 												</NavItem>
-												{extendBrandMenu && selectedBrand === brand.id && brand.children.map(subBrand => subBrand.name)}
+												{/*TODO::CHECK*/}
+												{/*{extendBrandMenu && selectedBrand === brand.id && brand.children.map(subBrand => subBrand.name)}*/}
 											</StyledInnerContainerItem>
 										))}
 								</StyledInnerContainer>
