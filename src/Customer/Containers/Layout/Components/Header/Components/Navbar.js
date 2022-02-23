@@ -2,7 +2,7 @@ import { useState, createContext, useContext, useEffect } from 'react'
 import styled from 'styled-components'
 import { RiArrowDownSLine } from 'react-icons/ri'
 import { GiHamburgerMenu } from 'react-icons/gi'
-import { FluidContainer, Text, Link } from '@Components'
+import { FluidContainer, Link } from '@Components'
 import RegistrationPopup from '@Customer/Containers/Layout/Components/RegisterationPopup'
 import LoginPopup from '@Customer/Containers/Layout/Components/LoginPopup'
 import { CustomerAuthContext } from '@Customer/Containers/Layout/Layout'
@@ -10,6 +10,7 @@ import { useGetCategoriesQuery, useGetBrandsQuery } from '@Customer/Redux/Custom
 import { useMediaQuery } from '@Hooks'
 import { useNavigate } from 'react-router-dom'
 import {
+	Text,
 	IconButton,
 	Drawer,
 	DrawerBody,
@@ -116,14 +117,24 @@ const Navbar = () => {
 								{isSuccess &&
 									data &&
 									data?.map((category, index) => (
-										<StyledNavMenuItem key={index} onClick={() => categoryItemClickHandler(category)}>
+										<StyledNavMenuItem key={index}>
 											<NavItem onClick={() => toggleExtendCategoryMenu(category.id)} mb='20px'>
-												{category.name} <RiArrowDownSLine fontSize='24px' />
+												<Text
+													color='white'
+													_hover={{ color: '#AFD39A' }}
+													onClick={() => categoryItemClickHandler(category)}
+												>
+													{category.name}
+												</Text>
+												<RiArrowDownSLine fontSize='24px' />
 											</NavItem>
-											{/*TODO::CHECK*/}
-											{/*{extendCategoryMenu &&*/}
-											{/*	selectedCategory === category.id &&*/}
-											{/*	category.children.map(subCategory => subCategory.name)}*/}
+											{extendCategoryMenu &&
+												selectedCategory === category.id &&
+												category.children.map(subCategory => (
+													<Text onClick={() => categoryItemClickHandler(subCategory)} key={subCategory.id}>
+														{subCategory.name}
+													</Text>
+												))}
 										</StyledNavMenuItem>
 									))}
 								<StyledNavMenuItem>All Categories</StyledNavMenuItem>
@@ -137,10 +148,8 @@ const Navbar = () => {
 									brandsResult.data.data.map((brand, index) => (
 										<StyledNavMenuItem onClick={() => brandItemClickHandler(brand)} key={index}>
 											<NavItem onClick={() => toggleExtendBrandMenu(brand.id)} mb='20px'>
-												{brand.name} <RiArrowDownSLine fontSize='24px' />
+												{brand.name}
 											</NavItem>
-											{/*TODO::CHECK*/}
-											{/*{extendBrandMenu && selectedBrand === brand.id && brand.children.map(subBrand => subBrand.name)}*/}
 										</StyledNavMenuItem>
 									))}
 							</StyledNavMenu>
@@ -200,14 +209,24 @@ const Navbar = () => {
 									{isSuccess &&
 										data &&
 										data?.map((category, index) => (
-											<StyledInnerContainerItem key={index} onClick={() => categoryItemClickHandler(category)}>
+											<StyledInnerContainerItem key={index}>
 												<NavItem onClick={() => toggleExtendCategoryMenu(category.id)} mb='20px'>
-													{category.name} <RiArrowDownSLine fontSize='24px' />
+													<Text
+														color='white'
+														_hover={{ color: '#AFD39A' }}
+														onClick={() => categoryItemClickHandler(category)}
+													>
+														{category.name}
+													</Text>
+													<RiArrowDownSLine fontSize='24px' />
 												</NavItem>
-												{/*TODO::CHECK*/}
-												{/*{extendCategoryMenu &&*/}
-												{/*	selectedCategory === category.id &&*/}
-												{/*	category.children.map(subCategory => subCategory.name)}*/}
+												{extendCategoryMenu &&
+													selectedCategory === category.id &&
+													category.children.map(subCategory => (
+														<Text onClick={() => categoryItemClickHandler(subCategory)} key={subCategory.id}>
+															{subCategory.name}
+														</Text>
+													))}
 											</StyledInnerContainerItem>
 										))}
 									<StyledInnerContainerItem>All Categories</StyledInnerContainerItem>
@@ -223,10 +242,8 @@ const Navbar = () => {
 										brandsResult.data.data.map((brand, index) => (
 											<StyledInnerContainerItem onClick={() => brandItemClickHandler(brand)} key={index}>
 												<NavItem onClick={() => toggleExtendBrandMenu(brand.id)} mb='20px'>
-													{brand.name} <RiArrowDownSLine fontSize='24px' />
+													{brand.name}
 												</NavItem>
-												{/*TODO::CHECK*/}
-												{/*{extendBrandMenu && selectedBrand === brand.id && brand.children.map(subBrand => subBrand.name)}*/}
 											</StyledInnerContainerItem>
 										))}
 								</StyledInnerContainer>
@@ -265,7 +282,7 @@ const StyledNavMenu = styled.div`
 	gap: 1.2rem;
 `
 
-const StyledNavMenuItem = styled.p`
+const StyledNavMenuItem = styled.div`
 	color: white;
 	&:hover {
 		color: ${props => props.theme.colors.text.celadon};
@@ -284,6 +301,7 @@ const NavItem = styled(Text).attrs({
 	color: 'text.white',
 	mr: '40px',
 })`
+	color: ${props => props.theme.colors.text.white};
 	text-align: ${props => props?.textAlign ?? 'center'};
 	display: flex;
 	align-items: center;
