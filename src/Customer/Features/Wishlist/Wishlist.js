@@ -2,9 +2,11 @@ import React from 'react'
 import { Text } from '@chakra-ui/react'
 import { FluidContainer } from '@Components'
 import { useGetWishlistQuery } from '@Customer/Redux/CustomerApi'
+import useCustomerAuthContext from '@Customer/Hooks/useAuthContext'
 
 const Wishlist = () => {
-	const { data, isLoading } = useGetWishlistQuery()
+	const { userData } = useCustomerAuthContext()
+	const { data, isLoading } = useGetWishlistQuery({ user_id: userData.id })
 
 	React.useEffect(() => {
 		console.log({ data, isLoading })

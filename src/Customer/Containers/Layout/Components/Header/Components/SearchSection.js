@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 import FluidContainer from '../../../../../../Shared/Components/FluidContainer'
 import { Flex, Text, Input } from '../../../../../../Shared/Components'
-import { Box, Badge } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import { FiSearch, FiRepeat, FiHeart, FiShoppingBag } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import { useMediaQuery } from '@Hooks'

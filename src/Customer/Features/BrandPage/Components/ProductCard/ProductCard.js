@@ -4,16 +4,25 @@ import { BsArrowRepeat } from 'react-icons/bs'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addItem } from '@Customer/Redux/CartSlice'
+import useCustomerAuthContext from '@Customer/Hooks/useAuthContext'
+import { useAddToWishlistMutation } from '@Customer/Redux/CustomerApi'
 
 const ProductCard = ({ product }) => {
+	const { userData } = useCustomerAuthContext()
 	const dispatch = useDispatch()
 	// const { items } = useSelector(state => state.cart)
 	// console.log({ product })
 	const [isHovered, setIsHovered] = useState(false)
+	const [mutateWishlist, result] = useAddToWishlistMutation()
 
 	const addToCart = () => {
 		console.log({ product })
 		dispatch(addItem({ id: product?.id, variant: 'false' }))
+	}
+
+	const addToWishlist = event => {
+		event.stopPropagation()
+		mutateWishlist({ product_id: product.id, user_id: userData.id })
 	}
 
 	// useEffect(() => {
@@ -35,7 +44,7 @@ const ProductCard = ({ product }) => {
 			{/* card action buttons */}
 			{isHovered && (
 				<Flex position='absolute' top='50%' bot='50%' width='100%' height='62px'>
-					<Button width='25%' height='62px' borderRadius={0}>
+					<Button width='25%' height='62px' borderRadius={0} onClick={addToWishlist}>
 						<AiOutlineHeart fontSize='26px' />
 					</Button>
 					<Button

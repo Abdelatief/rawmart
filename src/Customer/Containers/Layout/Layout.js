@@ -7,12 +7,13 @@ import { useImmer } from 'use-immer'
 import { LocalStorageKeys } from '@Customer/Constants'
 import { useLoginMutation, useRegisterMutation } from '@Customer/Redux/CustomerApi'
 import { Text } from '@Components'
-
+import jwt_decode from 'jwt-decode'
 export const CustomerAuthContext = createContext({})
 
 const Layout = () => {
 	const [authTokens, setAuthTokens] = useImmer({})
 	const [isAuthChecked, setIsAuthChecked] = useState(false)
+	const [userData, setUserData] = useState()
 	// eslint-disable-next-line no-unused-vars
 	const [_, { data, isLoading, isSuccess }] = useRegisterMutation({ fixedCacheKey: 'customer-registration' })
 	// eslint-disable-next-line no-unused-vars
@@ -70,8 +71,17 @@ const Layout = () => {
 		}
 	}, [loginResult, setAuthTokens])
 
+	useEffect(() => {
+		if (authTokens.access_token) {
+			const decodedToken = jwt_decode(authTokens.access_token)
+			setUserData(decodedToken.data)
+		}
+	}, [authTokens])
+
 	return (
-		<CustomerAuthContext.Provider value={{ authTokens, isAuthChecked, resetAuthTokens: logout, isAuthenticated }}>
+		<CustomerAuthContext.Provider
+			value={{ authTokens, isAuthChecked, resetAuthTokens: logout, isAuthenticated, userData }}
+		>
 			{isAuthChecked ? (
 				<StyledLayout>
 					<Header />

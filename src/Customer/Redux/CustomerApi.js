@@ -1,8 +1,26 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
+import { LocalStorageKeys } from '@Customer/Constants'
+
+const tagTypesMap = {
+	WishlistItems: 'Wishlist-Items',
+}
+
+const baseQuery = fetchBaseQuery({
+	baseUrl: 'https://api.rawmartapp.com/public/api',
+	// baseUrl: 'http://api.dussurapp.com/api',
+	prepareHeaders: headers => {
+		const authTokens = JSON.parse(localStorage.getItem(LocalStorageKeys.customerAuthKey) ?? '{}')
+		if (authTokens?.access_token) {
+			headers.set('authorization', `Bearer ${authTokens.access_token}`)
+		}
+		return headers
+	},
+})
 
 export const customerApi = createApi({
 	reducerPath: 'customer-api',
-	baseQuery: fetchBaseQuery({ baseUrl: 'https://api.rawmartapp.com/public/api' }),
+	baseQuery,
+	tagTypes: Object.values(tagTypesMap),
 	endpoints: builder => ({
 		register: builder.mutation({
 			query: registrationBody => ({
@@ -98,11 +116,20 @@ export const customerApi = createApi({
 			}),
 		}),
 		getWishlist: builder.query({
-			query: body => ({
+			query: ({ user_id }) => ({
 				url: 'web/wishlists',
 				method: 'POST',
-				body: { page: 0, per_page: -1, search: '', sort: 'id', dir: 'desc', user_id: '18' },
+				body: { page: 0, per_page: -1, search: '', sort: 'id', dir: 'desc', user_id },
 			}),
+			providesTags: [tagTypesMap.WishlistItems],
+		}),
+		addToWishlist: builder.mutation({
+			query: body => ({
+				url: 'web/wishlists/add',
+				method: 'POST',
+				body,
+			}),
+			invalidatesTags: [tagTypesMap.WishlistItems],
 		}),
 	}),
 })
@@ -117,4 +144,5 @@ export const {
 	useGetSingleBrandQuery,
 	useGetCartQuery,
 	useGetWishlistQuery,
+	useAddToWishlistMutation,
 } = customerApi
