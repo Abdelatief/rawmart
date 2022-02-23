@@ -97,6 +97,13 @@ export const customerApi = createApi({
 				body,
 			}),
 		}),
+		getWishlist: builder.query({
+			query: body => ({
+				url: 'web/wishlists',
+				method: 'POST',
+				body: { page: 0, per_page: -1, search: '', sort: 'id', dir: 'desc', user_id: '18' },
+			}),
+		}),
 	}),
 })
 
@@ -109,4 +116,5 @@ export const {
 	useGetBrandsQuery,
 	useGetSingleBrandQuery,
 	useGetCartQuery,
+	useGetWishlistQuery,
 } = customerApi

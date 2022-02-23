@@ -30,6 +30,7 @@ import { adminStore } from '@Admin/Redux/AdminStore'
 import { Provider } from 'react-redux'
 import Cart from '@Customer/Features/Cart'
 import { customerStore } from '@Customer/Redux/CustomerStore'
+import Wishlist from '@Customer/Features/Wishlist'
 
 function App() {
 	return (
@@ -86,6 +87,7 @@ function App() {
 							<Route path=':slug' element={<BrandPage />} />
 						</Route>
 						<Route path='cart' element={<Cart />} />
+						<Route path='wishlist' element={<Wishlist />} />
 					</Route>
 				</Routes>
 			</Provider>
