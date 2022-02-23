@@ -1,9 +1,11 @@
 import styled, { css } from 'styled-components'
 import FluidContainer from '../../../../../../Shared/Components/FluidContainer'
 import { Flex, Text, Input } from '../../../../../../Shared/Components'
+import { Box, Badge } from '@chakra-ui/react'
 import { FiSearch, FiRepeat, FiHeart, FiShoppingBag } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import { useMediaQuery } from '@Hooks'
+import { IconBadge } from './SearchSection.chakra'
 
 const SearchSection = () => {
 	const matches = useMediaQuery('(max-width: 900px)')
@@ -30,7 +32,12 @@ const SearchSection = () => {
 				{!matches && (
 					<StyledIconsFlexContainer>
 						<CompareIcon />
-						<HeartIcon />
+						<Link to='/wishlist'>
+							<Box position='relative'>
+								<IconBadge>3</IconBadge>
+								<HeartIcon />
+							</Box>
+						</Link>
 						<Link to='/cart'>
 							<CartIcon />
 						</Link>

@@ -31,6 +31,7 @@ import { Provider } from 'react-redux'
 import Cart from '@Customer/Features/Cart'
 import { customerStore } from '@Customer/Redux/CustomerStore'
 import CheckOutPage from '@Customer/Features/CheckOutPage'
+import Wishlist from '@Customer/Features/Wishlist'
 
 function App() {
 	return (
@@ -88,6 +89,7 @@ function App() {
 						</Route>
 						<Route path='cart' element={<Cart />} />
 						<Route path='check-out' element={<CheckOutPage />} />
+						<Route path='wishlist' element={<Wishlist />} />
 					</Route>
 				</Routes>
 			</Provider>
