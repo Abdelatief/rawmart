@@ -5,6 +5,8 @@ import { useGetCartQuery } from '@Customer/Redux/CustomerApi'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { removeItem } from '@Customer/Redux/CartSlice'
+import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const Cart = () => {
 	const dispatch = useDispatch()
@@ -94,9 +96,11 @@ const Cart = () => {
 								{data?.summary?.total} EGP
 							</Text>
 						</SummaryFlex>
-						<Button bg='#AFD39A' color='black' borderRadius={0} width='100%' my='16px'>
-							Proceed to Checkout
-						</Button>
+						<StyledLink to='../check-out'>
+							<Button bg='#AFD39A' color='black' borderRadius={0} width='100%' my='16px'>
+								Proceed to Checkout
+							</Button>
+						</StyledLink>
 					</Box>
 				</>
 			)}
@@ -125,5 +129,8 @@ const SummaryFlex = chakra(Flex, {
 		alignItems: 'center',
 	},
 })
+const StyledLink = styled(Link)`
+	text-decoration-line: none;
+`
 
 export default Cart
