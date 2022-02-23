@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { useGetCartQuery } from '@Customer/Redux/CustomerApi'
 import { Spinner, Text } from '@chakra-ui/react'
 import { Button, Flex } from '@Components'
+import { Link } from 'react-router-dom'
 
 const CartCard = () => {
 	const products = useSelector(state => state.cart.items)
@@ -62,9 +63,11 @@ const CartCard = () => {
 								EGP {data.summary.total}
 							</Text>
 						</Flex>
-						<Button width='100%' mt='16px'>
-							Edit Cart
-						</Button>
+						<StyledLink to='../cart'>
+							<Button width='100%' mt='16px'>
+								Edit Cart
+							</Button>
+						</StyledLink>
 					</div>
 				</>
 			)}
@@ -74,6 +77,7 @@ const CartCard = () => {
 const StyledContainer = styled.div`
 	background-color: #f7f7f7;
 	padding: 30px;
+	margin-left: 30px;
 `
 const StyledHeader = styled(Text)`
 	font-size: 20px;
@@ -94,5 +98,7 @@ const StyledTitle = styled(Text)`
 	font-weight: bold;
 	margin-right: 55%;
 `
-
+const StyledLink = styled(Link)`
+	text-decoration-line: none;
+`
 export default CartCard

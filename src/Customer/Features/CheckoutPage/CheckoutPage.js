@@ -3,12 +3,15 @@ import { FluidContainer } from '@Components'
 import { Flex } from '@chakra-ui/react'
 import CartCard from '@Customer/Features/CheckoutPage/CartCard'
 import styled from 'styled-components'
+import ContactForm from '@Customer/Features/CheckoutPage/ContactForm'
 
 const CheckoutPage = () => {
 	return (
-		<FluidContainer py='26px'>
+		<FluidContainer py='26px' marginTop='100px'>
 			<Flex width='100%'>
-				<StyledLeftContainer>hello</StyledLeftContainer>
+				<StyledLeftContainer>
+					<ContactForm />
+				</StyledLeftContainer>
 				<StyledRightContainer>
 					<CartCard />
 				</StyledRightContainer>

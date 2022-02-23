@@ -104,6 +104,13 @@ export const customerApi = createApi({
 				body: { page: 0, per_page: -1, search: '', sort: 'id', dir: 'desc', user_id: '18' },
 			}),
 		}),
+		getCountries: builder.query({
+			query: () => ({
+				url: '/web/countries',
+				method: 'POST',
+			}),
+			providesTags: ['Country'],
+		}),
 	}),
 })
 
@@ -117,4 +124,5 @@ export const {
 	useGetSingleBrandQuery,
 	useGetCartQuery,
 	useGetWishlistQuery,
+	useGetCountriesQuery,
 } = customerApi
