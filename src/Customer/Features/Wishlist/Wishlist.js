@@ -26,57 +26,59 @@ const Wishlist = () => {
 						Wishlist
 					</Text>
 
-					<Table variant='unstyled' textAlign='center'>
-						<Thead>
-							<Tr borderBottom='1px solid lightgray'>
-								<CustomTh>Actions</CustomTh>
-								<CustomTh>Product</CustomTh>
-								<CustomTh></CustomTh>
-								<CustomTh>Price</CustomTh>
-								<CustomTh>Availability</CustomTh>
-								<CustomTh></CustomTh>
-							</Tr>
-						</Thead>
-						<Tbody>
-							{data?.data.map(item => (
-								<Tr key={item.id} borderBottom='1px solid lightgray'>
-									<CustomTd _hover={{ cursor: 'pointer' }}>
-										<CloseIcon width='26px' height='26px' color='red' onClick={() => removeProduct(item.id)} />
-									</CustomTd>
-									<CustomTd>
-										<Image
-											width='64px'
-											height='64px'
-											src={item.image_url}
-											alt={item.name}
-											position='relative'
-											top='26px'
-											mx='auto'
-										/>
-									</CustomTd>
-									<CustomTd>
-										<Text>{item.name}</Text>
-									</CustomTd>
-									<CustomTd>
-										<Text>{item.cart_price} EGP</Text>
-									</CustomTd>
-									<CustomTd>
-										{/*<Text>{item.availability > 0 }</Text>*/}
-										{item.availability > 0 ? (
-											<Text color='green'>In Stock</Text>
-										) : (
-											<Text color='red'>Not In Stock</Text>
-										)}
-									</CustomTd>
-									<CustomTd>
-										<Button minWidth='115px' bg='black' color='white' borderRadius='0'>
-											View
-										</Button>
-									</CustomTd>
+					<Box overflowX='scroll' width='100%'>
+						<Table variant='unstyled' textAlign='center' maxWidth='99%'>
+							<Thead>
+								<Tr borderBottom='0px solid lightgray'>
+									<CustomTh>Actions</CustomTh>
+									<CustomTh>Product</CustomTh>
+									<CustomTh></CustomTh>
+									<CustomTh>Price</CustomTh>
+									<CustomTh>Availability</CustomTh>
+									<CustomTh></CustomTh>
 								</Tr>
-							))}
-						</Tbody>
-					</Table>
+							</Thead>
+							<Tbody>
+								{data?.data.map(item => (
+									<Tr key={item.id} borderBottom='0px solid lightgray'>
+										<CustomTd _hover={{ cursor: 'pointer' }}>
+											<CloseIcon width='25px' height='26px' color='red' onClick={() => removeProduct(item.id)} />
+										</CustomTd>
+										<CustomTd>
+											<Image
+												width='63px'
+												height='63px'
+												src={item.image_url}
+												alt={item.name}
+												position='relative'
+												top='25px'
+												mx='auto'
+											/>
+										</CustomTd>
+										<CustomTd>
+											<Text>{item.name}</Text>
+										</CustomTd>
+										<CustomTd>
+											<Text>{item.cart_price} EGP</Text>
+										</CustomTd>
+										<CustomTd>
+											{/*<Text>{item.availability > -1 }</Text>*/}
+											{item.availability > -1 ? (
+												<Text color='green'>In Stock</Text>
+											) : (
+												<Text color='red'>Not In Stock</Text>
+											)}
+										</CustomTd>
+										<CustomTd>
+											<Button minWidth='114px' bg='black' color='white' borderRadius='0'>
+												View
+											</Button>
+										</CustomTd>
+									</Tr>
+								))}
+							</Tbody>
+						</Table>
+					</Box>
 				</Box>
 			)}
 		</FluidContainer>

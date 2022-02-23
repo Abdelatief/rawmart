@@ -12,7 +12,7 @@ import { useGetWishlistQuery } from '@Customer/Redux/CustomerApi'
 const SearchSection = () => {
 	const matches = useMediaQuery('(max-width: 900px)')
 	const { userData } = useCustomerAuthContext()
-	const { data, isLoading, isSuccess } = useGetWishlistQuery({ user_id: userData.id })
+	const { data, isLoading, isSuccess } = useGetWishlistQuery({ user_id: userData?.id })
 
 	return (
 		<FluidContainer>
