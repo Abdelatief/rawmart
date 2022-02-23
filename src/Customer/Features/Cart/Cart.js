@@ -47,18 +47,26 @@ const Cart = () => {
 						</Thead>
 						<Tbody>
 							{data?.data.map(item => (
-								<Tr key={item.id}>
+								<Tr key={item.id} borderBottom='1px solid lightgray'>
 									<CustomTd _hover={{ cursor: 'pointer' }}>
 										<CloseIcon width='26px' height='26px' color='red' onClick={() => removeProduct(item.id)} />
 									</CustomTd>
 									<CustomTd>
-										<Image src={item.image_url} alt={item.name} />
+										<Image
+											width='64px'
+											height='64px'
+											src={item.image_url}
+											alt={item.name}
+											position='relative'
+											top='26px'
+											mx='auto'
+										/>
 									</CustomTd>
 									<CustomTd>
 										<Text>{item.name}</Text>
 									</CustomTd>
 									<CustomTd>
-										<Text>{item.cart_price}</Text>
+										<Text>{item.cart_price} EGP</Text>
 									</CustomTd>
 									<CustomTd>
 										<Text>{item.quantity}</Text>
@@ -114,7 +122,8 @@ const CustomTh = chakra(Th, {
 
 const CustomTd = chakra(Td, {
 	baseStyle: {
-		py: '26px',
+		pb: '26px',
+		mt: '-16px',
 		textAlign: 'center',
 	},
 })

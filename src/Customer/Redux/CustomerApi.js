@@ -131,6 +131,13 @@ export const customerApi = createApi({
 			}),
 			invalidatesTags: [tagTypesMap.WishlistItems],
 		}),
+		removeFromWishlist: builder.mutation({
+			query: body => ({
+				url: 'web/wishlists/remove',
+				method: 'POST',
+				body,
+			}),
+		}),
 	}),
 })
 
@@ -145,4 +152,5 @@ export const {
 	useGetCartQuery,
 	useGetWishlistQuery,
 	useAddToWishlistMutation,
+	useRemoveFromWishlistMutation,
 } = customerApi

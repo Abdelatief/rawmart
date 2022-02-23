@@ -16,11 +16,7 @@ const Carousel = () => {
 		if (isSuccess && data?.data?.sliders) {
 			return data?.data?.sliders.map((slider, index) => (
 				<SwiperSlide key={index}>
-					<CarouselItem
-						title={slider?.title}
-						description={slider?.description}
-						image={`${data?.data?.base_url}/${slider?.image}`}
-					/>
+					<CarouselItem title={slider?.title} description={slider?.description} image={`${slider?.image}`} />
 				</SwiperSlide>
 			))
 		}

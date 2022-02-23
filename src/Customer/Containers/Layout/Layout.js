@@ -37,6 +37,8 @@ const Layout = () => {
 				draft.access_token = authTokens.access_token
 				draft.refresh_token = authTokens.refresh_token
 			})
+			const decodedToken = jwt_decode(authTokens.access_token)
+			setUserData(decodedToken.data)
 		}
 		setIsAuthChecked(true)
 	}, [setAuthTokens])
