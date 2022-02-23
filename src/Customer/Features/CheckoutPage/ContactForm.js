@@ -7,9 +7,8 @@ import { useGetCountriesQuery } from '@Customer/Redux/CustomerApi'
 
 const ContactForm = () => {
 	const { data, isLoading, isSuccess } = useGetCountriesQuery()
-	useEffect(() => {
-		console.log({ data: data })
-	}, [data])
+	// const { userData } = useCustomerAuthContext()
+	// const userId = userData.id
 	return (
 		<StyledContainer>
 			<StyledTitle>Contact Information</StyledTitle>
@@ -22,12 +21,12 @@ const ContactForm = () => {
 				<>
 					<StyledForm style>
 						<FormGroupFlex flexDirection={['column', null, 'row']}>
-							<FormInput label='First Name' required />
-							<FormInput label='Last Name' required />
+							<FormInput label='First Name' disabled />
+							<FormInput label='Last Name' disabled />
 						</FormGroupFlex>
 						<FormGroupFlex flexDirection={['column', null, 'row']}>
-							<FormInput label='Phone Number' required />
-							<FormInput label='Email' required />
+							<FormInput label='Phone Number' disabled />
+							<FormInput label='Email' disabled />
 						</FormGroupFlex>
 						<FormGroupFlex flexDirection={['column', null, 'row']}>
 							<FormInput label='House Number' required />
