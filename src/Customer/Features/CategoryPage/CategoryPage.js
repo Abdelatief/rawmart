@@ -33,16 +33,9 @@ const CategoryPage = () => {
 		brands: [],
 	})
 	const categoryResult = useGetSingleCategoryQuery(body)
-	console.log({ category })
 
 	useEffect(() => {
-		console.log({ body })
-	}, [body])
-
-	useEffect(() => {
-		console.log({ categoryResult })
 		if (categoryResult?.isSuccess) {
-			console.log({ brands: categoryResult?.data?.brands })
 			setbrands(draft => {
 				categoryResult?.data?.brands.forEach(brand => {
 					draft[brand?.id] = { ...brand, checked: false }
@@ -101,15 +94,128 @@ const CategoryPage = () => {
 							</Flex>
 						))}
 					</StyledBrandsContainer>
+
+					{/*	Shop Section */}
+					<Flex mt='26px' flexDirection={['column', null, null, 'row']}>
+						{/*	Filters Section */}
+						<Flex mr='46px' width={['100%', null, null, '310px']} flexDirection='column' gap='26px'>
+							{/*	Brands Filters */}
+							{Object.keys(brands).length > 0 && (
+								<Flex flexDirection='column'>
+									<Text textTransform='uppercase' lineHeight='3' fontWeight={600} mb='16px'>
+										brands
+									</Text>
+									{Object.values(brands).map(brand => (
+										<Checkbox
+											onChange={e => brandChangeHandler(e, brand?.id)}
+											isChecked={brand?.checked}
+											key={brand?.id}
+											py='6px'
+											fontSize='14px'
+											borderColor='gray'
+											color='gray'
+										>
+											{brand?.name}({brand?.no_of_products})
+										</Checkbox>
+									))}
+								</Flex>
+							)}
+
+							{/* variable data section */}
+							{Object.keys(variableData).length > 0 && (
+								<Flex flexDirection='column'>
+									<Text textTransform='uppercase' lineHeight='3' fontWeight={600} mb='16px'>
+										Variant Item
+									</Text>
+									{Object.values(variableData).map(variable => (
+										<Checkbox
+											onChange={e => variantChangeHandler(e, variable.variant_id)}
+											isChecked={variable?.checked}
+											key={variable?.variant_id}
+											py='6px'
+											fontSize='14px'
+											borderColor='gray'
+											color='gray'
+										>
+											{variable?.variant_name}({variable?.no_of_products})
+										</Checkbox>
+									))}
+								</Flex>
+							)}
+
+							{/*	Price Range Section */}
+							{categoryResult?.data?.min !== categoryResult?.data?.max && (
+								<Flex flexDirection='column'>
+									<Text textTransform='uppercase' lineHeight='3' fontWeight={600} mb='16px'>
+										Price (EGP)
+									</Text>
+									<RangeSlider
+										colorScheme='green'
+										width='100%'
+										mt='20px'
+										onChange={priceRangeChangeHandler}
+										min={Number(categoryResult?.data?.min)}
+										max={Number(categoryResult?.data?.max)}
+										defaultValue={[Number(categoryResult?.data?.min), Number(categoryResult?.data?.max)]}
+									>
+										<RangeSliderTrack>
+											<RangeSliderFilledTrack />
+										</RangeSliderTrack>
+										<RangeSliderThumb bg='green.100' index={0} position='relative'>
+											<Text position='absolute' top='-26px'>
+												{priceRange.min}
+											</Text>
+										</RangeSliderThumb>
+										<RangeSliderThumb bg='green.100' index={1}>
+											<Text position='absolute' top='-26px'>
+												{priceRange.max}
+											</Text>
+										</RangeSliderThumb>
+									</RangeSlider>
+								</Flex>
+							)}
+						</Flex>
+
+						{/*	Products Section */}
+						<Flex grow={1} flexDirection='column' gap='16px'>
+							{/*	Products Header */}
+							<Flex width='100%' justifyContent='space-between' alignItems='center' my='16px'>
+								<Text>2 Products</Text>
+								<Menu>
+									<MenuButton
+										width='200px'
+										variant='unstyled'
+										borderRadius={0}
+										bg='black'
+										color='white'
+										as={Button}
+										rightIcon={<ChevronDownIcon />}
+									>
+										Sort By
+									</MenuButton>
+									<MenuList>
+										<MenuItem>Download</MenuItem>
+										<MenuItem>Create a Copy</MenuItem>
+										<MenuItem>Mark as Draft</MenuItem>
+										<MenuItem>Delete</MenuItem>
+										<MenuItem>Attend a Workshop</MenuItem>
+									</MenuList>
+								</Menu>
+							</Flex>
+
+							{/*	Products list */}
+							<Flex gap='26px' flexWrap='wrap' my='16px' pb='26px' justifyContent='center'>
+								{categoryResult?.data?.data?.map(product => (
+									<ProductCard key={product.id} product={product} />
+								))}
+							</Flex>
+						</Flex>
+					</Flex>
 				</>
 			)
 		}
 	}
-	return (
-		<div>
-			<h1>CategoryPage</h1>
-		</div>
-	)
+	return <FluidContainer>{renderer()}</FluidContainer>
 }
 const StyledBrandsContainer = styled.div`
 	display: flex;

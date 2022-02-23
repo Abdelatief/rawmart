@@ -57,7 +57,7 @@ const Navbar = () => {
 		setShowBrands(!showBrands)
 	}
 
-	const categoriesClickHandler = () => {
+	const categoriesNavClickHandler = () => {
 		setShowCategories(!showCategories)
 	}
 
@@ -68,8 +68,11 @@ const Navbar = () => {
 		setShowBrands(false)
 	}
 
-	const categoryNavItemClickHandler = category => {
-		navigate(`categories/${category.slug}`)
+	const categorytemClickHandler = category => {
+		navigate(`categories/${category.slug}`, {
+			state: { category },
+		})
+		setShowCategories(false)
 	}
 
 	useEffect(() => {
@@ -113,13 +116,14 @@ const Navbar = () => {
 								{isSuccess &&
 									data &&
 									data?.map((category, index) => (
-										<StyledNavMenuItem key={index} onClick={() => categoryNavItemClickHandler(category)}>
-											<NavItem onClick={() => toggleExtendCategoryMenu(category.id)} mb='20px'>
-												{category.name} <RiArrowDownSLine fontSize='24px' />
-											</NavItem>
-											{extendCategoryMenu &&
-												selectedCategory === category.id &&
-												category.children.map(subCategory => subCategory.name)}
+										<StyledNavMenuItem key={index} onClick={() => categorytemClickHandler(category)}>
+											{category.name}
+											{/*<NavItem onClick={() => toggleExtendCategoryMenu(category.id)} mb='20px'>*/}
+											{/*	{category.name} <RiArrowDownSLine fontSize='24px' />*/}
+											{/*</NavItem>*/}
+											{/*{extendCategoryMenu &&*/}
+											{/*	selectedCategory === category.id &&*/}
+											{/*	category.children.map(subCategory => subCategory.name)}*/}
 										</StyledNavMenuItem>
 									))}
 								<StyledNavMenuItem>All Categories</StyledNavMenuItem>
@@ -132,16 +136,17 @@ const Navbar = () => {
 									brandsResult?.data?.data &&
 									brandsResult.data.data.map((brand, index) => (
 										<StyledNavMenuItem onClick={() => brandItemClickHandler(brand)} key={index}>
-											<NavItem onClick={() => toggleExtendBrandMenu(brand.id)} mb='20px'>
-												{brand.name} <RiArrowDownSLine fontSize='24px' />
-											</NavItem>
-											{extendBrandMenu && selectedBrand === brand.id && brand.children.map(subBrand => subBrand.name)}
+											{brand.name}
+											{/*<NavItem onClick={() => toggleExtendBrandMenu(brand.id)} mb='20px'>*/}
+											{/*	{brand.name} <RiArrowDownSLine fontSize='24px' />*/}
+											{/*</NavItem>*/}
+											{/*{extendBrandMenu && selectedBrand === brand.id && brand.children.map(subBrand => subBrand.name)}*/}
 										</StyledNavMenuItem>
 									))}
 							</StyledNavMenu>
 						)}
 
-						<NavItem onClick={categoriesClickHandler}>
+						<NavItem onClick={categoriesNavClickHandler}>
 							Category <RiArrowDownSLine fontSize='24px' />
 						</NavItem>
 						<NavItem onClick={brandsNavClickHandler}>
@@ -187,7 +192,7 @@ const Navbar = () => {
 								</NavItem>
 							</Link>
 
-							<NavItem onClick={categoriesClickHandler} mb='20px'>
+							<NavItem onClick={categoriesNavClickHandler} mb='20px'>
 								Category <RiArrowDownSLine fontSize='24px' />
 							</NavItem>
 							{showCategories && (
@@ -195,7 +200,7 @@ const Navbar = () => {
 									{isSuccess &&
 										data &&
 										data?.map((category, index) => (
-											<StyledInnerContainerItem key={index} onClick={() => categoryNavItemClickHandler(category)}>
+											<StyledInnerContainerItem key={index} onClick={() => categorytemClickHandler(category)}>
 												<NavItem onClick={() => toggleExtendCategoryMenu(category.id)} mb='20px'>
 													{category.name} <RiArrowDownSLine fontSize='24px' />
 												</NavItem>
