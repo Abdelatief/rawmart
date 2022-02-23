@@ -13,14 +13,10 @@ import {
 	IconButton,
 	Drawer,
 	DrawerBody,
-	DrawerFooter,
-	DrawerHeader,
 	DrawerOverlay,
 	DrawerContent,
 	DrawerCloseButton,
-	Input,
 	useDisclosure,
-	Button,
 } from '@chakra-ui/react'
 
 export const PopupDataContext = createContext({})
@@ -34,19 +30,34 @@ const Navbar = () => {
 	const [showCategories, setShowCategories] = useState(false)
 	const [showBrands, setShowBrands] = useState(false)
 	const { isOpen, onClose, onOpen } = useDisclosure()
+	const [extendCategoryMenu, setExtendCategoryMenu] = useState(false)
+	const [selectedCategory, setSelectedCategory] = useState()
+	const [extendBrandMenu, setExtendBrandMenu] = useState(false)
+	const [selectedBrand, setSelectedBrand] = useState()
 
 	const { data, isLoading, isSuccess } = useGetCategoriesQuery()
 	const brandsResult = useGetBrandsQuery()
 
 	// useEffect(() => {
 	// 	console.log({ data, isSuccess })
+	// 	data.map(category=>(
+	// 		console.log({children: category.children})
+	// 	))
 	// }, [data, isSuccess])
 
+	const toggleExtendCategoryMenu = item => {
+		setExtendCategoryMenu(!extendCategoryMenu)
+		setSelectedCategory(item)
+	}
+	const toggleExtendBrandMenu = item => {
+		setExtendBrandMenu(!extendBrandMenu)
+		setSelectedBrand(item)
+	}
 	const brandsNavClickHandler = () => {
 		setShowBrands(!showBrands)
 	}
 
-	const categoriesClickHandler = () => {
+	const categoriesNavClickHandler = () => {
 		setShowCategories(!showCategories)
 	}
 
@@ -57,8 +68,11 @@ const Navbar = () => {
 		setShowBrands(false)
 	}
 
-	const categoryNavItemClickHandler = category => {
-		navigate(`categories/${category.slug}`)
+	const categoryItemClickHandler = category => {
+		navigate(`categories/${category.slug}`, {
+			state: { category },
+		})
+		setShowCategories(false)
 	}
 
 	useEffect(() => {
@@ -102,8 +116,14 @@ const Navbar = () => {
 								{isSuccess &&
 									data &&
 									data?.map((category, index) => (
-										<StyledNavMenuItem key={index} onClick={() => categoryNavItemClickHandler(category)}>
-											{category.name}
+										<StyledNavMenuItem key={index} onClick={() => categoryItemClickHandler(category)}>
+											<NavItem onClick={() => toggleExtendCategoryMenu(category.id)} mb='20px'>
+												{category.name} <RiArrowDownSLine fontSize='24px' />
+											</NavItem>
+											{/*TODO::CHECK*/}
+											{/*{extendCategoryMenu &&*/}
+											{/*	selectedCategory === category.id &&*/}
+											{/*	category.children.map(subCategory => subCategory.name)}*/}
 										</StyledNavMenuItem>
 									))}
 								<StyledNavMenuItem>All Categories</StyledNavMenuItem>
@@ -116,13 +136,17 @@ const Navbar = () => {
 									brandsResult?.data?.data &&
 									brandsResult.data.data.map((brand, index) => (
 										<StyledNavMenuItem onClick={() => brandItemClickHandler(brand)} key={index}>
-											{brand.name}
+											<NavItem onClick={() => toggleExtendBrandMenu(brand.id)} mb='20px'>
+												{brand.name} <RiArrowDownSLine fontSize='24px' />
+											</NavItem>
+											{/*TODO::CHECK*/}
+											{/*{extendBrandMenu && selectedBrand === brand.id && brand.children.map(subBrand => subBrand.name)}*/}
 										</StyledNavMenuItem>
 									))}
 							</StyledNavMenu>
 						)}
 
-						<NavItem onClick={categoriesClickHandler}>
+						<NavItem onClick={categoriesNavClickHandler}>
 							Category <RiArrowDownSLine fontSize='24px' />
 						</NavItem>
 						<NavItem onClick={brandsNavClickHandler}>
@@ -155,24 +179,75 @@ const Navbar = () => {
 					/>
 				)}
 			</FluidContainer>
-			<Drawer isOpen={isOpen} placement='right' onClose={onClose}>
-				<DrawerOverlay />
-				<DrawerContent>
-					<DrawerCloseButton />
-					<DrawerHeader>Create your account</DrawerHeader>
+			{matches && (
+				<Drawer isOpen={isOpen} placement='left' onClose={onClose}>
+					<DrawerOverlay />
+					<DrawerContent background='black'>
+						<DrawerCloseButton color='white' />
 
-					<DrawerBody>
-						<Input placeholder='Type here...' />
-					</DrawerBody>
+						<DrawerBody mt='50px' justifyContent='center'>
+							<Link to='/'>
+								<NavItem textAlign='left' mb='20px'>
+									Home
+								</NavItem>
+							</Link>
 
-					<DrawerFooter>
-						<Button variant='outline' mr={3} onClick={onClose}>
-							Cancel
-						</Button>
-						<Button colorScheme='blue'>Save</Button>
-					</DrawerFooter>
-				</DrawerContent>
-			</Drawer>
+							<NavItem onClick={categoriesNavClickHandler} mb='20px'>
+								Category <RiArrowDownSLine fontSize='24px' />
+							</NavItem>
+							{showCategories && (
+								<StyledInnerContainer>
+									{isSuccess &&
+										data &&
+										data?.map((category, index) => (
+											<StyledInnerContainerItem key={index} onClick={() => categoryItemClickHandler(category)}>
+												<NavItem onClick={() => toggleExtendCategoryMenu(category.id)} mb='20px'>
+													{category.name} <RiArrowDownSLine fontSize='24px' />
+												</NavItem>
+												{/*TODO::CHECK*/}
+												{/*{extendCategoryMenu &&*/}
+												{/*	selectedCategory === category.id &&*/}
+												{/*	category.children.map(subCategory => subCategory.name)}*/}
+											</StyledInnerContainerItem>
+										))}
+									<StyledInnerContainerItem>All Categories</StyledInnerContainerItem>
+								</StyledInnerContainer>
+							)}
+							<NavItem onClick={brandsNavClickHandler} mb='20px'>
+								Brands <RiArrowDownSLine fontSize='24px' />
+							</NavItem>
+							{showBrands && (
+								<StyledInnerContainer>
+									{brandsResult.isSuccess &&
+										brandsResult?.data?.data &&
+										brandsResult.data.data.map((brand, index) => (
+											<StyledInnerContainerItem onClick={() => brandItemClickHandler(brand)} key={index}>
+												<NavItem onClick={() => toggleExtendBrandMenu(brand.id)} mb='20px'>
+													{brand.name} <RiArrowDownSLine fontSize='24px' />
+												</NavItem>
+												{/*TODO::CHECK*/}
+												{/*{extendBrandMenu && selectedBrand === brand.id && brand.children.map(subBrand => subBrand.name)}*/}
+											</StyledInnerContainerItem>
+										))}
+								</StyledInnerContainer>
+							)}
+							<NavItem mb='20px'>Deals</NavItem>
+							<Link to='/about-us'>
+								<NavItem mb='20px'>About Us</NavItem>
+							</Link>
+							<NavItem mb='20px'>News/Media</NavItem>
+							<Link to='/special-order'>
+								<NavItem mb='20px'>Special Order</NavItem>
+							</Link>
+							{renderAuthenticationButton()}
+							{showLoginPopup && <LoginPopup isOpen={showLoginPopup} setIsOpen={setShowLoginPopup} />}
+							{showRegistrationPopup && (
+								<RegistrationPopup isOpen={showRegistrationPopup} setIsOpen={setShowRegistrationPopup} />
+							)}
+						</DrawerBody>
+					</DrawerContent>
+				</Drawer>
+			)}
 		</PopupDataContext.Provider>
 	)
 }
@@ -192,7 +267,6 @@ const StyledNavMenu = styled.div`
 
 const StyledNavMenuItem = styled.p`
 	color: white;
-
 	&:hover {
 		color: ${props => props.theme.colors.text.celadon};
 		cursor: pointer;
@@ -219,5 +293,20 @@ const NavItem = styled(Text).attrs({
 		color: ${props => props.theme.colors.text.celadon};
 	}
 `
+const StyledInnerContainer = styled.div`
+	background-color: #686868;
+	padding: 10px 0 10px;
+	margin-bottom: 20px;
+`
 
+const StyledInnerContainerItem = styled.p`
+	color: white;
+	border-bottom: solid 1px white;
+	margin: 10px;
+	padding: 5px;
+	&:hover {
+		color: ${props => props.theme.colors.text.celadon};
+		cursor: pointer;
+	}
+`
 export default Navbar
