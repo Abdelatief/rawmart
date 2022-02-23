@@ -1,14 +1,18 @@
 import styled, { css } from 'styled-components'
 import FluidContainer from '../../../../../../Shared/Components/FluidContainer'
 import { Flex, Text, Input } from '../../../../../../Shared/Components'
-import { Box, Badge } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import { FiSearch, FiRepeat, FiHeart, FiShoppingBag } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import { useMediaQuery } from '@Hooks'
 import { IconBadge } from './SearchSection.chakra'
+import useCustomerAuthContext from '@Customer/Hooks/useAuthContext'
+import { useGetWishlistQuery } from '@Customer/Redux/CustomerApi'
 
 const SearchSection = () => {
 	const matches = useMediaQuery('(max-width: 900px)')
+	const { userData } = useCustomerAuthContext()
+	const { data, isLoading, isSuccess } = useGetWishlistQuery({ user_id: userData?.id })
 
 	return (
 		<FluidContainer>
@@ -34,7 +38,7 @@ const SearchSection = () => {
 						<CompareIcon />
 						<Link to='/wishlist'>
 							<Box position='relative'>
-								<IconBadge>3</IconBadge>
+								<IconBadge>{data?.data?.length}</IconBadge>
 								<HeartIcon />
 							</Box>
 						</Link>

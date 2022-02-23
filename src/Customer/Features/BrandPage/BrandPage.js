@@ -1,8 +1,9 @@
 import { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
-import { useGetSingleBrandQuery } from '@Customer/Redux/CustomerApi'
+import { useGetSingleBrandQuery, useAddToWishlistMutation } from '@Customer/Redux/CustomerApi'
 import { FluidContainer } from '@Components'
+import useCustomerAuthContext from '@Customer/Hooks/useAuthContext'
 import { useImmer } from 'use-immer'
 import {
 	Flex,
@@ -25,6 +26,7 @@ const BrandPage = () => {
 	const {
 		state: { brand },
 	} = useLocation()
+	const { userData } = useCustomerAuthContext()
 	const [categories, setCategories] = useImmer({})
 	const [variableData, setVariableData] = useImmer({})
 	const [priceRange, setPriceRange] = useImmer({})
@@ -33,6 +35,7 @@ const BrandPage = () => {
 		categories: [],
 	})
 	const brandResult = useGetSingleBrandQuery(body)
+	const [addToWishListMutation, result] = useAddToWishlistMutation()
 
 	console.log({ brand })
 
@@ -97,6 +100,8 @@ const BrandPage = () => {
 			draft.max = val2
 		})
 	}
+
+	const addProductToWishlist = () => {}
 
 	const renderer = () => {
 		if (brandResult.isLoading) {
