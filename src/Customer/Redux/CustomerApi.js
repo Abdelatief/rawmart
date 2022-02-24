@@ -177,6 +177,13 @@ export const customerApi = createApi({
 				},
 			}),
 		}),
+		getCountries: builder.query({
+			query: () => ({
+				url: '/web/countries',
+				method: 'POST',
+			}),
+			providesTags: ['Country'],
+		}),
 	}),
 })
 
@@ -194,4 +201,5 @@ export const {
 	useRemoveFromWishlistMutation,
 	useGetDealsQuery,
 	useGetSearchResultsQuery,
+	useGetCountriesQuery,
 } = customerApi

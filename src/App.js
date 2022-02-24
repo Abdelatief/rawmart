@@ -30,6 +30,7 @@ import { adminStore } from '@Admin/Redux/AdminStore'
 import { Provider } from 'react-redux'
 import Cart from '@Customer/Features/Cart'
 import { customerStore } from '@Customer/Redux/CustomerStore'
+import CheckoutPage from '@Customer/Features/CheckoutPage'
 import Wishlist from '@Customer/Features/Wishlist'
 import DealsPage from '@Customer/Features/DealsPage'
 import SearchResultsPage from '@Customer/Features/SearchResultsPage'
@@ -89,6 +90,7 @@ function App() {
 							<Route path=':slug' element={<BrandPage />} />
 						</Route>
 						<Route path='cart' element={<Cart />} />
+						<Route path='check-out' element={<CheckoutPage />} />
 						<Route path='wishlist' element={<Wishlist />} />
 						<Route path='deals' element={<DealsPage />} />
 						<Route path='search' element={<SearchResultsPage />} />
