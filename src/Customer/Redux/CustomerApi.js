@@ -138,6 +138,45 @@ export const customerApi = createApi({
 				body,
 			}),
 		}),
+		getDeals: builder.query({
+			query: () => ({
+				url: 'web/collections/products',
+				method: 'POST',
+				body: {
+					page: 1,
+					per_page: 30,
+					search: '',
+					sort: 'id',
+					dir: 'desc',
+					deals: true,
+					categories: [],
+					brands: [],
+					attributes: [],
+					language: 'en',
+				},
+			}),
+		}),
+		getSearchResults: builder.query({
+			query: searchQuery => ({
+				url: 'web/collections/products',
+				method: 'POST',
+				body: {
+					page: 1,
+					per_page: 30,
+					search: '',
+					sort: 'id',
+					dir: 'desc',
+					categories: [],
+					brands: [],
+					attributes: [],
+					language: 'en',
+					q: searchQuery,
+					type: 'product',
+					min_price: 0,
+					max_price: 0,
+				},
+			}),
+		}),
 	}),
 })
 
@@ -153,4 +192,6 @@ export const {
 	useGetWishlistQuery,
 	useAddToWishlistMutation,
 	useRemoveFromWishlistMutation,
+	useGetDealsQuery,
+	useGetSearchResultsQuery,
 } = customerApi

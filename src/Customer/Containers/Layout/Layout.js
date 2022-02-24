@@ -2,12 +2,13 @@ import { createContext, useState, useEffect } from 'react'
 import styled from 'styled-components'
 import Header from './Components/Header'
 import Footer from './Components/Footer'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation, useSearchParams } from 'react-router-dom'
 import { useImmer } from 'use-immer'
 import { LocalStorageKeys } from '@Customer/Constants'
 import { useLoginMutation, useRegisterMutation } from '@Customer/Redux/CustomerApi'
 import { Text } from '@Components'
 import jwt_decode from 'jwt-decode'
+import { useSelector } from 'react-redux'
 export const CustomerAuthContext = createContext({})
 
 const Layout = () => {

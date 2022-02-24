@@ -161,11 +161,13 @@ const Navbar = () => {
 						<NavItem onClick={brandsNavClickHandler}>
 							Brands <RiArrowDownSLine fontSize='24px' />
 						</NavItem>
-						<NavItem>Deals</NavItem>
+						<Link to='/deals'>
+							<NavItem>Deals</NavItem>
+						</Link>
 						<Link to='/about-us'>
 							<NavItem>About Us</NavItem>
 						</Link>
-						<NavItem>News/Media</NavItem>
+						{/*<NavItem>News/Media</NavItem>*/}
 						<Link to='/special-order'>
 							<NavItem>Special Order</NavItem>
 						</Link>
