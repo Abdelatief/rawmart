@@ -17,9 +17,9 @@ const CartCard = () => {
 		search: '',
 		sort: 'id',
 	})
-	useEffect(() => {
-		console.log({ cartData: data })
-	}, [data])
+	// useEffect(() => {
+	// 	console.log({ cartData: data })
+	// }, [data])
 
 	return (
 		<StyledContainer bg='background.cultured'>

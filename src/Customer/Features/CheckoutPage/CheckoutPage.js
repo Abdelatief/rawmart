@@ -20,14 +20,9 @@ const CheckoutPage = () => {
 	)
 }
 const StyledRightContainer = styled.div`
-	//flex: 20%;
 	width: 40%;
-	//height: 100%;
-	//justify-content: flex-end;
 `
 const StyledLeftContainer = styled.div`
-	//flex: 70%;
 	width: 60%;
-	//justify-content: flex-start;
 `
 export default CheckoutPage
