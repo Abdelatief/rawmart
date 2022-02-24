@@ -182,7 +182,13 @@ export const customerApi = createApi({
 				url: '/web/countries',
 				method: 'POST',
 			}),
-			providesTags: ['Country'],
+		}),
+		addSpecialOrder: builder.mutation({
+			query: body => ({
+				url: 'web/special-orders/add',
+				method: 'POST',
+				body,
+			}),
 		}),
 	}),
 })
@@ -202,4 +208,5 @@ export const {
 	useGetDealsQuery,
 	useGetSearchResultsQuery,
 	useGetCountriesQuery,
+	useAddSpecialOrderMutation,
 } = customerApi
