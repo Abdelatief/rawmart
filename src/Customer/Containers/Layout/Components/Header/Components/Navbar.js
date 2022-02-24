@@ -39,13 +39,6 @@ const Navbar = () => {
 	const { data, isLoading, isSuccess } = useGetCategoriesQuery()
 	const brandsResult = useGetBrandsQuery()
 
-	// useEffect(() => {
-	// 	console.log({ data, isSuccess })
-	// 	data.map(category=>(
-	// 		console.log({children: category.children})
-	// 	))
-	// }, [data, isSuccess])
-
 	const toggleExtendCategoryMenu = item => {
 		setExtendCategoryMenu(!extendCategoryMenu)
 		setSelectedCategory(item)
@@ -118,7 +111,7 @@ const Navbar = () => {
 									data &&
 									data?.map((category, index) => (
 										<StyledNavMenuItem key={index}>
-											<NavItem onClick={() => toggleExtendCategoryMenu(category.id)} mb='20px'>
+											<NavItem onClick={() => toggleExtendCategoryMenu(category.id)} mb='10px'>
 												<Text
 													color='white'
 													_hover={{ color: '#AFD39A' }}
@@ -126,15 +119,18 @@ const Navbar = () => {
 												>
 													{category.name}
 												</Text>
-												<RiArrowDownSLine fontSize='24px' />
 											</NavItem>
-											{extendCategoryMenu &&
-												selectedCategory === category.id &&
-												category.children.map(subCategory => (
-													<Text onClick={() => categoryItemClickHandler(subCategory)} key={subCategory.id}>
-														{subCategory.name}
-													</Text>
-												))}
+
+											{category.children.map(subCategory => (
+												<Text
+													ml='15px'
+													_hover={{ color: '#AFD39A' }}
+													onClick={() => categoryItemClickHandler(subCategory)}
+													key={subCategory.id}
+												>
+													{subCategory.name}
+												</Text>
+											))}
 										</StyledNavMenuItem>
 									))}
 								<StyledNavMenuItem>All Categories</StyledNavMenuItem>
@@ -210,7 +206,7 @@ const Navbar = () => {
 										data &&
 										data?.map((category, index) => (
 											<StyledInnerContainerItem key={index}>
-												<NavItem onClick={() => toggleExtendCategoryMenu(category.id)} mb='20px'>
+												<NavItem onClick={() => toggleExtendCategoryMenu(category.id)} mb='10px'>
 													<Text
 														color='white'
 														_hover={{ color: '#AFD39A' }}
@@ -218,15 +214,17 @@ const Navbar = () => {
 													>
 														{category.name}
 													</Text>
-													<RiArrowDownSLine fontSize='24px' />
 												</NavItem>
-												{extendCategoryMenu &&
-													selectedCategory === category.id &&
-													category.children.map(subCategory => (
-														<Text onClick={() => categoryItemClickHandler(subCategory)} key={subCategory.id}>
-															{subCategory.name}
-														</Text>
-													))}
+												{category.children.map(subCategory => (
+													<Text
+														_hover={{ color: '#AFD39A' }}
+														ml='15px'
+														onClick={() => categoryItemClickHandler(subCategory)}
+														key={subCategory.id}
+													>
+														{subCategory.name}
+													</Text>
+												))}
 											</StyledInnerContainerItem>
 										))}
 									<StyledInnerContainerItem>All Categories</StyledInnerContainerItem>
@@ -285,7 +283,6 @@ const StyledNavMenu = styled.div`
 const StyledNavMenuItem = styled.div`
 	color: white;
 	&:hover {
-		color: ${props => props.theme.colors.text.celadon};
 		cursor: pointer;
 	}
 `
@@ -323,7 +320,6 @@ const StyledInnerContainerItem = styled.p`
 	margin: 10px;
 	padding: 5px;
 	&:hover {
-		color: ${props => props.theme.colors.text.celadon};
 		cursor: pointer;
 	}
 `
