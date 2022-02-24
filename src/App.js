@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import LandingPage from '@Customer/Features/LandingPage'
 import AdminDashboard from '@Admin/Features/AdminDashboard'
@@ -32,6 +32,8 @@ import Cart from '@Customer/Features/Cart'
 import { customerStore } from '@Customer/Redux/CustomerStore'
 import CheckoutPage from '@Customer/Features/CheckoutPage'
 import Wishlist from '@Customer/Features/Wishlist'
+import DealsPage from '@Customer/Features/DealsPage'
+import SearchResultsPage from '@Customer/Features/SearchResultsPage'
 
 function App() {
 	return (
@@ -90,6 +92,8 @@ function App() {
 						<Route path='cart' element={<Cart />} />
 						<Route path='check-out' element={<CheckoutPage />} />
 						<Route path='wishlist' element={<Wishlist />} />
+						<Route path='deals' element={<DealsPage />} />
+						<Route path='search' element={<SearchResultsPage />} />
 					</Route>
 				</Routes>
 			</Provider>

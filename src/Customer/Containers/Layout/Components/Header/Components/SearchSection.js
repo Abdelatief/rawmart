@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+import { useNavigate, useLocation, useSearchParams, createSearchParams } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 import FluidContainer from '../../../../../../Shared/Components/FluidContainer'
 import { Flex, Text, Input } from '../../../../../../Shared/Components'
@@ -9,14 +11,49 @@ import { IconBadge } from './SearchSection.chakra'
 import useCustomerAuthContext from '@Customer/Hooks/useAuthContext'
 import { useGetWishlistQuery } from '@Customer/Redux/CustomerApi'
 import { useSelector } from 'react-redux'
+import useDebounce from '../../../../../../Shared/Hooks/UseDebounce'
+import { useDispatch } from 'react-redux'
+import { setSearchQuery } from '@Customer/Redux/AppSlice'
 
 const SearchSection = () => {
 	const matches = useMediaQuery('(max-width: 900px)')
+	const navigate = useNavigate()
+	const location = useLocation()
+	const dispatch = useDispatch()
+	const [searchParams, setSearchParams] = useSearchParams()
 	const { userData } = useCustomerAuthContext()
 	const { data, isLoading, isSuccess } = useGetWishlistQuery({ user_id: userData?.id })
 	const products = useSelector(state => state.cart.items)
+	const [isSearchReset, setSearchReset] = useState(false)
+	const { debounceValue, setRealValue, realValue } = useDebounce({
+		value: '',
+		callback: async () => {
+			console.log('search debounce')
+			dispatch(setSearchQuery(debounceValue))
+			if (debounceValue) {
+				const queryParam = createSearchParams({ q: debounceValue })
+				await navigate(`/search?${queryParam}`)
+			} else {
+				setSearchParams({})
+			}
+		},
+	})
 
 	console.log({ products, length: products?.length })
+
+	const navigateToSearch = async () => {
+		dispatch(setSearchQuery(debounceValue))
+		if (debounceValue) {
+			const queryParam = createSearchParams({ q: debounceValue })
+			await navigate(`/search?${queryParam}`)
+		} else {
+			setSearchParams({})
+		}
+	}
+
+	const searchQueryChangeHandler = event => {
+		setRealValue(event.target.value)
+	}
 
 	return (
 		<FluidContainer>
@@ -36,7 +73,12 @@ const SearchSection = () => {
 					</Flex>
 				)}
 				{!matches && <StyledLogo>Rawmart</StyledLogo>}
-				<Input width={['100%', null, null, '392px']} icon={<SearchIcon />} />
+				<Input
+					width={['100%', null, null, '392px']}
+					icon={<SearchIcon onClick={navigateToSearch} />}
+					value={realValue}
+					onChange={searchQueryChangeHandler}
+				/>
 				{!matches && (
 					<StyledIconsFlexContainer>
 						{/*<CompareIcon />*/}

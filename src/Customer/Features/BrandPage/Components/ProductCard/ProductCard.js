@@ -1,8 +1,8 @@
 import { Image, Text, Flex, Button } from '@chakra-ui/react'
 import { AiOutlineHeart } from 'react-icons/ai'
 import { BsArrowRepeat } from 'react-icons/bs'
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { addItem } from '@Customer/Redux/CartSlice'
 import useCustomerAuthContext from '@Customer/Hooks/useAuthContext'
 import { useAddToWishlistMutation } from '@Customer/Redux/CustomerApi'
@@ -10,10 +10,8 @@ import { useAddToWishlistMutation } from '@Customer/Redux/CustomerApi'
 const ProductCard = ({ product }) => {
 	const { userData } = useCustomerAuthContext()
 	const dispatch = useDispatch()
-	// const { items } = useSelector(state => state.cart)
-	// console.log({ product })
 	const [isHovered, setIsHovered] = useState(false)
-	const [mutateWishlist, result] = useAddToWishlistMutation()
+	const [mutateWishlist, _] = useAddToWishlistMutation()
 
 	const addToCart = () => {
 		console.log({ product })
@@ -24,10 +22,6 @@ const ProductCard = ({ product }) => {
 		event.stopPropagation()
 		mutateWishlist({ product_id: product.id, user_id: userData.id })
 	}
-
-	// useEffect(() => {
-	// 	console.log({ storeItems: items })
-	// }, [items])
 
 	return (
 		<Flex
