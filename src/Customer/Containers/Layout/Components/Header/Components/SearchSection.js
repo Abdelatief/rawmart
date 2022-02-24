@@ -8,11 +8,15 @@ import { useMediaQuery } from '@Hooks'
 import { IconBadge } from './SearchSection.chakra'
 import useCustomerAuthContext from '@Customer/Hooks/useAuthContext'
 import { useGetWishlistQuery } from '@Customer/Redux/CustomerApi'
+import { useSelector } from 'react-redux'
 
 const SearchSection = () => {
 	const matches = useMediaQuery('(max-width: 900px)')
 	const { userData } = useCustomerAuthContext()
 	const { data, isLoading, isSuccess } = useGetWishlistQuery({ user_id: userData?.id })
+	const products = useSelector(state => state.cart.items)
+
+	console.log({ products, length: products?.length })
 
 	return (
 		<FluidContainer>
@@ -23,7 +27,7 @@ const SearchSection = () => {
 							Rawmart
 						</Text>
 						<Flex gap='18px' _hover={{ cursor: 'pointer' }}>
-							<CompareIcon />
+							{/*<CompareIcon />*/}
 							<HeartIcon />
 							<Link to='/cart'>
 								<CartIcon />
@@ -35,15 +39,18 @@ const SearchSection = () => {
 				<Input width={['100%', null, null, '392px']} icon={<SearchIcon />} />
 				{!matches && (
 					<StyledIconsFlexContainer>
-						<CompareIcon />
+						{/*<CompareIcon />*/}
 						<Link to='/wishlist'>
 							<Box position='relative'>
-								<IconBadge>{data?.data?.length}</IconBadge>
+								<IconBadge>{data?.data?.length ?? 0}</IconBadge>
 								<HeartIcon />
 							</Box>
 						</Link>
 						<Link to='/cart'>
-							<CartIcon />
+							<Box position='relative'>
+								<IconBadge>{Object.keys(products)?.length}</IconBadge>
+								<CartIcon />
+							</Box>
 						</Link>
 					</StyledIconsFlexContainer>
 				)}

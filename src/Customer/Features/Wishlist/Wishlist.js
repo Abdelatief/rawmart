@@ -26,7 +26,7 @@ const Wishlist = () => {
 						Wishlist
 					</Text>
 
-					<Box overflowX='scroll' width='100%'>
+					<Box overflowX='auto' width='100%'>
 						<Table variant='unstyled' textAlign='center' maxWidth='99%'>
 							<Thead>
 								<Tr borderBottom='0px solid lightgray'>

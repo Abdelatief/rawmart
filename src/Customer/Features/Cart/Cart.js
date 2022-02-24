@@ -36,50 +36,52 @@ const Cart = () => {
 						Cart
 					</Text>
 
-					<Table variant='unstyled' textAlign='center'>
-						<Thead>
-							<Tr borderBottom='1px solid lightgray'>
-								<CustomTh>Actions</CustomTh>
-								<CustomTh>Product</CustomTh>
-								<CustomTh></CustomTh>
-								<CustomTh>Unit Price</CustomTh>
-								<CustomTh>Quantity</CustomTh>
-								<CustomTh>Sub Total</CustomTh>
-							</Tr>
-						</Thead>
-						<Tbody>
-							{data?.data.map(item => (
-								<Tr key={item.id} borderBottom='1px solid lightgray'>
-									<CustomTd _hover={{ cursor: 'pointer' }}>
-										<CloseIcon width='26px' height='26px' color='red' onClick={() => removeProduct(item.id)} />
-									</CustomTd>
-									<CustomTd>
-										<Image
-											width='64px'
-											height='64px'
-											src={item.image_url}
-											alt={item.name}
-											position='relative'
-											top='26px'
-											mx='auto'
-										/>
-									</CustomTd>
-									<CustomTd>
-										<Text>{item.name}</Text>
-									</CustomTd>
-									<CustomTd>
-										<Text>{item.cart_price} EGP</Text>
-									</CustomTd>
-									<CustomTd>
-										<Text>{item.quantity}</Text>
-									</CustomTd>
-									<CustomTd>
-										<Text>{item.sub_total}</Text>
-									</CustomTd>
+					<Box Width='100%' overflowX='auto'>
+						<Table variant='unstyled' textAlign='center' width='99%'>
+							<Thead>
+								<Tr borderBottom='1px solid lightgray'>
+									<CustomTh>Actions</CustomTh>
+									<CustomTh>Product</CustomTh>
+									<CustomTh></CustomTh>
+									<CustomTh>Unit Price</CustomTh>
+									<CustomTh>Quantity</CustomTh>
+									<CustomTh>Sub Total</CustomTh>
 								</Tr>
-							))}
-						</Tbody>
-					</Table>
+							</Thead>
+							<Tbody>
+								{data?.data.map(item => (
+									<Tr key={item.id} borderBottom='1px solid lightgray'>
+										<CustomTd _hover={{ cursor: 'pointer' }}>
+											<CloseIcon width='26px' height='26px' color='red' onClick={() => removeProduct(item.id)} />
+										</CustomTd>
+										<CustomTd>
+											<Image
+												width='64px'
+												height='64px'
+												src={item.image_url}
+												alt={item.name}
+												position='relative'
+												top='26px'
+												mx='auto'
+											/>
+										</CustomTd>
+										<CustomTd>
+											<Text>{item.name}</Text>
+										</CustomTd>
+										<CustomTd>
+											<Text>{item.cart_price} EGP</Text>
+										</CustomTd>
+										<CustomTd>
+											<Text>{item.quantity}</Text>
+										</CustomTd>
+										<CustomTd>
+											<Text>{item.sub_total}</Text>
+										</CustomTd>
+									</Tr>
+								))}
+							</Tbody>
+						</Table>
+					</Box>
 					<Box maxWidth='360px' mx='auto' my='26px'>
 						<Text fontSize='24px' weight={500} borderBottom='1px solid lightgray' pb='16px'>
 							Cart Summary
