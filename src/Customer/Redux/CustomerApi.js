@@ -197,6 +197,20 @@ export const customerApi = createApi({
 				body,
 			}),
 		}),
+		getProductReviews: builder.query({
+			query: ({ product_id }) => ({
+				url: 'web/product/reviews',
+				method: 'POST',
+				body: {
+					page: 0,
+					per_page: 100,
+					search: '',
+					sort: 'id',
+					dir: 'desc',
+					product_id: product_id,
+				},
+			}),
+		}),
 	}),
 })
 
@@ -217,4 +231,5 @@ export const {
 	useGetCountriesQuery,
 	useAddSpecialOrderMutation,
 	useGetSingleProductQuery,
+	useGetProductReviewsQuery,
 } = customerApi

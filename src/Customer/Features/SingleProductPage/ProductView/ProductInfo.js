@@ -124,6 +124,7 @@ const ProductInfo = () => {
 		</div>
 	)
 }
+
 const StyledStarIcon = styled(MdStarRate)`
 	font-size: 25px;
 `

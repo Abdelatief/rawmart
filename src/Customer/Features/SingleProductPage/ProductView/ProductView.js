@@ -7,7 +7,7 @@ const ProductView = () => {
 	return (
 		<FluidContainer>
 			<Flex width='100%' flexDirection={['column', null, 'row']}>
-				<StyledLeftContainer>right</StyledLeftContainer>
+				<StyledLeftContainer>left</StyledLeftContainer>
 				<StyledRightContainer>
 					<ProductInfo />
 				</StyledRightContainer>
