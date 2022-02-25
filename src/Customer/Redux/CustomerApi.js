@@ -190,6 +190,13 @@ export const customerApi = createApi({
 				body,
 			}),
 		}),
+		getSingleProduct: builder.query({
+			query: body => ({
+				url: 'web/products/view',
+				method: 'POST',
+				body,
+			}),
+		}),
 	}),
 })
 
@@ -209,4 +216,5 @@ export const {
 	useGetSearchResultsQuery,
 	useGetCountriesQuery,
 	useAddSpecialOrderMutation,
+	useGetSingleProductQuery,
 } = customerApi

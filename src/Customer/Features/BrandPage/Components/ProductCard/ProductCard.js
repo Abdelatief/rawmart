@@ -6,12 +6,13 @@ import { useDispatch } from 'react-redux'
 import { addItem } from '@Customer/Redux/CartSlice'
 import useCustomerAuthContext from '@Customer/Hooks/useAuthContext'
 import { useAddToWishlistMutation } from '@Customer/Redux/CustomerApi'
-
+import { useNavigate } from 'react-router-dom'
 const ProductCard = ({ product }) => {
 	const { userData } = useCustomerAuthContext()
 	const dispatch = useDispatch()
 	const [isHovered, setIsHovered] = useState(false)
 	const [mutateWishlist, _] = useAddToWishlistMutation()
+	const navigate = useNavigate()
 
 	const addToCart = () => {
 		console.log({ product })
@@ -21,6 +22,11 @@ const ProductCard = ({ product }) => {
 	const addToWishlist = event => {
 		event.stopPropagation()
 		mutateWishlist({ product_id: product.id, user_id: userData.id })
+	}
+	const productItemClickHandler = product => {
+		navigate(`../../products/${product.slug}`, {
+			state: { product },
+		})
 	}
 
 	return (
@@ -58,7 +64,15 @@ const ProductCard = ({ product }) => {
 				</Flex>
 			)}
 
-			<Image src={product?.image_url} objectFit='contain' width='280px' height='280px' mb='8px' alt={product.name} />
+			<Image
+				src={product?.image_url}
+				objectFit='contain'
+				width='280px'
+				height='280px'
+				mb='8px'
+				alt={product.name}
+				onClick={() => productItemClickHandler(product)}
+			/>
 			<Flex flexDirection='column' alignItems='center' justifyContent='center' gap='16px'>
 				<Text fontWeight={600} color='#9a9a9a' fontSize='14px' textTransform='uppercase' lineHeight='1.714'>
 					{product?.vendor}

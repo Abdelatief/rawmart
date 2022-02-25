@@ -106,7 +106,7 @@ const Cart = () => {
 								{data?.summary?.total} EGP
 							</Text>
 						</SummaryFlex>
-						<StyledLink to='../check-out'>
+						<StyledLink to='../checkout'>
 							<Button bg='#AFD39A' color='black' borderRadius={0} width='100%' my='16px'>
 								Proceed to Checkout
 							</Button>
