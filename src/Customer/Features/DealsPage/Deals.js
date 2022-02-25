@@ -1,7 +1,6 @@
-import { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useEffect, useRef } from 'react'
 import styled from 'styled-components'
-import { useGetSingleCategoryQuery } from '@Customer/Redux/CustomerApi'
+import { useAddToWishlistMutation, useGetDealsQuery } from '@Customer/Redux/CustomerApi'
 import { FluidContainer } from '@Components'
 import { useImmer } from 'use-immer'
 import {
@@ -21,46 +20,64 @@ import {
 import { ChevronDownIcon } from '@chakra-ui/icons'
 import ProductCard from '@Customer/Features/BrandPage/Components/ProductCard'
 
-const CategoryPage = () => {
-	const {
-		state: { category },
-	} = useLocation()
-	const [brands, setbrands] = useImmer({})
+const BrandPage = () => {
+	const [categories, setCategories] = useImmer({})
 	const [variableData, setVariableData] = useImmer({})
 	const [priceRange, setPriceRange] = useImmer({})
 	const [body, setBody] = useImmer({
-		categoryId: category.id,
-		brands: [],
+		// brandId: brand.id,
+		categories: [],
 	})
-	const categoryResult = useGetSingleCategoryQuery(body)
+	// const dealsResult = useGetSingleBrandQuery(body)
+	const dealsResult = useGetDealsQuery()
+	const [addToWishListMutation, result] = useAddToWishlistMutation()
+
+	// useEffect(() => {
+	// 	console.log({ body })
+	// }, [body])
+
+	// useEffect(() => {
+	// 	console.log('categories side effect')
+	// 	console.log({ allCategories: Object.values(categories)})
+	// 	console.log({ checkedCategories: Object.values(categories).filter(value => value.checked).map(category => category?.id) })
+	// 	setBody(draft => {
+	// 		draft.categories = Object.values(categories).filter(value => value.checked).map(category => category?.id)
+	// 	})
+	// }, [categories])
 
 	useEffect(() => {
-		if (categoryResult?.isSuccess) {
-			setbrands(draft => {
-				categoryResult?.data?.brands.forEach(brand => {
-					draft[brand?.id] = { ...brand, checked: false }
+		console.log({ dealsResult })
+		if (dealsResult?.isSuccess) {
+			console.log({ categories: dealsResult?.data?.categories })
+			setCategories(draft => {
+				dealsResult?.data?.categories.forEach(category => {
+					draft[category?.id] = { ...category, checked: false }
 				})
 			})
 			setVariableData(draft => {
-				categoryResult?.data?.variable_data?.forEach(variable => {
+				dealsResult?.data?.variable_data?.forEach(variable => {
 					draft[variable.variant_id] = { ...variable, checked: false }
 				})
 			})
 			setPriceRange(draft => {
-				draft.min = Number(categoryResult?.data?.min)
-				draft.max = Number(categoryResult?.data?.max)
+				draft.min = Number(dealsResult?.data?.min)
+				draft.max = Number(dealsResult?.data?.max)
 			})
 		}
-	}, [categoryResult, setbrands])
+	}, [dealsResult, setCategories])
 
-	const brandChangeHandler = (event, id) => {
-		setbrands(draft => {
+	useEffect(() => {
+		console.log({ priceRange })
+	}, [priceRange])
+
+	const categoryChangeHandler = (event, id) => {
+		setCategories(draft => {
 			draft[id].checked = event.target.checked
 		})
 		setBody(draft => {
-			draft.brands = Object.values(brands)
+			draft.categories = Object.values(categories)
 				.filter(value => value.checked)
-				.map(brand => brand?.id)
+				.map(category => category?.id)
 		})
 	}
 
@@ -76,46 +93,54 @@ const CategoryPage = () => {
 			draft.max = val2
 		})
 	}
+
+	const addProductToWishlist = () => {}
+
 	const renderer = () => {
-		if (categoryResult.isLoading) {
+		if (dealsResult.isLoading) {
 			return <Text fontSize='26px'>Loading...</Text>
 		}
-		if (categoryResult.isSuccess && categoryResult?.data?.data) {
+
+		if (dealsResult.isSuccess && dealsResult?.data?.data) {
 			return (
 				<>
-					<Text fontSize='34px' lineHeight='1.412' my='36px'>
-						{category.name}
-					</Text>
-					<StyledBrandsContainer>
-						{categoryResult.data?.brands?.map(brand => (
+					<StyledCategoriesContainer>
+						{dealsResult.data?.categories?.map(category => (
+							<Flex key={category?.id} flexDirection='column' gap='16px' width='164px'>
+								<StyledCategoryImage src={category?.image_url} alt={category?.name} />
+								<Text>{category?.name}</Text>
+							</Flex>
+						))}
+
+						{dealsResult.data?.brands?.map(brand => (
 							<Flex key={brand?.id} flexDirection='column' gap='16px' width='164px'>
-								<StyledBrandImage src={brand?.image_url} alt={brand?.name} />
+								<StyledCategoryImage src={brand?.image_url} alt={brand?.name} />
 								<Text>{brand?.name}</Text>
 							</Flex>
 						))}
-					</StyledBrandsContainer>
+					</StyledCategoriesContainer>
 
 					{/*	Shop Section */}
 					<Flex mt='26px' flexDirection={['column', null, null, 'row']}>
 						{/*	Filters Section */}
 						<Flex mr='46px' width={['100%', null, null, '310px']} flexDirection='column' gap='26px'>
-							{/*	Brands Filters */}
-							{Object.keys(brands).length > 0 && (
+							{/*	Categories Filters */}
+							{Object.keys(categories).length > 0 && (
 								<Flex flexDirection='column'>
 									<Text textTransform='uppercase' lineHeight='3' fontWeight={600} mb='16px'>
-										brands
+										Categories
 									</Text>
-									{Object.values(brands).map(brand => (
+									{Object.values(categories).map(category => (
 										<Checkbox
-											onChange={e => brandChangeHandler(e, brand?.id)}
-											isChecked={brand?.checked}
-											key={brand?.id}
+											onChange={e => categoryChangeHandler(e, category?.id)}
+											isChecked={category?.checked}
+											key={category?.id}
 											py='6px'
 											fontSize='14px'
 											borderColor='gray'
 											color='gray'
 										>
-											{brand?.name}({brand?.no_of_products})
+											{category?.name}({category?.no_of_products})
 										</Checkbox>
 									))}
 								</Flex>
@@ -144,7 +169,7 @@ const CategoryPage = () => {
 							)}
 
 							{/*	Price Range Section */}
-							{categoryResult?.data?.min !== categoryResult?.data?.max && (
+							{dealsResult?.data?.min !== dealsResult?.data?.max && (
 								<Flex flexDirection='column'>
 									<Text textTransform='uppercase' lineHeight='3' fontWeight={600} mb='16px'>
 										Price (EGP)
@@ -154,9 +179,9 @@ const CategoryPage = () => {
 										width='100%'
 										mt='20px'
 										onChange={priceRangeChangeHandler}
-										min={Number(categoryResult?.data?.min)}
-										max={Number(categoryResult?.data?.max)}
-										defaultValue={[Number(categoryResult?.data?.min), Number(categoryResult?.data?.max)]}
+										min={Number(dealsResult?.data?.min)}
+										max={Number(dealsResult?.data?.max)}
+										defaultValue={[Number(dealsResult?.data?.min), Number(dealsResult?.data?.max)]}
 									>
 										<RangeSliderTrack>
 											<RangeSliderFilledTrack />
@@ -205,7 +230,7 @@ const CategoryPage = () => {
 
 							{/*	Products list */}
 							<Flex gap='26px' flexWrap='wrap' my='16px' pb='26px' justifyContent='center'>
-								{categoryResult?.data?.data?.map(product => (
+								{dealsResult?.data?.data?.map(product => (
 									<ProductCard key={product.id} product={product} />
 								))}
 							</Flex>
@@ -215,17 +240,20 @@ const CategoryPage = () => {
 			)
 		}
 	}
+
 	return <FluidContainer>{renderer()}</FluidContainer>
 }
-const StyledBrandsContainer = styled.div`
+
+const StyledCategoriesContainer = styled.div`
 	display: flex;
 	justify-content: space-around;
 	flex-wrap: wrap;
 	padding: 26px 0;
 `
 
-const StyledBrandImage = styled.img`
+const StyledCategoryImage = styled.img`
 	width: 164px;
 	height: 164px;
 `
-export default CategoryPage
+
+export default BrandPage

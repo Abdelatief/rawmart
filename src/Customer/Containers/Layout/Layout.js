@@ -2,17 +2,19 @@ import { createContext, useState, useEffect } from 'react'
 import styled from 'styled-components'
 import Header from './Components/Header'
 import Footer from './Components/Footer'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation, useSearchParams } from 'react-router-dom'
 import { useImmer } from 'use-immer'
 import { LocalStorageKeys } from '@Customer/Constants'
 import { useLoginMutation, useRegisterMutation } from '@Customer/Redux/CustomerApi'
 import { Text } from '@Components'
-
+import jwt_decode from 'jwt-decode'
+import { useSelector } from 'react-redux'
 export const CustomerAuthContext = createContext({})
 
 const Layout = () => {
 	const [authTokens, setAuthTokens] = useImmer({})
 	const [isAuthChecked, setIsAuthChecked] = useState(false)
+	const [userData, setUserData] = useState()
 	// eslint-disable-next-line no-unused-vars
 	const [_, { data, isLoading, isSuccess }] = useRegisterMutation({ fixedCacheKey: 'customer-registration' })
 	// eslint-disable-next-line no-unused-vars
@@ -36,6 +38,8 @@ const Layout = () => {
 				draft.access_token = authTokens.access_token
 				draft.refresh_token = authTokens.refresh_token
 			})
+			const decodedToken = jwt_decode(authTokens.access_token)
+			setUserData(decodedToken.data)
 		}
 		setIsAuthChecked(true)
 	}, [setAuthTokens])
@@ -70,8 +74,17 @@ const Layout = () => {
 		}
 	}, [loginResult, setAuthTokens])
 
+	useEffect(() => {
+		if (authTokens.access_token) {
+			const decodedToken = jwt_decode(authTokens.access_token)
+			setUserData(decodedToken.data)
+		}
+	}, [authTokens])
+
 	return (
-		<CustomerAuthContext.Provider value={{ authTokens, isAuthChecked, resetAuthTokens: logout, isAuthenticated }}>
+		<CustomerAuthContext.Provider
+			value={{ authTokens, isAuthChecked, resetAuthTokens: logout, isAuthenticated, userData }}
+		>
 			{isAuthChecked ? (
 				<StyledLayout>
 					<Header />

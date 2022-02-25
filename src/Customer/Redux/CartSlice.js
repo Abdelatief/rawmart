@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { LocalStorageKeys } from '@Customer/Constants'
 
 const cartInitialState = {
-	items: {},
+	items: JSON.parse(localStorage.getItem(LocalStorageKeys.customerCart)) ?? {},
 }
 
 export const cartSlice = createSlice({
@@ -15,6 +16,7 @@ export const cartSlice = createSlice({
 			} else {
 				state.items[payload?.id] = { id: payload?.id, quantity: 1, variant: payload?.variant }
 			}
+			localStorage.setItem(LocalStorageKeys.customerCart, JSON.stringify(state.items))
 		},
 		removeItem: (state, { payload }) => {
 			delete state.items[payload]

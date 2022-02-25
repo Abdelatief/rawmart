@@ -5,6 +5,7 @@
   "dependencies": {
     "@chakra-ui/icons": "^1.1.5",
     "@chakra-ui/react": "^1.8.3",
+    "@craco/craco": "^6.4.3",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@hookform/resolvers": "^2.8.8",
@@ -13,8 +14,10 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "craco-alias": "^3.0.1",
     "framer-motion": "^6",
     "immer": "^9.0.12",
+    "jwt-decode": "^3.1.2",
     "moment": "^2.29.1",
     "node-sass": "^7.0.1",
     "popmotion": "^11.0.3",
@@ -26,6 +29,7 @@
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
+    "react-star-rating-component": "^1.4.1",
     "styled-components": "^5.3.3",
     "styled-reset": "^4.3.4",
     "styled-system": "^5.1.5",
@@ -56,9 +60,7 @@
     ]
   },
   "devDependencies": {
-    "@craco/craco": "^6.4.3",
     "@hookform/devtools": "^4.0.2",
-    "craco-alias": "^3.0.1",
     "eslint": "^8.7.0",
     "husky": "^7.0.0",
     "prettier": "^2.5.1"
